@@ -1,0 +1,6 @@
+comparison,unit,n,observed_median,modelled_median,mape_pct,bias_pct,ratio_median,spearman_rho,spearman_p,pearson_r,mape_pass,rank_pass
+Pace: plan min/km vs observed min/km (all matches),min/km,14,4.722,3.398,32.9,-31.3,0.681,0.513,0.0604,0.415,False,True
+Pace: plan min/km vs observed min/km (matched only),min/km,5,5.271,4.0,36.3,-36.3,0.673,0.872,0.0539,0.66,False,True
+One-way time: plan vs observed total (all matches),min,14,56.15,41.45,40.7,-16.8,0.62,0.221,0.4477,0.329,False,False
+One-way time: plan vs observed total (matched only),min,5,75.9,38.0,47.6,-47.6,0.513,1.0,0.0,0.985,False,True
+Route length: plan Route_KM vs observed corridor,km,14,11.35,12.9,51.1,26.2,0.971,0.333,0.2447,0.302,False,False

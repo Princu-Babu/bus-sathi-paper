@@ -1,0 +1,162 @@
+{
+  "timestamp_utc": "2026-09-08T13:44:28.419052+00:00",
+  "total_elapsed_sec": 27.726099100196734,
+  "overall_status": "SUCCESS",
+  "cli_args": [
+    "--quick"
+  ],
+  "results": [
+    {
+      "name": "a02b_faithfulness",
+      "stage": 0,
+      "status": "PASSED",
+      "duration": 1.804453499848023,
+      "exit_code": 0,
+      "outputs_verified": 2,
+      "outputs_total": 2,
+      "log_file": "logs\\a02b_faithfulness.log"
+    },
+    {
+      "name": "q01_data_quality",
+      "stage": 0,
+      "status": "PASSED",
+      "duration": 8.37015669979155,
+      "exit_code": 0,
+      "outputs_verified": 2,
+      "outputs_total": 2,
+      "log_file": "logs\\q01_data_quality.log"
+    },
+    {
+      "name": "v04_gps_validation",
+      "stage": 1,
+      "status": "PASSED",
+      "duration": 3.9175507999025285,
+      "exit_code": 0,
+      "outputs_verified": 2,
+      "outputs_total": 2,
+      "log_file": "logs\\v04_gps_validation.log"
+    },
+    {
+      "name": "a03_index_weights",
+      "stage": 2,
+      "status": "PASSED",
+      "duration": 13.630575299961492,
+      "exit_code": 0,
+      "outputs_verified": 2,
+      "outputs_total": 2,
+      "log_file": "logs\\a03_index_weights.log"
+    },
+    {
+      "name": "a04_class_count",
+      "stage": 2,
+      "status": "PLANNED",
+      "skip_reason": "Script pending",
+      "log_file": "--"
+    },
+    {
+      "name": "a05_headway_timeofday",
+      "stage": 3,
+      "status": "PLANNED",
+      "skip_reason": "Script pending",
+      "log_file": "--"
+    },
+    {
+      "name": "a06_deadhead",
+      "stage": 3,
+      "status": "PLANNED",
+      "skip_reason": "Script pending",
+      "log_file": "--"
+    },
+    {
+      "name": "a07_load_factor",
+      "stage": 3,
+      "status": "PLANNED",
+      "skip_reason": "Script pending",
+      "log_file": "--"
+    },
+    {
+      "name": "a10_network_diagnostics",
+      "stage": 3,
+      "status": "PLANNED",
+      "skip_reason": "Script pending",
+      "log_file": "--"
+    },
+    {
+      "name": "a11_coverage_accessibility",
+      "stage": 3,
+      "status": "PLANNED",
+      "skip_reason": "Script pending",
+      "log_file": "--"
+    },
+    {
+      "name": "a12_equity_gini",
+      "stage": 3,
+      "status": "PLANNED",
+      "skip_reason": "Script pending",
+      "log_file": "--"
+    },
+    {
+      "name": "a13_transfers",
+      "stage": 3,
+      "status": "PLANNED",
+      "skip_reason": "Script pending",
+      "log_file": "--"
+    },
+    {
+      "name": "a14_cost_emissions",
+      "stage": 3,
+      "status": "PLANNED",
+      "skip_reason": "Script pending",
+      "log_file": "--"
+    },
+    {
+      "name": "a15_scenarios",
+      "stage": 3,
+      "status": "PLANNED",
+      "skip_reason": "Script pending",
+      "log_file": "--"
+    },
+    {
+      "name": "a16_peer_regression",
+      "stage": 3,
+      "status": "PLANNED",
+      "skip_reason": "Script pending",
+      "log_file": "--"
+    },
+    {
+      "name": "a08_sensitivity_oat",
+      "stage": 4,
+      "status": "PLANNED",
+      "skip_reason": "Script pending",
+      "log_file": "--"
+    },
+    {
+      "name": "a09_monte_carlo_sobol",
+      "stage": 4,
+      "status": "PLANNED",
+      "skip_reason": "Script pending",
+      "log_file": "--"
+    },
+    {
+      "name": "v01_spatial_crossval",
+      "stage": 4,
+      "status": "PLANNED",
+      "skip_reason": "Script pending",
+      "log_file": "--"
+    },
+    {
+      "name": "v02_benchmark",
+      "stage": 4,
+      "status": "PLANNED",
+      "skip_reason": "Script pending",
+      "log_file": "--"
+    },
+    {
+      "name": "figures_tables",
+      "stage": 5,
+      "status": "PLANNED",
+      "skip_reason": "Script pending",
+      "log_file": "--"
+    }
+  ]
+}

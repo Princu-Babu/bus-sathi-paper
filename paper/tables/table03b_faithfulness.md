@@ -1,0 +1,9 @@
+**Reproduction of the published population-served column by the reimplemented Euclidean method, with every non-reproducing route accounted for**
+
+| disposition            |   n_routes |   median_abs_pct_error |   max_abs_pct_error |
+|:-----------------------|-----------:|-----------------------:|--------------------:|
+| reproduced             |        136 |                  0.239 |               0.68  |
+| substituted_distance   |         44 |                 21.985 |              68.601 |
+| reproduced_minor_drift |          3 |                  4.127 |               4.594 |
+| superseded_geometry    |          2 |                 47.589 |              58.139 |
+| stale_tourist_flag     |          1 |                 20.627 |              20.627 |

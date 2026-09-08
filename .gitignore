@@ -1,0 +1,70 @@
+# ── Python & Bytecode ────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+
+# ── Virtual Environments ─────────────────────────────────────────────────────
+.venv/
+venv/
+env/
+ENV/
+
+# ── Environment & Secrets ────────────────────────────────────────────────────
+.env
+.env.*
+*.env
+*.pem
+*.key
+
+# ── Heavy Spatial Data & Precomputed Caches (CRITICAL RESEARCH CONTRACT) ─────
+data/cache/
+data/cache/**
+*.gpickle
+*.gpkg
+*.tif
+*.tiff
+walk_graph.gpickle
+catchments_network.gpkg
+kashmir_worldpop.tif
+osrm_responses.json
+
+# ── Large Raw Third-Party Data (Regenerable or Downloaded on Demand) ──────────
+data/raw/kashmir_worldpop.tif
+data/raw/*.tif
+data/raw/*.tiff
+data/raw/osm_india_extract.pbf
+data/raw/*.pbf
+
+# ── Operating System & Editor Artifacts ──────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+$RECYCLE.BIN/
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+*.sublime-project
+*.sublime-workspace
+
+# ── Temporary & Scratch Files ────────────────────────────────────────────────
+tmp/
+temp/
+scratch/
+*.tmp
+*.bak
+
+# ── Execution Logs (Whitelist WORK_REGISTER.md) ──────────────────────────────
+*.log
+logs/*.log
+logs/**/*.log
+!logs/WORK_REGISTER.md
+
+# ── Internal multi-agent orchestration scratch (not paper material) ───────────
+.agents/

@@ -1,0 +1,8 @@
+detector,corridor,route_id,route,plan_km,overlap,n_runs,n_drivers,gap_km
+A_same_OD_diff_path,C1,FDR-122,Jehangir Chowk to Soura,10.0,0.02,211,32,
+A_same_OD_diff_path,C1,FDR-050,Soura to Lalchowk,9.5,0.54,211,32,
+A_same_OD_diff_path,C5,FDR-370,Srinagar to Pampore,12.9,0.55,82,11,
+A_same_OD_diff_path,C8,FDR-575,Safakadal to Jehangir Chowk,3.1,0.67,40,5,
+A_same_OD_diff_path,T9,FDR-132,Safakadal to SMHS,1.5,0.12,8,2,
+B_coverage_gap,,FDR-394,Lawaypora to Jehangir Chowk,14.2,,38,7,1.5
+B_coverage_gap,,FDR-325,Ma Road to Parimpora,18.7,,42,14,1.6

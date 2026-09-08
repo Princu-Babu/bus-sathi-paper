@@ -1,0 +1,179 @@
+{
+  "D1_register_hygiene": {
+    "corridor_retention_rate": 0.9936305732484076,
+    "duplicate_share": 0.744299674267101,
+    "join_match_rate": 0.8045602605863192,
+    "max_permits_on_one_corridor": 42,
+    "mean_permits_per_corridor": 3.910828025477707,
+    "median_permits_per_corridor": 1.0,
+    "merges_distinct_corridor_overlap": 1,
+    "merges_identical_corridor": 457,
+    "merges_unresolved": 0,
+    "n_active_permit_derived": 156,
+    "n_active_routes": 186,
+    "n_alternative_via_routings_suppressed": 32,
+    "n_corridors_with_duplicates": 75,
+    "n_corridors_with_mixed_service_types": 34,
+    "n_corridors_with_mixed_vehicle_classes": 38,
+    "n_corridors_with_multiple_via_routings": 20,
+    "n_distinct_corridors_100m": 155,
+    "n_distinct_corridors_11m": 157,
+    "n_duplicate_rows": 457,
+    "n_engine_route_rows": 644,
+    "n_merged": 458,
+    "n_permit_register_rows": 614,
+    "n_synthetic_backbone_rows": 30,
+    "note": "The register is a permit register: one row per permitted vehicle-service, with the same corridor recurring under different operators, vehicle classes, service types and spellings of the same via point. Collapsing 614 rows to 157 corridors is therefore a change in the unit of analysis and must not be reported as route rationalisation. Measured on corridors, the design retains 156 of 157 and adds a 30-route e-bus backbone, so it does not reduce route count; what it changes is frequency, vehicle allocation and fleet. The cost of collapsing is reported separately as the number of alternative via routings given up.",
+    "reduction_from_corridor_consolidation": 0.0015527950310559005,
+    "reduction_from_unit_change": 0.7096273291925466,
+    "reduction_rows_to_active": 0.7111801242236024
+  },
+  "D2_permit_activity": {
+    "by_type": [
+      {
+        "Route_Type": "Peri_Urban",
+        "observed": 20,
+        "observed_share": 0.425531914893617,
+        "routes": 47
+      },
+      {
+        "Route_Type": "Regional_District",
+        "observed": 1,
+        "observed_share": 0.014084507042253521,
+        "routes": 71
+      },
+      {
+        "Route_Type": "Urban",
+        "observed": 45,
+        "observed_share": 0.6617647058823529,
+        "routes": 68
+      }
+    ],
+    "gps_runs_total": 43809,
+    "median_observed_cover": 0.3,
+    "n_active_routes": 186,
+    "n_no_app_data": 75,
+    "n_observed_in_gps": 66,
+    "note": "The app is carried by a subset of operators, so an unobserved route is not proven dormant. The observed share is a lower bound on activity, and the unobserved set is the population from which genuine dormancy must be established by the licensing authority's own records.",
+    "observed_share": 0.3548387096774194
+  },
+  "D3_osm_completeness": {
+    "note": "A strong positive rank correlation between population density and mapped road density is expected on real ground and is also the signature of volunteered-mapping bias; the two cannot be separated without an official road inventory, which the authority does not publish. Per-capita road length is reported so the reader can see the spread directly.",
+    "p_value": 0.00020447240614883226,
+    "ratio_max_min_km_per_1000": 1.547965121821969,
+    "rho_density_vs_road_density": 0.9151515151515152,
+    "status": "ok",
+    "total_network_km": 18533.24254397876
+  },
+  "D4_worldpop": {
+    "approx_pixel_area_km2": 0.00860565437559921,
+    "census2011_total": 6888475.0,
+    "district_union_bounds": {
+      "bottom": 33.363725,
+      "left": 73.7500338,
+      "right": 75.5947001,
+      "top": 34.7871414
+    },
+    "engine_denominator": 6584762,
+    "engine_denominator_matches_zonal": true,
+    "implied_total_cagr": -0.003001582179225082,
+    "n_districts_outside_plausible_cagr": 8,
+    "note": "WorldPop 2026 is a modelled, UN-adjusted surface anchored on the 2011 census frame, so it is not an independent count. Reporting the ratio district by district exposes where the surface is conservative; coverage figures computed on it inherit that conservatism, which biases the reported coverage share upward only if the denominator is understated, and is therefore stated explicitly rather than corrected.",
+    "raster_bounds": {
+      "bottom": 33.3000000062,
+      "left": 73.7,
+      "right": 75.64999999220001,
+      "top": 34.85
+    },
+    "raster_covers_district_union": true,
+    "ratio_total": 0.955910069970477,
+    "worldpop_total": 6584762.619239882
+  },
+  "D5_opportunities": {
+    "by_importance": [
+      {
+        "importance": "high",
+        "n_pois": 1030
+      },
+      {
+        "importance": "medium",
+        "n_pois": 1080
+      },
+      {
+        "importance": "seasonal",
+        "n_pois": 321
+      }
+    ],
+    "field_enumeration_performed": false,
+    "n_categories": 63,
+    "n_pois": 2431,
+    "n_unplaced": 0,
+    "note": "No independent field enumeration of points of interest was carried out, so no recall statistic is reported. The inventory is characterised instead by tier composition and by per-capita density across districts, which makes the concentration in Srinagar visible; the consequence for the index is examined in the weighting and sensitivity analyses rather than asserted away here.",
+    "pois_per_100k_max": 120.44440557417649,
+    "pois_per_100k_min": 0.3232136792852207,
+    "srinagar_share": 0.6532291238173591,
+    "top_categories": [
+      {
+        "category": "jamia_masjid",
+        "n_pois": 547
+      },
+      {
+        "category": "school",
+        "n_pois": 245
+      },
+      {
+        "category": "park",
+        "n_pois": 244
+      },
+      {
+        "category": "tourist_hotel",
+        "n_pois": 240
+      },
+      {
+        "category": "hospital",
+        "n_pois": 155
+      },
+      {
+        "category": "mall",
+        "n_pois": 138
+      },
+      {
+        "category": "clinic",
+        "n_pois": 133
+      },
+      {
+        "category": "small_medical",
+        "n_pois": 80
+      },
+      {
+        "category": "govt_office",
+        "n_pois": 78
+      },
+      {
+        "category": "military",
+        "n_pois": 69
+      },
+      {
+        "category": "market",
+        "n_pois": 65
+      },
+      {
+        "category": "police_station",
+        "n_pois": 51
+      }
+    ]
+  },
+  "D6_travel_time": {
+    "mape_osrm_vs_in_motion": 0.651173137067501,
+    "mape_osrm_vs_total_observed": 0.790734957585178,
+    "mape_plan_vs_total_observed": 0.4764267856986068,
+    "median_dwell_share": 0.38,
+    "median_osrm_vs_obs_ratio": 0.21,
+    "median_plan_vs_obs_ratio": 0.51,
+    "n_corridors_matched": 5,
+    "n_drivers": 69,
+    "n_runs": 470,
+    "note": "The routing engine understates the observed door-to-door run time because it models free-flowing car travel with no dwell; the engine's planned one-way time, which adds congestion, stop and junction penalties, closes part but not all of that gap. The residual is quantified here and carried into the cycle-time treatment rather than left implicit.",
+    "rmse_osrm_vs_in_motion_min": 28.00092855603185
+  }
+}

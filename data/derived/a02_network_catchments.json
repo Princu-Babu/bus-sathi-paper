@@ -1,0 +1,56 @@
+{
+  "area_ratio_median": 0.5024659927768227,
+  "coverage_share_euclid": 0.35527385044440485,
+  "coverage_share_net": 0.24189890993782312,
+  "n_routes": 186,
+  "n_routes_km_geometry_consistent": 142,
+  "n_routes_km_substituted": 44,
+  "n_routes_overstated_gt_25pct": 184,
+  "n_routes_overstated_gt_50pct": 11,
+  "n_stops_off_network": 46,
+  "n_stops_total": 22360,
+  "note": "The Euclidean catchment is recomputed from the same geometries, stops, budget and zonal method as the published plan, so the difference is attributable to the pedestrian network alone. The network catchment allows a final off-network leg of up to tau, so it overstates the true network walkshed and the bias reported here is a lower bound. The published plan's own population column is a valid reproduction target only on the routes where geometry length agrees with Route_KM; on the remainder an externally verified distance was substituted without redrawing the geometry or recomputing population, so the recomputed value supersedes it.",
+  "overstatement_pct_max": 56.77722964701666,
+  "overstatement_pct_mean": 37.12790796782257,
+  "overstatement_pct_median": 37.39344030716096,
+  "overstatement_pct_p25": 30.4935895868787,
+  "overstatement_pct_p75": 41.734590880081775,
+  "pop_euclid_union": 2339393.75,
+  "pop_net_union": 1592846.75,
+  "reproduction_on_selfconsistent_routes": {
+    "max_abs_pct_error": 58.13930743209272,
+    "median_abs_pct_error": 0.2566195151314167,
+    "n": 142,
+    "pearson_r": 0.9768355812398827
+  },
+  "reproduction_on_substituted_km_routes": {
+    "max_abs_pct_error": 68.60134366705086,
+    "median_abs_pct_error": 21.985429787637436,
+    "n": 44,
+    "pearson_r": 0.8610770707247741
+  },
+  "snap_offset_median_m": 11.000363507885881,
+  "tau_m": 100.0,
+  "tau_sensitivity": {
+    "tau100": {
+      "overstatement_pct_median": 37.39344030716096,
+      "pop_total": 11976719.260742188
+    },
+    "tau150": {
+      "overstatement_pct_median": 29.17566357639641,
+      "pop_total": 13573978.369140625
+    },
+    "tau50": {
+      "overstatement_pct_median": 52.76871528875904,
+      "pop_total": 8907704.873046875
+    }
+  },
+  "tau_sweep": [
+    50.0,
+    100.0,
+    150.0
+  ],
+  "union_overstatement_pct": 31.91198574416983,
+  "virtual_stop_spacing_m": 250.0,
+  "walk_budget_m": 400.0
+}

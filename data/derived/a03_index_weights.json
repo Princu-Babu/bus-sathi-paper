@@ -1,0 +1,161 @@
+{
+  "ahp_note": "No expert panel was convened for this study, so analytic hierarchy process weights are not derived. Reported weightings are equal, Shannon entropy and first principal component.",
+  "ahp_weights_derived": false,
+  "by_variant": {
+    "euclid": {
+      "pearson_p": 9.340052131827516e-61,
+      "pearson_r": 0.8779331574476079,
+      "spearman_p": 4.70222780842591e-72,
+      "spearman_rho": 0.9094848611884243,
+      "weights": {
+        "entropy": [
+          0.3708266462930089,
+          0.6291733537069911
+        ],
+        "equal": [
+          0.5,
+          0.5
+        ],
+        "pca": [
+          0.5000000000000001,
+          0.5
+        ]
+      }
+    },
+    "net": {
+      "pearson_p": 1.9742595128032113e-65,
+      "pearson_r": 0.8922124899800876,
+      "spearman_p": 5.109094652989205e-65,
+      "spearman_rho": 0.8910259389609949,
+      "weights": {
+        "entropy": [
+          0.36583732734918223,
+          0.6341626726508177
+        ],
+        "equal": [
+          0.5,
+          0.5
+        ],
+        "pca": [
+          0.5000000000000001,
+          0.49999999999999983
+        ]
+      }
+    }
+  },
+  "n_bands": 3,
+  "n_poi_euclid_total": 22165,
+  "n_poi_net_total": 11402,
+  "n_routes": 186,
+  "opportunity_overstatement_pct_median": 48.91094568513924,
+  "poi_budget_m": 250.0,
+  "stability": [
+    {
+      "band_agreement": 0.8925,
+      "band_kappa": 0.8222,
+      "comparison": "euclid: equal vs entropy",
+      "gate_agreement": 0.9785,
+      "gate_kappa": 0.9489,
+      "spearman_cdi": 0.9985
+    },
+    {
+      "band_agreement": 1.0,
+      "band_kappa": 1.0,
+      "comparison": "euclid: equal vs pca",
+      "gate_agreement": 1.0,
+      "gate_kappa": 1.0,
+      "spearman_cdi": 1.0
+    },
+    {
+      "band_agreement": 0.9946,
+      "band_kappa": 0.9907,
+      "comparison": "net: equal vs entropy",
+      "gate_agreement": 0.9892,
+      "gate_kappa": 0.9745,
+      "spearman_cdi": 0.9981
+    },
+    {
+      "band_agreement": 1.0,
+      "band_kappa": 1.0,
+      "comparison": "net: equal vs pca",
+      "gate_agreement": 1.0,
+      "gate_kappa": 1.0,
+      "spearman_cdi": 1.0
+    },
+    {
+      "band_agreement": 0.9032,
+      "band_kappa": 0.8398,
+      "comparison": "equal: Euclidean vs network",
+      "gate_agreement": 0.9677,
+      "gate_kappa": 0.9234,
+      "spearman_cdi": 0.9935
+    },
+    {
+      "band_agreement": 0.9409,
+      "band_kappa": 0.8978,
+      "comparison": "entropy: Euclidean vs network",
+      "gate_agreement": 0.9677,
+      "gate_kappa": 0.9234,
+      "spearman_cdi": 0.9934
+    },
+    {
+      "band_agreement": 0.9032,
+      "band_kappa": 0.8398,
+      "comparison": "pca: Euclidean vs network",
+      "gate_agreement": 0.9677,
+      "gate_kappa": 0.9234,
+      "spearman_cdi": 0.9935
+    }
+  ],
+  "trunk_gate_percentile": 30,
+  "weights_table": [
+    {
+      "cdi_gate_30th": 0.1569,
+      "cdi_mean": 0.3265,
+      "scheme": "equal",
+      "variant": "euclid",
+      "w_opportunity": 0.5,
+      "w_population": 0.5
+    },
+    {
+      "cdi_gate_30th": 0.136,
+      "cdi_mean": 0.2937,
+      "scheme": "entropy",
+      "variant": "euclid",
+      "w_opportunity": 0.6292,
+      "w_population": 0.3708
+    },
+    {
+      "cdi_gate_30th": 0.1569,
+      "cdi_mean": 0.3265,
+      "scheme": "pca",
+      "variant": "euclid",
+      "w_opportunity": 0.5,
+      "w_population": 0.5
+    },
+    {
+      "cdi_gate_30th": 0.1414,
+      "cdi_mean": 0.3013,
+      "scheme": "equal",
+      "variant": "net",
+      "w_opportunity": 0.5,
+      "w_population": 0.5
+    },
+    {
+      "cdi_gate_30th": 0.1188,
+      "cdi_mean": 0.2671,
+      "scheme": "entropy",
+      "variant": "net",
+      "w_opportunity": 0.6342,
+      "w_population": 0.3658
+    },
+    {
+      "cdi_gate_30th": 0.1414,
+      "cdi_mean": 0.3013,
+      "scheme": "pca",
+      "variant": "net",
+      "w_opportunity": 0.5,
+      "w_population": 0.5
+    }
+  ]
+}

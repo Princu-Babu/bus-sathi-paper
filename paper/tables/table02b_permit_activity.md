@@ -1,0 +1,7 @@
+**Planned routes by driver-GPS observation status**
+
+| status      |   routes |   median_km |   fleet |   median_cover |
+|:------------|---------:|------------:|--------:|---------------:|
+| NO_APP_DATA |       75 |     44.959  |     475 |           0.1  |
+| OBSERVED    |       66 |     10.4055 |     302 |           0.78 |
+| PARTIAL     |       45 |     25      |     234 |           0.35 |

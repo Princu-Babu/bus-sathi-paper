@@ -1,0 +1,186 @@
+{
+  "generated_utc": "2026-08-23T15:17:23+00:00",
+  "engine_root": "E:/kash",
+  "gps_root": "E:/bus-sathi-trace",
+  "engine_version": "v3.4.5-geo",
+  "n_engine_files": 13,
+  "n_gps_files": 6,
+  "osrm_cache": {
+    "n_routes": 186,
+    "path": "E:\\kash-paper\\data\\cache\\osrm_responses.json",
+    "sha256": "c7f82ddb1d83127dfd23c24b640515eb8c63f39b095a4812eb84598033eadbb6"
+  },
+  "files": [
+    {
+      "file": "Rationalised_Routes_Kashmir_v3.csv",
+      "status": "ok",
+      "source": "E:\\kash\\outputs_v3.4.5\\Rationalised_Routes_Kashmir_v3.csv",
+      "description": "Published rationalised plan, engine v3.4.5-geo: 644 permit-routes \u00d7 55 fields",
+      "bytes": 247953,
+      "sha256": "1871714c8804cbbc152b0209774c772943c939e71bde4241632690ce0f02172a",
+      "source_mtime": "2026-07-02T08:26:48+00:00"
+    },
+    {
+      "file": "Rationalised_Routes_Kashmir_v3.geojson",
+      "status": "ok",
+      "source": "E:\\kash\\outputs_v3.4.5\\Rationalised_Routes_Kashmir_v3.geojson",
+      "description": "Routed geometry of the 186 active routes",
+      "bytes": 2977639,
+      "sha256": "4ea6a856dd77d5d43a587fbdc445c76feea0b123b2bcc85040e8505a1497f945",
+      "source_mtime": "2026-07-02T22:56:36+00:00"
+    },
+    {
+      "file": "Rationalisation_Log_Kashmir_v3.csv",
+      "status": "ok",
+      "source": "E:\\kash\\outputs_v3.4.5\\Rationalisation_Log_Kashmir_v3.csv",
+      "description": "Per-route disposition reasoning",
+      "bytes": 242957,
+      "sha256": "00f1052206dc29b004df5bf18c2a1a80f6d67fcab2e66a2b311686b082b4be4c",
+      "source_mtime": "2026-06-26T11:32:39+00:00"
+    },
+    {
+      "file": "existing-routes.csv",
+      "status": "ok",
+      "source": "E:\\kash\\existing-routes.csv",
+      "description": "Permit register as geocoded: origin, destination, via, operator class",
+      "bytes": 66972,
+      "sha256": "fa9778c8267d71b68ccffc1024ae77cd0cef3d0d86eb1ae0c0b3d1984da39047",
+      "source_mtime": "2026-06-21T09:24:35+00:00"
+    },
+    {
+      "file": "pois.csv",
+      "status": "ok",
+      "source": "E:\\kash\\pois.csv",
+      "description": "Points of interest from OpenStreetMap, tiered by attraction class",
+      "bytes": 223453,
+      "sha256": "e8f217c4ad77986e3e00a91dbb02fcfbca918eb499d695050982d357fed19f73",
+      "source_mtime": "2026-05-12T13:02:33+00:00"
+    },
+    {
+      "file": "kashmir_worldpop.tif",
+      "status": "ok",
+      "source": "E:\\kash\\kashmir_worldpop.tif",
+      "description": "WorldPop 2026 UN-adjusted population, 100 m grid, clipped to study bbox",
+      "bytes": 4760992,
+      "sha256": "515e5867ee4c0fe9dd031a3fc0f372814aa96bf3c689d9e25bf09ba19bda6571",
+      "source_mtime": "2026-06-21T18:44:13+00:00"
+    },
+    {
+      "file": "kashmir_districts_osm.geojson",
+      "status": "ok",
+      "source": "E:\\kash\\kashmir_districts_osm.geojson",
+      "description": "OSM admin_level 5 district boundaries, 10 districts",
+      "bytes": 444515,
+      "sha256": "4091fe7bdc0e3490eab3f3505fe1f98a9beb288c1bf97b38170f84667ecdc444",
+      "source_mtime": "2026-06-21T17:38:42+00:00"
+    },
+    {
+      "file": "kashmir_tehsils_osm.geojson",
+      "status": "ok",
+      "source": "E:\\kash\\kashmir_tehsils_osm.geojson",
+      "description": "OSM admin_level 6 tehsil boundaries, 39 tehsils",
+      "bytes": 605242,
+      "sha256": "38e0a2e3d88a0c8de86c7e65451b6839b0d0903a9156c4710d7a2017fe04e549",
+      "source_mtime": "2026-06-21T17:39:08+00:00"
+    },
+    {
+      "file": "Kashmir_Stops_Master_v4.csv",
+      "status": "ok",
+      "source": "E:\\kash\\Kashmir_Stops_Master_v4.csv",
+      "description": "Canonical stop registry, 126 stops, district and tehsil by point-in-polygon",
+      "bytes": 9847,
+      "sha256": "dcfce2a9b8a1cf6610fdd76809cd5eb07d24fd2d352edc120bd58d911e5d2d14",
+      "source_mtime": "2026-06-26T12:00:51+00:00"
+    },
+    {
+      "file": "Hourly_Passenger_Count.csv",
+      "status": "ok",
+      "source": "E:\\kash\\Hourly Passenger Count.csv",
+      "description": "Observed hourly boardings, e-bus system, 1\u201330 April 2026",
+      "bytes": 12952,
+      "sha256": "289381eddd272fdab98bfabb4db165dd2b7b77b01e5310ac7c668d6b2cc5a0b1",
+      "source_mtime": "2026-05-13T17:03:18+00:00"
+    },
+    {
+      "file": "chalo_ridership.csv",
+      "status": "ok",
+      "source": "E:\\kash\\Ridership Data.csv",
+      "description": "Monthly e-bus ridership and operated km, FY 2025-26",
+      "bytes": 15626,
+      "sha256": "c216de2d5f13b120572c0fcaa8fd524db2d2b9e687761c44fa6ee2f3f68164ff",
+      "source_mtime": "2026-05-13T17:03:51+00:00"
+    },
+    {
+      "file": "chalo_deployed_buses.csv",
+      "status": "ok",
+      "source": "E:\\kash\\Route Wise deployed Buses.csv",
+      "description": "Buses deployed per e-bus route, by vehicle length",
+      "bytes": 1683,
+      "sha256": "ee6b45ff3e2c32c36ab1fcd9b658870f6b7a1d44bb6836e635f0dee4930cf38d",
+      "source_mtime": "2026-05-13T17:03:35+00:00"
+    },
+    {
+      "file": "ROUTE_DEEPDIVE_LEDGER.csv",
+      "status": "ok",
+      "source": "E:\\kash\\ROUTE_DEEPDIVE_LEDGER.csv",
+      "description": "Per-route real-world distance and service audit with cited sources",
+      "bytes": 167738,
+      "sha256": "1788e1ce417d46ad124a9d85e30952faa7de810aa47c34615dcbae94ff159f34",
+      "source_mtime": "2026-06-25T13:56:11+00:00"
+    },
+    {
+      "file": "gps/reality_check.csv",
+      "status": "ok",
+      "source": "E:\\bus-sathi-trace\\data\\reality_check.csv",
+      "description": "Planned vs measured one-way time, matched corridors",
+      "bytes": 2943,
+      "sha256": "55172547baaae97dd2f6e331a36ed52b3a44f065311ec22aac0fcd67b955ba43",
+      "source_mtime": "2026-07-02T08:18:35+00:00"
+    },
+    {
+      "file": "gps/corridor_profiles.csv",
+      "status": "ok",
+      "source": "E:\\bus-sathi-trace\\data\\corridor_profiles.csv",
+      "description": "Per-corridor moving speed, effective speed and dwell share from GPS",
+      "bytes": 1288,
+      "sha256": "0cb17ce98d6b166d049d6aa19d520d9fe7850f644bea87af7545a43c7b9d1c44",
+      "source_mtime": "2026-07-01T18:32:57+00:00"
+    },
+    {
+      "file": "gps/route_evidence.csv",
+      "status": "ok",
+      "source": "E:\\bus-sathi-trace\\data\\route_evidence.csv",
+      "description": "Share of each planned route's length observed in GPS runs",
+      "bytes": 12563,
+      "sha256": "061ea4e5b550dbaeb50a7f123f52cf3024a268c1d8fc0c8ad899dee9b7998f75",
+      "source_mtime": "2026-07-02T22:57:33+00:00"
+    },
+    {
+      "file": "gps/permit_observed.csv",
+      "status": "ok",
+      "source": "E:\\bus-sathi-trace\\data\\permit_observed.csv",
+      "description": "Observation status per permit route",
+      "bytes": 12402,
+      "sha256": "f97f1bacf5bf03fce1f7d9e816fb161ad681c0e08d6e99ac2ee8805eca8839b8",
+      "source_mtime": "2026-07-01T18:33:08+00:00"
+    },
+    {
+      "file": "gps/geometry_divergence.csv",
+      "status": "ok",
+      "source": "E:\\bus-sathi-trace\\data\\geometry_divergence.csv",
+      "description": "Corridors where observed path diverges from the routed line",
+      "bytes": 553,
+      "sha256": "7bf5c49479a6e639d3356a3c136e0e38519e05d6a6c10b182f886b13fdcfc485",
+      "source_mtime": "2026-07-02T22:48:49+00:00"
+    },
+    {
+      "file": "gps/driver_days.csv",
+      "status": "ok",
+      "source": "E:\\bus-sathi-trace\\data\\driver_days.csv",
+      "description": "Driver-day activity used to establish the service window",
+      "bytes": 51564,
+      "sha256": "14b408639648b8ffc128322d6a05f44b1faf46a0b65ebf8d7e986df667e4b9a9",
+      "source_mtime": "2026-07-01T21:56:56+00:00"
+    }
+  ]
+}

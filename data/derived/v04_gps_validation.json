@@ -1,0 +1,273 @@
+{
+  "cycle_cap": {
+    "by_class": [
+      {
+        "cap_min_per_km_one_way": 4.0,
+        "n_corridors_observed": 18,
+        "n_observed_exceeding_cap": 15,
+        "observed_pace_median": 4.62,
+        "observed_pace_p90": 6.28,
+        "route_class": "Urban",
+        "share_exceeding": 0.833
+      },
+      {
+        "cap_min_per_km_one_way": 2.5,
+        "n_corridors_observed": 18,
+        "n_observed_exceeding_cap": 16,
+        "observed_pace_median": 4.62,
+        "observed_pace_p90": 6.28,
+        "route_class": "Peri_Urban",
+        "share_exceeding": 0.889
+      },
+      {
+        "cap_min_per_km_one_way": 1.5,
+        "n_corridors_observed": 18,
+        "n_observed_exceeding_cap": 18,
+        "observed_pace_median": 4.62,
+        "observed_pace_p90": 6.28,
+        "route_class": "Regional_District",
+        "share_exceeding": 1.0
+      }
+    ],
+    "n_planned_routes_at_cap": 169,
+    "share_planned_routes_at_cap": 0.909
+  },
+  "dwell": {
+    "observed_dwell_min_per_km_median": 1.757,
+    "observed_dwell_share_median": 0.38,
+    "observed_dwell_share_range": [
+      0.15,
+      0.74
+    ],
+    "rate_comparison": {
+      "bias_pct": -22.3,
+      "comparison": "Dwell: engine 1.0 min/km vs observed",
+      "mape_pass": false,
+      "mape_pct": 61.6,
+      "modelled_median": 0.982,
+      "n": 18,
+      "observed_median": 1.757,
+      "pearson_r": -0.698,
+      "rank_pass": false,
+      "ratio_median": 0.558,
+      "spearman_p": 0.1302,
+      "spearman_rho": -0.37,
+      "unit": "min/km"
+    },
+    "regression": {
+      "engine_intercept_in_ci": false,
+      "engine_slope_in_ci": false,
+      "form": "dwell_min = a + b * km",
+      "implied_min_per_stop": 0.124,
+      "intercept_ci95": [
+        7.41,
+        27.94
+      ],
+      "intercept_min": 17.67,
+      "intercept_significant": true,
+      "n": 18,
+      "r_squared": 0.03,
+      "slope_ci95": [
+        -0.494,
+        0.989
+      ],
+      "slope_min_per_km": 0.247
+    }
+  },
+  "fleet_consequence": {
+    "cycle_ratio_median": 1.1,
+    "fleet_observed_total": 23,
+    "fleet_plan_total": 27,
+    "fleet_uplift_pct": -14.8,
+    "n_routes": 5,
+    "note": "Length held at the plan's own Route_KM, so this isolates run-time error from length error. Extrapolating the uplift to all 186 routes is NOT supported: these five corridors are the densest in the record and rural pace is not observed."
+  },
+  "length": {
+    "bias_pct": 26.2,
+    "comparison": "Route length: plan Route_KM vs observed corridor",
+    "mape_pass": false,
+    "mape_pct": 51.1,
+    "modelled_median": 12.9,
+    "n": 14,
+    "observed_median": 11.35,
+    "pearson_r": 0.302,
+    "rank_pass": false,
+    "ratio_median": 0.971,
+    "spearman_p": 0.2447,
+    "spearman_rho": 0.333,
+    "unit": "km"
+  },
+  "monte_carlo_priors": {
+    "dwell_min_per_km": {
+      "high": 9.636,
+      "low": 0.263,
+      "mode": 1.757,
+      "n": 18
+    },
+    "effective_speed_kmh": {
+      "high": 33.6,
+      "low": 4.6,
+      "mode": 13.0,
+      "n": 18
+    },
+    "moving_speed_kmh": {
+      "high": 39.5,
+      "low": 17.5,
+      "mode": 20.75,
+      "n": 18
+    },
+    "one_way_pace_min_per_km": {
+      "high": 13.043,
+      "low": 1.786,
+      "mode": 4.616,
+      "n": 18
+    },
+    "plan_over_observed_oneway": {
+      "high": 1.76,
+      "low": 0.44,
+      "mode": 0.62,
+      "n": 14
+    },
+    "recommended_use": "Sample one_way_pace_min_per_km directly in place of the OSRM-times-congestion-plus-dwell chain for the urban routes, and report fleet as an interval. The observed support is Srinagar-weighted, so this prior is applied to Urban and Peri_Urban classes only; rural pace is unobserved and must stay as modelled with the uncertainty stated."
+  },
+  "moving_speed": [
+    {
+      "bias_pct": 1.4,
+      "comparison": "Moving speed: OSRM/2.2 (City_Core) vs observed",
+      "mape_pass": false,
+      "mape_pct": 28.4,
+      "modelled_median": 17.945,
+      "n": 14,
+      "observed_median": 20.55,
+      "pearson_r": -0.123,
+      "rank_pass": false,
+      "ratio_median": 0.895,
+      "spearman_p": 0.816,
+      "spearman_rho": -0.069,
+      "unit": "km/h"
+    },
+    {
+      "bias_pct": 59.4,
+      "comparison": "Moving speed: OSRM/1.4 (Peri_Urban) vs observed",
+      "mape_pass": false,
+      "mape_pct": 59.4,
+      "modelled_median": 28.199,
+      "n": 14,
+      "observed_median": 20.55,
+      "pearson_r": -0.123,
+      "rank_pass": false,
+      "ratio_median": 1.406,
+      "spearman_p": 0.816,
+      "spearman_rho": -0.069,
+      "unit": "km/h"
+    },
+    {
+      "bias_pct": 123.2,
+      "comparison": "Moving speed: OSRM/1.0 (Rural) vs observed",
+      "mape_pass": false,
+      "mape_pct": 123.2,
+      "modelled_median": 39.479,
+      "n": 14,
+      "observed_median": 20.55,
+      "pearson_r": -0.123,
+      "rank_pass": false,
+      "ratio_median": 1.969,
+      "spearman_p": 0.816,
+      "spearman_rho": -0.069,
+      "unit": "km/h"
+    }
+  ],
+  "route_coverage": {
+    "n_corroborated_50pct": 171,
+    "n_corroborated_80pct": 137,
+    "n_fully_covered": 33,
+    "n_routes": 186,
+    "n_with_any_observation": 183,
+    "note": "obs_frac is the share of the planned alignment seen in driver GPS. Routes at zero reflect app adoption among drivers, not proven dormancy; the corroborated counts are floors.",
+    "obs_frac_median": 0.94,
+    "total_distinct_drivers_max": 47,
+    "total_observed_runs": 43809
+  },
+  "runtime": [
+    {
+      "bias_pct": -31.3,
+      "comparison": "Pace: plan min/km vs observed min/km (all matches)",
+      "mape_pass": false,
+      "mape_pct": 32.9,
+      "modelled_median": 3.398,
+      "n": 14,
+      "observed_median": 4.722,
+      "pearson_r": 0.415,
+      "rank_pass": true,
+      "ratio_median": 0.681,
+      "spearman_p": 0.0604,
+      "spearman_rho": 0.513,
+      "unit": "min/km"
+    },
+    {
+      "bias_pct": -36.3,
+      "comparison": "Pace: plan min/km vs observed min/km (matched only)",
+      "mape_pass": false,
+      "mape_pct": 36.3,
+      "modelled_median": 4.0,
+      "n": 5,
+      "observed_median": 5.271,
+      "pearson_r": 0.66,
+      "rank_pass": true,
+      "ratio_median": 0.673,
+      "spearman_p": 0.0539,
+      "spearman_rho": 0.872,
+      "unit": "min/km"
+    },
+    {
+      "bias_pct": -16.8,
+      "comparison": "One-way time: plan vs observed total (all matches)",
+      "mape_pass": false,
+      "mape_pct": 40.7,
+      "modelled_median": 41.45,
+      "n": 14,
+      "observed_median": 56.15,
+      "pearson_r": 0.329,
+      "rank_pass": false,
+      "ratio_median": 0.62,
+      "spearman_p": 0.4477,
+      "spearman_rho": 0.221,
+      "unit": "min"
+    },
+    {
+      "bias_pct": -47.6,
+      "comparison": "One-way time: plan vs observed total (matched only)",
+      "mape_pass": false,
+      "mape_pct": 47.6,
+      "modelled_median": 38.0,
+      "n": 5,
+      "observed_median": 75.9,
+      "pearson_r": 0.985,
+      "rank_pass": true,
+      "ratio_median": 0.513,
+      "spearman_p": 0.0,
+      "spearman_rho": 1.0,
+      "unit": "min"
+    }
+  ],
+  "scope": {
+    "does_not_validate": "travel demand, the composite index, or any ridership quantity \u2014 GPS carries no demand signal",
+    "geography": "Srinagar and immediate belt (Pampore, Narbal); one operator's app",
+    "n_corridor_matches": 14,
+    "n_distinct_plan_routes": 11,
+    "n_matched": 5,
+    "n_partial": 9,
+    "n_plan_routes_total": 186,
+    "runs_per_corridor_range": [
+      5,
+      211
+    ],
+    "share_of_network_pct": 5.9,
+    "total_runs": 815,
+    "validates": "the supply chain from geometry to cycle time to fleet"
+  },
+  "thresholds": {
+    "mape_pct": 20.0,
+    "rank_corr": 0.5
+  }
+}

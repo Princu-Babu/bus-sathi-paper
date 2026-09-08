@@ -1,0 +1,187 @@
+route_id,route_name,route_type,km,obs_frac,obs_km,n_runs,n_drivers
+FDR-481,Soura to Ganderbal,Urban,12.5,1.0,12.5,165,13
+FDR-122,Jehangir Chowk to Soura,Urban,10.004,1.0,10.0,411,29
+FDR-269,Jehangir Chowk to JVC,Urban,4.5,1.0,4.5,334,36
+FDR-147,Hazratbal to LD,Urban,6.5,1.0,6.5,541,33
+FDR-161,TRC to Hazratbal,Urban,8.127,1.0,8.1,542,33
+TRK-031,Soura to Hazratbal,Urban,6.0,1.0,6.0,258,19
+FDR-078,Chanapora to Soura,Urban,11.5,1.0,11.5,747,40
+FDR-320,Parimpora to Pampore,Peri_Urban,23.817,1.0,23.7,486,36
+FDR-333,Rangpora to Soura,Peri_Urban,4.0,1.0,4.0,256,20
+FDR-575,Safakadal to Jehangir Chowk,Urban,3.149,1.0,3.1,115,18
+FDR-096,Soura to Dalgate,Urban,7.0,1.0,7.0,741,35
+FDR-440,Srinagar to Lettar,Peri_Urban,28.413,1.0,28.3,57,4
+FDR-023,Mawan to Srinagar,Regional_District,56.111,1.0,56.0,369,24
+FDR-013,Anantnagh to Srinagar,Regional_District,59.305,1.0,59.3,367,24
+FDR-093,Srinagar to Railway,Urban,7.778,1.0,7.8,402,37
+FDR-476,Srinagar to Khrew,Urban,19.597,1.0,19.6,360,23
+FDR-596,Srinagar to By Pass,Urban,3.279,1.0,3.3,155,21
+FDR-435,Srinagar to NEW Khanda,Urban,22.786,1.0,22.8,119,10
+FDR-370,Srinagar to Pampore,Urban,12.883,1.0,12.9,372,23
+FDR-517,Srinagar to Gund,Peri_Urban,57.421,1.0,57.4,385,19
+FDR-123,Srinagar to Bypass,Urban,8.341,1.0,8.3,339,37
+FDR-511,Sopore to Srinagar,Regional_District,50.022,1.0,50.0,44,13
+FDR-050,Soura to Lalchowk,Urban,9.494,1.0,9.5,685,32
+FDR-190,Ma Road to Safakadal,Urban,13.244,1.0,13.2,657,42
+FDR-088,Rangpora to Lalchowk,Urban,13.983,1.0,14.0,770,38
+FDR-105,Rangpora to Dalgate,Peri_Urban,15.533,1.0,15.5,695,36
+SSCL-17,Batamaloo to Womens College Batpora via Rainawari,Urban,4.508,1.0,4.5,35,11
+SSCL-04,Batamaloo to Chadoora Chowk via Jehangir Chowk,Urban,10.858,1.0,10.9,25,8
+FDR-444,Pulwama to Srinagar,Peri_Urban,28.043,1.0,27.9,65,6
+SSCL-11,Old City Loop Downtown Srinagar,Urban,1.169,1.0,1.2,391,21
+SSCL-03,Batamaloo to Hazratbal via Khanyar,Urban,12.926,1.0,12.9,594,46
+FDR-288,Srinagar to Ganderbal,Urban,16.689,1.0,16.7,643,25
+SSCL-02,Batamaloo to Nasrullah Pora via Jehangir Chowk Rambagh Hyderpora,Urban,7.083,1.0,7.1,26,9
+FDR-108,Saidakadal to Bypass,Urban,7.5,0.99,7.4,350,40
+FDR-158,Rangpora to LD,Peri_Urban,9.5,0.99,9.4,676,28
+FDR-539,Zaloora to Srinagar,Regional_District,52.0,0.99,51.7,36,10
+FDR-439,Srinagar to Tangmarg,Regional_District,40.568,0.99,40.1,63,17
+SSCL-09,Parimpora to Naseem Bagh via Noorbagh Gojwara Mill Stop,Peri_Urban,15.058,0.99,15.0,340,32
+FDR-599,Srinagar to Harwan,Urban,16.558,0.99,16.4,23,10
+SSCL-15,TRC to Pulwama via Nowgam Kaanipora,Peri_Urban,29.364,0.99,29.0,52,3
+SSCL-05,LD Hospital to Pandach via Jehangir Chowk Dalgate Khanyar,Urban,10.884,0.99,10.8,674,28
+FDR-052,Srinagar to Buchpora,Urban,9.37,0.99,9.3,734,28
+FDR-002,Soura to Gadoora,Peri_Urban,17.862,0.99,17.6,155,19
+FDR-059,Soura to LD,Urban,10.099,0.99,10.0,741,37
+FDR-164,Lalbazar to Parimpora,Urban,10.0,0.99,9.9,704,36
+FDR-446,Parimpora to Rangrath,Peri_Urban,19.812,0.99,19.6,25,9
+FDR-341,LD to Pampore,Peri_Urban,15.854,0.99,15.7,408,25
+FDR-191,Parimpora to Humhama,Peri_Urban,16.99,0.99,16.9,400,38
+FDR-104,Hazratbal to Bone Joint Hospital Barzalla,Peri_Urban,15.276,0.99,15.1,723,37
+FDR-332,Parimpora to Jehangir Chowk,Peri_Urban,20.711,0.99,20.5,150,16
+FDR-262,Soura to Railway Station,Peri_Urban,18.799,0.99,18.7,901,47
+FDR-160,"Hazratbal, Lalbazar",Urban,6.356,0.98,6.2,234,19
+FDR-335,LD to Panthachowk,Urban,13.344,0.98,13.0,411,25
+FDR-106,Parimpora to Saidakadal,Urban,9.0,0.98,8.8,433,41
+FDR-265,Baghat Shora to Lalchowk,Urban,4.5,0.98,4.4,396,36
+FDR-289,Parimpora to Pantha Chowk,Peri_Urban,21.307,0.98,21.0,535,40
+FDR-338,Parimpora to Rawalpora,Urban,14.409,0.98,14.1,30,10
+FDR-068,Lalbazar to LD,Urban,6.5,0.98,6.4,578,24
+SSCL-22,Batamaloo to Khrew Bus Stand,Peri_Urban,18.186,0.98,17.7,320,27
+SSCL-26,Batamaloo to Kangan via Hazratbal Manigam,Regional_District,55.703,0.98,54.4,18,5
+SSCL-24,Pantha Chowk to Palhalan via Sangrama Sopore,Peri_Urban,36.463,0.98,35.8,31,10
+SSCL-16,Batamaloo Circular via Khonmoh,Urban,13.87,0.98,13.6,126,19
+FDR-173,Soura to Parimpora,Urban,12.314,0.98,12.1,760,43
+FDR-101,Malbagh to LD,Urban,9.0,0.98,8.8,605,24
+FDR-384,Srinagar to Beeru,Regional_District,25.0,0.98,24.5,362,29
+FDR-007,Srinagar to Qazigund,Regional_District,71.019,0.97,69.0,352,25
+FDR-520,Harman to Srinagar,Regional_District,48.805,0.97,47.2,7,3
+FDR-316,Qamarwari to Pathachowk,Peri_Urban,19.719,0.97,19.1,527,39
+FDR-081,Lalbazar to Lalchowk,Urban,8.433,0.97,8.2,642,34
+FDR-080,Batmaloo to Dalgate,Urban,3.5,0.97,3.4,374,31
+SSCL-28,Batamaloo to Pinglena Pampore via Galandar,Peri_Urban,22.233,0.97,21.6,329,27
+SSCL-27,Batamaloo to Manigam,Regional_District,37.093,0.97,35.8,13,6
+FDR-003,Bandipora to Soura,Regional_District,51.094,0.97,49.5,12,5
+FDR-597,Srinagar to Rasoo,Urban,4.174,0.97,4.1,555,27
+FDR-270,Soura to Qamarwari,Urban,9.3,0.97,9.1,154,26
+FDR-097,Lalbazar to Qamarwari,Urban,8.695,0.97,8.5,658,32
+FDR-117,Qamarwari to Dalgate,Urban,8.844,0.96,8.5,629,42
+FDR-271,Parimpora to Hazratbal,Peri_Urban,10.5,0.96,10.1,368,31
+FDR-151,Parimpora to Jawahairnagar,Urban,12.642,0.96,12.1,432,39
+FDR-438,GBS to LAL Chowk,Peri_Urban,2.931,0.96,2.8,297,32
+FDR-201,LD to Parimpora,Urban,8.5,0.96,8.1,156,26
+FDR-407,Batamallo to Pantha Chowk,Peri_Urban,17.436,0.96,16.7,325,27
+FDR-275,Jehangir Chowk to HMT,Urban,10.311,0.96,9.9,338,35
+FDR-516,Shopian to Srinagar,Regional_District,48.367,0.96,46.6,7,3
+FDR-394,Lawaypora to Jehangir Chowk,Urban,14.207,0.95,13.5,137,25
+FDR-219,Qamarwari to Jehangir Chowk,Urban,5.5,0.95,5.2,194,29
+FDR-199,Qamarwari to Hazratbal,Urban,8.0,0.95,7.6,349,36
+FDR-098,Soura to SMHS,Urban,11.97,0.95,11.3,696,31
+FDR-261,JVC to Batwara,Urban,9.5,0.94,9.0,374,26
+FDR-067,Soura to Batamallo,Urban,11.366,0.94,10.7,726,39
+FDR-144,Srinagar to Gulabagh,Urban,14.022,0.94,13.1,695,30
+FDR-325,Ma Road to Parimpora,Peri_Urban,18.669,0.94,17.6,438,28
+SSCL-06,Pantha Chowk to Narbal Crossing via Sonwar Jehangir Chowk Qamarwari,Peri_Urban,19.752,0.94,18.5,38,12
+FDR-006,Phalgam to Anantnagh,Peri_Urban,39.73,0.94,37.4,18,6
+SSCL-07,Batamaloo to Drussu Pulwama via Marwal,Peri_Urban,32.735,0.94,30.8,17,9
+TRK-032,Soura to Chuntwaliwar,Urban,5.78,0.93,5.4,638,25
+FDR-479,Srinagar to Budgam,Urban,15.908,0.93,14.8,103,24
+SSCL-18,Jkpdc Jehangir Chowk to Wadwan,Peri_Urban,15.202,0.93,14.1,422,27
+FDR-488,Parimpora to Budgam,Peri_Urban,17.0,0.92,15.6,23,8
+SSCL-29,Pantha Chowk to Panzinara,Urban,10.811,0.92,9.9,33,10
+SSCL-13,Batamaloo to Beehama Ganderbal via Hazratbal Zakura,Peri_Urban,26.584,0.92,24.4,551,25
+SSCL-10,Pantha Chowk to Agri Kalan Kanihama via Bypass,Peri_Urban,23.59,0.92,21.7,39,12
+SSCL-01,Parimpora to Harwan via Brein Nishat,Peri_Urban,23.249,0.92,21.5,185,23
+FDR-024,Devsur to Srinagar,Regional_District,65.241,0.92,60.1,342,24
+FDR-038,Srinagar to Ratnipora,Regional_District,32.5,0.92,29.9,380,24
+FDR-467,Jehangir Chowk to Budgam,Regional_District,11.5,0.92,10.6,29,13
+FDR-507,Srinagar to Vijipopra,Regional_District,34.662,0.91,31.6,67,18
+FDR-001,Qamarwari to Baghi Mehtab,Peri_Urban,16.223,0.91,14.7,58,14
+FDR-525,LD to Budgam,Peri_Urban,14.0,0.91,12.7,29,13
+SSCL-14,TRC to Central University Ganderbal via Karan Nagar Zoonimar 90ft Road,Peri_Urban,27.314,0.91,25.0,559,25
+FDR-040,Srinagar to Ratnipura,Urban,25.991,0.9,23.3,380,24
+FDR-509,Srinagar to Hajin,Regional_District,35.566,0.89,31.6,65,18
+FDR-029,Uttersoo to Srinagar,Regional_District,73.746,0.89,65.4,211,24
+SSCL-21,Batamaloo to Arath,Urban,12.395,0.88,10.9,45,14
+FDR-463,Srinagar to Karhama,Regional_District,32.861,0.88,28.9,71,20
+FDR-406,Qamarwari to Parimpora,Urban,2.5,0.88,2.2,48,13
+FDR-464,Srinagar to Badrun,Regional_District,25.0,0.87,21.7,77,21
+SSCL-12,Rangreth to District Court Srinagar via Barzulla Jehangir Chowk,Urban,10.327,0.86,8.8,191,23
+FDR-543,Bandipora to Srinagar,Regional_District,58.597,0.86,50.1,32,9
+FDR-036,Srinagar to Bugam,Peri_Urban,62.557,0.86,53.5,362,24
+FDR-401,Jehangir Chowk to Panzinara,Peri_Urban,10.0,0.85,8.5,110,19
+FDR-486,Srinagar to Safapora Sumbal,Regional_District,30.51,0.85,25.8,68,19
+FDR-549,Bankoot to Srinagar via Bandipora,Regional_District,60.768,0.85,51.6,31,9
+FDR-437,Srinagar to Ratsun,Regional_District,28.474,0.84,23.9,72,20
+FDR-012,Yaripora to Srinagar,Regional_District,64.929,0.84,54.3,342,24
+FDR-176,Jehangir Chowk to Bemina,Urban,6.545,0.84,5.5,264,28
+FDR-454,Srinagar to Aboora,Regional_District,32.753,0.84,27.7,68,19
+FDR-453,Srinagar to Baderkote,Regional_District,42.864,0.83,35.4,59,16
+SSCL-19,Pantha Chowk to Sumbal,Peri_Urban,35.736,0.83,29.6,13,7
+FDR-028,Shangus to Srinagar,Regional_District,80.474,0.82,65.7,69,12
+FDR-010,Kulgam to Srinagar,Regional_District,67.019,0.82,55.1,324,24
+FDR-008,Khull Ahmadabad to Srinagar,Regional_District,66.828,0.82,55.1,324,24
+SSCL-20,Pantha Chowk to Safapora,Regional_District,60.631,0.81,49.3,11,5
+FDR-521,Fathgath to Srinagar,Regional_District,56.5,0.8,45.1,38,12
+SSCL-25,Batamaloo to Dadsara Tral via Awantipora,Regional_District,43.869,0.8,34.9,30,9
+FDR-535,Kaprin to Srinagar,Regional_District,58.528,0.8,46.9,7,3
+FDR-515,Baramulla to Srinagar,Regional_District,56.316,0.8,45.1,38,12
+FDR-530,Botingue to Srinagar,Regional_District,61.995,0.79,49.2,35,10
+FDR-552,Srinagar to Tral Nowdal,Regional_District,39.5,0.79,31.2,370,24
+FDR-531,Srinagar to Keller,Regional_District,50.376,0.79,39.9,7,3
+FDR-455,Narbal to Jehangir Chowk,Peri_Urban,17.0,0.78,13.3,114,23
+FDR-011,Katrosoo to Srinagar,Regional_District,69.172,0.78,54.0,305,24
+FDR-504,Srinagar to Safapora GBL,Regional_District,32.954,0.78,25.7,64,18
+FDR-553,Srinagar to Kupwara DAY,Regional_District,88.147,0.77,67.6,26,6
+FDR-537,Pariwan to Srinagar,Regional_District,60.618,0.77,46.9,7,3
+FDR-540,Nehama to Srinagar,Regional_District,62.131,0.76,47.0,6,3
+FDR-132,Safakadal to SMHS,Urban,1.5,0.75,1.1,89,16
+SSCL-08,Batamaloo to Budgam Railway Station via Khumeni Chowk,Peri_Urban,15.685,0.74,11.6,15,4
+SSCL-30,Batamaloo to Dc Office Budgam,Peri_Urban,15.685,0.74,11.6,15,4
+FDR-429,Parimpora to Chadora,Peri_Urban,18.0,0.73,13.1,23,9
+FDR-538,Sedow to Srinagar,Regional_District,46.0,0.72,33.3,19,3
+FDR-546,Srinagar to Pinglish,Regional_District,43.953,0.71,31.3,368,24
+FDR-562,Srinagar to Chowkibal,Regional_District,125.5,0.71,88.8,25,5
+FDR-505,Wasoora to Srinagar,Peri_Urban,39.631,0.71,28.1,6,2
+FDR-563,Srinagar to Trehgam KUP,Regional_District,96.17,0.7,67.2,25,5
+FDR-506,Heff to Srinagar,Regional_District,40.635,0.69,27.9,5,2
+FDR-602,TRC Srinagar to Airport,Urban,12.0,0.66,7.9,311,25
+FDR-025,Lammer to Anantnagh,Urban,4.333,0.66,2.9,9,6
+FDR-567,Kupwara to Srinagar,Regional_District,88.0,0.66,57.9,25,5
+FDR-555,Srinagar to Pasthoon,Regional_District,41.5,0.63,26.0,366,24
+FDR-564,Sogam to Srinagar,Regional_District,105.052,0.63,66.6,25,5
+FDR-570,Srinagar to Khoor,Regional_District,111.183,0.62,68.5,25,5
+FDR-551,Srinagar to Handwara,Regional_District,73.767,0.62,45.6,29,8
+FDR-565,Srinagar to Dardpora,Regional_District,106.39,0.62,66.4,25,5
+FDR-487,Srinagar to Khag,Regional_District,37.849,0.61,23.0,64,18
+FDR-039,Koil to Srinagar,Peri_Urban,17.5,0.58,10.1,78,10
+FDR-571,Srinagar to Tangdar,Regional_District,151.0,0.57,85.5,24,5
+FDR-541,Srinagar to URI Baramulla,Regional_District,101.0,0.57,57.4,25,6
+FDR-510,Srinagar to Shanglipora,Regional_District,35.0,0.54,19.0,58,16
+FDR-508,Srinagar to Chewdara,Regional_District,23.0,0.52,11.8,38,14
+FDR-513,Srinagar to Narwara Budgam,Regional_District,28.415,0.51,14.5,38,14
+FDR-326,Srinagar to Chadoora,Urban,14.5,0.48,6.9,173,14
+FDR-529,Srinagar to Mirpora Budgam,Regional_District,31.366,0.47,14.6,24,8
+FDR-466,Srinagar to Isganderpora,Regional_District,26.5,0.45,11.9,35,14
+FDR-536,Srinagar to Arizal,Regional_District,44.306,0.35,15.3,17,5
+SSCL-23,Batamaloo to Charesharief via Chadoora,Peri_Urban,29.633,0.29,8.5,13,7
+FDR-465,Srinagar to Charishreef,Regional_District,31.248,0.27,8.3,53,5
+FDR-035,Anantnagh to Shopian,Regional_District,37.0,0.22,8.2,9,6
+FDR-514,Srinagar to Loolpora,Regional_District,38.921,0.21,8.2,6,2
+FDR-519,Srinagar to Pakherpora,Regional_District,42.101,0.2,8.3,1,1
+FDR-532,Sangerwani to Srinagar,Regional_District,44.959,0.18,8.2,1,1
+FDR-004,Bandipora to Baramulla,Regional_District,45.97,0.14,6.3,3,1
+FDR-005,Baramula to Kupwra,Regional_District,46.645,0.04,1.9,0,0
+FDR-593,Garkote to Baramulla,Urban,2.961,0.0,0.0,0,0
+FDR-574,Pehilpora to URI via Baramulla,Peri_Urban,25.43,0.0,0.0,0,0
+FDR-592,Kamalkote to Baramulla,Regional_District,45.819,0.0,0.0,0,0
