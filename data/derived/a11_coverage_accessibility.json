@@ -1,0 +1,131 @@
+{
+  "any_service_reconciliation": {
+    "any_service_population": 1592846.75,
+    "any_service_share": 0.24189890993782312,
+    "drift_pp": -0.010109006217687289,
+    "established_share": 0.242,
+    "reconciled": true
+  },
+  "frequency_thresholds_min": [
+    15,
+    20,
+    35
+  ],
+  "frequent_network_coverage": [
+    {
+      "coverage_pct": 10.442732212644891,
+      "n_routes": 30,
+      "population_covered": 687629.0625,
+      "threshold_label": "<= 15 min",
+      "threshold_min": 15
+    },
+    {
+      "coverage_pct": 12.212666152550389,
+      "n_routes": 55,
+      "population_covered": 804175.0,
+      "threshold_label": "<= 20 min",
+      "threshold_min": 20
+    },
+    {
+      "coverage_pct": 19.184015306855432,
+      "n_routes": 124,
+      "population_covered": 1263221.75,
+      "threshold_label": "<= 35 min",
+      "threshold_min": 35
+    },
+    {
+      "coverage_pct": 24.18989099378231,
+      "n_routes": 186,
+      "population_covered": 1592846.75,
+      "threshold_label": "any service (all active)",
+      "threshold_min": 50
+    }
+  ],
+  "interpretation": "Frequent-network coverage falls well below the 24.2% any-service figure at every threshold, so most of the reached population has only infrequent access. The uncovered-population surface returns a positive, significant Moran's I at every resolution and terrain treatment, so the unserved residents are spatially clustered rather than evenly dispersed: the gap is concentrated in identifiable sub-regions and is therefore policy-actionable through a finite set of targeted corridors, not merely a uniform shortfall.",
+  "method_note": "Coverage unions are deduplicated (dissolve then zonal-sum); per-route catchments overlap and are never summed. The any-service union is recomputed from the same catchments and zonal method as module a02 and reconciled against the established 24.2% headline. The uncovered surface is WorldPop inside the ten-district union minus the part inside the dissolved all-routes network catchment, aggregated to a regular metric lattice; Moran's I uses Queen contiguity, row-standardisation and permutation inference seeded with RANDOM_SEED=20260823.",
+  "morans": {
+    "covered_population": 1592846.6678082785,
+    "study_area_worldpop_in_union": 6584762.0,
+    "uncovered_population": 4991916.0,
+    "uncovered_share": 0.7581012039615099,
+    "variants": [
+      {
+        "cell_km": 2.0,
+        "full_lattice": {
+          "expected_I": -0.00023815194093831864,
+          "label": "uncovered pop, full lattice, h=2 km",
+          "morans_I": 0.6638621168693664,
+          "n_cells": 4200,
+          "n_islands_dropped": 0,
+          "p_norm": 0.0,
+          "p_sim": 0.001,
+          "variable_mean": 1188.5514151139203,
+          "variable_nonzero_cells": 3526,
+          "z_sim": 85.7680611204478
+        },
+        "inhabited_only": {
+          "expected_I": -0.0002841716396703609,
+          "label": "uncovered pop, inhabited cells, h=2 km",
+          "morans_I": 0.6409636151155012,
+          "n_cells": 3520,
+          "n_islands_dropped": 6,
+          "p_norm": 0.0,
+          "p_sim": 0.001,
+          "variable_mean": 1418.1526515152982,
+          "variable_nonzero_cells": 3520,
+          "z_sim": 70.5624486109624
+        },
+        "n_cells_inhabited": 3526,
+        "n_cells_total": 4200,
+        "uncovered_captured": 4991915.943478465
+      },
+      {
+        "cell_km": 5.0,
+        "full_lattice": {
+          "expected_I": -0.0014084507042253522,
+          "label": "uncovered pop, full lattice, h=5 km",
+          "morans_I": 0.7293242899008364,
+          "n_cells": 711,
+          "n_islands_dropped": 0,
+          "p_norm": 3.7050314542342485e-306,
+          "p_sim": 0.001,
+          "variable_mean": 7020.978819406024,
+          "variable_nonzero_cells": 670,
+          "z_sim": 37.30699065231042
+        },
+        "inhabited_only": {
+          "expected_I": -0.0014947683109118087,
+          "label": "uncovered pop, inhabited cells, h=5 km",
+          "morans_I": 0.7206112828596816,
+          "n_cells": 670,
+          "n_islands_dropped": 0,
+          "p_norm": 7.303572577335207e-279,
+          "p_sim": 0.001,
+          "variable_mean": 7450.620806862214,
+          "variable_nonzero_cells": 670,
+          "z_sim": 36.1768510838021
+        },
+        "n_cells_inhabited": 670,
+        "n_cells_total": 711,
+        "uncovered_captured": 4991915.940597683
+      }
+    ]
+  },
+  "morans_primary": {
+    "cell_km": 2.0,
+    "expected_I": -0.00023815194093831864,
+    "label": "uncovered pop, full lattice, h=2 km",
+    "morans_I": 0.6638621168693664,
+    "n_cells": 4200,
+    "n_islands_dropped": 0,
+    "p_norm": 0.0,
+    "p_sim": 0.001,
+    "variable_mean": 1188.5514151139203,
+    "variable_nonzero_cells": 3526,
+    "z_sim": 85.7680611204478
+  },
+  "status": "OK",
+  "study_area_population": 6584762,
+  "tau_m": 100.0,
+  "walk_budget_m": 400.0
+}

@@ -52,7 +52,7 @@ will ask:
 
 Already strong and worth foregrounding in the cover letter and a "Code & data availability" section:
 - `analysis/run_all.py` pipeline + fixed random seed (`20260823`).
-- `tests/` — 52 passed / 2 skipped.
+- `tests/` — 53 passed / 2 skipped.
 - `CLAIM_LEDGER.md` — every number traced to a module.
 
 **But** the reproducibility claim is only honest for the **6 modules that exist**. Do not advertise

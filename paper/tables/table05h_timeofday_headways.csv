@@ -1,0 +1,6 @@
+Service class,Plan headway (min),Policy max wait (min),Opening shoulder [prop],Opening shoulder [sqrt],Peak [prop],Peak [sqrt],Off-peak (base) [prop],Off-peak (base) [sqrt],Evening [prop],Evening [sqrt]
+SSCL e-bus trunk,15,35,35,35,15.0,15.0,20.5,17.5,35,35
+High-priority trunk (non-SSCL),20,35,35,35,20.0,20.0,27.3,23.4,35,35
+Medium-priority feeder,35,35,35,35,35.0,35.0,35.0,35.0,35,35
+"Rural lifeline (Regional, best bucket)",35,50,50,50,35.0,35.0,47.8,40.9,50,50
+"Rural lifeline (Regional, worst bucket)",50,50,50,50,50.0,50.0,50.0,50.0,50,50

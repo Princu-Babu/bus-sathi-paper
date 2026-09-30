@@ -1,0 +1,20 @@
+**Active routes whose drawn alignment does not reach a canonical stop named in their own route name**
+
+| New_Route_ID   | Route_Name                                                             |   Route_KM | Named_Terminal   |   Distance_To_Own_Line_M | Within_Catchment   |
+|:---------------|:-----------------------------------------------------------------------|-----------:|:-----------------|-------------------------:|:-------------------|
+| FDR-538        | Sedow to Srinagar                                                      |       46   | Srinagar         |                    10584 | False              |
+| FDR-039        | Koil to Srinagar                                                       |       17.5 | Srinagar         |                    10584 | False              |
+| FDR-261        | JVC to Batwara                                                         |        9.5 | JVC              |                     8019 | False              |
+| FDR-401        | Jehangir Chowk to Panzinara                                            |       10   | Panzinara        |                     5502 | False              |
+| FDR-464        | Srinagar to Badrun                                                     |       25   | Badrun           |                     5322 | False              |
+| FDR-384        | Srinagar to Beeru                                                      |       25   | Srinagar         |                     4934 | False              |
+| FDR-271        | Parimpora to Hazratbal                                                 |       10.5 | Parimpora        |                     3591 | False              |
+| FDR-466        | Srinagar to Isganderpora                                               |       26.5 | Isganderpora     |                     3381 | False              |
+| FDR-429        | Parimpora to Chadora                                                   |       18   | Chadora          |                     3335 | False              |
+| FDR-199        | Qamarwari to Hazratbal                                                 |        8   | Qamarwari        |                     1561 | False              |
+| SSCL-14        | TRC to Central University Ganderbal via Karan Nagar Zoonimar 90ft Road |       27.3 | TRC              |                     1542 | False              |
+| SSCL-15        | TRC to Pulwama via Nowgam Kaanipora                                    |       29.4 | TRC              |                     1266 | False              |
+| FDR-147        | Hazratbal to LD                                                        |        6.5 | LD               |                     1134 | False              |
+| FDR-466        | Srinagar to Isganderpora                                               |       26.5 | Srinagar         |                      871 | False              |
+| FDR-464        | Srinagar to Badrun                                                     |       25   | Srinagar         |                      871 | False              |
+| FDR-080        | Batmaloo to Dalgate                                                    |        3.5 | Dalgate          |                      599 | False              |

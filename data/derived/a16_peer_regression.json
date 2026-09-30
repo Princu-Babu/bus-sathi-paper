@@ -1,0 +1,394 @@
+{
+  "citations": [
+    "Association of State Road Transport Undertakings (2024). SRTU Fleet Handbook-2024: A Journey to Efficiency (Make-wise & Type-wise). New Delhi: ASRTU.",
+    "Office of the Registrar General & Census Commissioner, India (2011). Census of India 2011, Table A-04(I): Towns and Urban Agglomerations Classified by Population Size Class. NADA catalogue 42876.",
+    "Central Institute of Road Transport (2022). State Transport Undertakings \u2014 Profile & Performance 2021-22. Pune: CIRT (network-structure covariates)."
+  ],
+  "dependent_variable": {
+    "definition_mismatch_with_kashmir": "peer = public STU fleet; Kashmir 1,011 = planned ALL-operator fleet (absorbs private minibus permits + SSCL/CHALO e-buses). The regression benchmarks public STU provision, not a like-for-like target.",
+    "name": "buses (public-sector city fleet held)",
+    "scope_caveats": [
+      "fleet HELD, not buses on road (utilisation < 100%)",
+      "includes wet-leased/hired buses",
+      "public ASRTU-member undertakings only \u2014 excludes private stage/contract carriage and non-member Smart-City SPV e-buses"
+    ],
+    "source": "ASRTU (2024) SRTU Fleet Handbook-2024, 'City' column, as on 31 Oct 2023",
+    "source_url": "https://www.asrtu.org/resource/front/uploads/STUs%20Fleet%20Book%202024.pdf"
+  },
+  "headline": "Fit on 36 Indian peer cities (Srinagar excluded as a non-city undercount). The relationship is weak: population-only R^2=0.0957, adding density R^2=0.1006 (density p=0.67, i.e. it adds nothing). The plan's 1011 buses are 0.154/1,000 on the total population \u2014 the peer 61th percentile and inside prediction interval of the preferred (M3) 95% interval \u2014 and 0.436/1,000 on the served population. Kashmir's density 414/km^2 is below every fitted city, so the density term is extrapolation. Because R^2 is low the interval is wide, and the honest reading is a plausibility band: the plan is not an outlier against Indian public-sector fleet provision.",
+  "interpretation_caveats": [
+    "Peer fleet is public-sector only; Kashmir fleet is planned all-operator \u2014 sitting above the public-STU expectation is partly this definitional gap.",
+    "Kashmir Division is a mostly-rural region, not a city; its density is an extrapolation below the fitted range, so trust the population-only models.",
+    "R^2 is low (0.10 in levels), so population and density explain little of the variation in Indian city fleet provision. The regression supports a wide plausibility band, NOT a point target \u2014 do not read the fitted value as a norm.",
+    "The level-form (M1/M2) 95% intervals have negative lower bounds, which is not a possible fleet; M3's log specification is the interval to quote.",
+    "buses-per-1,000 is capitalisation (fleet held), not delivered service; and the 2011 population denominator predates the 2023 fleet by 12 years.",
+    "The served-population predictions treat the covered population as a notional city of that size \u2014 a what-if, not a claim that the served area is a city."
+  ],
+  "kashmir": {
+    "density_is_below_fitted_min": true,
+    "division_area_km2": 15913.7,
+    "division_density": 413.8,
+    "planned_fleet": 1011,
+    "population_denominators": {
+      "served_a11": {
+        "buses_per_1000": 0.6347,
+        "note": "a11_coverage_accessibility.json, in-repo network 400 m walkshed",
+        "value": 1592846
+      },
+      "served_engine": {
+        "buses_per_1000": 0.4362,
+        "note": "engine v3.4.5-geo CLAUDE.md, 400 m-walkshed coverage (35.2% of the 6.58M study area); not reproduced in-repo",
+        "value": 2317958
+      },
+      "total": {
+        "buses_per_1000": 0.1535,
+        "note": "common.STUDY_AREA_POPULATION; WorldPop 2026, 10-district union",
+        "value": 6584762
+      }
+    }
+  },
+  "models": [
+    {
+      "adj_r_squared": 0.0691,
+      "coefficients": {
+        "const": {
+          "estimate": -0.570305,
+          "p_value": 0.16107214516847215,
+          "std_err": 0.398061
+        },
+        "log10_pop": {
+          "estimate": 0.120616,
+          "p_value": 0.06638726570418703,
+          "std_err": 0.063592
+        }
+      },
+      "dependent_variable": "buses_per_1000",
+      "f_pvalue": 0.06638726570418717,
+      "formula": "buses_per_1000 ~ log10_pop",
+      "model": "M1_pop_only",
+      "n": 36,
+      "r_squared": 0.0957,
+      "residual_diagnostics": {
+        "breusch_pagan_p": 0.305803252521607,
+        "jarque_bera_p": 0.008641491712493437,
+        "residual_kurtosis": 3.558,
+        "residual_skew": 1.227
+      }
+    },
+    {
+      "adj_r_squared": 0.0461,
+      "coefficients": {
+        "const": {
+          "estimate": -0.583695,
+          "p_value": 0.1581173514817822,
+          "std_err": 0.404172
+        },
+        "density": {
+          "estimate": -3e-06,
+          "p_value": 0.6733407560249445,
+          "std_err": 7e-06
+        },
+        "log10_pop": {
+          "estimate": 0.127354,
+          "p_value": 0.06339389001603932,
+          "std_err": 0.066292
+        }
+      },
+      "dependent_variable": "buses_per_1000",
+      "f_pvalue": 0.1738168405046626,
+      "formula": "buses_per_1000 ~ log10_pop + density",
+      "model": "M2_pop_density",
+      "n": 36,
+      "r_squared": 0.1006,
+      "residual_diagnostics": {
+        "breusch_pagan_p": 0.5007334763357838,
+        "jarque_bera_p": 0.009992917796913829,
+        "residual_kurtosis": 3.533,
+        "residual_skew": 1.21
+      }
+    },
+    {
+      "adj_r_squared": 0.1647,
+      "coefficients": {
+        "const": {
+          "estimate": -0.951775,
+          "p_value": 0.020843573848081998,
+          "std_err": 0.390181
+        },
+        "density": {
+          "estimate": 0.0,
+          "p_value": 0.991954712815077,
+          "std_err": 6e-06
+        },
+        "log10_pop": {
+          "estimate": 0.179813,
+          "p_value": 0.00823034171179214,
+          "std_err": 0.063543
+        }
+      },
+      "dependent_variable": "buses_per_1000",
+      "f_pvalue": 0.02553516205168332,
+      "formula": "buses_per_1000 ~ log10_pop + density",
+      "model": "M2b_pop_density_excl_multicity",
+      "n": 33,
+      "r_squared": 0.2169,
+      "residual_diagnostics": {
+        "breusch_pagan_p": 0.6347102255730948,
+        "jarque_bera_p": 0.0002656571100835859,
+        "residual_kurtosis": 4.799,
+        "residual_skew": 1.478
+      }
+    },
+    {
+      "adj_r_squared": 0.0739,
+      "coefficients": {
+        "const": {
+          "estimate": -2.772298,
+          "p_value": 0.006198333589244306,
+          "std_err": 0.949934
+        },
+        "log10_pop": {
+          "estimate": 0.295562,
+          "p_value": 0.05975628679663385,
+          "std_err": 0.151756
+        }
+      },
+      "dependent_variable": "log10(buses_per_1000)",
+      "f_pvalue": 0.05975628679663382,
+      "formula": "log10(buses_per_1000) ~ log10_pop",
+      "model": "M3_log_pop_only",
+      "n": 36,
+      "r_squared": 0.1004,
+      "residual_diagnostics": {
+        "breusch_pagan_p": 0.49139793206013094,
+        "jarque_bera_p": 0.6190458847607669,
+        "residual_kurtosis": 2.25,
+        "residual_skew": 0.139
+      }
+    },
+    {
+      "adj_r_squared": 0.0525,
+      "coefficients": {
+        "const": {
+          "estimate": -2.808509,
+          "p_value": 0.006360144366740782,
+          "std_err": 0.963765
+        },
+        "density": {
+          "estimate": -8e-06,
+          "p_value": 0.6327081654978315,
+          "std_err": 1.6e-05
+        },
+        "log10_pop": {
+          "estimate": 0.313785,
+          "p_value": 0.05550711991680154,
+          "std_err": 0.158077
+        }
+      },
+      "dependent_variable": "log10(buses_per_1000)",
+      "f_pvalue": 0.15549515454639268,
+      "formula": "log10(buses_per_1000) ~ log10_pop + density",
+      "model": "M3d_log_pop_density",
+      "n": 36,
+      "r_squared": 0.1067,
+      "residual_diagnostics": {
+        "breusch_pagan_p": 0.7067409526165728,
+        "jarque_bera_p": 0.5982711138616843,
+        "residual_kurtosis": 2.21,
+        "residual_skew": 0.123
+      }
+    }
+  ],
+  "peer_set": {
+    "buses_per_1000": {
+      "max": 0.7317,
+      "median": 0.1066,
+      "min": 0.021
+    },
+    "density_range": [
+      2809.4,
+      21833.1
+    ],
+    "excluded": [
+      {
+        "city": "Srinagar",
+        "reason": "scope: UT-wide J&K SRTC city fleet, excludes SSCL e-bus + private permits; not a Srinagar figure"
+      }
+    ],
+    "n_in_fit": 36,
+    "n_multi_city_operator": 3,
+    "n_total_rows": 37,
+    "population_range": [
+      347852,
+      18394912
+    ]
+  },
+  "placement": {
+    "served_a11_vs_M1": {
+      "actual_buses_per_1000": 0.6347,
+      "peer_percentile": 97.2,
+      "position_vs_pred_interval": "above_prediction_interval",
+      "predicted_buses_per_1000": 0.1778,
+      "residual": 0.4569
+    },
+    "served_a11_vs_M3_preferred": {
+      "actual_buses_per_1000": 0.6347,
+      "peer_percentile": 97.2,
+      "position_vs_pred_interval": "inside_prediction_interval",
+      "predicted_buses_per_1000": 0.115,
+      "residual": 0.5197
+    },
+    "served_engine_vs_M1": {
+      "actual_buses_per_1000": 0.4362,
+      "peer_percentile": 86.1,
+      "position_vs_pred_interval": "inside_prediction_interval",
+      "predicted_buses_per_1000": 0.1974,
+      "residual": 0.2387
+    },
+    "served_engine_vs_M3_preferred": {
+      "actual_buses_per_1000": 0.4362,
+      "peer_percentile": 86.1,
+      "position_vs_pred_interval": "inside_prediction_interval",
+      "predicted_buses_per_1000": 0.1285,
+      "residual": 0.3076
+    },
+    "total_vs_M1": {
+      "actual_buses_per_1000": 0.1535,
+      "peer_percentile": 61.1,
+      "position_vs_pred_interval": "inside_prediction_interval",
+      "predicted_buses_per_1000": 0.2521,
+      "residual": -0.0986
+    },
+    "total_vs_M2_extrapolated": {
+      "actual_buses_per_1000": 0.1535,
+      "peer_percentile": 61.1,
+      "position_vs_pred_interval": "inside_prediction_interval",
+      "predicted_buses_per_1000": 0.2835,
+      "residual": -0.1299
+    },
+    "total_vs_M3_preferred": {
+      "actual_buses_per_1000": 0.1535,
+      "peer_percentile": 61.1,
+      "position_vs_pred_interval": "inside_prediction_interval",
+      "predicted_buses_per_1000": 0.175,
+      "residual": -0.0215
+    }
+  },
+  "predictions": {
+    "M1_at_served_a11": {
+      "design": {
+        "population": 1592846
+      },
+      "mean_ci": [
+        0.1201635351369423,
+        0.2353831679412617
+      ],
+      "point": 0.177773351539102,
+      "pred_interval": [
+        -0.17115828824801704,
+        0.5267049913262211
+      ]
+    },
+    "M1_at_served_engine": {
+      "design": {
+        "population": 2317958
+      },
+      "mean_ci": [
+        0.13796709950574435,
+        0.256883759023654
+      ],
+      "point": 0.1974254292646992,
+      "pred_interval": [
+        -0.15181616516007984,
+        0.5466670236894782
+      ]
+    },
+    "M1_at_total": {
+      "design": {
+        "population": 6584762
+      },
+      "mean_ci": [
+        0.15828027210972262,
+        0.34595307740172687
+      ],
+      "point": 0.25211667475572475,
+      "pred_interval": [
+        -0.1045900237518585,
+        0.6088233732633079
+      ]
+    },
+    "M2_at_division_EXTRAPOLATED": {
+      "design": {
+        "density": 413.8,
+        "log10_pop": 6.8185
+      },
+      "mean_ci": [
+        0.10591856883786185,
+        0.46100591795851453
+      ],
+      "point": 0.2834622433981882,
+      "pred_interval": [
+        -0.10788297445145956,
+        0.674807461247836
+      ],
+      "warning": "density below the fitted minimum \u2014 interval unreliable, reported for completeness"
+    },
+    "M3_at_served_a11": {
+      "design": {
+        "population": 1592846
+      },
+      "mean_ci": [
+        0.08382058937897104,
+        0.15787427714461594
+      ],
+      "point": 0.11503527701553434,
+      "point_is": "conditional median (back-transformed from log10)",
+      "pred_interval": [
+        0.01690981915300255,
+        0.782569868920864
+      ]
+    },
+    "M3_at_served_engine": {
+      "design": {
+        "population": 2317958
+      },
+      "mean_ci": [
+        0.09270343914147665,
+        0.1781882704852257
+      ],
+      "point": 0.12852496056662338,
+      "point_is": "conditional median (back-transformed from log10)",
+      "pred_interval": [
+        0.01886060946066702,
+        0.8758288284957626
+      ]
+    },
+    "M3_at_total": {
+      "design": {
+        "population": 6584762
+      },
+      "mean_ci": [
+        0.10448983035621995,
+        0.2930469967958887
+      ],
+      "point": 0.17498694517478194,
+      "point_is": "conditional median (back-transformed from log10)",
+      "pred_interval": [
+        0.024646720137870153,
+        1.2423734602541807
+      ]
+    }
+  },
+  "predictors": {
+    "denominator_year_gap_note": "fleet 2023 vs population 2011 (2021 Census postponed) \u2014 peer ratios somewhat overstated and unevenly so; not projected forward",
+    "population_basis": "UA where a UA exists, else municipal corporation; area matched",
+    "sha256": "8ab1bafd6e49aec4a6b2709398dbdeaab2b53bc369a53e62eacac601647a58dd",
+    "source": "Census of India 2011, Table A-04(I) (Class-I towns), CLASS_I.xlsx",
+    "source_url": "https://censusindia.gov.in/nada/index.php/catalog/42876"
+  },
+  "specification_note": {
+    "explanation": "buses per 1,000 is strictly positive and right-skewed across the peer set (0.021 to 0.732, a 35-fold spread), so a normal-error OLS in levels assigns probability to a negative fleet: the M1/M2 95% prediction intervals do have negative lower bounds. They are reported because they are the specification the analysis plan names, but M3 \u2014 the same regressors on log10(buses per 1,000) \u2014 is preferred for the interval, since a monotone back-transform gives an exact and strictly positive 95% prediction interval. M3's point estimate is a conditional median.",
+    "level_form_pi_lower_bound_negative": true
+  },
+  "status": "OK"
+}

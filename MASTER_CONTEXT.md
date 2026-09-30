@@ -49,7 +49,7 @@ The engine repo also drives a **dashboard** (`github.com/GrostesqueChip/bus-sath
 - **External services the *engine* needed** (not required to re-run the *paper* analysis, which consumes
   staged engine outputs): OSRM in Docker on localhost:5000; WorldPop raster.
 - **Reproducibility spine:** `analysis/run_all.py` (staged pipeline), fixed `RANDOM_SEED = 20260823`,
-  `tests/` (52 passed / 2 skipped), `CLAIM_LEDGER.md` (every number → a module).
+  `tests/` (53 passed / 2 skipped), `CLAIM_LEDGER.md` (every number → a module).
 - Engine's own Python is a *separate* conda env at `D:\plotting\ana` — that is the ENGINE repo's
   toolchain, documented in `E:\kash\CLAUDE.md`; the paper repo does not use it.
 
@@ -147,18 +147,26 @@ validation.**
 | § | Section | Owner | State |
 |---|---|---|---|
 | Abstract | — | Prashant+Ankit+Sharvesh | **Draft** (318 w) — headline figures provisional |
-| §1 | Introduction | co-authors | **ABSENT** (draft only in AK PDF) |
-| §2 | Literature review | co-authors | **ABSENT** |
-| §3 | Study area & data | co-authors (Misti/Krishna) | **ABSENT** — must use Kashmir-Division framing |
-| §4 | **Methodology** | **Prashant (sole)** | **COMPLETE** (2,634 w) — Eqs 1–14, Algorithm 1, 10 QA gates |
-| §5 | Results | Prashant+Misti | **HALF** — §5.1–5.4 done; §5.5–5.13 stubs (blocked by missing modules) |
-| §6 | Validation | Prashant+Avny+Krishnan | **Draft** (1,170 w) — V4 done; §6.4 future-work framing |
-| §7 | Discussion | co-authors | **ABSENT** |
-| §8 | Conclusions | Prashant+Ankit+Sharvesh | **COMPLETE** (450 w) |
+| §1 | Introduction | Misti, Avny | **Drafted** (2,343 body w) — co-author prose verbatim + 9 flags |
+| §2 | Literature review | Sharvesh, Ankit | **Drafted** (1,413 body w) — §2.1 protocol NOT run (placeholders visible) |
+| §3 | Study area & data | Krishna | **Drafted** (1,242 body w) — Kashmir-Division framing; ethics para blank |
+| §4 | **Methodology** | **Prashant (sole)** | **COMPLETE** (2,467 body w) — Eqs 1–14, Algorithm 1, 10 QA gates |
+| §5 | Results | Prashant+Misti | **PARTIAL** (1,151 body w) — a04/a05/a10–a13 results not yet written up |
+| §6 | Validation | Prashant+Avny+Krishnan | **Draft** (956 body w) — V4 done; §6.4 future-work framing |
+| §7 | Discussion | Ankit, Avny, Misti | **Drafted** (1,678 body w) — §7.1–7.8 + co-author block verbatim |
+| §8 | Conclusions | Prashant+Ankit+Sharvesh | **COMPLETE** (421 body w) |
 
-**Prashant's owned prose (§4, §6, §8, half of §5) is the most complete part.** The co-authored sections
-(§1, §2, §3, §7) are not in this repo. **Section numbering is unreconciled** (AK PDF uses a 6-section
-scheme; repo uses 8) — must be fixed before cross-refs finalise.
+**All eight sections plus the Abstract are now drafted and assembled** into
+`paper/Kashmir_Manuscript_Working_Draft.pdf` (35 pp, 11,920 body words, nothing removed). Co-author
+prose is transcribed verbatim; conflicts are raised as tinted callouts rather than edited, and the
+single exception (one section heading, FLAG 3-A) is disclosed at the point of change. Every open
+question is collected into numbered decisions in `paper/PENDING_DECISIONS.md` / `.pdf`.
+
+**Section numbering is NOT in conflict** — an earlier note in this file claimed the AK PDF used a
+6-section scheme against the repo's 8. That was wrong. The attachment's operative structure (its
+section-owner/word-budget table) is eight sections and matches the repo. Only one stray sentence
+inside §1.6 says otherwise, and fixing it is a one-paragraph edit owned by the §1 authors
+(Decision 1).
 
 Tables: 12 of ~15 exist (`paper/tables/`: 2a–2f, 3a–3b, 4a–4b, 6a–6c). Missing: Table 5 (tiers, needs
 `a04`), Table 7 (validation synthesis), Table 8 (scenarios, needs `a15`). **Figures: 0 of ~9 generated.**

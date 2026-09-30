@@ -1,0 +1,569 @@
+{
+  "baseline_model": {
+    "description": "The counterfactual is the permit network. One register row is one permitted vehicle-service (q01 D1), so an OD offered by n register rows was offered by n vehicles; spread over the corridor cycle with duty factor d they give headway cycle/(n*d). A suppressed permit gave a one-seat ride between its own registered origin and destination.",
+    "duty_factor_note": "duty=1 asserts every permitted vehicle ran the whole operating day; no evidence supports it, and it is the bound harshest on the plan. The GPS-observed duty is a LOWER bound (partial app capture), so it is the bound most favourable to the plan. The true value lies between, and the direction of the result is reported at both.",
+    "duty_factor_observed": {
+      "duty_median": 0.2421,
+      "duty_p25": 0.0974,
+      "duty_p75": 0.4581,
+      "n_calendar_days": 131,
+      "n_driver_days": 855,
+      "n_drivers": 157,
+      "operating_window_min": 896.5,
+      "runs_per_vehicle_day_median": 2.0,
+      "service_min_median": 217.0,
+      "service_min_p25": 87.3,
+      "service_min_p75": 410.65,
+      "source": "data/raw/gps/driver_days.csv (Bus Sathi driver GPS, Feb-Jun 2026)"
+    },
+    "max_register_rows_on_one_od": 42,
+    "median_register_rows_per_od": 4.0,
+    "n_distinct_od_pairs": 68,
+    "n_suppressed_permits": 458,
+    "n_terminals_unsnappable": 49,
+    "n_usable_suppressed_permits": 409,
+    "supply_definition": "register rows with exactly this origin-destination pair of canonical stops, undirected - NOT the whole merge group, which would over-credit the baseline where the group is heterogeneous"
+  },
+  "bracketing_note": "The two distributions bracket the truth. The drawn-geometry graph understates connectivity because 14 route alignments do not reach a terminal their own name claims; the name-augmented graph overstates it because a name is an intention, not a routed path.",
+  "breakeven": {
+    "affected_pairs": [
+      {
+        "baseline_cycle_min": 125.38,
+        "breakeven_duty_factor": 1.3931,
+        "dest_stop": "Parimpora",
+        "n_register_rows_same_od": 6,
+        "n_suppressed_permits": 5,
+        "origin_stop": "Chadora",
+        "plan_headway_leg1_min": 15.0,
+        "plan_headway_leg2_min": 15.0,
+        "plan_transfers_named": 0,
+        "plan_wait_geometry_min": 15.0,
+        "successors": "FDR-429"
+      },
+      {
+        "baseline_cycle_min": 65.67,
+        "breakeven_duty_factor": 0.1042,
+        "dest_stop": "LD",
+        "n_register_rows_same_od": 42,
+        "n_suppressed_permits": 41,
+        "origin_stop": "Hazratbal",
+        "plan_headway_leg1_min": 15.0,
+        "plan_headway_leg2_min": 15.0,
+        "plan_transfers_named": 0,
+        "plan_wait_geometry_min": 15.0,
+        "successors": "FDR-147"
+      }
+    ],
+    "central_breakeven_penalty_min": [
+      71.31,
+      -8.54
+    ],
+    "central_breakeven_penalty_min_median": 31.39,
+    "central_case": "baseline Poisson departures with the observed median duty factor; plan evenly spaced",
+    "interpretation": "A POSITIVE break-even is the transfer penalty at which the wait saving is exactly cancelled: below it the passenger gains. A NON-POSITIVE break-even means the plan's two waits already exceed the single baseline wait, so no transfer penalty is needed to make the passenger worse off and the consolidation cannot be defended on wait time for that pair.",
+    "n_distinct_od": 2,
+    "n_positive_breakeven": 1,
+    "n_underlying_suppressed_permits": 46,
+    "penalty_sensitivity": [
+      {
+        "assumed_transfer_penalty_min": 0.0,
+        "duty_case": "all-day (duty=1.00)",
+        "n_od_total": 2,
+        "n_od_worse_off": 1,
+        "pct_od_worse_off": 50.0
+      },
+      {
+        "assumed_transfer_penalty_min": 5.0,
+        "duty_case": "all-day (duty=1.00)",
+        "n_od_total": 2,
+        "n_od_worse_off": 1,
+        "pct_od_worse_off": 50.0
+      },
+      {
+        "assumed_transfer_penalty_min": 10.0,
+        "duty_case": "all-day (duty=1.00)",
+        "n_od_total": 2,
+        "n_od_worse_off": 2,
+        "pct_od_worse_off": 100.0
+      },
+      {
+        "assumed_transfer_penalty_min": 15.0,
+        "duty_case": "all-day (duty=1.00)",
+        "n_od_total": 2,
+        "n_od_worse_off": 2,
+        "pct_od_worse_off": 100.0
+      },
+      {
+        "assumed_transfer_penalty_min": 20.0,
+        "duty_case": "all-day (duty=1.00)",
+        "n_od_total": 2,
+        "n_od_worse_off": 2,
+        "pct_od_worse_off": 100.0
+      },
+      {
+        "assumed_transfer_penalty_min": 0.0,
+        "duty_case": "observed median (duty=0.242)",
+        "n_od_total": 2,
+        "n_od_worse_off": 1,
+        "pct_od_worse_off": 50.0
+      },
+      {
+        "assumed_transfer_penalty_min": 5.0,
+        "duty_case": "observed median (duty=0.242)",
+        "n_od_total": 2,
+        "n_od_worse_off": 1,
+        "pct_od_worse_off": 50.0
+      },
+      {
+        "assumed_transfer_penalty_min": 10.0,
+        "duty_case": "observed median (duty=0.242)",
+        "n_od_total": 2,
+        "n_od_worse_off": 1,
+        "pct_od_worse_off": 50.0
+      },
+      {
+        "assumed_transfer_penalty_min": 15.0,
+        "duty_case": "observed median (duty=0.242)",
+        "n_od_total": 2,
+        "n_od_worse_off": 1,
+        "pct_od_worse_off": 50.0
+      },
+      {
+        "assumed_transfer_penalty_min": 20.0,
+        "duty_case": "observed median (duty=0.242)",
+        "n_od_total": 2,
+        "n_od_worse_off": 1,
+        "pct_od_worse_off": 50.0
+      }
+    ],
+    "status": "OK",
+    "unit": "distinct origin-destination pair of canonical stops"
+  },
+  "catchment_sensitivity": [
+    {
+      "catchment_m": 200.0,
+      "n_0": 901,
+      "n_1": 6979,
+      "n_2": 1941,
+      "n_3plus": 49,
+      "n_incidences": 984,
+      "n_pairs": 10153,
+      "n_unreachable": 283,
+      "pct_0": 8.87,
+      "pct_1": 68.74,
+      "pct_2plus": 19.6,
+      "pct_unreachable": 2.79,
+      "route_graph_components": 1
+    },
+    {
+      "catchment_m": 400.0,
+      "n_0": 1273,
+      "n_1": 7342,
+      "n_2": 1360,
+      "n_3plus": 36,
+      "n_incidences": 1267,
+      "n_pairs": 10153,
+      "n_unreachable": 142,
+      "pct_0": 12.54,
+      "pct_1": 72.31,
+      "pct_2plus": 13.75,
+      "pct_unreachable": 1.4,
+      "route_graph_components": 1
+    },
+    {
+      "catchment_m": 600.0,
+      "n_0": 1487,
+      "n_1": 7372,
+      "n_2": 1127,
+      "n_3plus": 25,
+      "n_incidences": 1489,
+      "n_pairs": 10153,
+      "n_unreachable": 142,
+      "pct_0": 14.65,
+      "pct_1": 72.61,
+      "pct_2plus": 11.35,
+      "pct_unreachable": 1.4,
+      "route_graph_components": 1
+    },
+    {
+      "catchment_m": 800.0,
+      "n_0": 1776,
+      "n_1": 7216,
+      "n_2": 998,
+      "n_3plus": 21,
+      "n_incidences": 1760,
+      "n_pairs": 10153,
+      "n_unreachable": 142,
+      "pct_0": 17.49,
+      "pct_1": 71.07,
+      "pct_2plus": 10.04,
+      "pct_unreachable": 1.4,
+      "route_graph_components": 1
+    }
+  ],
+  "central_case": {
+    "arrival_model": "Poisson departures E[W]=h",
+    "breakeven_penalty_min_max": 71.31,
+    "breakeven_penalty_min_median": 31.39,
+    "breakeven_penalty_min_min": -8.54,
+    "central": true,
+    "duty_case": "observed median (duty=0.242)",
+    "median_baseline_wait_min": 86.68,
+    "median_plan_wait_min": 17.5,
+    "median_wait_change_min": -70.43,
+    "n_breakeven_positive": 1,
+    "n_od_evaluated": 68,
+    "n_od_kept_one_seat_but_longer_wait": 4,
+    "n_od_losing_one_seat": 2,
+    "n_od_wait_worse": 5,
+    "pct_od_wait_worse": 7.4
+  },
+  "citations": [
+    "Welding, P.I. (1957) The instability of a close-interval service. Operational Research Quarterly 8(3): 133-142.",
+    "Osuna, E.E. & Newell, G.F. (1972) Control strategies for an idealized public transportation system. Transportation Science 6(1): 52-72.",
+    "Bowman, L.A. & Turnquist, M.A. (1981) Service frequency, schedule reliability and passenger wait times at transit stops. Transportation Research Part A 15(6): 465-471.",
+    "Iseki, H. & Taylor, B.D. (2009) Not all transfers are created equal: towards a framework relating transfer connectivity to travel behaviour. Transport Reviews 29(6): 777-800.",
+    "Guo, Z. & Wilson, N.H.M. (2011) Assessing the cost of transfer inconvenience in public transport systems: a case study of the London Underground. Transportation Research Part A 45(2): 91-104.",
+    "Wardman, M. (2004) Public transport values of time. Transport Policy 11(4): 363-377.",
+    "Vuchic, V.R. (2005) Urban Transit: Operations, Planning and Economics. Hoboken, NJ: John Wiley & Sons."
+  ],
+  "demand_weighting": "NONE. These are shares of STOP PAIRS. No origin-destination matrix exists for Kashmir Division and the fare data record boardings without alightings, so no passenger weighting is possible. The result is topological and must not be quoted as a share of trips.",
+  "distribution_name_augmented": {
+    "n_0": 1300,
+    "n_1": 7725,
+    "n_2": 1103,
+    "n_3plus": 25,
+    "n_pairs": 10153,
+    "n_unreachable": 0,
+    "pct_0": 12.8,
+    "pct_1": 76.09,
+    "pct_2plus": 11.11,
+    "pct_unreachable": 0.0
+  },
+  "distribution_on_drawn_geometry": {
+    "n_0": 1273,
+    "n_1": 7342,
+    "n_2": 1360,
+    "n_3plus": 36,
+    "n_pairs": 10153,
+    "n_unreachable": 142,
+    "pct_0": 12.54,
+    "pct_1": 72.31,
+    "pct_2plus": 13.75,
+    "pct_unreachable": 1.4
+  },
+  "geometry_audit": {
+    "caveat": "Some defects involve a generic district-town terminal (\"Srinagar\"), a single gazetteer pin that a route may legitimately terminate far from; those are gazetteer coarseness rather than a misdrawn line. Cases naming a specific place (LD, Chadora, JVC, Dalgate, TRC) are genuine endpoint defects.",
+    "defects": [
+      {
+        "Distance_To_Own_Line_M": 10584,
+        "Named_Terminal": "Srinagar",
+        "New_Route_ID": "FDR-538",
+        "Route_KM": 46.0,
+        "Route_Name": "Sedow to Srinagar",
+        "Within_Catchment": false
+      },
+      {
+        "Distance_To_Own_Line_M": 10584,
+        "Named_Terminal": "Srinagar",
+        "New_Route_ID": "FDR-039",
+        "Route_KM": 17.5,
+        "Route_Name": "Koil to Srinagar",
+        "Within_Catchment": false
+      },
+      {
+        "Distance_To_Own_Line_M": 8019,
+        "Named_Terminal": "JVC",
+        "New_Route_ID": "FDR-261",
+        "Route_KM": 9.5,
+        "Route_Name": "JVC to Batwara",
+        "Within_Catchment": false
+      },
+      {
+        "Distance_To_Own_Line_M": 5502,
+        "Named_Terminal": "Panzinara",
+        "New_Route_ID": "FDR-401",
+        "Route_KM": 10.0,
+        "Route_Name": "Jehangir Chowk to Panzinara",
+        "Within_Catchment": false
+      },
+      {
+        "Distance_To_Own_Line_M": 5322,
+        "Named_Terminal": "Badrun",
+        "New_Route_ID": "FDR-464",
+        "Route_KM": 25.0,
+        "Route_Name": "Srinagar to Badrun",
+        "Within_Catchment": false
+      },
+      {
+        "Distance_To_Own_Line_M": 4934,
+        "Named_Terminal": "Srinagar",
+        "New_Route_ID": "FDR-384",
+        "Route_KM": 25.0,
+        "Route_Name": "Srinagar to Beeru",
+        "Within_Catchment": false
+      },
+      {
+        "Distance_To_Own_Line_M": 3591,
+        "Named_Terminal": "Parimpora",
+        "New_Route_ID": "FDR-271",
+        "Route_KM": 10.5,
+        "Route_Name": "Parimpora to Hazratbal",
+        "Within_Catchment": false
+      },
+      {
+        "Distance_To_Own_Line_M": 3381,
+        "Named_Terminal": "Isganderpora",
+        "New_Route_ID": "FDR-466",
+        "Route_KM": 26.5,
+        "Route_Name": "Srinagar to Isganderpora",
+        "Within_Catchment": false
+      },
+      {
+        "Distance_To_Own_Line_M": 3335,
+        "Named_Terminal": "Chadora",
+        "New_Route_ID": "FDR-429",
+        "Route_KM": 18.0,
+        "Route_Name": "Parimpora to Chadora",
+        "Within_Catchment": false
+      },
+      {
+        "Distance_To_Own_Line_M": 1561,
+        "Named_Terminal": "Qamarwari",
+        "New_Route_ID": "FDR-199",
+        "Route_KM": 8.0,
+        "Route_Name": "Qamarwari to Hazratbal",
+        "Within_Catchment": false
+      },
+      {
+        "Distance_To_Own_Line_M": 1542,
+        "Named_Terminal": "TRC",
+        "New_Route_ID": "SSCL-14",
+        "Route_KM": 27.3,
+        "Route_Name": "TRC to Central University Ganderbal via Karan Nagar Zoonimar 90ft Road",
+        "Within_Catchment": false
+      },
+      {
+        "Distance_To_Own_Line_M": 1266,
+        "Named_Terminal": "TRC",
+        "New_Route_ID": "SSCL-15",
+        "Route_KM": 29.4,
+        "Route_Name": "TRC to Pulwama via Nowgam Kaanipora",
+        "Within_Catchment": false
+      },
+      {
+        "Distance_To_Own_Line_M": 1134,
+        "Named_Terminal": "LD",
+        "New_Route_ID": "FDR-147",
+        "Route_KM": 6.5,
+        "Route_Name": "Hazratbal to LD",
+        "Within_Catchment": false
+      },
+      {
+        "Distance_To_Own_Line_M": 871,
+        "Named_Terminal": "Srinagar",
+        "New_Route_ID": "FDR-466",
+        "Route_KM": 26.5,
+        "Route_Name": "Srinagar to Isganderpora",
+        "Within_Catchment": false
+      },
+      {
+        "Distance_To_Own_Line_M": 871,
+        "Named_Terminal": "Srinagar",
+        "New_Route_ID": "FDR-464",
+        "Route_KM": 25.0,
+        "Route_Name": "Srinagar to Badrun",
+        "Within_Catchment": false
+      },
+      {
+        "Distance_To_Own_Line_M": 599,
+        "Named_Terminal": "Dalgate",
+        "New_Route_ID": "FDR-080",
+        "Route_KM": 3.5,
+        "Route_Name": "Batmaloo to Dalgate",
+        "Within_Catchment": false
+      }
+    ],
+    "n_named_incidences_added": 17,
+    "n_routes_not_testable": 56,
+    "n_routes_testable": 130,
+    "n_routes_with_defect": 14,
+    "not_testable_reason": "fewer than two of the route's name terminals match a canonical stop exactly; no fuzzy matching is used",
+    "pct_routes_with_defect": 10.8
+  },
+  "graph": {
+    "catchment_rule": "a stop is served by a route when it lies within the plan's own 400 m walk catchment of the routed alignment, in UTM zone 43N",
+    "mean_routes_per_stop": 8.86,
+    "mean_stops_per_route": 6.81,
+    "n_active_routes": 186,
+    "n_canonical_stops": 143,
+    "n_stop_route_incidences": 1267,
+    "n_unserved_stops": 1,
+    "route_graph_components": 1,
+    "route_graph_edges": 8537,
+    "unserved_stops": [
+      {
+        "District": "Budgam",
+        "Master_Stop_Code": "BG-02-05",
+        "Stop_Name": "Isganderpora"
+      }
+    ],
+    "walk_catchment_m": 400.0
+  },
+  "headline": "Of 68 distinct suppressed origin-destination pairs, 66 keep a one-seat ride and 2 fall to one interchange. In the central case 5 of 68 (7.4%) wait LONGER under the plan than under the permit network, before any transfer penalty is charged. Consolidation on the heavily duplicated corridors therefore cannot be defended on passenger wait; its case rests on vehicle productivity, operating cost and congestion, not on headway.",
+  "penalty_sweep_is_not_a_calibration": "The 0-20 minute sweep is a sensitivity range, not an estimate. No stated-preference study of interchange disutility exists for Kashmir and none was conducted here, so no single penalty is asserted. The cited literature establishes only that the penalty is substantial and varies with interchange quality.",
+  "status": "OK",
+  "suppressed_od_outcomes_geometry": {
+    "0": 66,
+    "1": 2
+  },
+  "suppressed_od_outcomes_name_augmented": {
+    "0": 68
+  },
+  "wait_ledger_corners": [
+    {
+      "arrival_model": "even spacing E[W]=h/2",
+      "breakeven_penalty_min_max": -4.55,
+      "breakeven_penalty_min_median": -9.38,
+      "breakeven_penalty_min_min": -14.22,
+      "central": false,
+      "duty_case": "all-day (duty=1.00)",
+      "median_baseline_wait_min": 10.49,
+      "median_plan_wait_min": 17.5,
+      "median_wait_change_min": 2.27,
+      "n_breakeven_positive": 0,
+      "n_od_evaluated": 68,
+      "n_od_kept_one_seat_but_longer_wait": 36,
+      "n_od_losing_one_seat": 2,
+      "n_od_wait_worse": 38,
+      "pct_od_wait_worse": 55.9
+    },
+    {
+      "arrival_model": "Poisson departures E[W]=h",
+      "breakeven_penalty_min_max": 5.9,
+      "breakeven_penalty_min_median": -3.77,
+      "breakeven_penalty_min_min": -13.44,
+      "central": false,
+      "duty_case": "all-day (duty=1.00)",
+      "median_baseline_wait_min": 20.98,
+      "median_plan_wait_min": 17.5,
+      "median_wait_change_min": -6.82,
+      "n_breakeven_positive": 1,
+      "n_od_evaluated": 68,
+      "n_od_kept_one_seat_but_longer_wait": 24,
+      "n_od_losing_one_seat": 2,
+      "n_od_wait_worse": 25,
+      "pct_od_wait_worse": 36.8
+    },
+    {
+      "arrival_model": "even spacing E[W]=h/2",
+      "breakeven_penalty_min_max": 28.16,
+      "breakeven_penalty_min_median": 8.19,
+      "breakeven_penalty_min_min": -11.77,
+      "central": false,
+      "duty_case": "observed median (duty=0.242)",
+      "median_baseline_wait_min": 43.34,
+      "median_plan_wait_min": 17.5,
+      "median_wait_change_min": -27.74,
+      "n_breakeven_positive": 1,
+      "n_od_evaluated": 68,
+      "n_od_kept_one_seat_but_longer_wait": 13,
+      "n_od_losing_one_seat": 2,
+      "n_od_wait_worse": 14,
+      "pct_od_wait_worse": 20.6
+    },
+    {
+      "arrival_model": "Poisson departures E[W]=h",
+      "breakeven_penalty_min_max": 71.31,
+      "breakeven_penalty_min_median": 31.39,
+      "breakeven_penalty_min_min": -8.54,
+      "central": true,
+      "duty_case": "observed median (duty=0.242)",
+      "median_baseline_wait_min": 86.68,
+      "median_plan_wait_min": 17.5,
+      "median_wait_change_min": -70.43,
+      "n_breakeven_positive": 1,
+      "n_od_evaluated": 68,
+      "n_od_kept_one_seat_but_longer_wait": 4,
+      "n_od_losing_one_seat": 2,
+      "n_od_wait_worse": 5,
+      "pct_od_wait_worse": 7.4
+    },
+    {
+      "arrival_model": "even spacing E[W]=h/2",
+      "breakeven_penalty_min_max": 92.27,
+      "breakeven_penalty_min_median": 42.65,
+      "breakeven_penalty_min_min": -6.97,
+      "central": false,
+      "duty_case": "observed p25 (duty=0.097)",
+      "median_baseline_wait_min": 107.72,
+      "median_plan_wait_min": 17.5,
+      "median_wait_change_min": -91.47,
+      "n_breakeven_positive": 1,
+      "n_od_evaluated": 68,
+      "n_od_kept_one_seat_but_longer_wait": 1,
+      "n_od_losing_one_seat": 2,
+      "n_od_wait_worse": 2,
+      "pct_od_wait_worse": 2.9
+    },
+    {
+      "arrival_model": "Poisson departures E[W]=h",
+      "breakeven_penalty_min_max": 199.54,
+      "breakeven_penalty_min_median": 100.3,
+      "breakeven_penalty_min_min": 1.05,
+      "central": false,
+      "duty_case": "observed p25 (duty=0.097)",
+      "median_baseline_wait_min": 215.44,
+      "median_plan_wait_min": 17.5,
+      "median_wait_change_min": -199.19,
+      "n_breakeven_positive": 2,
+      "n_od_evaluated": 68,
+      "n_od_kept_one_seat_but_longer_wait": 0,
+      "n_od_losing_one_seat": 2,
+      "n_od_wait_worse": 0,
+      "pct_od_wait_worse": 0.0
+    },
+    {
+      "arrival_model": "even spacing E[W]=h/2",
+      "breakeven_penalty_min_max": 7.81,
+      "breakeven_penalty_min_median": -2.74,
+      "breakeven_penalty_min_min": -13.29,
+      "central": false,
+      "duty_case": "observed p75 (duty=0.458)",
+      "median_baseline_wait_min": 22.9,
+      "median_plan_wait_min": 17.5,
+      "median_wait_change_min": -8.25,
+      "n_breakeven_positive": 1,
+      "n_od_evaluated": 68,
+      "n_od_kept_one_seat_but_longer_wait": 20,
+      "n_od_losing_one_seat": 2,
+      "n_od_wait_worse": 21,
+      "pct_od_wait_worse": 30.9
+    },
+    {
+      "arrival_model": "Poisson departures E[W]=h",
+      "breakeven_penalty_min_max": 30.62,
+      "breakeven_penalty_min_median": 9.51,
+      "breakeven_penalty_min_min": -11.59,
+      "central": false,
+      "duty_case": "observed p75 (duty=0.458)",
+      "median_baseline_wait_min": 45.81,
+      "median_plan_wait_min": 17.5,
+      "median_wait_change_min": -30.11,
+      "n_breakeven_positive": 1,
+      "n_od_evaluated": 68,
+      "n_od_kept_one_seat_but_longer_wait": 12,
+      "n_od_losing_one_seat": 2,
+      "n_od_wait_worse": 13,
+      "pct_od_wait_worse": 19.1
+    }
+  ],
+  "wait_model": {
+    "assignment": "The plan is one scheduled operator, so kappa=0.5 applies to it. The permit network is many uncoordinated permit-holders, so kappa=1.0 is the defensible baseline model. That asymmetric pairing is the central case; all four corners are reported.",
+    "caveat": "Random passenger arrival is empirically supported only at short headways. At the 20-50 minute headways this plan uses, passengers time their arrival to the timetable and the realised wait falls well below h/2 (Bowman & Turnquist 1981). Both sides of the comparison are inflated by this, so the break-even magnitudes are an upper bound, not a forecast.",
+    "even_spacing": "E[W] = h/2 when departures are evenly spaced (kappa=0.5)",
+    "formula": "E[W] = (E[H]/2) * (1 + Var(H)/E[H]^2)",
+    "justification": "Welding (1957); Osuna & Newell (1972)",
+    "poisson": "E[W] = h when departures are themselves Poisson (kappa=1.0)"
+  }
+}

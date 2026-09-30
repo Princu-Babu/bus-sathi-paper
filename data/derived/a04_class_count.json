@@ -1,0 +1,1014 @@
+{
+  "classifiers_at_k": {
+    "equal_interval": {
+      "breaks": [
+        0.0,
+        0.336034,
+        0.668477,
+        1.0
+      ],
+      "class_sizes": [
+        117,
+        49,
+        20
+      ],
+      "gvf": 0.8718780606912148
+    },
+    "jenks": {
+      "breaks": [
+        0.0,
+        0.282786,
+        0.549497,
+        1.0
+      ],
+      "class_sizes": [
+        108,
+        41,
+        37
+      ],
+      "gvf": 0.9023288089647344
+    },
+    "kmeans": {
+      "breaks": [
+        0.0,
+        0.282786,
+        0.549497,
+        1.0
+      ],
+      "class_sizes": [
+        108,
+        41,
+        37
+      ],
+      "gvf": 0.9023288089647344
+    },
+    "quantile": {
+      "breaks": [
+        0.0,
+        0.148327,
+        0.366472,
+        1.0
+      ],
+      "class_sizes": [
+        62,
+        62,
+        62
+      ],
+      "gvf": 0.8425278766801818
+    }
+  },
+  "confusion_matrices": {
+    "equal_interval__vs__jenks": {
+      "cols": "jenks",
+      "exact_agreement": 0.8602150537634409,
+      "kappa": 0.7482692207589402,
+      "labels": [
+        0,
+        1,
+        2
+      ],
+      "matrix": [
+        [
+          108,
+          9,
+          0
+        ],
+        [
+          0,
+          32,
+          17
+        ],
+        [
+          0,
+          0,
+          20
+        ]
+      ],
+      "rows": "equal_interval"
+    },
+    "equal_interval__vs__kmeans": {
+      "cols": "kmeans",
+      "exact_agreement": 0.8602150537634409,
+      "kappa": 0.7482692207589402,
+      "labels": [
+        0,
+        1,
+        2
+      ],
+      "matrix": [
+        [
+          108,
+          9,
+          0
+        ],
+        [
+          0,
+          32,
+          17
+        ],
+        [
+          0,
+          0,
+          20
+        ]
+      ],
+      "rows": "equal_interval"
+    },
+    "equal_interval__vs__quantile": {
+      "cols": "quantile",
+      "exact_agreement": 0.478494623655914,
+      "kappa": 0.217741935483871,
+      "labels": [
+        0,
+        1,
+        2
+      ],
+      "matrix": [
+        [
+          62,
+          55,
+          0
+        ],
+        [
+          0,
+          7,
+          42
+        ],
+        [
+          0,
+          0,
+          20
+        ]
+      ],
+      "rows": "equal_interval"
+    },
+    "jenks__vs__kmeans": {
+      "cols": "kmeans",
+      "exact_agreement": 1.0,
+      "kappa": 1.0,
+      "labels": [
+        0,
+        1,
+        2
+      ],
+      "matrix": [
+        [
+          108,
+          0,
+          0
+        ],
+        [
+          0,
+          41,
+          0
+        ],
+        [
+          0,
+          0,
+          37
+        ]
+      ],
+      "rows": "jenks"
+    },
+    "jenks__vs__quantile": {
+      "cols": "quantile",
+      "exact_agreement": 0.6182795698924731,
+      "kappa": 0.42741935483870963,
+      "labels": [
+        0,
+        1,
+        2
+      ],
+      "matrix": [
+        [
+          62,
+          46,
+          0
+        ],
+        [
+          0,
+          16,
+          25
+        ],
+        [
+          0,
+          0,
+          37
+        ]
+      ],
+      "rows": "jenks"
+    },
+    "kmeans__vs__quantile": {
+      "cols": "quantile",
+      "exact_agreement": 0.6182795698924731,
+      "kappa": 0.42741935483870963,
+      "labels": [
+        0,
+        1,
+        2
+      ],
+      "matrix": [
+        [
+          62,
+          46,
+          0
+        ],
+        [
+          0,
+          16,
+          25
+        ],
+        [
+          0,
+          0,
+          37
+        ]
+      ],
+      "rows": "kmeans"
+    }
+  },
+  "curves": {
+    "cdi_net_entropy": {
+      "class_sizes": {
+        "2": [
+          130,
+          56
+        ],
+        "3": [
+          109,
+          40,
+          37
+        ],
+        "4": [
+          108,
+          31,
+          27,
+          20
+        ],
+        "5": [
+          49,
+          60,
+          30,
+          27,
+          20
+        ],
+        "6": [
+          49,
+          59,
+          25,
+          21,
+          27,
+          5
+        ],
+        "7": [
+          49,
+          59,
+          22,
+          19,
+          17,
+          15,
+          5
+        ]
+      },
+      "delta_gvf": {
+        "2": null,
+        "3": 0.12131636616028885,
+        "4": 0.029347169163005504,
+        "5": 0.02424714652377158,
+        "6": 0.01593792154596263,
+        "7": 0.008004356485836417
+      },
+      "exact_optimum": {
+        "class_sizes": {
+          "2": [
+            130,
+            56
+          ],
+          "3": [
+            109,
+            40,
+            37
+          ],
+          "4": [
+            108,
+            31,
+            27,
+            20
+          ],
+          "5": [
+            49,
+            60,
+            30,
+            27,
+            20
+          ],
+          "6": [
+            49,
+            59,
+            25,
+            21,
+            27,
+            5
+          ],
+          "7": [
+            49,
+            59,
+            22,
+            19,
+            17,
+            15,
+            5
+          ]
+        },
+        "elbow_unchanged": true,
+        "gvf": {
+          "2": 0.7770875844304046,
+          "3": 0.8984039505906937,
+          "4": 0.9277511197536992,
+          "5": 0.9519982662774708,
+          "6": 0.9679361878234333,
+          "7": 0.9759405443092696
+        },
+        "gvf_shortfall_of_jenkspy": {
+          "2": -9.992007221626409e-16,
+          "3": -7.771561172376096e-16,
+          "4": -7.771561172376096e-16,
+          "5": -7.771561172376096e-16,
+          "6": -8.881784197001252e-16,
+          "7": -9.992007221626409e-16
+        },
+        "inner_breaks": {
+          "2": [
+            0.363178
+          ],
+          "3": [
+            0.245306,
+            0.495265
+          ],
+          "4": [
+            0.233528,
+            0.419922,
+            0.609662
+          ],
+          "5": [
+            0.110953,
+            0.245306,
+            0.419922,
+            0.609662
+          ],
+          "6": [
+            0.110953,
+            0.233528,
+            0.390479,
+            0.529628,
+            0.737625
+          ],
+          "7": [
+            0.110953,
+            0.233528,
+            0.363178,
+            0.495265,
+            0.609662,
+            0.737625
+          ]
+        },
+        "jenkspy_attains_optimum": {
+          "2": true,
+          "3": true,
+          "4": true,
+          "5": true,
+          "6": true,
+          "7": true
+        },
+        "k_chosen": 3,
+        "k_rule_a_first_gvf_above_threshold": 3,
+        "k_rule_b_max_second_difference": 3,
+        "method": "Fisher 1958 exact dynamic program over the sorted values; globally minimises within-class sum of squares"
+      },
+      "gvf": {
+        "2": 0.7770875844304056,
+        "3": 0.8984039505906944,
+        "4": 0.9277511197537,
+        "5": 0.9519982662774715,
+        "6": 0.9679361878234342,
+        "7": 0.9759405443092706
+      },
+      "jenkspy_breaks_upper_bounds": {
+        "2": [
+          0.0,
+          0.343825,
+          1.0
+        ],
+        "3": [
+          0.0,
+          0.233528,
+          0.468971,
+          1.0
+        ],
+        "4": [
+          0.0,
+          0.213569,
+          0.402175,
+          0.591291,
+          1.0
+        ],
+        "5": [
+          0.0,
+          0.106067,
+          0.233528,
+          0.402175,
+          0.591291,
+          1.0
+        ],
+        "6": [
+          0.0,
+          0.106067,
+          0.213569,
+          0.365474,
+          0.516646,
+          0.699244,
+          1.0
+        ],
+        "7": [
+          0.0,
+          0.106067,
+          0.213569,
+          0.343825,
+          0.468971,
+          0.591291,
+          0.699244,
+          1.0
+        ]
+      },
+      "k_chosen": 3,
+      "k_rule_a_first_gvf_above_threshold": 3,
+      "k_rule_b_max_second_difference": 3,
+      "rules_agree": true,
+      "second_difference_gvf": {
+        "3": 0.09196919699728334,
+        "4": 0.005100022639233925,
+        "5": 0.008309224977808949,
+        "6": 0.007933565060126213
+      }
+    },
+    "cdi_net_equal": {
+      "class_sizes": {
+        "2": [
+          128,
+          58
+        ],
+        "3": [
+          108,
+          41,
+          37
+        ],
+        "4": [
+          55,
+          59,
+          37,
+          35
+        ],
+        "5": [
+          52,
+          56,
+          31,
+          26,
+          21
+        ],
+        "6": [
+          52,
+          56,
+          25,
+          22,
+          25,
+          6
+        ],
+        "7": [
+          52,
+          56,
+          22,
+          18,
+          17,
+          16,
+          5
+        ]
+      },
+      "delta_gvf": {
+        "2": null,
+        "3": 0.11682731115530676,
+        "4": 0.03080491539331154,
+        "5": 0.025093919759757055,
+        "6": 0.011992398213748867,
+        "7": 0.00732078013176074
+      },
+      "exact_optimum": {
+        "class_sizes": {
+          "2": [
+            128,
+            58
+          ],
+          "3": [
+            108,
+            41,
+            37
+          ],
+          "4": [
+            55,
+            59,
+            37,
+            35
+          ],
+          "5": [
+            52,
+            56,
+            31,
+            26,
+            21
+          ],
+          "6": [
+            52,
+            56,
+            25,
+            22,
+            25,
+            6
+          ],
+          "7": [
+            52,
+            56,
+            22,
+            18,
+            17,
+            16,
+            5
+          ]
+        },
+        "elbow_unchanged": true,
+        "gvf": {
+          "2": 0.7855014978094295,
+          "3": 0.9023288089647356,
+          "4": 0.933133724358048,
+          "5": 0.9582276441178045,
+          "6": 0.9702200423315532,
+          "7": 0.9775408224633143
+        },
+        "gvf_shortfall_of_jenkspy": {
+          "2": 1.7763568394002505e-15,
+          "3": 1.1102230246251565e-15,
+          "4": 1.9984014443252818e-15,
+          "5": 1.4432899320127035e-15,
+          "6": 1.3322676295501878e-15,
+          "7": 1.6653345369377348e-15
+        },
+        "inner_breaks": {
+          "2": [
+            0.388573
+          ],
+          "3": [
+            0.282786,
+            0.549497
+          ],
+          "4": [
+            0.140774,
+            0.318174,
+            0.562214
+          ],
+          "5": [
+            0.134167,
+            0.282786,
+            0.471384,
+            0.655724
+          ],
+          "6": [
+            0.134167,
+            0.282786,
+            0.439698,
+            0.596032,
+            0.762871
+          ],
+          "7": [
+            0.134167,
+            0.282786,
+            0.412681,
+            0.536716,
+            0.655724,
+            0.793133
+          ]
+        },
+        "jenkspy_attains_optimum": {
+          "2": true,
+          "3": true,
+          "4": true,
+          "5": true,
+          "6": true,
+          "7": true
+        },
+        "k_chosen": 3,
+        "k_rule_a_first_gvf_above_threshold": 3,
+        "k_rule_b_max_second_difference": 3,
+        "method": "Fisher 1958 exact dynamic program over the sorted values; globally minimises within-class sum of squares"
+      },
+      "gvf": {
+        "2": 0.7855014978094277,
+        "3": 0.9023288089647344,
+        "4": 0.933133724358046,
+        "5": 0.958227644117803,
+        "6": 0.9702200423315519,
+        "7": 0.9775408224633126
+      },
+      "jenkspy_breaks_upper_bounds": {
+        "2": [
+          0.0,
+          0.377513,
+          1.0
+        ],
+        "3": [
+          0.0,
+          0.253663,
+          0.536716,
+          1.0
+        ],
+        "4": [
+          0.0,
+          0.138813,
+          0.306661,
+          0.552867,
+          1.0
+        ],
+        "5": [
+          0.0,
+          0.130649,
+          0.253663,
+          0.458327,
+          0.648402,
+          1.0
+        ],
+        "6": [
+          0.0,
+          0.130649,
+          0.253663,
+          0.422747,
+          0.585629,
+          0.730036,
+          1.0
+        ],
+        "7": [
+          0.0,
+          0.130649,
+          0.253663,
+          0.392671,
+          0.513613,
+          0.648402,
+          0.762871,
+          1.0
+        ]
+      },
+      "k_chosen": 3,
+      "k_rule_a_first_gvf_above_threshold": 3,
+      "k_rule_b_max_second_difference": 3,
+      "rules_agree": true,
+      "second_difference_gvf": {
+        "3": 0.08602239576199522,
+        "4": 0.005710995633554483,
+        "5": 0.013101521546008188,
+        "6": 0.004671618081988127
+      }
+    },
+    "cdi_net_pca": {
+      "class_sizes": {
+        "2": [
+          128,
+          58
+        ],
+        "3": [
+          108,
+          41,
+          37
+        ],
+        "4": [
+          55,
+          59,
+          37,
+          35
+        ],
+        "5": [
+          52,
+          56,
+          31,
+          26,
+          21
+        ],
+        "6": [
+          52,
+          56,
+          25,
+          22,
+          25,
+          6
+        ],
+        "7": [
+          52,
+          56,
+          22,
+          18,
+          17,
+          16,
+          5
+        ]
+      },
+      "delta_gvf": {
+        "2": null,
+        "3": 0.11682731115530676,
+        "4": 0.03080491539331154,
+        "5": 0.025093919759757055,
+        "6": 0.011992398213748867,
+        "7": 0.00732078013176074
+      },
+      "exact_optimum": {
+        "class_sizes": {
+          "2": [
+            128,
+            58
+          ],
+          "3": [
+            108,
+            41,
+            37
+          ],
+          "4": [
+            55,
+            59,
+            37,
+            35
+          ],
+          "5": [
+            52,
+            56,
+            31,
+            26,
+            21
+          ],
+          "6": [
+            52,
+            56,
+            25,
+            22,
+            25,
+            6
+          ],
+          "7": [
+            52,
+            56,
+            22,
+            18,
+            17,
+            16,
+            5
+          ]
+        },
+        "elbow_unchanged": true,
+        "gvf": {
+          "2": 0.7855014978094295,
+          "3": 0.9023288089647356,
+          "4": 0.933133724358048,
+          "5": 0.9582276441178046,
+          "6": 0.9702200423315532,
+          "7": 0.9775408224633143
+        },
+        "gvf_shortfall_of_jenkspy": {
+          "2": 1.7763568394002505e-15,
+          "3": 1.1102230246251565e-15,
+          "4": 1.9984014443252818e-15,
+          "5": 1.5543122344752192e-15,
+          "6": 1.3322676295501878e-15,
+          "7": 1.6653345369377348e-15
+        },
+        "inner_breaks": {
+          "2": [
+            0.388573
+          ],
+          "3": [
+            0.282786,
+            0.549497
+          ],
+          "4": [
+            0.140774,
+            0.318174,
+            0.562214
+          ],
+          "5": [
+            0.134167,
+            0.282786,
+            0.471384,
+            0.655724
+          ],
+          "6": [
+            0.134167,
+            0.282786,
+            0.439698,
+            0.596032,
+            0.762871
+          ],
+          "7": [
+            0.134167,
+            0.282786,
+            0.412681,
+            0.536716,
+            0.655724,
+            0.793133
+          ]
+        },
+        "jenkspy_attains_optimum": {
+          "2": true,
+          "3": true,
+          "4": true,
+          "5": true,
+          "6": true,
+          "7": true
+        },
+        "k_chosen": 3,
+        "k_rule_a_first_gvf_above_threshold": 3,
+        "k_rule_b_max_second_difference": 3,
+        "method": "Fisher 1958 exact dynamic program over the sorted values; globally minimises within-class sum of squares"
+      },
+      "gvf": {
+        "2": 0.7855014978094277,
+        "3": 0.9023288089647344,
+        "4": 0.933133724358046,
+        "5": 0.958227644117803,
+        "6": 0.9702200423315519,
+        "7": 0.9775408224633126
+      },
+      "jenkspy_breaks_upper_bounds": {
+        "2": [
+          0.0,
+          0.377513,
+          1.0
+        ],
+        "3": [
+          0.0,
+          0.253663,
+          0.536716,
+          1.0
+        ],
+        "4": [
+          0.0,
+          0.138813,
+          0.306661,
+          0.552867,
+          1.0
+        ],
+        "5": [
+          0.0,
+          0.130649,
+          0.253663,
+          0.458327,
+          0.648402,
+          1.0
+        ],
+        "6": [
+          0.0,
+          0.130649,
+          0.253663,
+          0.422747,
+          0.585629,
+          0.730036,
+          1.0
+        ],
+        "7": [
+          0.0,
+          0.130649,
+          0.253663,
+          0.392671,
+          0.513613,
+          0.648402,
+          0.762871,
+          1.0
+        ]
+      },
+      "k_chosen": 3,
+      "k_rule_a_first_gvf_above_threshold": 3,
+      "k_rule_b_max_second_difference": 3,
+      "rules_agree": true,
+      "second_difference_gvf": {
+        "3": 0.08602239576199522,
+        "4": 0.005710995633554483,
+        "5": 0.013101521546008188,
+        "6": 0.004671618081988127
+      }
+    }
+  },
+  "elbow_rule_a": "smallest k with GVF > 0.80 (absolute adequacy floor)",
+  "elbow_rule_b": "argmax over k of [GVF(k)-GVF(k-1)] - [GVF(k+1)-GVF(k)], the discrete curvature of the GVF curve; defined k=3..6",
+  "elbow_tie_break": "pre-registered: Rule A governs if the two disagree, and the disagreement is reported",
+  "gvf_threshold": 0.8,
+  "jenks_implementation_check": {
+    "elbow_unchanged_under_exact_optimum": true,
+    "exact_class_sizes": [
+      108,
+      41,
+      37
+    ],
+    "exact_inner_breaks": [
+      0.282786,
+      0.549497
+    ],
+    "exact_optimum_gvf": 0.9023288089647356,
+    "gvf_shortfall": 1.1102230246251565e-15,
+    "jenkspy_attains_optimum": true,
+    "jenkspy_class_sizes": [
+      108,
+      41,
+      37
+    ],
+    "jenkspy_gvf": 0.9023288089647344,
+    "k": 3,
+    "kmeans_matches_exact_optimum": true,
+    "library": "jenkspy",
+    "library_version": "0.4.1",
+    "n_routes_reclassified_if_exact_used": 0,
+    "note": "Verification that the reported Jenks fit is the real one. jenkspy returns class UPPER bounds, while common.goodness_of_variance_fit reads breaks as half-open [lo, hi) lower bounds; combining the two naively evaluates a partition shifted by one route at every boundary and understates GVF (here 0.901608 instead of 0.902329 at k=3, with sizes 107|41|38 instead of 108|41|37). It also makes 1-D k-means appear to beat 'optimal' Jenks, which is impossible and is the symptom that exposes the error. This module classifies with side='left' and takes GVF from the label-implied lower-bound breaks, and checks the result against an exact dynamic program."
+  },
+  "k_chosen": 3,
+  "k_chosen_by_robustness_weighting": {
+    "cdi_net_entropy": 3,
+    "cdi_net_pca": 3
+  },
+  "k_range": [
+    2,
+    7
+  ],
+  "kappa_matrix": {
+    "equal_interval": {
+      "equal_interval": 1.0,
+      "jenks": 0.748269,
+      "kmeans": 0.748269,
+      "quantile": 0.217742
+    },
+    "jenks": {
+      "equal_interval": 0.748269,
+      "jenks": 1.0,
+      "kmeans": 1.0,
+      "quantile": 0.427419
+    },
+    "kmeans": {
+      "equal_interval": 0.748269,
+      "jenks": 1.0,
+      "kmeans": 1.0,
+      "quantile": 0.427419
+    },
+    "quantile": {
+      "equal_interval": 0.217742,
+      "jenks": 0.427419,
+      "kmeans": 0.427419,
+      "quantile": 1.0
+    }
+  },
+  "n_routes": 186,
+  "outputs": {
+    "table5": "paper\\tables\\table05_class_count.csv",
+    "table5b": "paper\\tables\\table05b_classifier_agreement.csv",
+    "tiers_csv": "data\\derived\\a04_route_tiers.csv"
+  },
+  "pca_equals_equal_note": "a03 derives PCA loadings of 0.500/0.500 on the two criteria, so cdi_net_pca is numerically identical to cdi_net_equal; its identical curve is expected",
+  "primary_column": "cdi_net_equal",
+  "random_seed": 20260823,
+  "robustness_columns": [
+    "cdi_net_entropy",
+    "cdi_net_pca"
+  ],
+  "robustness_weightings_agree": true,
+  "rules_agree": true,
+  "tier_sizes": {
+    "Tier 1": 37,
+    "Tier 2": 41,
+    "Tier 3": 108
+  },
+  "vs_published_priority_band": {
+    "comparison": "Jenks tier_rank (1=highest CDI) vs published Priority_Band HP/MP/LP",
+    "confusion": [
+      [
+        26,
+        10,
+        1
+      ],
+      [
+        9,
+        29,
+        3
+      ],
+      [
+        20,
+        16,
+        72
+      ]
+    ],
+    "exact_agreement": 0.6827956989247311,
+    "kappa": 0.503393972305186,
+    "published_band_sizes": {
+      "HP": 55,
+      "LP": 76,
+      "MP": 55
+    }
+  }
+}

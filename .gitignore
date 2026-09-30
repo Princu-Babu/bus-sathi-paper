@@ -68,3 +68,6 @@ logs/**/*.log
 
 # ── Internal multi-agent orchestration scratch (not paper material) ───────────
 .agents/
+
+# ── QA render scratch (regenerable from _qa_render.py) ───────────────────────
+paper/_qa/

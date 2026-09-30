@@ -3,26 +3,41 @@
 **Severity: CRITICAL for submission.**
 
 The paper is planned as 8 sections, 8 figures + F8b, 8 tables, 9,000–10,000 words. Here is what
-actually exists in `paper/` on 2026-09-08.
+actually exists in `paper/` on 2026-09-13.
+
+> **Updated 2026-09-13.** All four co-author sections (§1, §2, §3, §7) have since been drafted and
+> staged, and the whole manuscript is assembled into `paper/Kashmir_Manuscript_Working_Draft.pdf`
+> (35 pp, 11,920 body words). The "ABSENT" rows below are resolved. The section-numbering note has
+> been corrected — see the box beneath the table.
 
 ## Sections
 
 | # | Section | Owner(s) | State in repo | Note |
 |---|---|---|---|---|
-| Abstract | — | Prashant + Ankit + Sharvesh | **Draft** (318 w) | Figures provisional pending §5 modules |
-| §1 | Introduction | co-authors | **ABSENT** in repo | Draft prose exists only inside the AK attachment PDF, not staged here |
-| §2 | Literature review | co-authors | **ABSENT** | — |
-| §3 | Study area & data | co-authors (Misti/Krishna) | **ABSENT** | Must be written in Kashmir-Division framing; AK draft still carries stale-Srinagar framing in places |
-| §4 | Methodology | **Prashant (sole)** | **Complete** (2,634 w) | Strong |
-| §5 | Results | Prashant + Misti | **HALF** — §5.1–5.4 done, §5.5–5.13 are stubs | Blocked by missing modules (Gap 1) |
-| §6 | Validation | Prashant + Avny + Krishnan | **Draft** (1,170 w) | V4 done; V1/V2/V5/V6 pending modules; field/expert now framed as §6.4 future work |
-| §7 | Discussion | co-authors | **ABSENT** | AK attachment has a "Policy Contribution" block to draw from |
-| §8 | Conclusions | Prashant + Ankit + Sharvesh | **Complete** (450 w) | — |
+| Abstract | — | Prashant + Ankit + Sharvesh | **Draft** (249 body w) | Headline figures provisional pending a09 |
+| §1 | Introduction | Misti, Avny | **Drafted** (2,343 body w) | Co-author prose transcribed verbatim + 9 editorial flags. Over budget: the ~900-word "Policy Failure" block belongs in §3.3 (FLAG PF-a) |
+| §2 | Literature review | Sharvesh, Ankit | **Drafted** (1,413 body w) | §2.1 systematic-review protocol is a template with visible placeholders — **the search has not been run** (FLAG 2-A) |
+| §3 | Study area & data | Krishna | **Drafted** (1,242 body w) | Kashmir-Division framing. **Ethics paragraph deliberately blank** (FLAG 3-D) |
+| §4 | Methodology | **Prashant (sole)** | **Complete** (2,467 body w) | Eqs 1–14, Algorithm 1 |
+| §5 | Results | Prashant + Misti | **PARTIAL** (1,151 body w) | a04/a05/a10–a13 results landed after this draft and are not yet written up |
+| §6 | Validation | Prashant + Avny + Krishnan | **Draft** (956 body w) | V4 done; V1/V2/V5/V6 pending modules; field/expert framed as §6.4 future work |
+| §7 | Discussion | Ankit, Avny, Misti | **Drafted** (1,678 body w) | §7.1–7.8 + the co-author "Policy Contribution" block verbatim; 5 flags |
+| §8 | Conclusions | Prashant + Ankit + Sharvesh | **Complete** (421 body w) | — |
 
-> **Note on section numbering.** The AK attachment uses a 6-section scheme (Intro / Lit+Setting /
-> Methodology / Results / Discussion / Conclusions). The repo/CLAIM_LEDGER uses an 8-section scheme.
-> **These must be reconciled before submission** or cross-references will break. Pick one numbering and
-> propagate it through every `[CL]` "Manuscript Location" and every in-text §-reference.
+Word counts are measured at build time by `paper/make_manuscript_pdf.py` and count body prose only —
+headings, tables, code blocks and editorial callouts are excluded.
+
+> **Note on section numbering — CORRECTED 2026-09-13.** An earlier version of this document described
+> a "6-section scheme (AK PDF) vs 8-section scheme (repo)" conflict. **That framing was wrong.** The
+> attachment's *operative* structure — the table that assigns section owners and word budgets — is
+> **eight sections**, and it matches the repository exactly. The only six-section artefact is a single
+> sentence inside §1.6 ("…Section 6 concludes"), which contradicts the attachment's own structure and,
+> under its scheme, leaves no slot for §6 Validation at all.
+>
+> There is therefore nothing to reconcile between the PDF and the repo. What needs fixing is one
+> paragraph of §1.6. Replacement wording is drafted in FLAG 1.6-a and is *proposed, not applied* —
+> it is co-author prose. Escalated as **Decision 1** in `paper/PENDING_DECISIONS.md`.
+
 
 ## Figures — 0 of ~9 generated
 

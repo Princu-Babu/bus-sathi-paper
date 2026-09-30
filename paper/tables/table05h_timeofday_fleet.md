@@ -1,0 +1,8 @@
+**Fleet and bus-hour consequence of time-of-day banding under two frequency rules and two reference anchors**
+
+| Anchor        | Frequency rule   |   Fleet Opening shoulder |   Fleet Peak |   Fleet Off-peak (base) |   Fleet Evening |   Peak fleet (buses) |   Plan fleet (buses) |   Extra vehicles to purchase |   Banded bus-hours/day |   Flat bus-hours/day |   Bus-hour change (%) |
+|:--------------|:-----------------|-------------------------:|-------------:|------------------------:|----------------:|---------------------:|---------------------:|-----------------------------:|-----------------------:|---------------------:|----------------------:|
+| peak-anchored | proportional     |                      833 |         1011 |                     921 |             833 |                 1011 |                 1011 |                            0 |                  15577 |                17187 |                  -9.4 |
+| peak-anchored | square-root      |                      833 |         1011 |                     965 |             836 |                 1011 |                 1011 |                            0 |                  15938 |                17187 |                  -7.3 |
+| mean-anchored | proportional     |                      833 |         1507 |                    1157 |             833 |                 1507 |                 1011 |                          496 |                  19449 |                17187 |                  13.2 |
+| mean-anchored | square-root      |                      836 |         1226 |                    1080 |             847 |                 1226 |                 1011 |                          215 |                  17757 |                17187 |                   3.3 |

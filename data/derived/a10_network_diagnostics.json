@@ -1,0 +1,312 @@
+{
+  "active": {
+    "method": "undirected OSRM-link decomposition (exact, no tolerance)",
+    "n_distinct_links": 35650,
+    "n_distinct_vertices": 35443,
+    "n_routes": 186,
+    "n_vertex_occurrences": 118447,
+    "published_vs_measured_pct": 0.1774,
+    "reconciliation": {
+      "attributed_km": 5557.3455,
+      "identity": "sum(duplication x link length) + self-repeats = route-km",
+      "residual_km": 0.0,
+      "self_repeated_km": 10.3942,
+      "self_repeated_link_traversals": 275
+    },
+    "route_km_to_network_km_ratio": 3.6523,
+    "total_route_km": 5567.74,
+    "total_route_km_published_attribute": 5577.615,
+    "union_cross_check_km": {
+      "grid_0.5m": 1513.118,
+      "grid_10m": 1395.17,
+      "grid_1m": 1474.9,
+      "grid_2m": 1434.938,
+      "grid_5m": 1401.349,
+      "native": 1524.457
+    },
+    "union_vs_link_pct": 0.0,
+    "unique_network_km": 1524.457
+  },
+  "baseline": {
+    "merged_route_km": 8178.818,
+    "merged_rows_with_active_successor": 458,
+    "n_active": 186,
+    "n_distinct_successors": 75,
+    "n_merged": 458,
+    "n_rows": 644,
+    "route_count_reduction": 0.7112,
+    "route_km_reduction": 0.5953,
+    "total_route_km": 13756.433,
+    "total_route_km_source": "Route_KM column, all 644 rows of the plan CSV",
+    "unique_network_km": {
+      "lower_bound_basis": "the 186 active geometries are a subset of the 644-row baseline, so the baseline union contains the active union",
+      "lower_bound_km": 1524.457,
+      "reason": "the published GeoJSON carries only the 186 active features; the 458 MERGED_INTO_TRUNK rows have attributes but no geometry, and data/cache/osrm_responses.json is a metadata stub with no coordinates, so the baseline union cannot be dissolved from this release",
+      "status": "NOT_COMPUTABLE",
+      "upper_bound_basis": "baseline route-km, the zero-overlap case",
+      "upper_bound_km": 13756.433
+    }
+  },
+  "crs": "EPSG:32643",
+  "duplication": {
+    "bands": {
+      ">=10_routes": {
+        "n_links": 2661,
+        "network_km": 128.466,
+        "share_of_network": 0.08427
+      },
+      ">=1_routes": {
+        "n_links": 35650,
+        "network_km": 1524.457,
+        "share_of_network": 1.0
+      },
+      ">=20_routes": {
+        "n_links": 322,
+        "network_km": 15.589,
+        "share_of_network": 0.010226
+      },
+      ">=2_routes": {
+        "n_links": 17525,
+        "network_km": 814.325,
+        "share_of_network": 0.534174
+      },
+      ">=3_routes": {
+        "n_links": 12298,
+        "network_km": 570.126,
+        "share_of_network": 0.373986
+      },
+      ">=5_routes": {
+        "n_links": 6991,
+        "network_km": 360.394,
+        "share_of_network": 0.236408
+      }
+    },
+    "distribution": {
+      "km_weighted_mean": 3.6454586711892585,
+      "km_weighted_median": 2.0,
+      "km_weighted_p90": 9.0,
+      "max_routes_per_link": 53,
+      "mean_routes_per_link": 3.308835904628331,
+      "median_routes_per_link": 1.0,
+      "n_links": 35650,
+      "p90_routes_per_link": 9.0,
+      "sole_served_network_km": 710.132,
+      "sole_served_share": 0.465826
+    },
+    "most_duplicated_corridor": {
+      "corridor_km": 0.0881,
+      "distance_to_stop_m": 103.3,
+      "district": "Srinagar",
+      "n_links": 5,
+      "nearest_stop": "Lalchowk",
+      "route_ids": [
+        "FDR-081",
+        "FDR-122",
+        "FDR-269",
+        "FDR-275",
+        "FDR-265",
+        "FDR-098",
+        "FDR-104",
+        "FDR-438",
+        "FDR-151",
+        "FDR-176",
+        "FDR-191",
+        "FDR-067",
+        "FDR-105",
+        "FDR-088",
+        "FDR-190",
+        "FDR-050",
+        "FDR-325",
+        "FDR-510",
+        "FDR-454",
+        "FDR-536",
+        "FDR-453",
+        "FDR-514",
+        "FDR-565",
+        "FDR-437",
+        "FDR-487",
+        "FDR-463",
+        "FDR-508",
+        "FDR-439",
+        "FDR-570",
+        "FDR-551",
+        "FDR-563",
+        "FDR-562",
+        "FDR-509",
+        "FDR-486",
+        "FDR-504",
+        "FDR-513",
+        "FDR-465",
+        "FDR-519",
+        "FDR-529",
+        "FDR-507",
+        "FDR-553",
+        "FDR-541",
+        "FDR-571",
+        "FDR-440",
+        "FDR-531",
+        "FDR-435",
+        "FDR-596",
+        "FDR-093",
+        "FDR-123",
+        "FDR-479",
+        "FDR-326",
+        "FDR-602",
+        "SSCL-15"
+      ],
+      "route_names": [
+        "Lalbazar to Lalchowk",
+        "Jehangir Chowk to Soura",
+        "Jehangir Chowk to JVC",
+        "Jehangir Chowk to HMT",
+        "Baghat Shora to Lalchowk",
+        "Soura to SMHS",
+        "Hazratbal to Bone Joint Hospital Barzalla",
+        "GBS to LAL Chowk",
+        "Parimpora to Jawahairnagar",
+        "Jehangir Chowk to Bemina",
+        "Parimpora to Humhama",
+        "Soura to Batamallo",
+        "Rangpora to Dalgate",
+        "Rangpora to Lalchowk",
+        "Ma Road to Safakadal",
+        "Soura to Lalchowk",
+        "Ma Road to Parimpora",
+        "Srinagar to Shanglipora",
+        "Srinagar to Aboora",
+        "Srinagar to Arizal",
+        "Srinagar to Baderkote",
+        "Srinagar to Loolpora",
+        "Srinagar to Dardpora",
+        "Srinagar to Ratsun",
+        "Srinagar to Khag",
+        "Srinagar to Karhama",
+        "Srinagar to Chewdara",
+        "Srinagar to Tangmarg",
+        "Srinagar to Khoor",
+        "Srinagar to Handwara",
+        "Srinagar to Trehgam KUP",
+        "Srinagar to Chowkibal",
+        "Srinagar to Hajin",
+        "Srinagar to Safapora Sumbal",
+        "Srinagar to Safapora GBL",
+        "Srinagar to Narwara Budgam",
+        "Srinagar to Charishreef",
+        "Srinagar to Pakherpora",
+        "Srinagar to Mirpora Budgam",
+        "Srinagar to Vijipopra",
+        "Srinagar to Kupwara DAY",
+        "Srinagar to URI Baramulla",
+        "Srinagar to Tangdar",
+        "Srinagar to Lettar",
+        "Srinagar to Keller",
+        "Srinagar to NEW Khanda",
+        "Srinagar to By Pass",
+        "Srinagar to Railway",
+        "Srinagar to Bypass",
+        "Srinagar to Budgam",
+        "Srinagar to Chadoora",
+        "TRC Srinagar to Airport",
+        "TRC to Pulwama via Nowgam Kaanipora"
+      ],
+      "routes_on_corridor": 53,
+      "share_of_active_routes": 0.2849
+    },
+    "threshold_for_corridors": 10,
+    "top_corridors": [
+      {
+        "distance_to_stop_m": 919.6,
+        "district": "Srinagar",
+        "km": 57.952,
+        "n_links": 1276,
+        "nearest_stop": "Batmaloo",
+        "peak_routes": 53
+      },
+      {
+        "distance_to_stop_m": 1887.6,
+        "district": "Baramulla",
+        "km": 31.182,
+        "n_links": 372,
+        "nearest_stop": "Palhalan",
+        "peak_routes": 16
+      },
+      {
+        "distance_to_stop_m": 4572.6,
+        "district": "Pulwama",
+        "km": 20.418,
+        "n_links": 449,
+        "nearest_stop": "NEW Khanda",
+        "peak_routes": 13
+      },
+      {
+        "distance_to_stop_m": 1154.9,
+        "district": "Srinagar",
+        "km": 6.548,
+        "n_links": 264,
+        "nearest_stop": "Lalbazar",
+        "peak_routes": 27
+      },
+      {
+        "distance_to_stop_m": 753.2,
+        "district": "Srinagar",
+        "km": 5.483,
+        "n_links": 110,
+        "nearest_stop": "Bone Joint Hospital Barzalla",
+        "peak_routes": 16
+      },
+      {
+        "distance_to_stop_m": 111.3,
+        "district": "Srinagar",
+        "km": 1.705,
+        "n_links": 16,
+        "nearest_stop": "JVC",
+        "peak_routes": 12
+      },
+      {
+        "distance_to_stop_m": 1233.0,
+        "district": "Srinagar",
+        "km": 1.601,
+        "n_links": 79,
+        "nearest_stop": "Bemina",
+        "peak_routes": 10
+      },
+      {
+        "distance_to_stop_m": 266.4,
+        "district": "Srinagar",
+        "km": 1.026,
+        "n_links": 38,
+        "nearest_stop": "Old City Loop Downtown Srinagar",
+        "peak_routes": 15
+      },
+      {
+        "distance_to_stop_m": 461.4,
+        "district": "Srinagar",
+        "km": 0.982,
+        "n_links": 19,
+        "nearest_stop": "Batamaloo",
+        "peak_routes": 14
+      },
+      {
+        "distance_to_stop_m": 607.1,
+        "district": "Srinagar",
+        "km": 0.925,
+        "n_links": 14,
+        "nearest_stop": "Ma Road",
+        "peak_routes": 13
+      }
+    ]
+  },
+  "permit_chord_proxy": {
+    "caveat": "origin -> via -> destination chords from the permit register's own coordinates. Chords are not road alignments, so these kilometres are NOT comparable with the routed figures above; and two permits along one road with different intermediate stops produce different chords, so the ratio is a floor on permit duplication rather than a measurement of it",
+    "chord_km_ratio": 2.5041,
+    "exact_duplicate_share": 0.6743,
+    "n_chords_built": 614,
+    "n_distinct_chord_geometries": 200,
+    "n_permits": 614,
+    "n_permits_dropped_bad_coords": 0,
+    "status": "PROXY_STRAIGHT_LINE",
+    "total_chord_km": 10114.726,
+    "union_chord_km": 4039.322
+  },
+  "random_seed": 20260823
+}

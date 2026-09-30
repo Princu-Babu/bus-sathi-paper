@@ -51,9 +51,21 @@ and the framing that distinguishes this study from what already exists.
 
 **Euclidean-vs-network catchment bias is NOT new** — Gutiérrez & García-Palomares (2008), Biba et al.
 (2010), and El-Geneidy et al. (2014) all establish that straight-line buffers overstate transit
-catchment population. Our 37.4% median overstatement sits squarely inside the documented range (e.g. Li
-et al. 2022 report Euclidean/network area ratios around 1.3; our median area ratio is 0.50, i.e. a
-~2× overstatement at the extreme, ~1.3× typical). **We must cite these and claim only that we
+catchment population. All three are verified and shipped in `paper/references.bib`.
+
+> **CORRECTED 2026-09-13 — an unverifiable citation was removed from this paragraph.** An earlier
+> version of this document claimed that "Li et al. 2022 report Euclidean/network area ratios around
+> 1.3", and used that to argue our 37.4% median overstatement "sits squarely inside the documented
+> range". **The reference-verification pass could not identify any such paper** (Crossref, OpenLibrary,
+> Wayback; WebSearch was abandoned after it returned model-generated bibliographic text). It is
+> therefore **not in the `.bib`, and the 1.3 ratio must not enter the manuscript.**
+>
+> The argument does not need it. Gutiérrez & García-Palomares, Biba et al. and El-Geneidy et al. already
+> establish the buffer-overstatement point qualitatively, which is all §2 has to concede. If a
+> *quantitative* range comparison is wanted, someone must find and verify a real source for it — until
+> then, 37.4% is reported as **our measurement**, not as a value positioned inside a published band.
+
+**We must cite the three verified works above and claim only that we
 *apply* the correction at network scale to a rationalisation-and-fleet decision — not that we invented
 the network-catchment critique.** Claiming novelty on the catchment method itself would be rejected.
 

@@ -1,0 +1,626 @@
+{
+  "allday_mean_rate_per_hour": 2395.8,
+  "banded_headways_mean_anchored": [
+    {
+      "Evening [prop]": 35,
+      "Evening [sqrt]": 30.8,
+      "Off-peak (base) [prop]": 12.7,
+      "Off-peak (base) [sqrt]": 13.8,
+      "Opening shoulder [prop]": 35,
+      "Opening shoulder [sqrt]": 35,
+      "Peak [prop]": 9.3,
+      "Peak [sqrt]": 11.8,
+      "Plan headway (min)": 15,
+      "Service class": "SSCL e-bus trunk"
+    },
+    {
+      "Evening [prop]": 35,
+      "Evening [sqrt]": 35.0,
+      "Off-peak (base) [prop]": 16.9,
+      "Off-peak (base) [sqrt]": 18.4,
+      "Opening shoulder [prop]": 35,
+      "Opening shoulder [sqrt]": 35,
+      "Peak [prop]": 12.4,
+      "Peak [sqrt]": 15.7,
+      "Plan headway (min)": 20,
+      "Service class": "High-priority trunk (non-SSCL)"
+    },
+    {
+      "Evening [prop]": 35,
+      "Evening [sqrt]": 35.0,
+      "Off-peak (base) [prop]": 29.5,
+      "Off-peak (base) [sqrt]": 32.2,
+      "Opening shoulder [prop]": 35,
+      "Opening shoulder [sqrt]": 35,
+      "Peak [prop]": 21.6,
+      "Peak [sqrt]": 27.5,
+      "Plan headway (min)": 35,
+      "Service class": "Medium-priority feeder"
+    },
+    {
+      "Evening [prop]": 50,
+      "Evening [sqrt]": 50.0,
+      "Off-peak (base) [prop]": 29.5,
+      "Off-peak (base) [sqrt]": 32.2,
+      "Opening shoulder [prop]": 50,
+      "Opening shoulder [sqrt]": 50,
+      "Peak [prop]": 21.6,
+      "Peak [sqrt]": 27.5,
+      "Plan headway (min)": 35,
+      "Service class": "Rural lifeline (Regional, best bucket)"
+    },
+    {
+      "Evening [prop]": 50,
+      "Evening [sqrt]": 50.0,
+      "Off-peak (base) [prop]": 42.2,
+      "Off-peak (base) [sqrt]": 45.9,
+      "Opening shoulder [prop]": 50,
+      "Opening shoulder [sqrt]": 50,
+      "Peak [prop]": 30.9,
+      "Peak [sqrt]": 39.3,
+      "Plan headway (min)": 50,
+      "Service class": "Rural lifeline (Regional, worst bucket)"
+    }
+  ],
+  "banded_headways_peak_anchored": [
+    {
+      "Evening [prop]": 35,
+      "Evening [sqrt]": 35,
+      "Off-peak (base) [prop]": 20.5,
+      "Off-peak (base) [sqrt]": 17.5,
+      "Opening shoulder [prop]": 35,
+      "Opening shoulder [sqrt]": 35,
+      "Peak [prop]": 15.0,
+      "Peak [sqrt]": 15.0,
+      "Plan headway (min)": 15,
+      "Policy max wait (min)": 35,
+      "Service class": "SSCL e-bus trunk",
+      "__raw__Evening__prop": 102.0,
+      "__raw__Evening__sqrt": 39.1,
+      "__raw__Off-peak (base)__prop": 20.5,
+      "__raw__Off-peak (base)__sqrt": 17.5,
+      "__raw__Opening shoulder__prop": 144.6,
+      "__raw__Opening shoulder__sqrt": 46.6,
+      "__raw__Peak__prop": 15.0,
+      "__raw__Peak__sqrt": 15.0
+    },
+    {
+      "Evening [prop]": 35,
+      "Evening [sqrt]": 35,
+      "Off-peak (base) [prop]": 27.3,
+      "Off-peak (base) [sqrt]": 23.4,
+      "Opening shoulder [prop]": 35,
+      "Opening shoulder [sqrt]": 35,
+      "Peak [prop]": 20.0,
+      "Peak [sqrt]": 20.0,
+      "Plan headway (min)": 20,
+      "Policy max wait (min)": 35,
+      "Service class": "High-priority trunk (non-SSCL)",
+      "__raw__Evening__prop": 136.1,
+      "__raw__Evening__sqrt": 52.2,
+      "__raw__Off-peak (base)__prop": 27.3,
+      "__raw__Off-peak (base)__sqrt": 23.4,
+      "__raw__Opening shoulder__prop": 192.7,
+      "__raw__Opening shoulder__sqrt": 62.1,
+      "__raw__Peak__prop": 20.0,
+      "__raw__Peak__sqrt": 20.0
+    },
+    {
+      "Evening [prop]": 35,
+      "Evening [sqrt]": 35,
+      "Off-peak (base) [prop]": 35.0,
+      "Off-peak (base) [sqrt]": 35.0,
+      "Opening shoulder [prop]": 35,
+      "Opening shoulder [sqrt]": 35,
+      "Peak [prop]": 35.0,
+      "Peak [sqrt]": 35.0,
+      "Plan headway (min)": 35,
+      "Policy max wait (min)": 35,
+      "Service class": "Medium-priority feeder",
+      "__raw__Evening__prop": 238.1,
+      "__raw__Evening__sqrt": 91.3,
+      "__raw__Off-peak (base)__prop": 47.8,
+      "__raw__Off-peak (base)__sqrt": 40.9,
+      "__raw__Opening shoulder__prop": 337.3,
+      "__raw__Opening shoulder__sqrt": 108.7,
+      "__raw__Peak__prop": 35.0,
+      "__raw__Peak__sqrt": 35.0
+    },
+    {
+      "Evening [prop]": 50,
+      "Evening [sqrt]": 50,
+      "Off-peak (base) [prop]": 47.8,
+      "Off-peak (base) [sqrt]": 40.9,
+      "Opening shoulder [prop]": 50,
+      "Opening shoulder [sqrt]": 50,
+      "Peak [prop]": 35.0,
+      "Peak [sqrt]": 35.0,
+      "Plan headway (min)": 35,
+      "Policy max wait (min)": 50,
+      "Service class": "Rural lifeline (Regional, best bucket)",
+      "__raw__Evening__prop": 238.1,
+      "__raw__Evening__sqrt": 91.3,
+      "__raw__Off-peak (base)__prop": 47.8,
+      "__raw__Off-peak (base)__sqrt": 40.9,
+      "__raw__Opening shoulder__prop": 337.3,
+      "__raw__Opening shoulder__sqrt": 108.7,
+      "__raw__Peak__prop": 35.0,
+      "__raw__Peak__sqrt": 35.0
+    },
+    {
+      "Evening [prop]": 50,
+      "Evening [sqrt]": 50,
+      "Off-peak (base) [prop]": 50.0,
+      "Off-peak (base) [sqrt]": 50.0,
+      "Opening shoulder [prop]": 50,
+      "Opening shoulder [sqrt]": 50,
+      "Peak [prop]": 50.0,
+      "Peak [sqrt]": 50.0,
+      "Plan headway (min)": 50,
+      "Policy max wait (min)": 50,
+      "Service class": "Rural lifeline (Regional, worst bucket)",
+      "__raw__Evening__prop": 340.1,
+      "__raw__Evening__sqrt": 130.4,
+      "__raw__Off-peak (base)__prop": 68.3,
+      "__raw__Off-peak (base)__sqrt": 58.4,
+      "__raw__Opening shoulder__prop": 481.9,
+      "__raw__Opening shoulder__sqrt": 155.2,
+      "__raw__Peak__prop": 50.0,
+      "__raw__Peak__sqrt": 50.0
+    }
+  ],
+  "bands": [
+    {
+      "band": "Opening shoulder",
+      "duration_h": 2,
+      "hour_end": 7,
+      "hour_start": 6,
+      "hours": "06:00-07:59",
+      "mean_boardings_per_hour": 402.34999999999997,
+      "mult_proportional_mean_anchored": 5.954468478083417,
+      "mult_proportional_peak_anchored": 9.637297543598029,
+      "mult_sqrt_mean_anchored": 2.440177960330643,
+      "mult_sqrt_peak_anchored": 3.1043997074471625,
+      "ratio_to_allday_mean": 0.16794110233024076,
+      "ratio_to_peak": 0.10376352867348078,
+      "share_of_daily_boardings_pct": 1.9757776744734208
+    },
+    {
+      "band": "Peak",
+      "duration_h": 4,
+      "hour_end": 11,
+      "hour_start": 8,
+      "hours": "08:00-11:59",
+      "mean_boardings_per_hour": 3877.5666666666666,
+      "mult_proportional_mean_anchored": 0.6178566606609461,
+      "mult_proportional_peak_anchored": 1.0,
+      "mult_sqrt_mean_anchored": 0.7860385872595226,
+      "mult_sqrt_peak_anchored": 1.0,
+      "ratio_to_allday_mean": 1.6184983729563744,
+      "ratio_to_peak": 1.0,
+      "share_of_daily_boardings_pct": 38.08231465779705
+    },
+    {
+      "band": "Off-peak (base)",
+      "duration_h": 8,
+      "hour_end": 19,
+      "hour_start": 12,
+      "hours": "12:00-19:59",
+      "mean_boardings_per_hour": 2837.9166666666665,
+      "mult_proportional_mean_anchored": 0.8442039261747865,
+      "mult_proportional_peak_anchored": 1.366342680957275,
+      "mult_sqrt_mean_anchored": 0.9188057064335128,
+      "mult_sqrt_peak_anchored": 1.1689066177232785,
+      "ratio_to_allday_mean": 1.1845479143068534,
+      "ratio_to_peak": 0.7318808187265209,
+      "share_of_daily_boardings_pct": 55.743431261498976
+    },
+    {
+      "band": "Evening",
+      "duration_h": 3,
+      "hour_end": 22,
+      "hour_start": 20,
+      "hours": "20:00-22:59",
+      "mean_boardings_per_hour": 569.9888888888889,
+      "mult_proportional_mean_anchored": 4.203205428841061,
+      "mult_proportional_peak_anchored": 6.802881147780658,
+      "mult_sqrt_mean_anchored": 2.0501720485952055,
+      "mult_sqrt_peak_anchored": 2.6082333384459027,
+      "ratio_to_allday_mean": 0.2379136630197319,
+      "ratio_to_peak": 0.14699654135898518,
+      "share_of_daily_boardings_pct": 4.198476406230563
+    }
+  ],
+  "citations": [
+    "Fisher, W.D. (1958) On grouping for maximum homogeneity. Journal of the American Statistical Association 53(284): 789-798.",
+    "Jenks, G.F. (1967) The data model concept in statistical mapping. International Yearbook of Cartography 7: 186-190.",
+    "Mohring, H. (1972) Optimization and scale economies in urban bus transportation. American Economic Review 62(4): 591-604.",
+    "Newell, G.F. (1971) Dispatching policies for a transportation route. Transportation Science 5(1): 91-105.",
+    "Vuchic, V.R. (2005) Urban Transit: Operations, Planning and Economics. Hoboken: Wiley.",
+    "Ceder, A. (2007) Public Transit Planning and Operation: Theory, Modelling and Practice. Oxford: Elsevier.",
+    "Transportation Research Board (2013) Transit Capacity and Quality of Service Manual, 3rd ed. TCRP Report 165. Washington DC: TRB."
+  ],
+  "daily_mean_boardings": 40728.3,
+  "file_meta": {
+    "file_title_row": "Hourly Passenger Count 1st April 2026-30th April 2026",
+    "min_nonzero_count": 3,
+    "n_days": 30,
+    "n_empty_cells_filled_zero": 8,
+    "n_hours": 17,
+    "n_rows_in_file": 502,
+    "n_zero_rows_in_file": 0,
+    "service_window": "06:00-22:59",
+    "total_boardings": 1221848,
+    "total_collection_inr": 24206480.0
+  },
+  "fleet_consequence": [
+    {
+      "anchor": "peak-anchored",
+      "banded_bus_hours_per_day": 15577.0,
+      "bus_hour_saving_pct": 9.4,
+      "by_band": [
+        {
+          "anchor": "peak-anchored",
+          "band": "Opening shoulder",
+          "duration_h": 2,
+          "fleet": 833,
+          "hours": "06:00-07:59",
+          "rule": "proportional"
+        },
+        {
+          "anchor": "peak-anchored",
+          "band": "Peak",
+          "duration_h": 4,
+          "fleet": 1011,
+          "hours": "08:00-11:59",
+          "rule": "proportional"
+        },
+        {
+          "anchor": "peak-anchored",
+          "band": "Off-peak (base)",
+          "duration_h": 8,
+          "fleet": 921,
+          "hours": "12:00-19:59",
+          "rule": "proportional"
+        },
+        {
+          "anchor": "peak-anchored",
+          "band": "Evening",
+          "duration_h": 3,
+          "fleet": 833,
+          "hours": "20:00-22:59",
+          "rule": "proportional"
+        }
+      ],
+      "flat_bus_hours_per_day": 17187.0,
+      "peak_fleet": 1011,
+      "plan_fleet": 1011,
+      "rule": "proportional",
+      "vehicles_to_purchase_delta": 0
+    },
+    {
+      "anchor": "peak-anchored",
+      "banded_bus_hours_per_day": 15938.0,
+      "bus_hour_saving_pct": 7.3,
+      "by_band": [
+        {
+          "anchor": "peak-anchored",
+          "band": "Opening shoulder",
+          "duration_h": 2,
+          "fleet": 833,
+          "hours": "06:00-07:59",
+          "rule": "square-root"
+        },
+        {
+          "anchor": "peak-anchored",
+          "band": "Peak",
+          "duration_h": 4,
+          "fleet": 1011,
+          "hours": "08:00-11:59",
+          "rule": "square-root"
+        },
+        {
+          "anchor": "peak-anchored",
+          "band": "Off-peak (base)",
+          "duration_h": 8,
+          "fleet": 965,
+          "hours": "12:00-19:59",
+          "rule": "square-root"
+        },
+        {
+          "anchor": "peak-anchored",
+          "band": "Evening",
+          "duration_h": 3,
+          "fleet": 836,
+          "hours": "20:00-22:59",
+          "rule": "square-root"
+        }
+      ],
+      "flat_bus_hours_per_day": 17187.0,
+      "peak_fleet": 1011,
+      "plan_fleet": 1011,
+      "rule": "square-root",
+      "vehicles_to_purchase_delta": 0
+    },
+    {
+      "anchor": "mean-anchored",
+      "banded_bus_hours_per_day": 19449.0,
+      "bus_hour_saving_pct": -13.2,
+      "by_band": [
+        {
+          "anchor": "mean-anchored",
+          "band": "Opening shoulder",
+          "duration_h": 2,
+          "fleet": 833,
+          "hours": "06:00-07:59",
+          "rule": "proportional"
+        },
+        {
+          "anchor": "mean-anchored",
+          "band": "Peak",
+          "duration_h": 4,
+          "fleet": 1507,
+          "hours": "08:00-11:59",
+          "rule": "proportional"
+        },
+        {
+          "anchor": "mean-anchored",
+          "band": "Off-peak (base)",
+          "duration_h": 8,
+          "fleet": 1157,
+          "hours": "12:00-19:59",
+          "rule": "proportional"
+        },
+        {
+          "anchor": "mean-anchored",
+          "band": "Evening",
+          "duration_h": 3,
+          "fleet": 833,
+          "hours": "20:00-22:59",
+          "rule": "proportional"
+        }
+      ],
+      "flat_bus_hours_per_day": 17187.0,
+      "peak_fleet": 1507,
+      "plan_fleet": 1011,
+      "rule": "proportional",
+      "vehicles_to_purchase_delta": 496
+    },
+    {
+      "anchor": "mean-anchored",
+      "banded_bus_hours_per_day": 17757.0,
+      "bus_hour_saving_pct": -3.3,
+      "by_band": [
+        {
+          "anchor": "mean-anchored",
+          "band": "Opening shoulder",
+          "duration_h": 2,
+          "fleet": 836,
+          "hours": "06:00-07:59",
+          "rule": "square-root"
+        },
+        {
+          "anchor": "mean-anchored",
+          "band": "Peak",
+          "duration_h": 4,
+          "fleet": 1226,
+          "hours": "08:00-11:59",
+          "rule": "square-root"
+        },
+        {
+          "anchor": "mean-anchored",
+          "band": "Off-peak (base)",
+          "duration_h": 8,
+          "fleet": 1080,
+          "hours": "12:00-19:59",
+          "rule": "square-root"
+        },
+        {
+          "anchor": "mean-anchored",
+          "band": "Evening",
+          "duration_h": 3,
+          "fleet": 847,
+          "hours": "20:00-22:59",
+          "rule": "square-root"
+        }
+      ],
+      "flat_bus_hours_per_day": 17187.0,
+      "peak_fleet": 1226,
+      "plan_fleet": 1011,
+      "rule": "square-root",
+      "vehicles_to_purchase_delta": 215
+    }
+  ],
+  "fleet_rule": {
+    "formula": "fleet = ceil(ceil(cycle_min / headway_min) * FLEET_SPARE_RATIO)",
+    "reproduces_published": "184/186",
+    "spare_ratio": 1.15,
+    "unreproduced": [
+      {
+        "Cycle_Time_Min": 43.4,
+        "Fleet_Required": 5,
+        "Headway_Min": 15,
+        "New_Route_ID": "SSCL-02",
+        "Route_Type": "Urban",
+        "formula_fleet": 4
+      },
+      {
+        "Cycle_Time_Min": 111.3,
+        "Fleet_Required": 13,
+        "Headway_Min": 15,
+        "New_Route_ID": "SSCL-27",
+        "Route_Type": "Regional_District",
+        "formula_fleet": 10
+      }
+    ]
+  },
+  "headway_rules": {
+    "anchors": "peak-anchored reads the published headway as a peak design (vehicle purchase unchanged); mean-anchored reads it as matching the all-day mean (peak must tighten).",
+    "proportional": "h_b = h_ref * D_ref / D_b \u2014 maximum-load-section frequency setting, f = P/(c*alpha); Vuchic (2005), Ceder (2007), TRB (2013) TCQSM 3rd ed.",
+    "square_root": "h_b = h_ref * sqrt(D_ref / D_b) \u2014 welfare-optimal square-root principle; Mohring (1972), Newell (1971)."
+  },
+  "hourly_profile": [
+    {
+      "hour": 6,
+      "mean_boardings": 36.5,
+      "share_pct": 0.09
+    },
+    {
+      "hour": 7,
+      "mean_boardings": 768.2,
+      "share_pct": 1.89
+    },
+    {
+      "hour": 8,
+      "mean_boardings": 3590.1,
+      "share_pct": 8.81
+    },
+    {
+      "hour": 9,
+      "mean_boardings": 4346.4,
+      "share_pct": 10.67
+    },
+    {
+      "hour": 10,
+      "mean_boardings": 4030.1,
+      "share_pct": 9.9
+    },
+    {
+      "hour": 11,
+      "mean_boardings": 3543.7,
+      "share_pct": 8.7
+    },
+    {
+      "hour": 12,
+      "mean_boardings": 3104.2,
+      "share_pct": 7.62
+    },
+    {
+      "hour": 13,
+      "mean_boardings": 2552.6,
+      "share_pct": 6.27
+    },
+    {
+      "hour": 14,
+      "mean_boardings": 2463.2,
+      "share_pct": 6.05
+    },
+    {
+      "hour": 15,
+      "mean_boardings": 2822.8,
+      "share_pct": 6.93
+    },
+    {
+      "hour": 16,
+      "mean_boardings": 3234.4,
+      "share_pct": 7.94
+    },
+    {
+      "hour": 17,
+      "mean_boardings": 3285.9,
+      "share_pct": 8.07
+    },
+    {
+      "hour": 18,
+      "mean_boardings": 3081.3,
+      "share_pct": 7.57
+    },
+    {
+      "hour": 19,
+      "mean_boardings": 2158.9,
+      "share_pct": 5.3
+    },
+    {
+      "hour": 20,
+      "mean_boardings": 1146.2,
+      "share_pct": 2.81
+    },
+    {
+      "hour": 21,
+      "mean_boardings": 520.6,
+      "share_pct": 1.28
+    },
+    {
+      "hour": 22,
+      "mean_boardings": 43.2,
+      "share_pct": 0.11
+    }
+  ],
+  "month": "April 2026",
+  "peak_hour": 9,
+  "peak_hour_factor_pct": 10.67,
+  "peak_hour_rate": 4346.4,
+  "peak_to_base_ratio": 1.366,
+  "policy_limits": {
+    "classes_with_zero_offpeak_headroom": [
+      "Medium-priority feeder",
+      "Rural lifeline (Regional, worst bucket)"
+    ],
+    "n_class_band_cells_clipped": 24,
+    "rural_max_wait_min": 50,
+    "urban_max_wait_min": 35
+  },
+  "provenance_reconciliation": {
+    "boardings_match": true,
+    "collection_diff_pct": 5.63,
+    "hourly_file_total_boardings": 1221848,
+    "hourly_file_total_collection_inr": 24206480.0,
+    "monthly_total_boardings": 1221848,
+    "monthly_total_collection_inr": 22917369.0,
+    "note": "Boardings reconcile exactly, confirming the file is the whole SSCL/CHALO e-bus network for April 2026. Collection does not reconcile; the hourly file is higher. The discrepancy is reported, not adjusted \u2014 no basis exists in the supplied data for choosing which figure is right, and nothing in this module depends on the fare revenue.",
+    "status": "OK"
+  },
+  "segmentation": {
+    "gvf_contiguous": {
+      "2": 0.3945,
+      "3": 0.8255,
+      "4": 0.9192,
+      "5": 0.9363,
+      "6": 0.9525
+    },
+    "gvf_jenks_magnitude": {
+      "2": 0.7167,
+      "3": 0.8579,
+      "4": 0.9278,
+      "5": 0.9318,
+      "6": 0.9402
+    },
+    "jenks_classes_are_time_contiguous": false,
+    "jenks_magnitude_classes": {
+      "0": [
+        6,
+        7,
+        21,
+        22
+      ],
+      "1": [
+        13,
+        14,
+        19,
+        20
+      ],
+      "2": [
+        11,
+        12,
+        15,
+        16,
+        17,
+        18
+      ],
+      "3": [
+        8,
+        9,
+        10
+      ]
+    },
+    "k_chosen_contiguous": 4,
+    "k_chosen_jenks": 4,
+    "method_contrast": "Jenks (1967) natural breaks on magnitude only, reported to show it does not yield usable bands",
+    "method_primary": "Fisher (1958) exact contiguous grouping of the ordered hourly series, k by GVF elbow"
+  },
+  "service_window_hours": 17,
+  "source_file": "E:\\kash-paper\\data\\raw\\Hourly_Passenger_Count.csv",
+  "status": "OK",
+  "transferability_assumption": "The temporal SHAPE derived here is applied to all 186 planned routes. No electronic ticketing exists on the conventional diesel permits, so this assumption cannot be tested with the available data and is carried as a stated limitation, not a finding.",
+  "what_this_file_is": "Whole-network hourly BOARDINGS (fare transactions) for the 30-route Srinagar Smart City / CHALO electric bus system, April 2026, aggregated to clock hours over 30 calendar days. It is not an origin-destination matrix, not route-level ridership, not a maximum-load-section count, and does not cover the 156 non-SSCL permit routes in the rationalised plan."
+}

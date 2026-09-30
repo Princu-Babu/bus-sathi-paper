@@ -1,0 +1,8 @@
+**Time-of-day demand bands from SSCL e-bus boardings, April 2026, and the implied headway multipliers**
+
+| Band             | Hours       |   Duration (h) |   Mean boardings/h |   Share of daily (%) |   x all-day mean |   x peak |   Headway mult. (prop., peak-anch.) |   Headway mult. (sqrt, peak-anch.) |   Headway mult. (prop., mean-anch.) |   Headway mult. (sqrt, mean-anch.) |
+|:-----------------|:------------|---------------:|-------------------:|---------------------:|-----------------:|---------:|------------------------------------:|-----------------------------------:|------------------------------------:|-----------------------------------:|
+| Opening shoulder | 06:00-07:59 |              2 |                402 |                  2   |            0.168 |    0.104 |                                9.64 |                               3.1  |                                5.95 |                               2.44 |
+| Peak             | 08:00-11:59 |              4 |               3878 |                 38.1 |            1.618 |    1     |                                1    |                               1    |                                0.62 |                               0.79 |
+| Off-peak (base)  | 12:00-19:59 |              8 |               2838 |                 55.7 |            1.185 |    0.732 |                                1.37 |                               1.17 |                                0.84 |                               0.92 |
+| Evening          | 20:00-22:59 |              3 |                570 |                  4.2 |            0.238 |    0.147 |                                6.8  |                               2.61 |                                4.2  |                               2.05 |

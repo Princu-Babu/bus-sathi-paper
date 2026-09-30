@@ -67,6 +67,6 @@ Each has its own document in this folder:
 ---
 
 *Verification basis for this document: `python analysis/run_all.py --list` (module existence),
-`python -m pytest tests/` (52 passed, 2 skipped, 0 failed), and direct read of every file in
+`python -m pytest tests/` (53 passed, 2 skipped, 0 failed), and direct read of every file in
 `paper/sections/` on 2026-09-08. If you re-run these and the counts differ, this document is stale —
 regenerate it.*

@@ -1,0 +1,11 @@
+Baseline duty case,Assumed transfer penalty (min),OD pairs worse off,of,Share worse off (%)
+all-day (duty=1.00),0.0,1,2,50.0
+all-day (duty=1.00),5.0,1,2,50.0
+all-day (duty=1.00),10.0,2,2,100.0
+all-day (duty=1.00),15.0,2,2,100.0
+all-day (duty=1.00),20.0,2,2,100.0
+observed median (duty=0.242),0.0,1,2,50.0
+observed median (duty=0.242),5.0,1,2,50.0
+observed median (duty=0.242),10.0,1,2,50.0
+observed median (duty=0.242),15.0,1,2,50.0
+observed median (duty=0.242),20.0,1,2,50.0

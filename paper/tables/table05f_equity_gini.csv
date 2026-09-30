@@ -1,0 +1,10 @@
+measure,value
+"Accessibility Gini (frequency-weighted, pop-weighted)",0.9029
+"Accessibility Gini (route-count, pop-weighted)",0.8993
+"Accessibility Gini, served residents only (frequency-weighted)",0.5986
+"Accessibility Gini, served residents only (route-count)",0.5835
+Share of residents with any network service,0.2419
+Share of residents with zero network service,0.7581
+Mean departures/hour reachable (pop-weighted),3.5786
+Median departures/hour reachable (pop-weighted),0.0
+Before-state Gini,NOT_COMPUTABLE

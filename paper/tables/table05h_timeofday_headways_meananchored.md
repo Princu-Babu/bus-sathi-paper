@@ -1,0 +1,9 @@
+**Banded headway schedule by service class (minutes), mean-anchored: the peak tightens below the published headway**
+
+| Service class                           |   Plan headway (min) |   Opening shoulder [prop] |   Opening shoulder [sqrt] |   Peak [prop] |   Peak [sqrt] |   Off-peak (base) [prop] |   Off-peak (base) [sqrt] |   Evening [prop] |   Evening [sqrt] |
+|:----------------------------------------|---------------------:|--------------------------:|--------------------------:|--------------:|--------------:|-------------------------:|-------------------------:|-----------------:|-----------------:|
+| SSCL e-bus trunk                        |                   15 |                        35 |                        35 |           9.3 |          11.8 |                     12.7 |                     13.8 |               35 |             30.8 |
+| High-priority trunk (non-SSCL)          |                   20 |                        35 |                        35 |          12.4 |          15.7 |                     16.9 |                     18.4 |               35 |             35   |
+| Medium-priority feeder                  |                   35 |                        35 |                        35 |          21.6 |          27.5 |                     29.5 |                     32.2 |               35 |             35   |
+| Rural lifeline (Regional, best bucket)  |                   35 |                        50 |                        50 |          21.6 |          27.5 |                     29.5 |                     32.2 |               50 |             50   |
+| Rural lifeline (Regional, worst bucket) |                   50 |                        50 |                        50 |          30.9 |          39.3 |                     42.2 |                     45.9 |               50 |             50   |

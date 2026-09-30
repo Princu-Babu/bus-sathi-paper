@@ -1,0 +1,595 @@
+Planning What You Cannot Count: An Open-Data Framework for Bus Route Rationalisation and Fleet Sizing under
+Demand-Data Scarcity [Author 1] a, [Author 2] b, [Author 3] a, [Author 4] c, [Author 5] a a [Department,
+Institute] · b [Department, Institute] · c [Department, Institute] Author guidance note. Target journal:
+Transport Policy. Study area: Srinagar Metropolitan Region, Jammu and Kashmir. Total target: 9,000–10,000
+words, 8 figures, 8 tables.
+
+Abstract
+
+(Prashant+Ankit+Sharvesh) 250 words, unstructured, eight sentences. Write it last. # Sentence must do this
+Content 1 Open on the policy failure, not the method Bus networks in Tier-II cities are issued permit by
+permit with no network plan, producing duplication on some corridors and no service on others. 2 Name the
+binding constraint Established rationalisation methods require OD matrices, fare-card or GPS data that these
+cities do not have. 3 State what the paper does We develop an open-data framework that rationalises routes,
+assigns a service hierarchy and sizes the fleet using only gridded population, open points of interest, an
+open street network and routing-engine travel times. 4 Method in one sentence A composite demand-proxy index
+drives permit consolidation through an overlap graph; natural-breaks classification sets headway bands;
+standard cycle-time theory sizes the fleet. 5 Validation A six-channel convergent-validity protocol replaces
+back-casting: spatial cross-validation, external benchmarking, expert elicitation, limited field observation,
+parametric sensitivity and Monte Carlo robustness. 6 Headline numbers Applied to Srinagar: 342 permits reduced
+to 207 routes, maximum 35-minute headway, fleet of ~1,009 buses, X% of residents within 400 m of a service,
+accessibility Gini falling from A to B. 7 Robustness Tier assignment is stable for over X% of routes across
+the tested parameter space. 8 Policy contribution The framework converts permits into contractable route
+bundles with enforceable service standards, and ranks which dataset an authority should acquire first.
+
+Keywords (6): route rationalisation · bus network design · data scarcity · open data · accessibility · policy
+transfer
+
+Highlights (5, ≤85 characters each): (1) Route rationalisation achieved with no passenger or ridership data.
+(2) Open population, POI and street-network data drive a demand-proxy index. (3) 342 permits consolidated into
+207 routes with a 35-minute headway ceiling. (4) Six-channel protocol validates a plan where back-casting is
+impossible. (5) Data-value ranking tells authorities which dataset to acquire first.
+
+1. Introduction
+
+(Misti and Avny) Establish the problem, the gap, the objectives and the contribution. Must be readable by a
+planner with no modelling background. 1,200 words.
+
+1.1 Urban bus transport under stress in Indian cities
+
+1.2 Route rationalisation as a low-cost, high-leverage intervention
+
+1.3 The demand-data precondition and why it binds
+
+1.4 Data scarcity in Tier-II, permit-based networks
+
+1.5 Research gap, objectives and contributions
+
+1.6 Organisation of the paper. Hints • 1.3 is the section that earns the paper. Show exactly where OD,
+fare-card or APC data enters each standard method, objective function, frequency setting, route deletion,
+validation. If the reader does not feel the constraint bite here, nothing later lands. • Introduce Srinagar in
+three sentences at the end of 1.4, terrain, seasonality, tourism, security disruption, gendered ridership, the
+e-bus overlay. Do not open the paper with Kashmir. Transport Policy wants the problem class first, the city
+second. • Objectives as O1–O5. Contributions as five bullets. Both numbered, both concrete.
+
+Figure
+
+1. Conceptual framework, two panels: the conventional demand-driven pipeline with data dependencies drawn as
+locks, and the proposed supply-side pipeline. Statistics needed (each requires a verified citation). 1) Buses
+per 1,000 population, India against comparators 2) number of Indian cities publishing GTFS 3) share of Class-I
+cities with an organised bus service 4) capital cost per km, metro against BRT against network redesign 5)
+Srinagar population, vehicle registrations, tourist arrivals.
+
+1.1 India is facing a structural and widening shortage for urban public buses. In estimation from 2026 to
+2047, the country’s urban population is to grow from 490 million to about 763 million; this adds more than 270
+million residents who will have dependencies for public transport (CSE & CITIES Forum 2026). In contrast to
+this demographic situation and demand, the municipal bus fleets continue to shrink relatively. The current
+national bus availability ranges roughly from 0.13 to 0.14 buses per 1000 people, this makes national
+provision nearly 70% below the benchmark of 0.44 set by Ministry of Housing and Urban Affairs (MoHUA) as per
+CSE & CITIES Forum, 2026; MoHUA, 2014; Pucher et al., 2007. This shortage issue hits secondary cities most.
+Over 400 Class - I cities with population count ranging from 100,000 to 1 Million have no organised municipal
+bus network at all (CSE-CITIES Forum, 2026) while at the same time base digital transit data is almost non
+existing; less than 15 indian transit agencies publish open General Transit Feed Specification (GTFS) feeds.
+On ground, this gap is covered with private minibuses and other vehicles. Operating through this ad-hoc,
+permit by permit allocation without route integration or systematic timetable leaves the urban cities with
+fragmented and unreliable service to public.
+
+1.2 Urban transport policies often emphasize for capital-intensive, mass transit infrastructure to address the
+growing demand. Though the urban rail metro systems provide substantial capacity along high density corridors
+in primary metropolitan areas, they require significant capital for enabling route to over US$ 40 Million per
+km, compared to US$
+
+2.5 Million per km when its Bus Rapid Transit (BRT) (Badami & Haider, 2007). In secondary and Tier - II urban
+regions, taking mutli-year timeline projects and heavy infrastructure costs creates need for careful fiscal
+planning along with catering needs for immediate transit needs. Instead, comprehensive bus route
+rationalisation along with network redesign can make an exceptional cost effective and efficient solution that
+costs under US$0.05 Million per km (Badami & Haider, 2007). Rather than relying on heavy civil construction,
+this restructuring optimizes for existing ground infrastructure and operational vehicle assets. By merging
+overlapping services on busy central spines and deploying the spare assets to cover underserved peripheral
+corridors, route rationalisation delivers rapid improvements for better public access. This is even positively
+practical and cost efficient for municipal and transport departments that seek solution for delivery of time
+effective results on ground for people.
+
+1.3 The academic literature in Transit Network Desgin and Frequency Setting (TNDFS) provides extensive
+mathematical frameworks to optimize bus routes and their operating schedules (Ceder, 2007; Guihaire & Hao,
+2008; Ibarra-Rojas et al., 2015). However, these methodologies have the fundamental precondition: the
+availability of comprehensive ,empirical passenger demand data, such like household origin - destination (OD)
+surveys, automated fare collection (AFC) transactions or automatic passenger counts (APC). In real practise,
+this demand creates bottleneck across four core stages of public transit planning:
+
+1. Objective function formation: Classical network optimization models minimize generalized passenger travel
+disutility like in-vehicle time, waiting time and transfer penalties while balancing against operator cost.
+
+2. Frequency and Headway setting: Standard operational methods calculate route frequency (f_k) as a function
+of peak passenger volume on the heaviest loaded link (Q_k,max): <formula > Where C_veh is rated vehicle
+capacity and LF_target is the target load factor. If peak passenger volume is unobserved, frequency cannot be
+derived.
+
+3. Route Pruning: Standard algorithms identify and eliminate redundant routes based on passenger-kilometre
+revenue or observed boarding numbers. Without electronic ticketing data, authorities have no reliable way to
+separate essential trunk routes from redundant parallel ones.
+
+4. Model Validation: Conventional planning pipeline validate their results by back-casting simulated passenger
+flows against historical counts. For mid-sized and secondary cities, this creates an operational deadlock.
+Local authorities cannot run standard network optimization without passenger demand data and also lack the
+infrastructure or survey budget to collect the needful data. This seeks rethinking of planning model. As shown
+in
+
+Figure 1, instead of waiting for unavailable demand data, cities can adopt a supply-side approach which builds
+an implementable network using open spatial data and clear, policy-driven service standards.
+
+Figure
+
+1. Conceptual Framework: (Top Panel) The conventional demand-driven transit planning pipeline, illustrating
+how data dependencies (OD matrices, AFC feeds, APC counts) act as locks preventing optimization in data-scarce
+settings. (Bottom Panel) The proposed supply-side open-data pipeline, illustrating how OpenStreetMap street
+topology, WorldPop gridded demographics, and open Points of Interest feed directly into topological
+consolidation, policy-anchored headway bands, and cycle-time fleet dimensioning.
+
+1.4 In secondary Indian cities, route-level permits stand as base for evolving the public transit network
+through history, issued by Regional Transport Offices (RTOs) and State Transport Authorities (STAs) in
+response to localized mobility demands. Over time, this point to point allocation has naturally concentrated
+them highly along primary commercial and healthcare arterials, while peripherals and developing peri-urban
+links suffer in frequency and service. In addition, the public transit delivery involves multiple stakeholders
+including RTOs managing private stage carriages, municipal Special Purpose Vehicles (eg: Smart City Ltd)
+introducing modern electric buses, and State Road Transport Corporations (SRTCs) - each operating under
+distinct mandates without an integrated digital scheduling platform or system. The Kashmir Valley illustrates
+this operational reality at a regional scale. It comprises of 10-district urban-rural basin of 15,948 sq.km
+with 6.58 million residents. The valley in itself has unique physical constraints for mobility network,
+including nine critical Jhelum River Bridge crossing in Srinagar, major lakes barriers (Dal, Nigeen and
+Anchar), and sub-zero winter freezes during Chillai Kalan. The existing network comprises of 640+ legacy
+permit routes, with heavy overlap along primary civic arterials - such as 38 to 42 active permits serving the
+Soura and Lal Ded hospital corridors. The network must also consider and support the significant gender
+-specific transit dependency (64.5% female ridership recorded via CHALO electronic ticketing) and an annual
+influx of 2.5 million tourists, all of this with lack of a unified open GTFS feed.
+
+1.5 Despite the advancements in transit network design, present optimization frameworks offer no validated
+methodology to restructure fragmented, permit based bus systems in complete absence of empirical demand data,
+which is the case across most secondary and Tier-II Indian cities. To address this gap, this study develops a
+supply-side, open-data planning framework that translates road topology, gridded population distributions ,and
+community anchors into a rationalised transit network. Main objectives: -O1 (Spatial Baseline): Construct an
+open spatial transit foundation integrating OpenStreetMap road networks, WorldPop demographics, and
+geo-located Points of Interest (POI) across a regional basin. -O2 (Topological Consolidation): Develop an
+undirected graph consolidation algorithm to prune overlapping legacy permits into a coherent multi-tier
+corridor hierarchy. -O3 (Supply-Side Scheduling): Derive policy-anchored headway bands from a Composite Demand
+Index (CDI) independent of unobserved passenger link flows. -O4 (Fleet Dimensioning): Calculate realistic
+round-trip cycle times, fleet allocations, and vehicle size classes (light, medium, and heavy passenger
+vehicles: LPV, MPV ,HPV) accounting for physical bridge bottlenecks and dwell penalties. -O5 (Validation &
+Portability): Benchmark the operational outputs against empirical operational data and demonstrate policy
+transferability. Correspondingly, this paper sets five major contributions (1) mathematical rigorous,
+supply-side methodology of network design for data scarce regions; (2) a graph-based algorithm to merge
+overlapping route permits into unified corridors; (3) a novel demographic based and seasonal considerate
+demand-proxy formulations; (4) a regional-scale deployment across 10 districts in the Kashmir Valley,
+restructuring 644 legacy permits into 186 coordinated corridors; and (5) an open, reproducible spatial
+workflow designed for adoption across data-constrained secondary urban regions.
+
+1.6 Organisation of the Paper The remainder of this paper content is as follows. Section 2 reviews the
+literature on transit network design under data constraints and details the physical and institutional setting
+of the Kashmir Valley. Section 3 formulates the supply-side methodology, detailing spatial baseline
+integration, topological permit consolidation, demand proxying, and fleet dimensioning. Section 4 presents the
+empirical results and sensitivity analyses. Section 5 discusses policy trade-offs, governance challenges, and
+framework transferability, before Section 6 that concludes with directions for future work. Policy Failure:
+Public transport services operating in Jammu and Kashmir do not fall entirely under a single permitting
+authority. Bus services operating within cities/districts are permitted by the Regional Transport Authority
+(RTA), buses originating from other districts and operating within the Srinagar Municipal Area may fall under
+the permitting jurisdiction of the State Transport Authority (STA), Srinagar and Jammu municipal areas operate
+electric buses run by the respective Smart City Limited Companies, and finally, the JK Road Transport
+Corporation (JKRTC) operates intra-state and inter state services. The transport network in J&K therefore
+includes bus services that are governed by different permitting arrangements and agencies. For the purpose of
+this study, bus service data for Srinagar (the area falling within the limits of the Srinagar Municipal
+Corporation (SMC)) was studied. The RTA, issues permits broadly divided into Eastern and Western areas for
+this purpose.For city bus services permitted by the RTA, an applicant generally applies for a vehicle and
+indicates the area of operation, rather than proposing a specific route based on an assessment of passenger
+demand or the requirements of the wider network. The RTA considers such applications in accordance with the
+applicable legal and regulatory requirements. The Smart City electric-bus system is a separate planned
+intervention. There is also no systematic route-rationalisation exercise before permits are allotted. The RTC
+caters largely to destinations outside the municipal area and its routes were designated decades ago, without
+having been modified to align with changing demographic and demand patterns. At present, there is an absence
+of a comprehensive city-wide route plan for public transport and an absence of a single agency that regulates
+and manages public transport operations. In Jammu and Kashmir, the procedure for grant of a stage carriage
+permit is primarily governed by the Motor Vehicles Act, 1988 and the rules made thereunder. Where the proposed
+Stage carriage service is to be operated within the jurisdiction of a particular Regional Transport Authority
+(RTA), the application is made before the concerned RTA. Accordingly, in the case of services operating within
+Srinagar District and falling within the jurisdiction of the RTA Srinagar, the RTA is the competent authority
+to consider and grant the permit. However, where the proposed service extends beyond the jurisdiction of a
+single RTA, the matter falls within the competence of the State Transport Authority (STA), particularly where
+the service originates in one district and terminates in another. The applicant is required to furnish details
+such as the proposed route in the classified areas (Eastern/Western), vehicle particulars, seating capacity,
+number of trips, timetable and other prescribed particulars. The competent authority examines the application
+and considers the proposed service in the context of existing transport arrangements, route feasibility and
+the requirements of the travelling public. The permit may be granted as applied for, granted with
+modifications, or refused in accordance with the applicable provisions. Once granted, the permit specifies the
+area(Eastern/Western) and is subject to conditions relating to the passenger capacity and other operational
+requirements. Thus, the permit system in J&K operates through a two-level institutional structure, with the
+RTA dealing primarily with services confined to its jurisdiction and the STA dealing with services that extend
+across the jurisdiction of more than one RTA. These permits are permanent in nature, implying they do not have
+an end validity. Over time, the existing route structure has consequently developed through a combination of
+existing practices and the demands and representations of the Eastern and Western bus associations. While this
+allows individual applications to be considered within the existing regulatory framework, it does not provide
+an opportunity to assess how individual permits respond to travel demand and affect the transport network as a
+whole. In particular, permit allocation is not systematically preceded by an assessment of route duplication,
+passenger demand, service gaps, connectivity, fleet requirements or the frequency of services required on
+different corridors. This is reflected in the present pattern of public transport services. Some corridors
+have overlapping services, while other areas have comparatively limited connectivity. Examples of overlapping
+service patterns include Lal Chowk–Lalbazar and Bagh-i-Shuer–Lal Chowk; Chanapora–Soura and Lal Chowk–Soura;
+and Malbagh–LD and Soura–LD. In contrast, Lal Chowk–Rangreth and Lal Chowk–PanthaChowk have been identified
+through official and field-level observations as areas with comparatively inadequate connectivity. These
+observations suggest that the issue is not simply the number of buses available, but also where those buses
+operate and how the routes are distributed across the city. The underlying policy issue is that presently
+permitting is done as a response to individual permit applications rather than for planning the public
+transport network as a whole, not accounting for where services are required, where routes overlap, which
+areas are underserved, or what level of fleet and service frequency is appropriate for individual corridors.
+Moreover, the permit is valid in perpetuity, hence, it is challenging for the regulator to control, alter and
+plan public transport routes in the face of dynamic scenarios. The study examines whether a city-wide bus
+network can be planned and fleet requirements estimated even where detailed passenger-demand data are not
+available. It explores the use of readily available spatial and network information as a starting point for
+route rationalisation and fleet planning. The intention is not to treat such information as a substitute for
+actual passenger-demand data, but to provide a practical basis for improving upon the present application
+driven approach and for developing better data systems over time.
+
+2. Literature review and research gap
+
+(Sharvesh and Ankit) Position the work and make the gap unavoidable and quantified. 1,400 words.
+
+2.1 Review protocol
+
+2.2 Transit network design and route rationalisation
+
+2.3 Demand estimation and its data requirements
+
+2.4 Demand-independent and accessibility-based approaches
+
+2.5 Open data and planning under scarcity
+
+2.6 Network indicators and equity assessment
+
+2.7 Indian and Global South evidence
+
+2.8 Synthesis: the gap, quantified. Hints • State the protocol in 2.1,databases, search string, window,
+inclusion criteria, corpus size. Three sentences, and it raises perceived rigour more than any other three
+sentences in the paper. • Code 45–60 studies into a synthesis matrix (
+
+Table 1): geography, planning stage, method family, demand input, data intensity 1–5, equity treatment,
+validation performed, produces an implementable plan, code released. • 2.8 must produce a finding, not a
+summary. Cross-tabulate data intensity against “produces implementable plan”. Implementable plans will cluster
+at intensity 4–5; open-data studies will cluster at “no plan”. That table is the gap, shown rather than
+claimed. • Close 2.8 with the analytical wedge: fleet sizing and coverage analysis never needed demand data in
+the first place. Once headway is set by a policy rule anchored on an ordinal proxy, the whole downstream chain
+is demand-free. This is the intellectual hinge of the manuscript— state it explicitly.
+
+Figure
+
+2. Taxonomy of planning methods by data intensity, gap region shaded, with the cross-tabulation as an inset
+heatmap.
+
+3. Study area and data
+
+(Krishna) Justify Srinagar as a critical case and establish total data transparency. 1,100 words.
+
+3.1 The SMR as a critical case
+
+3.2 Urban structure, population and opportunity distribution
+
+3.3 Existing supply and institutional structure
+
+3.4 Data inventory
+
+3.5 Data quality diagnostics
+
+3.6 Ethics, reproducibility and data availability. Hints • 3.1 is case-selection logic, not local colour, and
+needs only 150 words: Srinagar maximises both terms, data scarcity (no fare-card system, no GTFS, no OD
+survey, permit-based operation, disrupted field collection) and planning need (fragmented permits, transit
+deserts, water and terrain barriers, extreme seasonality, a partially deployed e-bus system). A method that
+works here works in easier cities. •
+
+Table 2 carries the full data inventory: source, resolution, processing, validation, limitations, for each of
+the permit register, OSM network, routing-engine travel times, WorldPop, Census, POIs, e-bus routes and
+ridership, Master Plan land use, terrain, water bodies, tourist arrivals, fleet register and cost norms. • 3.5
+is what separates a paper from a consultancy report. Report: OSM road-length density against the official
+inventory (by zone, so peripheral bias shows); POI recall against independent enumeration in three wards;
+WorldPop deviation against Census town totals; permit register hygiene, how many permits are dormant;
+travel-time RMSE and MAPE against field runs.
+
+Figure
+
+3. Four-panel study area, boundary and administrative units, population density, road hierarchy, opportunity
+density. Watch out. “342 permits” is not “342 operating routes”. If a meaningful share are dormant, your
+headline 39% reduction is partly an artefact of cleaning a register. Report activity status and recompute on
+active permits. Two datasets worth collecting both are on the critical path and both transform the paper. (i)
+Field survey of 25–30 stratified routes: headway observation, two-hour peak boarding counts, two run-time runs
+each. (ii) Expert elicitation with 12–20 people from the RTA, SSCL, SRTC, operator associations and academia,
+via AHP or two-round Delphi.
+
+4. Methodology
+
+(Prashant) The core contribution. Must be reproducible from the text alone. 2,300 words.
+
+4.1 Framework overview
+
+4.2 Data conditioning and network construction
+
+4.3 Route catchment delineation
+
+4.4 Weighted opportunity accessibility
+
+4.5 The composite demand index
+
+4.6 Permit consolidation
+
+4.7 Hierarchy and service standards
+
+4.8 Cycle time and fleet sizing
+
+4.9 Quality assurance gates 4.10 Sensitivity and uncertainty design. Equations to present. (1) network-based
+catchment · (2) catchment population with distance decay · (3) double-counting allocation across overlapping
+routes · (4) weighted opportunity score · (5) tourism seasonality adjustment · (6) normalisation · (7)
+composite index · (8) plausibility ridership estimate, for benchmarking only · (9) pairwise route overlap ·
+(10) natural-breaks objective · (11) cycle time · (12) fleet per route · (13) total fleet · (14) vehicle-size
+allocation rule. Plus Algorithm 1 for permit consolidation. Hints • 4.3 replace Euclidean buffers with
+network-based catchments. Non-negotiable. Straight-line 400 m buffers across Dal, Nigeen, Anchar and the
+Jhelum systematically overstate coverage, and a reviewer will find this in the first read. Report the
+magnitude of the bias— it is a finding in its own right. • 4.3 state the double-counting rule. Where several
+routes serve a cell, population must be allocated between them. Unallocated double counting inflates every
+score and biases the ranking towards core corridors— exactly the routes you argue are already over-served. •
+4.4 do not assert the opportunity weights. Derive them three ways: AHP with the expert panel, entropy
+weighting from the data, and equal weights as a base case. Report all three and show tier assignment is stable
+across them. This turns your weakest assumption into a demonstrated result. • 4.5 check whether the composite
+is doing any work. Report the correlation between the population and opportunity components. If ρ exceeds
+about 0.85 the composite adds little; say so honestly and consider PCA as an alternative weighting. • 4.5
+quarantine Equation (8). The ridership plausibility formula is the most attackable object in the paper. Label
+it explicitly as an order-of-magnitude estimate used solely for benchmarking. Never call it a forecast. • 4.6
+sweep the overlap threshold. “207 routes” must be shown as a defensible point on a curve, not an arbitrary
+output. Report route count, coverage loss and transfer share across θ from 0.5 to 0.9. • 4.7 justify three
+tiers, do not assert them. Report Goodness of Variance Fit for 2 to 7 classes and take three from the elbow.
+Compare against quantile and k-means classification, and report agreement with Cohen’s κ. Add peak, off-peak
+and evening headway bands— a single all-day headway is not a service plan. • 4.8 close the loop. Compare
+offered capacity against proxy peak-hour demand and report the implied load-factor distribution. Without this,
+headway and demand proxy are never reconciled, and that is the method’s one genuine logical gap. Also add
+deadhead time from depots; it is 5–12% of bus-hours and an operator will notice its absence. • 4.10 this is
+what converts arbitrary parameters into a result. One-at-a-time sweeps for all ten parameters, then Monte
+Carlo with 5,000 draws reporting the probability that each route retains its assigned tier, then Sobol’
+decomposition ranking parameters by contribution to output variance.
+
+Figure
+
+4. Methodological framework and research workflow, as a vector flowchart.
+
+Table
+
+3. All model parameters with symbol, value, tested range and source; plus all ten quality-assurance gates with
+rule, threshold, failure count and remedy. Results and analysis
+
+(Prashant and Misti) Purpose. Show the pipeline produces a materially better network— including its costs.
+2,400 words. Subsections.
+
+5.1 Existing network characteristics ·
+
+5.2 Route overlap and redundancy ·
+
+5.3 Baseline coverage and accessibility ·
+
+5.4 Demand-proxy estimation and index behaviour ·
+
+5.5 The rationalised network ·
+
+5.6 Service hierarchy and headway standards ·
+
+5.7 Fleet requirement and vehicle allocation ·
+
+5.8 Network structure before and after ·
+
+5.9 Accessibility change · 5.10 Spatial equity · 5.11 Travel time, directness and transfers · 5.12 Operational
+efficiency, cost and emissions · 5.13 Scenario analysis. Ordering. Diagnosis (5.1–5.3) → design (5.4–5.7) →
+evaluation (5.8–5.12) → stress test (5.13). Do not interleave. Close each subsection with one italicised
+sentence of policy implication. Hints • 5.1— lead with the route-km to network-km ratio. It is the single
+statistic that captures permit-network pathology, and no one else reports it. • 5.3— run Moran’s I on the
+uncovered-population surface. Cheap, and it establishes that coverage gaps are systematic rather than random.
+• 5.5— report unique network-km change alongside route count reduction. If route count falls 39% while network
+extent is unchanged, that is the proof consolidation removed duplication and not service. It is your most
+communicable number. • 5.6— report frequent-network coverage: share of residents within 400 m of a service at
+15, 20 and 35 minutes. The most persuasive service statistic available to you. • 5.7— do not benchmark the
+fleet with a bar chart. Regress buses per 1,000 on population and density across the peer cities and place
+Srinagar against a fitted expectation with a prediction interval. Also report the fleet as 1,009 with a 90%
+confidence interval— a point estimate with no interval is not credible. • 5.9— report the losers.
+Consolidation reduces accessibility somewhere. Give the count and the location. A paper reporting only
+improvement will be distrusted, and the honesty costs you nothing. • 5.11— account for transfers. Merging 135
+permits forces interchanges. Report the change in the share of OD pairs needing 0, 1 and 2+ transfers, and the
+break-even transfer penalty at which consolidation stops being beneficial. Present net benefit as wait-time
+saving minus transfer penalty. • 5.12— compress ruthlessly. Efficiency, cost and emissions in one subsection;
+detail to Supplementary. Report cost per unit accessibility gained— it is comparable across cities and
+reviewers like it. Present mode-shift emissions as a scenario range with the assumed elasticity stated, never
+as a single number. • 5.13— five scenarios: do-nothing, efficiency-first, equity-first, balanced (the
+proposal), peak-tourist-season. Figures 5–8. F5 network diagnosis (length distribution, overlap heatmap, link
+duplication) · F6 index behaviour (distribution with class breaks, component scatter, weight sensitivity,
+threshold sensitivity) · F7 rationalisation outcome (Sankey 342→207, headway before and after, cycle-time
+composition) · F8 robustness and choice (scenario trade-off frontier, Monte Carlo tier stability). Tables 4–
+
+6. Existing network profile · route scores, top and bottom 20 · consolidation outcome with service standards
+and fleet. Watch out. The accessibility difference map is the single most important results map in the paper.
+Use a diverging ramp centred on zero so losses are as visible as gains. 6 Validation
+
+(Avny + Krishnan+Prashant) Purpose. Pre-empt the objection that decides the paper’s fate. 900 words.
+Subsections. 6.1 A validation architecture for the no-demand case ·
+
+6.2 The six channels ·
+
+6.3 Convergent validity: what can and cannot be claimed. The six channels. V1 Spatial— cross-validate the
+index against independent activity surfaces not used to build it (night-time lights, building-footprint
+density, land value); target Spearman ρ > 0.6. V2 Benchmark— e-bus aggregate ridership, peer-city fleet
+regression, national service benchmarks; target within ±15%. V3 Expert— AHP for weights plus a blind priority
+ranking of 40 routes against the index; target Kendall’s W > 0.6 and consistency ratio < 0.10. V4 Field— 25–30
+routes observed; target travel-time MAPE < 20% and boarding-count rank correlation > 0.5. V5 Parametric— the
+sweeps from 4.10; target tier stability above 80%. V6 Structural— Monte Carlo and Sobol’; target fleet 90% CI
+within ±15%. Hints • Put the convergent-validity argument at the start of §6, not the end: no single channel
+validates a demand-proxy plan; five independent lines of evidence pointing the same way do. The claim is not
+that the index predicts ridership. The claim is that the ordinal decisions it drives are robust to the proxy’s
+uncertainty. • Disclose the circularity yourself. The e-bus ridership figure is used in the plausibility
+calculation and offered as a benchmark. It cannot validate the same quantity it calibrates. Either hold those
+corridors out of calibration, or say plainly that V2 is a consistency check and rest the validation on V1, V3
+and V4. Saying it first costs a sentence; having a reviewer say it costs the paper. • Never write “validated
+against ridership”. Write “decision-robust”.
+
+Figure 8b /
+
+Table
+
+7. Tier-stability output; six-channel results table with channel, test, statistic, threshold, result and
+verdict. Watch out. This is the section to over-invest in. Two weeks of enumerator time on V4 changes the
+paper’s category from unvalidated model to validated method— the highest return on effort available anywhere
+in the project. Validation The proposed route-rationalisation, based on the methodology adopted, was
+cross-checked with information obtained from the Eastern and Western bus associations and six other local bus
+associations. The information provided by the bus associations covered existing areas of operation, routes and
+the number of buses/permits associated with them. During this process, some missing or incorrectly represented
+routes were identified. These were dealt with through a combination of corrections, further examination and
+discussions with the concerned stakeholders. The proposed route-rationalisation information was also compared
+with actual conditions on the ground through random field observations. These observations provided both
+qualitative and quantitative inputs relating to bus frequency, passenger waiting time, headway and route
+duplication. They also helped in examining whether buses were operating in the reported areas, whether
+overlapping services were visible on particular corridors, and whether areas identified as having inadequate
+connectivity reflected the situation observed on the ground. In addition, the study has benefited from the
+operational experience of relevant stakeholders, including officials and practitioners associated with the
+Transport Department, RTA, ARTOs/MVIs, Traffic Police and Smart City operations. These inputs provide an
+important practical perspective on the functioning of the existing network and the feasibility of proposed
+changes. Field Validation of Route Rationalisation As stated above, the proposed route-rationalisation
+exercise was compared with actual operating conditions through random field observations on selected public
+transport corridors within the Srinagar Municipal Area. The purpose of these observations was to assess
+whether the broad patterns emerging from the route analysis, particularly in relation to service frequency,
+passenger waiting time, route overlap and inadequate connectivity, were also visible on the ground. Ten
+observation sessions were undertaken between 1 and 12 August during the morning period, covering corridors
+representing different parts and characteristics of the public transport network. Table X: Field Observations
+on Selected Public Transport Corridors Dat e Corridor Observatio n Period Buses Observe d Observed Frequency
+(buses/hou r) Approx. Waiting Time Route Group Observe d Overlap 1 Aug TRC–Hazr atbal 9:30–10:00 5 10 10 min
+Eastern Heavy 3 Aug Soura–LD /Soura–Jeha ngir Chowk 9:00–10:00 5 5 5 min Western Heavy 3 Aug Saidakadal
+–Bypass 9:00–10:00 4 4 15 min Eastern Moderat e 5 Aug Lalbazar–L D 9:00–10:00 10 05 15 min Western Moderat e 5
+Aug Malbagh–L D 9:00–10:00 4 4 15 min Western Moderat e 7 Aug Parimpora– Pantha Chowk 9:00–10:00 5 5 20 min
+Eastern –Wester n Moderat e 7 Aug Batamaloo –Pantha Chowk 9:00–10:00 2 2 60 min Eastern –Wester n Severe 7 Aug
+Lal Chowk–Ra ngreth 9:00–10:00 1 1 Not determinable * Eastern –Wester n Partial up to Baghat 11 Aug Qamarwari
+–Pantha Chowk 9:00–10:00 7 7 7 min Eastern –Wester n Partial 12 Aug Narbal–Lal Chowk 9:30–10:30 6 6 10 min
+Western Severe *Waiting time could not be reliably estimated on the Lal Chowk–Rangreth corridor as only one
+bus serving the destination was observed during the one-hour observation period. The observations broadly
+support the patterns identified through the route-rationalisation analysis. Considerable variation was found
+in the level of service across the selected corridors. Observed frequency ranged from approximately one bus
+per hour on the Lal Chowk–Rangreth corridor to ten buses per hour on the TRC–Hazratbal. Waiting times also
+varied considerably. While relatively short waiting periods were observed on corridors such as
+Soura–LD/Soura–Jehangir Chowk and Qamarwari–Pantha Chowk, substantially longer waiting periods were recorded
+on Parimpora–Pantha Chowk and particularly Batamaloo–Pantha Chowk. An important finding from the field
+observations was that route overlap did not necessarily correspond to better destination-level connectivity.
+Several corridors showed moderate to severe overlap, but the actual frequency of buses serving the required
+destination varied considerably. Batamaloo–Pantha Chowk, for example, was characterised by severe overlap of
+Eastern and Western services, yet only two buses serving the corridor were observed during the one-hour
+observation period. Similarly, the Lal Chowk–Rangreth observation illustrates the distinction between
+corridor-level bus availability and destination-specific connectivity. A number of services originating from
+Lal Chowk share the common corridor up to Baghat; however, only one bus proceeding towards Rangreth was
+observed during the stipulated one-hour period. Thus, a common section of a corridor may appear to be
+adequately served when the total number of passing buses is considered, while passengers travelling beyond the
+common section may continue to experience inadequate connectivity. The observations also identified corridors
+where service conditions were comparatively better. On Qamarwari–Pantha Chowk, seven buses were observed
+during one hour with an approximate waiting time of seven minutes, while the TRC–Hazratbal corridor recorded
+five buses during a 30-minute observation period. The inclusion of such corridors is important because it
+indicates that the field observations were not confined to routes exhibiting service deficiencies but covered
+different operating conditions within the network. Overall, the field observations provide supporting evidence
+for the route-rationalisation exercise. They indicate that the principal issue is not merely the number of
+routes or permits operating within the Srinagar Municipal Area, but their distribution, overlap, frequency and
+ability to provide effective connectivity to different destinations. The findings therefore reinforce the need
+to move from an approach based primarily on individual routes and areas of operation towards network-level
+planning, in which route allocation, frequency, interchange, duplication and underserved corridors are
+considered together. The field observations should, however, be interpreted as a validation exercise rather
+than a comprehensive operational survey. They were undertaken on selected corridors and during specified
+morning periods and therefore do not capture variations across the entire day, different days of the week or
+seasonal changes in passenger demand and service availability. Nevertheless, the consistency of several
+observed patterns with those emerging from the route analysis provides useful ground-level support for the
+proposed rationalisation framework. The validation should, however, be understood in the context of the data
+available for Srinagar. It is not a substitute for a comprehensive passenger-demand survey. Rather, the
+different sources of information are used together to check whether the proposed route structure is broadly
+consistent with existing operations and observed conditions. This is particularly relevant in a setting where
+comprehensive passenger Origin-Destination data, continuous GPS records and automated fare collection data are
+not readily available for the conventional bus network. Section 7— Discussion and policy implications
+
+(Ankit +Avny+Misti) Purpose. Generalise, then convert results into instruments. Transport Policy weights this
+more heavily than any section except the abstract. 1,200 words. Write it last. Subsections.
+
+7.1 What the results mean for planning under data scarcity ·
+
+7.2 Instruments for the State Transport Authority ·
+
+7.3 Urban local bodies, land use and metropolitan governance ·
+
+7.4 Smart City and electric-bus integration · 7.5 A low-data planning framework and the data-maturity ladder ·
+
+7.6 Transferability: which cities, under what conditions ·
+
+7.7 Implementation sequencing under budget constraint ·
+
+7.8 Limitations. Hints • 7.1, four points, one paragraph each. The demand dependency is severable. Proxy error
+is tolerable because the decision is ordinal. Open data is now sufficient for service planning, not merely
+assessment. Data scarcity is a design constraint, not an excuse— the counterfactual is not a better plan, it
+is no plan. • 7.2 must name instruments, not aspirations. Permits converted to route-bundle contracts; the
+35-minute headway ceiling written into permit conditions; the hierarchy published as a statutory service
+standard; gross-cost contracting; operator absorption and indicative compensation. Add the political
+feasibility of merging 135 permits— 135 contested livelihoods— and cite the international evidence on
+resistance to network redesign. Its absence is a predictable objection here. • 7.3— say plainly that the SMR
+crosses municipal boundaries and no agency holds the mandate. Propose a unified metropolitan transport
+authority function. • 7.5— build the data-maturity ladder. Level 0 open data only, which is the whole
+framework as presented; Level 1 adds ward census and a road-width register; Level 2 adds operator GPS traces;
+Level 3 adds fare-card ridership. Then rank the missing datasets by the variance reduction each would deliver,
+taken straight from the Sobol’ indices. This converts the source deck’s data request into a research
+contribution and is one of the paper’s most distinctive elements. • 7.6— put a number on transferability.
+Roughly 400 Indian Class-I cities plus a wide set of Global South networks. A number here materially raises
+the perceived contribution. • 7.7— answer the question the RTA will actually ask. Which routes to implement
+first if only 30% of the fleet is funded, ranked by accessibility gain per bus. Small analysis, large payoff.
+• 7.8— seven limitations, stated plainly. Proxy not observed demand, validated for ordinal decisions only ·
+modelled 2011-anchored population · routing-engine travel times · seasonal operability and bridge and width
+constraints not yet hard constraints · tourist demand from destinations, not arrivals · behavioural response
+out of scope · political feasibility of merging permits not modelled. • On the sixth limitation, add the point
+that helps you: if the periphery is currently under-served, observed travel patterns understate potential,
+which strengthens rather than weakens a supply-side approach.
+
+Table
+
+8. Policy instruments— instrument, responsible agency, time frame, indicator, data required— with the
+transferability conditions beneath. Watch out. Softening the limitations invites reviewers to sharpen them for
+you. State them flatly and move on. Policy Contribution The main contribution of this study is to look at how
+Srinagar can move from individual, area-based permit decisions towards planning the bus network as a whole. At
+present, detailed passenger-demand information is not readily available for conventional bus services. The
+study therefore explores whether available information on population, important activity locations, the road
+network and existing bus operations can be used to make better decisions about routes and fleet requirements.
+The purpose is not to suggest that open or proxy data can replace actual passenger data. Rather, it can
+provide a useful starting point where detailed data are not available. Such an approach can help identify
+areas where services overlap, areas that have limited connectivity and corridors where additional or
+better-distributed services may be required. The approach is also relevant because public transport within the
+Srinagar Municipal Area is not confined to one permitting authority. Along with city services permitted by the
+RTA, buses originating from other districts may enter the Municipal Area under permits issued by the STA. A
+network-level assessment can therefore look at the transport services available to passengers across the
+Municipal Area, without necessarily requiring any change in the existing statutory powers of the RTA or STA.
+Another practical contribution is that route rationalisation can be linked to actual service requirements.
+Instead of looking only at the number of routes, the study can help in considering the number of buses
+required, the frequency at which they should operate and the maximum time passengers should reasonably have to
+wait. This can provide a more useful basis for future decisions relating to route permits, service planning
+and, where appropriate, arrangements with bus operators. The approach should also not be seen as a one-time
+exercise. As better information becomes available—such as passenger counts, boarding and alighting data, GPS
+records, ticketing information and Origin-Destination patterns—the proposed network can be reviewed and
+improved. In this way, the present exercise can serve as a starting point for a more evidence-based public
+transport planning system. Finally, the study can help the Transport Department identify what information
+needs to be collected in the future and where it would be most useful. Instead of waiting for perfect data
+before undertaking any route planning, the authority can begin with the information that is available,
+identify its limitations and progressively improve the system as better data are collected. The broader policy
+contribution, therefore, is to provide a practical and adaptable way of moving from permit-by-permit
+decision-making towards integrated bus-network planning, while recognising the realities and limitations of
+the data currently available in Srinagar. Section 8— Conclusions
+
+(Ankit+Prashant+Sharvesh) Purpose. Close. 400 words. No new material, no new citations, no figures. Six short
+paragraphs. (1) Problem and approach restated, two sentences. (2) Key findings— five, each carrying a number.
+(3) Methodological contribution, three sentences. (4) Policy contribution, three sentences. (5) Future
+research, four directions. (6) Closing statement on transferability, two sentences. Future research— make each
+fundable, not decorative. Longitudinal validation after implementation, as a natural experiment on the 45
+e-bus corridors · integration of fare-card data as it arrives, quantifying proxy error against realised
+ridership (this is the paper that follows) · robust optimisation of route, frequency and vehicle size under
+proxy demand with explicit uncertainty · transfer of the protocol to three to five further Tier-II cities to
+test external validity. The sentence to design against “The authors propose a plausible and useful workflow,
+but the paper does not establish that their composite index bears any relationship to travel demand, and
+therefore does not establish that the resulting network is better than the one it replaces.” Every optional
+analysis in this note exists to make that sentence unwriteable. In order of return on effort: field validation
+on 25–30 routes; a synthetic-OD benchmark against a conventional network design solution; Monte Carlo with
+Sobol’ and a tier-stability map; capacity and load-factor reconciliation; transfer accounting with a
+break-even penalty; comparison against an alternative open-data proxy such as night-time lights or building
+footprints.
