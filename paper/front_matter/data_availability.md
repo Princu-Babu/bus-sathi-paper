@@ -4,7 +4,8 @@
 > brackets: the basis for using the CHALO aggregates, the consent basis for the driver GPS, and the GPS
 > collection window. Note a conflict to resolve first: `DATA_AVAILABILITY.md` (repo root) says the GPS was
 > collected in **June–July 2026**, while the ledger (CL-18) and the a13 driver-day file say
-> **February–June 2026**.
+> **February–June 2026**. *Resolved 2026-10-01: February–June 2026 is correct (the trace repository's
+> own README and the driver-day file agree); `DATA_AVAILABILITY.md` has been corrected.*
 
 The code, derived tables and figures that reproduce every number in this paper are openly available at
 https://github.com/Princu-Babu/bus-sathi-paper (GPL-3.0), with a claim ledger mapping each reported value

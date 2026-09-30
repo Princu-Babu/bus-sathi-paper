@@ -33,17 +33,18 @@ run time → cycle time → fleet — and nothing about demand.
 
 ## 6.2 The six channels and their status
 
-**V1 — Spatial cross-validation** (executed, module `v01`). The population surface is checked against
-an independently mapped record of settlement, OpenStreetMap building footprints [@osm2024planet] (12,343 closed building
-ways inside the division), with the pre-declared threshold Spearman $\rho > 0.60$. Two limits are stated
-first: WorldPop uses building footprints as a covariate [@stevens2015disaggregating; @lloyd2017high], so some agreement is expected by construction,
-and building coverage in the OSM extract used here is thin (it may also be partially filtered;
-data/MANIFEST.md). At the scale the plan uses — the 186 route
-catchments — footprint area tracks catchment population at **$\rho = 0.657$ (pass)**, building count at
-0.544 (fail) `[CL-53]`. On a 1 km grid the correlation falls to **0.316 (fail)**, and the completeness
-table explains why: outside Srinagar only 4–17 % of populated cells contain any mapped building
-(Srinagar 31 %) `[CL-53]`. V1 therefore supports the population surface where the buildings are mapped
-and is uninformative where they are not; it is reported as a partial pass, not rounded up.
+**V1 — Spatial cross-validation** (executed, module `v01`). Does the population surface put people
+where buildings are? Two footprint layers are tested against the pre-declared threshold Spearman
+$\rho > 0.60$: volunteered OpenStreetMap buildings [@osm2024planet] and Microsoft's machine-detected
+Global ML Building Footprints. One limit is stated first: WorldPop uses building footprints as a
+covariate [@stevens2015disaggregating; @lloyd2017high], so agreement is partly expected by construction,
+and V1 is a consistency check on the spatial pattern, not an independent count. On the near-complete
+Microsoft layer (1.85 million footprints; 99.8 % of residents live in a 1 km cell that contains one), the
+surface passes at every scale: **$\rho = 0.975$** for footprint area across the 186 route catchments
+(0.940 for building count), and **0.907–0.950** on the 1 km grid `[CL-53]`. OSM, by contrast, maps only
+12,343 buildings — any footprint in just 4–31 % of populated cells, depending on district — and
+passes only at the route scale (0.657) `[CL-53]`. The OSM weakness is therefore a mapping gap, not a
+population error.
 
 **V2 — Benchmark consistency** (executed, module `v02`; circular, as disclosed in §6.1, and further
 because the engine floors the backbone fleet at CHALO's deployment on 2 of 30 routes). CHALO runs 98 buses on the 30 backbone routes at about 855 bus-trips a

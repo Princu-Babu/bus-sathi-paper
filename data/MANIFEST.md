@@ -53,7 +53,8 @@ The repository freezes exactly 20 raw input files (19 staged via `data/MANIFEST.
 | File | Size (Bytes) | SHA-256 | Used by | Note |
 |---|---|---|---|---|
 | `E:/kash/india-latest.osm.pbf` | 217,375,703 | `681021c55963ed736fd95dcb89c55ca34f0dbcb5431085eeb621dbc3bf9a908a` | `a01` (walk graph), `v01` (buildings) | OSM India extract (ODbL). It contains 847,866 building ways nationally — far fewer than the full national OSM building layer — so it appears to be a partially filtered extract; V1's completeness table must be read with that in mind. |
-| `data/cache/osm_buildings_kashmir.csv` (derived, gitignored) | 705,483 | `e906e2f0f8ede2f20393cd957a389cfe707011cef4c7c7ba286c2666ac1194a4` | `v01` | 13,603 closed building ways in the study bounding box (12,343 inside the 10-district union), extracted by `v01_spatial_crossval.py`. |
+| `data/cache/ms_buildings_kashmir.csv.gz` (derived, Git LFS) | 60,822,046 | `b53372c26e23ed75f006350491ef98c0419b9f3fcc463dcab8763feb61f802fc` | `v01` | Microsoft Global ML Building Footprints (ODbL; dataset-links release 2026-02), 13 zoom-9 quadkey tiles listed in `data/external/ms_buildings/kashmir_tiles.csv` (232 MB gzipped, each gzip-verified). Reduced to centroid + area for the 2,443,059 footprints in the padded study bbox; 1,852,714 fall inside the 10-district union. |
+| `data/cache/osm_buildings_kashmir.csv` (derived) | 705,483 | `e906e2f0f8ede2f20393cd957a389cfe707011cef4c7c7ba286c2666ac1194a4` | `v01` | 13,603 closed building ways in the study bounding box (12,343 inside the 10-district union), extracted by `v01_spatial_crossval.py`. |
 
 ---
 

@@ -30,7 +30,7 @@ full uncertainty analysis. **Target journal: *Transport Policy*.** Slogan: *plan
 | Funding | 30 % of the fleet reaches 92 % of the plan's coverage | CL-61 |
 | Equity | Gini 0.903; 13,087 residents lose bus access through consolidation | CL-44, CL-45 |
 | Load | ~8 boardings/trip on day one vs 19–37 today on the e-bus backbone | CL-50 |
-| Validation | V1 partial pass · **V2 fails (circular)** · V3 not run · V4 · V5 · V6 executed | Table 7 |
+| Validation | V1 passes (Microsoft footprints; partly circular) · **V2 fails (circular)** · V3 not run · V4 · V5 · V6 executed | Table 7 |
 
 ## 3. Repositories
 
@@ -88,8 +88,8 @@ draft PDF is `paper/Kashmir_Manuscript_Working_Draft.pdf`.
 ## 7. What is open (all human)
 
 - **Blockers:** D1 (§1.6 roadmap), D2 (is the August field table real?), D3 (Srinagar vs Division scope in
-  co-author text), D4 (GPS consent/ethics), D5 (literature protocol), D13 (authors, CRediT), D23 (GPS date
-  window conflict: Feb–Jun vs Jun–Jul).
+  co-author text), D4 (GPS consent/ethics), D5 (literature protocol), D13 (authors, CRediT).
+  (D23, the GPS date window, is resolved: February–June 2026.)
 - **Analytical sign-offs:** D20 (four corrections to the method as published), D21 (per-lakh benchmark),
   D22 (V2 reported as fail), D24 (load framing), D25/D8 (cost constants).
 - **Co-author work:** word cuts (`WORD_BUDGET_PLAN.md`), citations (`COAUTHOR_CITATION_MAP.md`), Pucher year

@@ -60,7 +60,7 @@ This document details the provenance, licensing, redistribution status, and acce
 
 ### 2.5 Bus Sathi Driver GPS Telemetry (`gps/`)
 - **Custodian:** Bus Sathi mobile dispatch platform (`E:\bus-sathi-trace`).
-- **Dataset:** Passive smartphone GPS telemetry collected from operating bus drivers along 18 key transit corridors in Kashmir Valley during June–July 2026.
+- **Dataset:** Passive smartphone GPS telemetry collected from operating bus drivers along 18 key transit corridors in Kashmir Valley during February–June 2026 (~157 drivers, 1,213 sessions; see the trace repository README).
 - **Datasets Staged in `data/raw/gps/`:**
   - `reality_check.csv`: Planned vs. measured one-way operating runtimes across matched corridors.
   - `corridor_profiles.csv`: Empirical moving speeds, effective speeds, and dwell time proportions.

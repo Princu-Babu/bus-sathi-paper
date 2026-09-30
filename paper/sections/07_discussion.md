@@ -176,9 +176,10 @@ Stated flatly, because softening them invites reviewers to sharpen them.
    *observed* travel patterns understate its potential, so a supply-side method that plans to population
    rather than to revealed trips is less biased against the periphery than a demand-driven one would be.
 7. **The political feasibility of consolidating permits is not modelled** (see FLAG 7-A).
-8. **Two external validation channels are weak.** The operator benchmark fails its band and is not
-   independent (V2), and the building-footprint check is limited by OSM completeness (V1). Rural run time
-   is unobserved, so the rural fleet in every scenario is as modelled.
+8. **The external checks are not independent.** The operator benchmark fails its band and is circular
+   (V2); the building-footprint check passes strongly on Microsoft's footprints but is partly circular,
+   because WorldPop uses footprints as a covariate (V1). Rural run time is unobserved, so the rural fleet
+   in every scenario is as modelled.
 
 ---
 

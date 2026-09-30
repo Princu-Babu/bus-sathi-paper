@@ -58,7 +58,7 @@ rest change its quality, not its viability.
 | D20 | Confirm four corrections to the method as published (Part G) | High | Prashant | §4 |
 | D21 | Per-lakh benchmark: 63.5 on network-served, above MoHUA band | Medium | Prashant | §4.8, §5.4, RTO deck |
 | D22 | V2 fails the ±15% band — report as fail | High | Prashant + Avny | §6 |
-| D23 | GPS collection window conflict (Feb–Jun vs Jun–Jul) | Blocker (with D4) | Prashant | Ethics, data availability |
+| D23 | GPS collection window conflict — **resolved: Feb–Jun 2026** | — | — | — |
 | D24 | Day-one load ~8 boardings/trip — "supply-led bet" framing | Medium | Prashant + Ankit | §5.11, §7 |
 | D25 | a14 cost/emission constants (was D8) | Medium | Prashant | §5.12 |
 
@@ -1002,6 +1002,9 @@ service-day assumption; route-level rank agreement is weak (ρ = 0.22). §6.2 re
 ### D23 · GPS collection window conflict (feeds D4)
 `DATA_AVAILABILITY.md` says June–July 2026; the ledger (CL-18) and the driver-day file say
 February–June 2026. The ethics statement must use the true window.
+**Resolved 2026-10-01:** February–June 2026 is correct — the trace repository's README (~157 drivers,
+1,213 sessions, Feb–Jun 2026) and the driver-day file agree. `DATA_AVAILABILITY.md` corrected. D4 (consent
+basis) remains open.
 
 ### D24 · Load and ridership framing
 On day one the planned backbone carries ~8 boardings per trip against 19–37 today; ridership must grow
@@ -1026,3 +1029,13 @@ If the RTO needs one number, 1,182 is the median at observed pace.
 vehicle-availability records first (spare ratio 55 % of fleet variance), then peri-urban GPS (32 %), then
 demand-side weights for the tiers (93 % of tier variance). Coverage is a walk-radius definition (97 %),
 which no dataset resolves.
+
+## D9 — done (2026-10-01)
+
+With Prashant's go-ahead, Microsoft Global ML Building Footprints (ODbL, 2026-02 release) were
+downloaded for the 13 quadkey tiles covering the ten districts (232 MB, integrity-checked) and V1 re-run.
+1,852,714 footprints fall inside the division (vs 12,343 in OSM); 99.8 % of residents live in a 1 km cell
+containing one. **V1 now passes at every scale** (route ρ 0.975; grid ρ 0.907–0.950), with the partial
+circularity disclosed. §6.2, §7.8, the ledger (CL-53) and Table 7 are updated. The clipped footprint file
+(`data/cache/ms_buildings_kashmir.csv.gz`, 61 MB) is in Git LFS; the raw tiles are re-downloadable from
+`data/external/ms_buildings/kashmir_tiles.csv`.

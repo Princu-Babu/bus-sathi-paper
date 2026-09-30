@@ -3,3 +3,7 @@ osm,Route catchment (n = 186),footprint area,0.657,2.4e-24,True
 osm,Route catchment (n = 186),building count,0.544,9.6e-16,False
 osm,"1 km grid, all cells (n = 13,645)",footprint area,0.316,0.0e+00,False
 osm,"1 km grid, populated cells (n = 9,255)",footprint area,0.312,4.0e-208,False
+microsoft,Route catchment (n = 186),footprint area,0.975,1.9e-122,True
+microsoft,Route catchment (n = 186),building count,0.94,9.7e-88,True
+microsoft,"1 km grid, all cells (n = 13,645)",footprint area,0.907,0.0e+00,True
+microsoft,"1 km grid, populated cells (n = 9,255)",footprint area,0.95,0.0e+00,True

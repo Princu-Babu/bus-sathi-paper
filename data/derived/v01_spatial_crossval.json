@@ -73,6 +73,76 @@
       "share_cells_with_buildings": 0.089,
       "share_pop_in_mapped_cells": 0.163,
       "source": "osm"
+    },
+    {
+      "district": "Anantnag",
+      "populated_cells": 1505,
+      "share_cells_with_buildings": 0.876,
+      "share_pop_in_mapped_cells": 0.998,
+      "source": "microsoft"
+    },
+    {
+      "district": "Pulwama",
+      "populated_cells": 728,
+      "share_cells_with_buildings": 0.941,
+      "share_pop_in_mapped_cells": 0.999,
+      "source": "microsoft"
+    },
+    {
+      "district": "Budgam",
+      "populated_cells": 878,
+      "share_cells_with_buildings": 0.92,
+      "share_pop_in_mapped_cells": 0.996,
+      "source": "microsoft"
+    },
+    {
+      "district": "Baramulla",
+      "populated_cells": 1655,
+      "share_cells_with_buildings": 0.863,
+      "share_pop_in_mapped_cells": 0.998,
+      "source": "microsoft"
+    },
+    {
+      "district": "Kupwara",
+      "populated_cells": 1697,
+      "share_cells_with_buildings": 0.871,
+      "share_pop_in_mapped_cells": 0.998,
+      "source": "microsoft"
+    },
+    {
+      "district": "Bandipore",
+      "populated_cells": 1005,
+      "share_cells_with_buildings": 0.804,
+      "share_pop_in_mapped_cells": 0.996,
+      "source": "microsoft"
+    },
+    {
+      "district": "Srinagar",
+      "populated_cells": 421,
+      "share_cells_with_buildings": 0.9,
+      "share_pop_in_mapped_cells": 1.0,
+      "source": "microsoft"
+    },
+    {
+      "district": "Ganderbal",
+      "populated_cells": 649,
+      "share_cells_with_buildings": 0.889,
+      "share_pop_in_mapped_cells": 0.998,
+      "source": "microsoft"
+    },
+    {
+      "district": "Kulgam",
+      "populated_cells": 707,
+      "share_cells_with_buildings": 0.965,
+      "share_pop_in_mapped_cells": 0.999,
+      "source": "microsoft"
+    },
+    {
+      "district": "Shopian",
+      "populated_cells": 461,
+      "share_cells_with_buildings": 0.97,
+      "share_pop_in_mapped_cells": 0.998,
+      "source": "microsoft"
     }
   ],
   "grid_scale": {
@@ -81,12 +151,12 @@
     "n_cells": 13645,
     "n_populated": 9255,
     "p_all": 0.0,
-    "p_populated": 3.964830547275574e-208,
-    "rho_all": 0.31643146016501805,
-    "rho_populated": 0.31203579427799233,
-    "share_population_in_cells_with_buildings": 0.3362999885079825
+    "p_populated": 0.0,
+    "rho_all": 0.9069545083780953,
+    "rho_populated": 0.9500410537322439,
+    "share_population_in_cells_with_buildings": 0.9980801773226602
   },
-  "primary_source": "osm",
+  "primary_source": "microsoft",
   "provenance": {
     "microsoft_release": "Global ML Building Footprints, dataset-links 2026-02 (ODbL)",
     "microsoft_tiles": [
@@ -95,7 +165,14 @@
       "India_123103023.csv.gz",
       "India_123103032.csv.gz",
       "India_123103033.csv.gz",
-      "India_123103201.csv.gz"
+      "India_123103201.csv.gz",
+      "India_123103203.csv.gz",
+      "India_123103210.csv.gz",
+      "India_123103211.csv.gz",
+      "India_123103212.csv.gz",
+      "India_123103213.csv.gz",
+      "Pakistan_123103022.csv.gz",
+      "Pakistan_123103023.csv.gz"
     ],
     "osm_pbf": "E:\\kash\\india-latest.osm.pbf",
     "osm_pbf_sha256": "681021c55963ed736fd95dcb89c55ca34f0dbcb5431085eeb621dbc3bf9a908a"
@@ -104,12 +181,36 @@
   "route_scale": {
     "n": 186,
     "n_routes_zero_buildings": 0,
-    "p_area": 2.430522724767292e-24,
-    "p_count": 9.609307837838207e-16,
-    "rho_area": 0.6568643312396657,
-    "rho_count": 0.5444088651496526
+    "p_area": 1.9160025384526335e-122,
+    "p_count": 9.730933047853495e-88,
+    "rho_area": 0.9751893805177705,
+    "rho_count": 0.9398061529582766
   },
   "sources": {
+    "microsoft": {
+      "footprint_area_km2": 182.4538274380466,
+      "grid_scale": {
+        "block_factor": 13,
+        "cell_m": 1000.0,
+        "n_cells": 13645,
+        "n_populated": 9255,
+        "p_all": 0.0,
+        "p_populated": 0.0,
+        "rho_all": 0.9069545083780953,
+        "rho_populated": 0.9500410537322439,
+        "share_population_in_cells_with_buildings": 0.9980801773226602
+      },
+      "n_footprints_in_union": 1852714,
+      "route_scale": {
+        "n": 186,
+        "n_routes_zero_buildings": 0,
+        "p_area": 1.9160025384526335e-122,
+        "p_count": 9.730933047853495e-88,
+        "rho_area": 0.9751893805177705,
+        "rho_count": 0.9398061529582766
+      },
+      "verdict_pass": true
+    },
     "osm": {
       "footprint_area_km2": 3.712952916555046,
       "grid_scale": {
@@ -135,5 +236,5 @@
       "verdict_pass": false
     }
   },
-  "verdict_pass": false
+  "verdict_pass": true
 }
