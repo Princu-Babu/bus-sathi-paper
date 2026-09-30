@@ -25,7 +25,7 @@ threshold, result, and status.
 
 Two disclosures come first, not last. The one ridership dataset available — CHALO electronic-ticketing
 aggregates on the e-bus backbone — is **not independent of the plan**: the same published aggregate
-anchors the capture scale $\kappa = 0.18$ in the quarantined plausibility term (Eq. 8) and is offered
+anchors the capture scale $\kappa = 0.33$ in the quarantined plausibility term (Eq. 8) and is offered
 as benchmark channel V2. V2 is therefore a **consistency check, not an independent validation**, and
 is reported as such. Second, the driver-GPS layer measures vehicle motion and geometry only; it
 carries **zero ridership signal**, so channel V4 validates the *supply* chain — geometry → speed →
@@ -33,13 +33,32 @@ run time → cycle time → fleet — and nothing about demand.
 
 ## 6.2 The six channels and their status
 
-**V1 — Spatial cross-validation** (planned, module `v01`). The population/opportunity surface is
-regressed against an independent OSM building-footprint density; the pre-declared success threshold is
-Spearman $\rho > 0.60$. Method fixed; result pending.
+**V1 — Spatial cross-validation** (executed, module `v01`). The population surface is checked against
+an independently mapped record of settlement, OpenStreetMap building footprints [@osm2024planet] (12,343 closed building
+ways inside the division), with the pre-declared threshold Spearman $
+ho > 0.60$. Two limits are stated
+first: WorldPop uses building footprints as a covariate [@stevens2015disaggregating; @lloyd2017high], so some agreement is expected by construction,
+and building coverage in the OSM extract used here is thin (it may also be partially filtered;
+data/MANIFEST.md). At the scale the plan uses — the 186 route
+catchments — footprint area tracks catchment population at **$
+ho = 0.657$ (pass)**, building count at
+0.544 (fail) `[CL-53]`. On a 1 km grid the correlation falls to **0.316 (fail)**, and the completeness
+table explains why: outside Srinagar only 4–17 % of populated cells contain any mapped building
+(Srinagar 31 %) `[CL-53]`. V1 therefore supports the population surface where the buildings are mapped
+and is uninformative where they are not; it is reported as a partial pass, not rounded up.
 
-**V2 — Benchmark consistency** (planned, module `v02`). Aggregate rationalised fleet and headway are
-compared to the CHALO-scaled equivalent, target ratio within ±15 %, with the circularity above
-disclosed in the reported result.
+**V2 — Benchmark consistency** (executed, module `v02`; circular, as disclosed in §6.1 — and more
+so than that paragraph alone implies, because the engine also floors the backbone fleet at CHALO's
+deployment on 2 of the 30 routes). CHALO runs 98 buses on the 30 backbone routes at about 855 bus-trips a
+day (12-month mean); scaled to the plan's 15-minute headway that is **179–220 buses**, depending on
+whether the operating day is taken as 13 or 16 hours. The plan's backbone fleet is 283, a ratio of
+**1.29–1.58: V2 fails the pre-registered ±15 % band under every service-day assumption** `[CL-54]`, and the
+rank correlation between CHALO's per-route deployment and the plan's per-route fleet is weak
+($
+ho = 0.22$, $p = 0.24$) `[CL-54]`. Even against the operator it was calibrated to, the plan provisions
+more buses per route than frequency scaling alone explains. V2 cannot say whether the excess lies in
+the plan's cycle times or in CHALO's buses covering longer cycles than its trip count implies; it
+records the disagreement and localises it to the backbone.
 
 **V3 — Expert elicitation** (module `v03`, forward work — §6.4). A structured Delphi/AHP panel would
 ground the index weights against practitioner judgement (target Kendall's $W > 0.70$). Pending its

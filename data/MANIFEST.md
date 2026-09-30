@@ -46,6 +46,14 @@ The repository freezes exactly 20 raw input files (19 staged via `data/MANIFEST.
 | 18 | `gps/geometry_divergence.csv` | 553 | `7bf5c49479a6e639d3356a3c136e0e38519e05d6a6c10b182f886b13fdcfc485` | `E:\bus-sathi-trace\data\geometry_divergence.csv` | Research Trace Output (Bus Sathi) | Research Use Only |
 | 19 | `gps/driver_days.csv` | 51,564 | `14b408639648b8ffc128322d6a05f44b1faf46a0b65ebf8d7e986df667e4b9a9` | `E:\bus-sathi-trace\data\driver_days.csv` | Research Trace Output (Bus Sathi) | Research Use Only |
 | 20 | `census2011_kashmir_districts.csv` | 951 | `d7c94f326e7cd9abd42e82b2c1d51814d76d708162b57aceda9ddf82b65bd559` | Office of the Registrar General & Census Commissioner, India (PCA J&K) | Open Government Data (OGD) India | Yes |
+| 21 | `peer_cities.csv` | 28,483 | `7a8494f74d6d7dbea78d5ccde32dfb379987200a932b635657769af90a761b61` | ASRTU *SRTU Fleet Handbook 2024* ('City' column) + Census 2011 Table A-04(I); consumed by `a16` | Public | Yes |
+
+**External inputs read in place (not copied into `data/raw/`):**
+
+| File | Size (Bytes) | SHA-256 | Used by | Note |
+|---|---|---|---|---|
+| `E:/kash/india-latest.osm.pbf` | 217,375,703 | `681021c55963ed736fd95dcb89c55ca34f0dbcb5431085eeb621dbc3bf9a908a` | `a01` (walk graph), `v01` (buildings) | OSM India extract (ODbL). It contains 847,866 building ways nationally — far fewer than the full national OSM building layer — so it appears to be a partially filtered extract; V1's completeness table must be read with that in mind. |
+| `data/cache/osm_buildings_kashmir.csv` (derived, gitignored) | 705,483 | `e906e2f0f8ede2f20393cd957a389cfe707011cef4c7c7ba286c2666ac1194a4` | `v01` | 13,603 closed building ways in the study bounding box (12,343 inside the 10-district union), extracted by `v01_spatial_crossval.py`. |
 
 ---
 

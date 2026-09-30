@@ -184,3 +184,18 @@ Not errors; decisions that a copy-editor or co-author might reasonably make diff
 Every other item on the brief's required list and its "also search" list either shipped
 verified, or is accounted for in sections B and C above. **No entry in `references.bib`
 is unverified, and no entry was included on the strength of recall alone.**
+
+---
+
+## F. Added 2026-09-30 (with modules a05/a13/a16 and the §5 write-up)
+
+- `welding1957instability`, `osuna1972control` — verified by Crossref DOI (10.1057/jors.1957.21;
+  10.1287/trsc.6.1.52). Cited for the waiting-time formula used by a05/a13.
+- `asrtu2024fleet` — grey literature; the document is the data source of a16 (URL recorded in
+  `data/derived/a16_peer_regression.json`). No DOI exists.
+- **Excluded:** Mohring (1972), *American Economic Review* 62(4) — named in a05's citations but not
+  resolvable through Crossref in this environment; not cited in the prose. Add it only after checking
+  the JSTOR record by hand.
+- **Needed if a14 constants are confirmed (decision D8):** IPCC (2006) Guidelines Vol. 2 Ch. 3; CEA CO₂
+  Baseline Database (current version); the GCC tender source for per-km cost. None is cited yet,
+  deliberately — a14 is provisional.

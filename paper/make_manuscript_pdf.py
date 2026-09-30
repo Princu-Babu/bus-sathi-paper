@@ -33,6 +33,7 @@ from reportlab.platypus import (
     HRFlowable, PageBreak, Paragraph, Spacer, Table, TableStyle,
 )
 
+import citations as CI
 import md2pdf as M
 
 HERE = Path(__file__).resolve().parent
@@ -57,9 +58,9 @@ SECTIONS = {
     "04_methodology": ("4. Methodology", "Prashant (sole owner)", 2300,
                        "Complete draft; Eqs 1-14 + Algorithm 1"),
     "05_results": ("5. Results", "Prashant, Misti", 2400,
-                   "Partial — awaiting modules a06-a16"),
+                   "All subsections drafted; §5.12 provisional (D8)"),
     "06_validation": ("6. Validation and robustness", "Avny, Krishnan, Prashant", 900,
-                      "Complete draft; V4 supply-side only"),
+                      "V1, V2, V4, V5, V6 executed; V3 forward work"),
     "07_discussion": ("7. Discussion and policy implications", "Ankit, Avny, Misti", 1200,
                       "Drafted for co-author review + co-author block verbatim"),
     "08_conclusions": ("8. Conclusions", "Ankit, Prashant, Sharvesh", 400,
@@ -69,6 +70,32 @@ SECTIONS = {
 # Which sections were written by a co-author and must not be edited by anyone
 # assembling this document.
 COAUTHOR_PROSE = {"01_introduction", "07_discussion"}
+
+
+FIGURES = [
+    ("fig01_framework", "**Figure 1.** Conceptual framework: four open inputs produce a supply plan that is "
+     "checked through six convergent channels. V3 (expert panel) was not run."),
+    ("fig02_review_flow", "**Figure 2.** Literature-review flow diagram — depends on decision D5 (§2.1 protocol)."),
+    ("fig03_study_area", "**Figure 3.** Study area: the ten districts of Kashmir Division and the 186 active "
+     "routes of the rationalised plan by service class."),
+    ("fig04_method_flow", "**Figure 4.** The four-phase method and the equations that implement each phase."),
+    ("fig05_permit_funnel", "**Figure 5.** From permits to routes: 614 permit records resolve to 157 "
+     "corridors; 156 of them are retained among the 186 active routes [CL-01, CL-02, CL-08]."),
+    ("fig06_catchment_bias", "**Figure 6.** Euclidean against network walk catchments. Left: per-route "
+     "residents within 400 m under each definition. Right: distribution of the Euclidean overstatement "
+     "(median 37.4 %) [CL-26]."),
+    ("fig07_tiers", "**Figure 7.** Class count and tiers. Left: goodness of variance fit for k = 2–7; both "
+     "elbow rules select k = 3. Right: routes ranked by the network composite index, coloured by tier "
+     "[CL-37]."),
+    ("fig08_coverage", "**Figure 8.** The deduplicated network walkshed (blue) over the WorldPop 2026 "
+     "population surface: 24.2 % of the division's residents live within a 400 m walk of a route [CL-28]."),
+    ("fig09_fleet_interval", "**Figure 9.** Fleet under joint parameter uncertainty, regimes A (as "
+     "specified) and B (observed urban and peri-urban pace), against the published 1,011 [CL-56]."),
+    ("fig09b_sobol", "**Figure 9b.** Total-order Sobol' indices: which parameters drive fleet and tier "
+     "uncertainty [CL-58]."),
+    ("figS1_frontier", "**Figure S1.** The fleet price of city frequency: total fleet against a common "
+     "urban/peri-urban headway, as specified and at observed pace [CL-52]."),
+]
 
 
 def word_count(md: str) -> int:
@@ -165,8 +192,11 @@ def main() -> Path:
     ]
 
     # ------------------------------------------------------------- the sections
+    bib = CI.load_bib()
+    cited: list[str] = []
+    missing: set[str] = set()
     for f in files:
-        md = f.read_text(encoding="utf-8")
+        md = CI.render(f.read_text(encoding="utf-8"), bib, cited, missing)
         if f.stem in COAUTHOR_PROSE:
             flow += M.render_markdown(
                 "> **[PRESERVED CO-AUTHOR PROSE IN THIS SECTION]** Parts of this section are transcribed "
@@ -174,6 +204,33 @@ def main() -> Path:
                 st, W)
         flow += M.render_markdown(md, st, W, heading_page_breaks=False)
         flow += [PageBreak()]
+
+    # ---------------------------------------------------------------- references
+    flow += [Paragraph("References", st["h1"]),
+             HRFlowable(width="100%", thickness=1.1, color=M.ACCENT, spaceAfter=7)]
+    if missing:
+        flow += M.render_markdown("> **[UNRESOLVED CITATION KEYS]** " + ", ".join(sorted(missing)), st, W)
+    flow += M.render_markdown(CI.reference_list_md(cited, bib), st, W)
+    flow += [PageBreak()]
+
+    # ------------------------------------------------------------------- figures
+    from reportlab.platypus import Image
+    flow += [Paragraph("Figures", st["h1"]),
+             HRFlowable(width="100%", thickness=1.1, color=M.ACCENT, spaceAfter=7)]
+    for stem, cap in FIGURES:
+        png = HERE / "figures" / f"{stem}.png"
+        if not png.exists():
+            flow += M.render_markdown(f"> **[FIGURE NOT YET DRAWN]** {stem}: {cap}", st, W)
+            continue
+        from reportlab.lib.utils import ImageReader
+        iw, ih = ImageReader(str(png)).getSize()
+        w = min(W, 170 * mm); h = w * ih / iw
+        if h > 200 * mm:
+            h = 200 * mm; w = h * iw / ih
+        flow += [Image(str(png), width=w, height=h), Spacer(1, 2 * mm)]
+        flow += M.render_markdown(cap, st, W)
+        flow += [Spacer(1, 6 * mm)]
+    flow += [PageBreak()]
 
     # ------------------------------------------------------------------- closing
     flow += [Paragraph("Provenance of every number in this draft", st["h1"]),

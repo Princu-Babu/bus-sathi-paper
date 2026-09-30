@@ -52,7 +52,7 @@
   "stability": [
     {
       "band_agreement": 0.8925,
-      "band_kappa": 0.8222,
+      "band_kappa": 0.8211,
       "comparison": "euclid: equal vs entropy",
       "gate_agreement": 0.9785,
       "gate_kappa": 0.9489,
@@ -68,7 +68,7 @@
     },
     {
       "band_agreement": 0.9946,
-      "band_kappa": 0.9907,
+      "band_kappa": 0.9906,
       "comparison": "net: equal vs entropy",
       "gate_agreement": 0.9892,
       "gate_kappa": 0.9745,
@@ -84,15 +84,15 @@
     },
     {
       "band_agreement": 0.9032,
-      "band_kappa": 0.8398,
+      "band_kappa": 0.8388,
       "comparison": "equal: Euclidean vs network",
       "gate_agreement": 0.9677,
       "gate_kappa": 0.9234,
       "spearman_cdi": 0.9935
     },
     {
-      "band_agreement": 0.9409,
-      "band_kappa": 0.8978,
+      "band_agreement": 0.9301,
+      "band_kappa": 0.8783,
       "comparison": "entropy: Euclidean vs network",
       "gate_agreement": 0.9677,
       "gate_kappa": 0.9234,
@@ -100,7 +100,7 @@
     },
     {
       "band_agreement": 0.9032,
-      "band_kappa": 0.8398,
+      "band_kappa": 0.8388,
       "comparison": "pca: Euclidean vs network",
       "gate_agreement": 0.9677,
       "gate_kappa": 0.9234,

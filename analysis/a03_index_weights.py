@@ -117,7 +117,8 @@ def jenks_bands(values: np.ndarray, k: int = N_BANDS) -> np.ndarray:
         return np.searchsorted(np.unique(v), v)
     breaks = np.asarray(jenkspy.jenks_breaks(v, n_classes=k), dtype=float)
     inner = breaks[1:-1]
-    return np.searchsorted(inner, v, side="right")
+    # side="left": jenkspy breaks are UPPER bounds of the class below (a04 convention, D19)
+    return np.searchsorted(inner, v, side="left")
 
 
 def cohen_kappa(a, b) -> float:

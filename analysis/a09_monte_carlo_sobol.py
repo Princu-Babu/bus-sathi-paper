@@ -145,6 +145,13 @@ def summarise(x: np.ndarray) -> dict:
 
 
 def main() -> None:
+    import argparse
+    global N_MC, N_SOBOL
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--n-mc", type=int, default=N_MC)
+    ap.add_argument("--n-sobol", type=int, default=N_SOBOL)
+    a = ap.parse_args()
+    N_MC, N_SOBOL = a.n_mc, a.n_sobol
     from SALib.analyze import sobol as sobol_analyze
     from SALib.sample import sobol as sobol_sample
 

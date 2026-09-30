@@ -22,7 +22,9 @@ This ledger registers every quantitative claim, empirical finding, statistic, de
 
 ---
 
-## 2. Summary Master Table of Quantitative Claims (`CL-01` to `CL-36`)
+## 2. Summary Master Table of Quantitative Claims (`CL-01` to `CL-59`)
+
+CL-37 onward were added 2026-09-30 as modules a04–a16, a06/a07/a14/a15, v01/v02 and the fleet_model reproduction landed. CL-56–CL-58 are reserved for a08/a09 and are filled only after those modules run.
 
 | Claim ID | Finding / Metric | Short Description | Numerical Value | Denominator / Universe | Primary Source Module | Manuscript Location |
 |---|---|---|---|---|---|---|
@@ -62,6 +64,27 @@ This ledger registers every quantitative claim, empirical finding, statistic, de
 | `CL-34` | F11 | Passenger dwell time model failure | Observed 1.76 min/km vs engine 1.0; R²=0.03 | 18 observed corridors | `v04_gps_validation.py` | §6.3, Table 6b |
 | `CL-35` | F12 | Road alignment vs service coverage | 94.0% alignment (obs_frac) vs 35.5% service | 186 active routes | `v04_gps_validation.py` | §3.5, §6.3 |
 | `CL-36` | F1/Fleet | Stated rationalised fleet size & self-test | 1,011 buses (+68.5% over 600; 0 mismatches) | 186 routes / 156 non-SSCL self-test | `common.py`, `v04_gps_validation.py` | Abstract, §3.1, §5.4 |
+| `CL-37` | F13 | Objective class count | k = 3 by both elbow rules; GVF 0.902; tiers 37/41/108 | 186 active routes, network CDI | `a04_class_count.py` | §4.7, §5.8, Table 5, Fig 7 |
+| `CL-38` | F13 | Classifier agreement at k = 3 | Jenks–quantile κ 0.427; Jenks–equal-interval κ 0.748; Jenks ≡ k-means | 186 routes | `a04_class_count.py` | §5.8, Table 5b |
+| `CL-39` | F13 | Objective tiers vs published bands | 68.3% agreement, κ 0.503; 20 of 55 published HP routes fall in objective Tier 3 | 186 routes | `a04_class_count.py` | §5.8, §7 |
+| `CL-40` | F14 | Route-km vs unique network-km | 5,567.7 vs 1,524.5 km (ratio 3.65); max 53 routes on one link (Lal Chowk); 46.6% of network-km served by one route; baseline unique km NOT_COMPUTABLE, bounded [1,524.5, 13,756.4] | 186 active geometries | `a10_network_diagnostics.py` | §5.5, Table 5c |
+| `CL-41` | F15 | Time-of-day profile & banding | Peak 09:00, peak-hour factor 10.67%, peak/base 1.37; peak-anchored banding −9.4% bus-hours at the same fleet; mean-anchored needs +496 (prop.) / +215 (sqrt) buses | CHALO hourly boardings, Apr 2026 (1,221,848) | `a05_headway_timeofday.py` | §5.11, Table 5h |
+| `CL-42` | F16 | Frequent-network coverage | ≤15 min 10.4%; ≤20 min 12.2%; ≤35 min 19.2%; any 24.2% | 6,584,762 residents | `a11_coverage_accessibility.py` | §5.6, Table 5d |
+| `CL-43` | F16 | Clustering of the uncovered surface | Moran's I 0.664 (2 km, p = 0.001); 0.729 (5 km) | 4,200 / 711 lattice cells | `a11_coverage_accessibility.py` | §5.6, Table 5e |
+| `CL-44` | F17 | Accessibility Gini (after) | 0.903 all residents; 0.599 served only; 75.8% with zero service; before-Gini NOT_COMPUTABLE | 6,584,762 residents | `a12_equity_gini.py` | §5.9, Table 5f |
+| `CL-45` | F17 | The losers | 32 suppressed via-routings on 20 corridors; 114,879 residents within 400 m of a dropped via-place, of whom 13,087 lose bus access | deduplicated union | `a12_equity_gini.py` | §5.9, Table 5g |
+| `CL-46` | F18 | Transfers | 12.5% of stop pairs one-seat, 72.3% one transfer, 13.8% two+, 1.4% unconnected; 66/68 suppressed O–D pairs keep a one-seat ride; 5/68 (7.4%) wait longer; median break-even penalty 31.4 min | 10,153 stop pairs; 68 O–D pairs | `a13_transfers.py` | §5.10, Table 5i |
+| `CL-47` | F18 | Observed vehicle duty | median duty factor 0.242; 217 in-service min per vehicle-day | 855 driver-days, 157 drivers | `a13_transfers.py` | §5.10, §5.11 |
+| `CL-48` | F19 | Peer-city fleet benchmark | 0.154 buses/1,000 (total pop) = 61st pct, inside M3 PI; 0.635 on served pop = 97th pct, inside M3 PI, above M1 | 36 peer cities (ASRTU 2024) | `a16_peer_regression.py` | §5.7, Table 5j |
+| `CL-49` | F20 | Depot deadhead (bounded) | 0% (terminal parking) to 1.7% (district depot, plan day) / 5.5% (observed day); plan assumes 320 vs 99 service km/bus/day | 186 routes; no depot register | `a06_deadhead.py` | §5.11, Table 5k |
+| `CL-50` | F21 | Load on the e-bus backbone | today 18.6–37.3 boardings/one-way trip; plan day-one 8.3; ridership ×2.24–4.49 to hold today's; proxy peak boarding/capacity median 0.227, 152/186 < 0.40 | CHALO 12-month mean; plan | `a07_load_factor.py` | §5.11, Table 5l |
+| `CL-51` | F22 | Cost & CO2 envelope (PROVISIONAL, D8) | ₹642–1,054 cr/yr (plan km) or ₹206–338 cr (observed km); 65–103 kt or 21–33 kt CO2/yr; engine e-bus factor 30 g/km vs ~874 g/km (×29) | 120M / 38M veh-km/yr | `a14_cost_emissions.py` | §5.12, Table 5m |
+| `CL-52` | F23 | Policy scenarios | S1 1,169 (+15.6%); S2 1,271 (+25.7%, bound); S3 1,106 (+9.4%); S4 84 routes, 533 buses (−47.3%), coverage 24.2→20.3%; S5 1,172 (+15.9%), ≤15-min coverage 10.4→14.5% | S0 = 1,011 | `a15_scenarios.py` | §5.13, Table 8 |
+| `CL-53` | V1 | Building-footprint cross-check | route ρ 0.657 (area, pass), 0.544 (count, fail); 1-km grid ρ 0.316 (fail); populated cells with any OSM building 4.2–30.6% by district | 12,343 footprints; 186 routes; 13,645 cells | `v01_spatial_crossval.py` | §6.2, Table 6d/6e |
+| `CL-54` | V2 | CHALO benchmark (circular) | plan 283 vs CHALO 98 scaled to 15 min = 179–220 → ratio 1.29–1.58: FAIL ±15% at every service-day assumption; route rank ρ 0.22 (p 0.24) | 30 SSCL routes, 12-month mean | `v02_benchmark.py` | §6.2, Table 6f |
+| `CL-55` | F10 | Supply-model reproduction & cap counterfactual | cycle 186/186, fleet 186/186 (1,011), 169 at cap; cap removed alone → 1,648 buses | 186 routes | `fleet_model.py` | §4.8, §5.4 |
+| `CL-59` | Method | Corrections to the method as published | engine capture scale κ = 0.33 (not 0.18); Eq. 8 demand proxy sets headway on the 67 non-backbone Regional routes (5 at 35, 62 at 50 min); engine merge test = 80 m line-buffer overlap ≥ θ AND starts ≤ 2.5 km | engine source | `transit_kashmir_v3.py:547, 5551, 2640` | §4.5, §4.6, §4.7 |
+| `CL-60` | Fleet | Buses per 100,000 by denominator | 15.4 (division 6,584,762); 43.6 (engine Euclidean served 2,317,958); 63.5 (network served 1,592,847) — last above MoHUA 40–60 | 1,011 buses | `a11`, plan CSV | §4.8, §5.4 |
 
 ---
 
@@ -472,8 +495,8 @@ The 11 predeclared engine parameters swept in one-at-a-time (OAT) sensitivity an
 
 | Channel | Validation Target | Benchmark / Evidence Source | Test Statistic / Metric | Success Threshold | Empirical Result | Status |
 |---|---|---|---|---|---|---|
-| **V1** | Spatial cross-validation | OSM building footprint density | Spearman rank correlation $\rho$ | $\rho > 0.60$ | Target $\rho > 0.60$ | Planned (`v01`) |
-| **V2** | Benchmark consistency | CHALO electronic ticketing system | Aggregate fleet & headway ratio | Ratio within $\pm 15\%$ | Disclose circularity | Planned (`v02`) |
+| **V1** | Spatial cross-validation | OSM building footprints (12,343) | Spearman $\rho$, route and 1-km grid | $\rho > 0.60$ | Route: 0.657 (area) pass, 0.544 (count) fail; grid 0.316 fail — OSM buildings in 4–31% of populated cells `[CL-53]` | Executed (`v01`); partial pass |
+| **V2** | Benchmark consistency (circular) | CHALO 98 buses, 12-month trips | Plan SSCL fleet / CHALO scaled to 15 min | Ratio within $\pm 15\%$ | 1.29–1.58 at a 13–16 h service day; route rank $\rho$ 0.22 `[CL-54]` | Executed (`v02`); **fail** |
 | **V3** | Delphi / AHP expert survey | Independent expert panel | Panel consensus Kendall $W$ | $W > 0.70$ | Pending elicitation | Forward work (§6.4); weights meanwhile equal/entropy/PCA |
 | **V4** | Supply-side GPS validation | Driver-GPS trace logs (43,809 runs) | MAPE on runtime & pace; rank corr | MAPE $< 20\%$, $\rho > 0.50$ | Moving speed passes (+1.4%); Dwell fails (61.6% MAPE) | Established (`v04`) |
 | **V5** | Sobol global sensitivity | Monte Carlo output distributions | First- and total-order Sobol indices | Bootstrap CI bounds | Output variance decomposition | Planned (`a09`) |

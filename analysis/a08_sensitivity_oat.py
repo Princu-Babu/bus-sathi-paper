@@ -179,6 +179,8 @@ def main() -> None:
 
     rows = []
     for name, spec in C.PARAMETERS.items():
+        if name == "OVERLAP_THRESHOLD":        # swept separately below
+            continue
         lo, hi = spec["range"]
         xs = np.unique(np.r_[np.linspace(lo, hi, N_STEPS), spec["value"]])
         for x in xs:
