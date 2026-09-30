@@ -47,23 +47,23 @@ JOURNAL = "Target journal: Transport Policy (Elsevier)"
 
 # filename stem -> (display name, owners, target words, status)
 SECTIONS = {
-    "00_abstract": ("Abstract", "Prashant, Ankit, Sharvesh", 230,
+    "00_abstract": ("Abstract", "Prashant, Ankit, Sharvesh", 250,
                     "Complete draft on locked numbers"),
-    "01_introduction": ("1. Introduction", "Misti, Avny", 1200,
+    "01_introduction": ("1. Introduction", "Misti, Avny", 900,
                         "Co-author prose preserved verbatim + editorial flags"),
-    "02_literature": ("2. Literature review and research gap", "Sharvesh, Ankit", 1400,
+    "02_literature": ("2. Literature review and research gap", "Sharvesh, Ankit", 900,
                       "Drafted for co-author review; §2.1 protocol NOT run"),
-    "03_study_area": ("3. Study area and data", "Krishna", 1100,
+    "03_study_area": ("3. Study area and data", "Krishna", 700,
                       "Drafted for co-author review; ethics paragraph blank"),
-    "04_methodology": ("4. Methodology", "Prashant (sole owner)", 2300,
+    "04_methodology": ("4. Methodology", "Prashant (sole owner)", 1700,
                        "Complete draft; Eqs 1-14 + Algorithm 1"),
-    "05_results": ("5. Results", "Prashant, Misti", 2400,
+    "05_results": ("5. Results", "Prashant, Misti", 1800,
                    "All subsections drafted; §5.12 provisional (D8)"),
-    "06_validation": ("6. Validation and robustness", "Avny, Krishnan, Prashant", 900,
+    "06_validation": ("6. Validation and robustness", "Avny, Krishnan, Prashant", 650,
                       "V1, V2, V4, V5, V6 executed; V3 forward work"),
-    "07_discussion": ("7. Discussion and policy implications", "Ankit, Avny, Misti", 1200,
+    "07_discussion": ("7. Discussion and policy implications", "Ankit, Avny, Misti", 1000,
                       "Drafted for co-author review + co-author block verbatim"),
-    "08_conclusions": ("8. Conclusions", "Ankit, Prashant, Sharvesh", 400,
+    "08_conclusions": ("8. Conclusions", "Ankit, Prashant, Sharvesh", 350,
                        "Complete draft"),
 }
 
@@ -180,7 +180,7 @@ def main() -> Path:
             rows.append([stem.split("_")[0], name, owners, f"{wc:,} ({target:,})", status])
         else:
             rows.append([stem.split("_")[0], stem, "?", f"{wc:,}", "not registered"])
-    rows.append(["", "**Total body words**", "", f"**{total:,}**", "target 9,000–10,000"])
+    rows.append(["", "**Total body words**", "", f"**{total:,}**", "target ≤ 8,000 (Transport Policy)"])
 
     flow += [Paragraph("Contents, ownership and current state", st["h2"])]
     flow += [M._table(rows, st, W)]

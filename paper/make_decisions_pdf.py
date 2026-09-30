@@ -67,14 +67,15 @@ def main() -> Path:
     flow += M.render_markdown(
         "**Every question in this document needs a human on this project to answer it.** None of them can be "
         "settled by reading the code, re-running a module or searching the literature — where a question "
-        "*could* be settled that way it already has been, and the answer is recorded in Part E rather than "
-        "asked here.\n\n"
-        "**Read Part A first.** Those five can each stop the paper being published. Four of them are cheap "
-        "to answer. The remaining twelve change the paper's quality, not its viability, and several will "
-        "resolve themselves as analysis modules finish.\n\n"
-        "**Colour key.** Red boxes are blockers. Orange boxes are editorial decisions. Blue boxes are "
-        "provenance notes. The same convention is used in the companion manuscript draft, "
-        "`Kashmir_Manuscript_Working_Draft.pdf`, where each flag appears in the place it applies.",
+        "*could* be settled that way it already has been, and the answer is recorded in Part F rather than "
+        "asked here. Every analysis module has run; nothing below waits on computation.\n\n"
+        "**Read Part A first.** It ranks all open items. Items 1–9 block submission; items 1–4 are the ones "
+        "to start this week. Parts B–E give each item's question, evidence, options and recommendation.\n\n"
+        "**Checked against the journal.** The *Transport Policy* Guide for Authors was read on 2026-10-01: "
+        "8,000-word norm, 250-word abstract, double-anonymised review, and a mandatory declaration of "
+        "generative-AI use.\n\n"
+        "**Companion files.** Each editorial flag appears in place in `Kashmir_Manuscript_Working_Draft.pdf`. "
+        "The superseded v1 of this document is in `paper/archive/`.",
         st, W)
 
     flow += [PageBreak()]

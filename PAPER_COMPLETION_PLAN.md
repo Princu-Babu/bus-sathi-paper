@@ -119,7 +119,8 @@ Two results are uncomfortable and must be reported anyway:
 
 ### WP4 — Cut the manuscript to budget · **B**
 
-11,920 body words against a 9,000–10,000 ceiling, *before* §5 grows by ~1,200. The realistic target is
+11,920 body words against a 9,000–10,000 ceiling, *before* §5 grows by ~1,200. **(Superseded 2026-10-01:
+the journal's limit is 8,000 words; see `paper/PENDING_DECISIONS.md` D26.)** The realistic target is
 a **~4,000-word reduction**. The single largest candidate is the ~900-word "Policy Failure" block
 currently sitting in §1, which belongs in §3.3 (FLAG PF-a) — but moving it does not shrink the total.
 Genuine cuts have to come from somewhere, and because most of the over-length prose is **co-author
@@ -171,7 +172,7 @@ Four waves. Within a wave, items are independent.
 |---|---|---|
 | **1 — Unblock** | `a08`→`a09`; `a06`, `a07`, `a14`, `a15`, `a16`; stage building layer (WP2) | every module either produced a result or returned an explicit `NOT_COMPUTABLE` |
 | **2 — Write up** | WP3 (§5 + ledger); `v01`, `v02`; Table 7; Table 8 | no number in any section lacks a CL/F ID |
-| **3 — Assemble** | WP5 citations; WP6 figures; WP4 cut to budget | ≤10,000 body words; 9 figures at ≥300 DPI; every `\cite` resolves |
+| **3 — Assemble** | WP5 citations; WP6 figures; WP4 cut to budget | ≤8,000 body words; 9 figures at ≥300 DPI; every `\cite` resolves |
 | **4 — Submit** | WP7 front matter; WP8 integrity + reviewer pass; final PDF | §5 checklist below is all green |
 
 Waves 1 and 2 can overlap. Waves 3 and 4 cannot start until the numbers stop moving.
@@ -219,7 +220,7 @@ Submission is permitted when **all** of these are true, and not before:
 
 1. Every module in `run_all.py --list` shows `YES`, or its absence is stated in the manuscript.
 2. No sentence in any section contains a number without a CL or F ID.
-3. Body word count ≤ 10,000.
+3. Body word count ≤ 8,000 (*Transport Policy* norm; D26).
 4. Nine figures exist at ≥300 DPI with self-contained captions.
 5. Every `\cite` key resolves to an entry in `references.bib`, and no entry is cited for a result that
    did not run.

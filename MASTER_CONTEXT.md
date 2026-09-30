@@ -70,7 +70,7 @@ committed; tiles themselves re-downloadable).
 | `paper/sections/` | manuscript, one file per section (00 Abstract … 08 Conclusions) |
 | `paper/CLAIM_LEDGER.md` | every number → module (CL-01…CL-61) |
 | `paper/PENDING_DECISIONS.md/.pdf` | the decision queue; Part G is current |
-| `paper/WORD_BUDGET_PLAN.md` | proposed cuts to reach 10,000 words |
+| `paper/WORD_BUDGET_PLAN.md` | proposed cuts to reach the journal's 8,000-word limit |
 | `paper/COAUTHOR_CITATION_MAP.md` | citation keys for the co-author sections |
 | `paper/front_matter/` | highlights, CRediT, competing interests, data availability, acknowledgements, cover letter |
 | `paper/figures/`, `paper/tables/` | generated; never edit by hand |
@@ -80,16 +80,21 @@ committed; tiles themselves re-downloadable).
 
 ## 6. Manuscript state
 
-All nine parts are drafted (~13,600 body words against a 10,000 ceiling). §4–§6, §8 and the Abstract are
+All nine parts are drafted (~13,600 body words against the journal's **8,000-word** norm — checked
+against the *Transport Policy* Guide for Authors on 2026-10-01; the earlier 10,000 was never verified). §4–§6, §8 and the Abstract are
 Prashant's and are written on final results. §1, §2, §3 and §7's co-author blocks are **co-author prose,
 transcribed verbatim and not to be edited unilaterally**; conflicts are raised as callouts. The working
 draft PDF is `paper/Kashmir_Manuscript_Working_Draft.pdf`.
 
 ## 7. What is open (all human)
 
-- **Blockers:** D1 (§1.6 roadmap), D2 (is the August field table real?), D3 (Srinagar vs Division scope in
-  co-author text), D4 (GPS consent/ethics), D5 (literature protocol), D13 (authors, CRediT).
-  (D23, the GPS date window, is resolved: February–June 2026.)
+**The ranked list is Part A of `paper/PENDING_DECISIONS.md` (v2, 2026-10-01).** In short:
+
+- **Blockers:** D4 (GPS consent/ethics), D13 (authors, CRediT), **D26 (cut to the journal's 8,000-word
+  limit)**, **D28 (declare AI use; authors review the AI-assisted sections)**, **D27 (anonymise for
+  double-blind review)**, D2 (is the August field table real?), D5 (literature protocol), D3 (Srinagar vs
+  Division scope in co-author text), D1 (§1.6 roadmap). (D23, the GPS date window, is resolved:
+  February–June 2026.)
 - **Analytical sign-offs:** D20 (four corrections to the method as published), D21 (per-lakh benchmark),
   D22 (V2 reported as fail), D24 (load framing), D25/D8 (cost constants).
 - **Co-author work:** word cuts (`WORD_BUDGET_PLAN.md`), citations (`COAUTHOR_CITATION_MAP.md`), Pucher year
