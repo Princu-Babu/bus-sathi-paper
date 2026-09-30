@@ -1,0 +1,663 @@
+{
+  "central_paces_min_per_km": {
+    "Peri_Urban": 4.545454545454546,
+    "Urban": 4.8
+  },
+  "frontier": [
+    {
+      "city_headway_min": 10,
+      "coverage_any": 0.24189890993782312,
+      "coverage_le15": 0.16470056169076422,
+      "coverage_le20": 0.16470056169076422,
+      "coverage_le_h": 0.1393140803722291,
+      "fleet_as_specified": 1573,
+      "fleet_observation_anchored": 2104
+    },
+    {
+      "city_headway_min": 12,
+      "coverage_any": 0.24189890993782312,
+      "coverage_le15": 0.16470056169076422,
+      "coverage_le20": 0.16470056169076422,
+      "coverage_le_h": 0.1393140803722291,
+      "fleet_as_specified": 1436,
+      "fleet_observation_anchored": 1881
+    },
+    {
+      "city_headway_min": 15,
+      "coverage_any": 0.24189890993782312,
+      "coverage_le15": 0.16470056169076422,
+      "coverage_le20": 0.16470056169076422,
+      "coverage_le_h": 0.16470056169076422,
+      "fleet_as_specified": 1294,
+      "fleet_observation_anchored": 1652
+    },
+    {
+      "city_headway_min": 20,
+      "coverage_any": 0.24189890993782312,
+      "coverage_le15": 0.10442732212644891,
+      "coverage_le20": 0.16470056169076422,
+      "coverage_le_h": 0.16470056169076422,
+      "fleet_as_specified": 1146,
+      "fleet_observation_anchored": 1420
+    },
+    {
+      "city_headway_min": 25,
+      "coverage_any": 0.24189890993782312,
+      "coverage_le15": 0.10442732212644891,
+      "coverage_le20": 0.10659682916406091,
+      "coverage_le_h": 0.16470056169076422,
+      "fleet_as_specified": 1070,
+      "fleet_observation_anchored": 1283
+    },
+    {
+      "city_headway_min": 30,
+      "coverage_any": 0.24189890993782312,
+      "coverage_le15": 0.10442732212644891,
+      "coverage_le20": 0.10659682916406091,
+      "coverage_le_h": 0.16470056169076422,
+      "fleet_as_specified": 1013,
+      "fleet_observation_anchored": 1189
+    },
+    {
+      "city_headway_min": 35,
+      "coverage_any": 0.24189890993782312,
+      "coverage_le15": 0.10442732212644891,
+      "coverage_le20": 0.10659682916406091,
+      "coverage_le_h": 0.19184015306855434,
+      "fleet_as_specified": 980,
+      "fleet_observation_anchored": 1119
+    }
+  ],
+  "notes": [
+    "Each scenario changes one lever; coverage is deduplicated.",
+    "S2 rural pace rests on 2 corridors and is a bound.",
+    "S4 contracts connected components, which chains; it is an upper bound on what the stated rule would merge."
+  ],
+  "rural_bound_pace_min_per_km": 2.1325000000000003,
+  "s4_merged_routes": [
+    {
+      "New_Route_ID": "FDR-059",
+      "Route_Name": "Soura to LD",
+      "Route_Type": "Urban"
+    },
+    {
+      "New_Route_ID": "FDR-271",
+      "Route_Name": "Parimpora to Hazratbal",
+      "Route_Type": "Peri_Urban"
+    },
+    {
+      "New_Route_ID": "FDR-429",
+      "Route_Name": "Parimpora to Chadora",
+      "Route_Type": "Peri_Urban"
+    },
+    {
+      "New_Route_ID": "FDR-068",
+      "Route_Name": "Lalbazar to LD",
+      "Route_Type": "Urban"
+    },
+    {
+      "New_Route_ID": "FDR-081",
+      "Route_Name": "Lalbazar to Lalchowk",
+      "Route_Type": "Urban"
+    },
+    {
+      "New_Route_ID": "FDR-122",
+      "Route_Name": "Jehangir Chowk to Soura",
+      "Route_Type": "Urban"
+    },
+    {
+      "New_Route_ID": "FDR-161",
+      "Route_Name": "TRC to Hazratbal",
+      "Route_Type": "Urban"
+    },
+    {
+      "New_Route_ID": "FDR-262",
+      "Route_Name": "Soura to Railway Station",
+      "Route_Type": "Peri_Urban"
+    },
+    {
+      "New_Route_ID": "FDR-101",
+      "Route_Name": "Malbagh to LD",
+      "Route_Type": "Urban"
+    },
+    {
+      "New_Route_ID": "FDR-269",
+      "Route_Name": "Jehangir Chowk to JVC",
+      "Route_Type": "Urban"
+    },
+    {
+      "New_Route_ID": "FDR-173",
+      "Route_Name": "Soura to Parimpora",
+      "Route_Type": "Urban"
+    },
+    {
+      "New_Route_ID": "FDR-467",
+      "Route_Name": "Jehangir Chowk to Budgam",
+      "Route_Type": "Regional_District"
+    },
+    {
+      "New_Route_ID": "FDR-275",
+      "Route_Name": "Jehangir Chowk to HMT",
+      "Route_Type": "Urban"
+    },
+    {
+      "New_Route_ID": "FDR-289",
+      "Route_Name": "Parimpora to Pantha Chowk",
+      "Route_Type": "Peri_Urban"
+    },
+    {
+      "New_Route_ID": "FDR-265",
+      "Route_Name": "Baghat Shora to Lalchowk",
+      "Route_Type": "Urban"
+    },
+    {
+      "New_Route_ID": "FDR-338",
+      "Route_Name": "Parimpora to Rawalpora",
+      "Route_Type": "Urban"
+    },
+    {
+      "New_Route_ID": "FDR-097",
+      "Route_Name": "Lalbazar to Qamarwari",
+      "Route_Type": "Urban"
+    },
+    {
+      "New_Route_ID": "FDR-132",
+      "Route_Name": "Safakadal to SMHS",
+      "Route_Type": "Urban"
+    },
+    {
+      "New_Route_ID": "FDR-098",
+      "Route_Name": "Soura to SMHS",
+      "Route_Type": "Urban"
+    },
+    {
+      "New_Route_ID": "FDR-316",
+      "Route_Name": "Qamarwari to Pathachowk",
+      "Route_Type": "Peri_Urban"
+    },
+    {
+      "New_Route_ID": "FDR-117",
+      "Route_Name": "Qamarwari to Dalgate",
+      "Route_Type": "Urban"
+    },
+    {
+      "New_Route_ID": "FDR-164",
+      "Route_Name": "Lalbazar to Parimpora",
+      "Route_Type": "Urban"
+    },
+    {
+      "New_Route_ID": "FDR-446",
+      "Route_Name": "Parimpora to Rangrath",
+      "Route_Type": "Peri_Urban"
+    },
+    {
+      "New_Route_ID": "FDR-401",
+      "Route_Name": "Jehangir Chowk to Panzinara",
+      "Route_Type": "Peri_Urban"
+    },
+    {
+      "New_Route_ID": "FDR-219",
+      "Route_Name": "Qamarwari to Jehangir Chowk",
+      "Route_Type": "Urban"
+    },
+    {
+      "New_Route_ID": "FDR-332",
+      "Route_Name": "Parimpora to Jehangir Chowk",
+      "Route_Type": "Peri_Urban"
+    },
+    {
+      "New_Route_ID": "FDR-104",
+      "Route_Name": "Hazratbal to Bone Joint Hospital Barzalla",
+      "Route_Type": "Peri_Urban"
+    },
+    {
+      "New_Route_ID": "FDR-438",
+      "Route_Name": "GBS to LAL Chowk",
+      "Route_Type": "Peri_Urban"
+    },
+    {
+      "New_Route_ID": "FDR-151",
+      "Route_Name": "Parimpora to Jawahairnagar",
+      "Route_Type": "Urban"
+    },
+    {
+      "New_Route_ID": "FDR-191",
+      "Route_Name": "Parimpora to Humhama",
+      "Route_Type": "Peri_Urban"
+    },
+    {
+      "New_Route_ID": "FDR-341",
+      "Route_Name": "LD to Pampore",
+      "Route_Type": "Peri_Urban"
+    },
+    {
+      "New_Route_ID": "FDR-080",
+      "Route_Name": "Batmaloo to Dalgate",
+      "Route_Type": "Urban"
+    },
+    {
+      "New_Route_ID": "FDR-160",
+      "Route_Name": "Hazratbal, Lalbazar",
+      "Route_Type": "Urban"
+    },
+    {
+      "New_Route_ID": "FDR-201",
+      "Route_Name": "LD to Parimpora",
+      "Route_Type": "Urban"
+    },
+    {
+      "New_Route_ID": "FDR-096",
+      "Route_Name": "Soura to Dalgate",
+      "Route_Type": "Urban"
+    },
+    {
+      "New_Route_ID": "FDR-067",
+      "Route_Name": "Soura to Batamallo",
+      "Route_Type": "Urban"
+    },
+    {
+      "New_Route_ID": "FDR-333",
+      "Route_Name": "Rangpora to Soura",
+      "Route_Type": "Peri_Urban"
+    },
+    {
+      "New_Route_ID": "FDR-525",
+      "Route_Name": "LD to Budgam",
+      "Route_Type": "Peri_Urban"
+    },
+    {
+      "New_Route_ID": "FDR-320",
+      "Route_Name": "Parimpora to Pampore",
+      "Route_Type": "Peri_Urban"
+    },
+    {
+      "New_Route_ID": "FDR-105",
+      "Route_Name": "Rangpora to Dalgate",
+      "Route_Type": "Peri_Urban"
+    },
+    {
+      "New_Route_ID": "FDR-088",
+      "Route_Name": "Rangpora to Lalchowk",
+      "Route_Type": "Urban"
+    },
+    {
+      "New_Route_ID": "FDR-406",
+      "Route_Name": "Qamarwari to Parimpora",
+      "Route_Type": "Urban"
+    },
+    {
+      "New_Route_ID": "FDR-158",
+      "Route_Name": "Rangpora to LD",
+      "Route_Type": "Peri_Urban"
+    },
+    {
+      "New_Route_ID": "FDR-050",
+      "Route_Name": "Soura to Lalchowk",
+      "Route_Type": "Urban"
+    },
+    {
+      "New_Route_ID": "FDR-325",
+      "Route_Name": "Ma Road to Parimpora",
+      "Route_Type": "Peri_Urban"
+    },
+    {
+      "New_Route_ID": "FDR-510",
+      "Route_Name": "Srinagar to Shanglipora",
+      "Route_Type": "Regional_District"
+    },
+    {
+      "New_Route_ID": "FDR-466",
+      "Route_Name": "Srinagar to Isganderpora",
+      "Route_Type": "Regional_District"
+    },
+    {
+      "New_Route_ID": "FDR-454",
+      "Route_Name": "Srinagar to Aboora",
+      "Route_Type": "Regional_District"
+    },
+    {
+      "New_Route_ID": "FDR-536",
+      "Route_Name": "Srinagar to Arizal",
+      "Route_Type": "Regional_District"
+    },
+    {
+      "New_Route_ID": "FDR-453",
+      "Route_Name": "Srinagar to Baderkote",
+      "Route_Type": "Regional_District"
+    },
+    {
+      "New_Route_ID": "FDR-514",
+      "Route_Name": "Srinagar to Loolpora",
+      "Route_Type": "Regional_District"
+    },
+    {
+      "New_Route_ID": "FDR-565",
+      "Route_Name": "Srinagar to Dardpora",
+      "Route_Type": "Regional_District"
+    },
+    {
+      "New_Route_ID": "FDR-038",
+      "Route_Name": "Srinagar to Ratnipora",
+      "Route_Type": "Regional_District"
+    },
+    {
+      "New_Route_ID": "FDR-437",
+      "Route_Name": "Srinagar to Ratsun",
+      "Route_Type": "Regional_District"
+    },
+    {
+      "New_Route_ID": "FDR-487",
+      "Route_Name": "Srinagar to Khag",
+      "Route_Type": "Regional_District"
+    },
+    {
+      "New_Route_ID": "FDR-463",
+      "Route_Name": "Srinagar to Karhama",
+      "Route_Type": "Regional_District"
+    },
+    {
+      "New_Route_ID": "FDR-508",
+      "Route_Name": "Srinagar to Chewdara",
+      "Route_Type": "Regional_District"
+    },
+    {
+      "New_Route_ID": "FDR-464",
+      "Route_Name": "Srinagar to Badrun",
+      "Route_Type": "Regional_District"
+    },
+    {
+      "New_Route_ID": "FDR-439",
+      "Route_Name": "Srinagar to Tangmarg",
+      "Route_Type": "Regional_District"
+    },
+    {
+      "New_Route_ID": "FDR-570",
+      "Route_Name": "Srinagar to Khoor",
+      "Route_Type": "Regional_District"
+    },
+    {
+      "New_Route_ID": "FDR-551",
+      "Route_Name": "Srinagar to Handwara",
+      "Route_Type": "Regional_District"
+    },
+    {
+      "New_Route_ID": "FDR-563",
+      "Route_Name": "Srinagar to Trehgam KUP",
+      "Route_Type": "Regional_District"
+    },
+    {
+      "New_Route_ID": "FDR-562",
+      "Route_Name": "Srinagar to Chowkibal",
+      "Route_Type": "Regional_District"
+    },
+    {
+      "New_Route_ID": "FDR-509",
+      "Route_Name": "Srinagar to Hajin",
+      "Route_Type": "Regional_District"
+    },
+    {
+      "New_Route_ID": "FDR-486",
+      "Route_Name": "Srinagar to Safapora Sumbal",
+      "Route_Type": "Regional_District"
+    },
+    {
+      "New_Route_ID": "FDR-504",
+      "Route_Name": "Srinagar to Safapora GBL",
+      "Route_Type": "Regional_District"
+    },
+    {
+      "New_Route_ID": "FDR-513",
+      "Route_Name": "Srinagar to Narwara Budgam",
+      "Route_Type": "Regional_District"
+    },
+    {
+      "New_Route_ID": "FDR-465",
+      "Route_Name": "Srinagar to Charishreef",
+      "Route_Type": "Regional_District"
+    },
+    {
+      "New_Route_ID": "FDR-519",
+      "Route_Name": "Srinagar to Pakherpora",
+      "Route_Type": "Regional_District"
+    },
+    {
+      "New_Route_ID": "FDR-555",
+      "Route_Name": "Srinagar to Pasthoon",
+      "Route_Type": "Regional_District"
+    },
+    {
+      "New_Route_ID": "FDR-546",
+      "Route_Name": "Srinagar to Pinglish",
+      "Route_Type": "Regional_District"
+    },
+    {
+      "New_Route_ID": "FDR-552",
+      "Route_Name": "Srinagar to Tral Nowdal",
+      "Route_Type": "Regional_District"
+    },
+    {
+      "New_Route_ID": "FDR-007",
+      "Route_Name": "Srinagar to Qazigund",
+      "Route_Type": "Regional_District"
+    },
+    {
+      "New_Route_ID": "FDR-529",
+      "Route_Name": "Srinagar to Mirpora Budgam",
+      "Route_Type": "Regional_District"
+    },
+    {
+      "New_Route_ID": "FDR-507",
+      "Route_Name": "Srinagar to Vijipopra",
+      "Route_Type": "Regional_District"
+    },
+    {
+      "New_Route_ID": "FDR-553",
+      "Route_Name": "Srinagar to Kupwara DAY",
+      "Route_Type": "Regional_District"
+    },
+    {
+      "New_Route_ID": "FDR-541",
+      "Route_Name": "Srinagar to URI Baramulla",
+      "Route_Type": "Regional_District"
+    },
+    {
+      "New_Route_ID": "FDR-571",
+      "Route_Name": "Srinagar to Tangdar",
+      "Route_Type": "Regional_District"
+    },
+    {
+      "New_Route_ID": "FDR-003",
+      "Route_Name": "Bandipora to Soura",
+      "Route_Type": "Regional_District"
+    },
+    {
+      "New_Route_ID": "FDR-549",
+      "Route_Name": "Bankoot to Srinagar via Bandipora",
+      "Route_Type": "Regional_District"
+    },
+    {
+      "New_Route_ID": "FDR-515",
+      "Route_Name": "Baramulla to Srinagar",
+      "Route_Type": "Regional_District"
+    },
+    {
+      "New_Route_ID": "FDR-521",
+      "Route_Name": "Fathgath to Srinagar",
+      "Route_Type": "Regional_District"
+    },
+    {
+      "New_Route_ID": "FDR-574",
+      "Route_Name": "Pehilpora to URI via Baramulla",
+      "Route_Type": "Peri_Urban"
+    },
+    {
+      "New_Route_ID": "FDR-520",
+      "Route_Name": "Harman to Srinagar",
+      "Route_Type": "Regional_District"
+    },
+    {
+      "New_Route_ID": "FDR-008",
+      "Route_Name": "Khull Ahmadabad to Srinagar",
+      "Route_Type": "Regional_District"
+    },
+    {
+      "New_Route_ID": "FDR-537",
+      "Route_Name": "Pariwan to Srinagar",
+      "Route_Type": "Regional_District"
+    },
+    {
+      "New_Route_ID": "FDR-440",
+      "Route_Name": "Srinagar to Lettar",
+      "Route_Type": "Peri_Urban"
+    },
+    {
+      "New_Route_ID": "FDR-531",
+      "Route_Name": "Srinagar to Keller",
+      "Route_Type": "Regional_District"
+    },
+    {
+      "New_Route_ID": "FDR-435",
+      "Route_Name": "Srinagar to NEW Khanda",
+      "Route_Type": "Urban"
+    },
+    {
+      "New_Route_ID": "FDR-476",
+      "Route_Name": "Srinagar to Khrew",
+      "Route_Type": "Urban"
+    },
+    {
+      "New_Route_ID": "FDR-093",
+      "Route_Name": "Srinagar to Railway",
+      "Route_Type": "Urban"
+    },
+    {
+      "New_Route_ID": "FDR-123",
+      "Route_Name": "Srinagar to Bypass",
+      "Route_Type": "Urban"
+    },
+    {
+      "New_Route_ID": "FDR-144",
+      "Route_Name": "Srinagar to Gulabagh",
+      "Route_Type": "Urban"
+    },
+    {
+      "New_Route_ID": "FDR-040",
+      "Route_Name": "Srinagar to Ratnipura",
+      "Route_Type": "Urban"
+    },
+    {
+      "New_Route_ID": "FDR-052",
+      "Route_Name": "Srinagar to Buchpora",
+      "Route_Type": "Urban"
+    },
+    {
+      "New_Route_ID": "FDR-370",
+      "Route_Name": "Srinagar to Pampore",
+      "Route_Type": "Urban"
+    },
+    {
+      "New_Route_ID": "FDR-479",
+      "Route_Name": "Srinagar to Budgam",
+      "Route_Type": "Urban"
+    },
+    {
+      "New_Route_ID": "FDR-517",
+      "Route_Name": "Srinagar to Gund",
+      "Route_Type": "Peri_Urban"
+    },
+    {
+      "New_Route_ID": "FDR-326",
+      "Route_Name": "Srinagar to Chadoora",
+      "Route_Type": "Urban"
+    },
+    {
+      "New_Route_ID": "FDR-036",
+      "Route_Name": "Srinagar to Bugam",
+      "Route_Type": "Peri_Urban"
+    },
+    {
+      "New_Route_ID": "FDR-288",
+      "Route_Name": "Srinagar to Ganderbal",
+      "Route_Type": "Urban"
+    },
+    {
+      "New_Route_ID": "FDR-602",
+      "Route_Name": "TRC Srinagar to Airport",
+      "Route_Type": "Urban"
+    }
+  ],
+  "scenarios": [
+    {
+      "buses_per_1000_covered": 0.6347126614660199,
+      "coverage_any": 0.24189890993782312,
+      "coverage_le15": 0.10442732212644891,
+      "coverage_le20": 0.12212666152550389,
+      "description": "Published plan (v3.4.5-geo)",
+      "fleet": 1011,
+      "fleet_change_pct": 0.0,
+      "max_wait_rural_min": 50.0,
+      "routes": 186,
+      "scenario": "S0"
+    },
+    {
+      "buses_per_1000_covered": 0.7339061337821734,
+      "coverage_any": 0.24189890993782312,
+      "coverage_le15": 0.10442732212644891,
+      "coverage_le20": 0.12212666152550389,
+      "description": "Observed urban/peri-urban run time",
+      "fleet": 1169,
+      "fleet_change_pct": 15.62809099901088,
+      "max_wait_rural_min": 50.0,
+      "routes": 186,
+      "scenario": "S1"
+    },
+    {
+      "buses_per_1000_covered": 0.7979424260369054,
+      "coverage_any": 0.24189890993782312,
+      "coverage_le15": 0.10442732212644891,
+      "coverage_le20": 0.12212666152550389,
+      "description": "S1 + rural cap at observed rural pace (2.13 min/km, n=2; bound)",
+      "fleet": 1271,
+      "fleet_change_pct": 25.717111770524227,
+      "max_wait_rural_min": 50.0,
+      "routes": 186,
+      "scenario": "S2"
+    },
+    {
+      "buses_per_1000_covered": 0.6943543062130743,
+      "coverage_any": 0.24189890993782312,
+      "coverage_le15": 0.10442732212644891,
+      "coverage_le20": 0.12212666152550389,
+      "description": "Flat 35-min rural headway (no 50-min buckets)",
+      "fleet": 1106,
+      "fleet_change_pct": 9.396636993076157,
+      "max_wait_rural_min": 35.0,
+      "routes": 186,
+      "scenario": "S3"
+    },
+    {
+      "buses_per_1000_covered": 0.3982419076758699,
+      "coverage_any": 0.20325449879585625,
+      "coverage_le15": 0.10442732212644891,
+      "coverage_le20": 0.11199831520106573,
+      "description": "Consolidation at theta = 0.50 (engine merge test)",
+      "fleet": 533,
+      "fleet_change_pct": -47.279920870425315,
+      "max_wait_rural_min": 50.0,
+      "routes": 84,
+      "scenario": "S4"
+    },
+    {
+      "buses_per_1000_covered": 0.7357895541426066,
+      "coverage_any": 0.24189890993782312,
+      "coverage_le15": 0.14535956272982986,
+      "coverage_le20": 0.14547416444208613,
+      "description": "Urban frequent network (all Urban routes 15 min)",
+      "fleet": 1172,
+      "fleet_change_pct": 15.92482690405539,
+      "max_wait_rural_min": 50.0,
+      "routes": 186,
+      "scenario": "S5"
+    }
+  ]
+}

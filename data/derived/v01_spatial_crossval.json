@@ -1,0 +1,114 @@
+{
+  "caveats": [
+    "WorldPop uses building footprints as a covariate; V1 is a consistency check on spatial pattern, not independent validation of counts.",
+    "OSM building mapping is volunteered and uneven; see completeness table.",
+    "Closed building ways only; multipolygon relations not assembled."
+  ],
+  "completeness_by_district": [
+    {
+      "district": "Kupwara",
+      "populated_cells": 1697,
+      "share_cells_with_buildings": 0.04714201532115498,
+      "share_pop_in_mapped_cells": 0.12297394881137526
+    },
+    {
+      "district": "Shopian",
+      "populated_cells": 461,
+      "share_cells_with_buildings": 0.08893709327548807,
+      "share_pop_in_mapped_cells": 0.16292770639332574
+    },
+    {
+      "district": "Budgam",
+      "populated_cells": 878,
+      "share_cells_with_buildings": 0.07403189066059225,
+      "share_pop_in_mapped_cells": 0.17085614695390958
+    },
+    {
+      "district": "Bandipore",
+      "populated_cells": 1005,
+      "share_cells_with_buildings": 0.041791044776119404,
+      "share_pop_in_mapped_cells": 0.17101160753564723
+    },
+    {
+      "district": "Kulgam",
+      "populated_cells": 707,
+      "share_cells_with_buildings": 0.07779349363507779,
+      "share_pop_in_mapped_cells": 0.22516401854945564
+    },
+    {
+      "district": "Pulwama",
+      "populated_cells": 728,
+      "share_cells_with_buildings": 0.1043956043956044,
+      "share_pop_in_mapped_cells": 0.23784160269412688
+    },
+    {
+      "district": "Anantnag",
+      "populated_cells": 1505,
+      "share_cells_with_buildings": 0.10431893687707641,
+      "share_pop_in_mapped_cells": 0.2646312122854829
+    },
+    {
+      "district": "Baramulla",
+      "populated_cells": 1655,
+      "share_cells_with_buildings": 0.09244712990936556,
+      "share_pop_in_mapped_cells": 0.2761115261695555
+    },
+    {
+      "district": "Ganderbal",
+      "populated_cells": 649,
+      "share_cells_with_buildings": 0.17257318952234207,
+      "share_pop_in_mapped_cells": 0.3717279277169459
+    },
+    {
+      "district": "Srinagar",
+      "populated_cells": 421,
+      "share_cells_with_buildings": 0.30641330166270786,
+      "share_pop_in_mapped_cells": 0.7726258344487432
+    }
+  ],
+  "footprint_area_km2": 3.712952916555046,
+  "grid_scale": {
+    "block_factor": 13,
+    "cell_m": 1000.0,
+    "n_cells": 13645,
+    "n_populated": 9255,
+    "p_all": 0.0,
+    "p_populated": 3.964830547275574e-208,
+    "rho_all": 0.31643146016501805,
+    "rho_populated": 0.31203579427799233,
+    "share_population_in_cells_with_buildings": 0.3362999885079825
+  },
+  "n_footprints_in_union": 12343,
+  "pbf": "E:\\kash\\india-latest.osm.pbf",
+  "pbf_sha256": "681021c55963ed736fd95dcb89c55ca34f0dbcb5431085eeb621dbc3bf9a908a",
+  "rho_target": 0.6,
+  "route_scale": {
+    "by_route_type": {
+      "Peri_Urban": {
+        "n": 47,
+        "n_zero_buildings": 0,
+        "p": 6.192448210372872e-06,
+        "rho": 0.6066090378088067
+      },
+      "Regional_District": {
+        "n": 71,
+        "n_zero_buildings": 0,
+        "p": 2.4600242122386822e-20,
+        "rho": 0.8439182420675401
+      },
+      "Urban": {
+        "n": 68,
+        "n_zero_buildings": 0,
+        "p": 1.4248198859009948e-06,
+        "rho": 0.5465372613263844
+      }
+    },
+    "n": 186,
+    "n_routes_zero_buildings": 0,
+    "p_area": 2.430522724767292e-24,
+    "p_count": 9.609307837838207e-16,
+    "rho_area": 0.6568643312396657,
+    "rho_count": 0.5444088651496526
+  },
+  "verdict_pass": false
+}

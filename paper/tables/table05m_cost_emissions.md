@@ -1,0 +1,6 @@
+**PROVISIONAL (constants pending D8): annual operating cost and CO2 envelope; covered residents = 1,592,847 (network walkshed, a11)**
+
+| Vehicle-km basis   |   Vehicle-km / yr (M) | Operating cost / yr (INR crore)   | CO2 / yr (kt)   | Cost per covered resident / yr (INR)   |
+|:-------------------|----------------------:|:----------------------------------|:----------------|:---------------------------------------|
+| PLAN               |                 120   | 642–1,054                         | 65.2–102.9      | 4,033–6,615                            |
+| OBSERVED           |                  38.5 | 206–338                           | 20.9–32.9       | 1,295–2,124                            |

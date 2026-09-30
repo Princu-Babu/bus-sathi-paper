@@ -1,0 +1,11 @@
+**Cost and emission constants used by a14 (all pending verification, D8)**
+
+| Constant                  |   Low |   High | Unit       | Source                                                                                                                    | Verified   |
+|:--------------------------|------:|-------:|:-----------|:--------------------------------------------------------------------------------------------------------------------------|:-----------|
+| diesel_kmpl_full_size     |  3.5  |   5    | km/L       | ASRTU / CIRT State Transport Undertaking performance statistics (fleet HSD km/L); range spans city and mofussil operation | False      |
+| diesel_kmpl_lpv           |  7    |  10    | km/L       | manufacturer-rated economy for 12–20 seat minibuses/tempo travellers; no Kashmir record                                   | False      |
+| diesel_kgco2_per_l        |  2.64 |   2.7  | kg CO2/L   | IPCC 2006 Guidelines Vol.2 Ch.3 default diesel factor (74,100 kg/TJ) at Indian HSD density                                | False      |
+| ebus_kwh_per_km           |  0.9  |   1.4  | kWh/km     | reported energy intensity of 9–12 m Indian e-buses (CESL / operator disclosures)                                          | False      |
+| grid_kgco2_per_kwh        |  0.7  |   0.82 | kg CO2/kWh | CEA CO2 Baseline Database for the Indian Power Sector (weighted average; high end adds T&D and charging losses)           | False      |
+| cost_inr_per_km_full_size | 55    |  90    | INR/km     | gross-cost-contract (GCC) per-km rates discovered in recent Indian e-bus and diesel bus tenders; engine uses 65           | False      |
+| cost_inr_per_km_lpv       | 25    |  45    | INR/km     | private minibus operating cost; no Kashmir record                                                                         | False      |

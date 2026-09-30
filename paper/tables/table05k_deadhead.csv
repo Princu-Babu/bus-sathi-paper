@@ -1,0 +1,5 @@
+Class,Routes,Buses,Service km/day,Deadhead km/day (D1),Deadhead share D0,Deadhead share D1,"D1, observed operating day",Median depot leg (km)
+Peri_Urban,47,313,92943,2716,0%,2.8%,9.2%,4.5
+Regional_District,71,384,172870,1102,0%,0.6%,1.9%,0.0
+Urban,68,314,57245,1933,0%,3.3%,10.1%,2.0
+Network,186,1011,323058,5751,0%,1.7%,5.5%,1.3

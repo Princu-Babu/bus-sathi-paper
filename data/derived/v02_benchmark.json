@@ -1,0 +1,67 @@
+{
+  "chalo_daily_operated_km": 18362.117808219176,
+  "chalo_daily_pax": 31869.386301369865,
+  "chalo_daily_trips": 855.3890410958904,
+  "chalo_fleet": 98,
+  "circularity": [
+    "CHALO ridership anchors kappa in Eq. 8",
+    "engine floors SSCL fleet at CHALO deployment on 2 of 30 routes",
+    "the 30 backbone alignments are the CHALO routes"
+  ],
+  "engine_assumption": {
+    "ratio": 1.287,
+    "service_hours": 16.0,
+    "within_tolerance": false
+  },
+  "months": 12,
+  "n_assumptions_within_tolerance": 0,
+  "n_routes": 30,
+  "n_routes_floored_by_chalo": 2,
+  "plan_sscl_fleet": 283,
+  "ratio_range": [
+    1.287,
+    1.583
+  ],
+  "route_rank": {
+    "n": 30,
+    "p_cycle": 0.15261849590049403,
+    "p_fleet": 0.24368792820398316,
+    "spearman_chalo_vs_cycle": 0.2677247532537155,
+    "spearman_fleet": 0.21956835584926043
+  },
+  "sweep": [
+    {
+      "chalo_effective_headway_min": 27.4,
+      "chalo_scaled_fleet": 178.7,
+      "plan_fleet": 283,
+      "ratio": 1.583,
+      "service_hours": 13.0,
+      "within_tolerance": false
+    },
+    {
+      "chalo_effective_headway_min": 29.5,
+      "chalo_scaled_fleet": 192.5,
+      "plan_fleet": 283,
+      "ratio": 1.47,
+      "service_hours": 14.0,
+      "within_tolerance": false
+    },
+    {
+      "chalo_effective_headway_min": 31.6,
+      "chalo_scaled_fleet": 206.2,
+      "plan_fleet": 283,
+      "ratio": 1.372,
+      "service_hours": 15.0,
+      "within_tolerance": false
+    },
+    {
+      "chalo_effective_headway_min": 33.7,
+      "chalo_scaled_fleet": 220.0,
+      "plan_fleet": 283,
+      "ratio": 1.287,
+      "service_hours": 16.0,
+      "within_tolerance": false
+    }
+  ],
+  "tolerance": 0.15
+}

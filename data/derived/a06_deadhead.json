@@ -1,0 +1,94 @@
+{
+  "assumptions": {
+    "D0": "terminal parking, deadhead = 0",
+    "D1": "district-HQ depot, two legs/day, nearer terminus, route's own circuity"
+  },
+  "d1_inside_literature_range": false,
+  "district_hq": [
+    {
+      "basis": "named_stop",
+      "district": "Anantnag",
+      "lat": 33.74535,
+      "lon": 75.18608
+    },
+    {
+      "basis": "stop_mean_FLAG",
+      "district": "Bandipore",
+      "lat": 34.356748,
+      "lon": 74.646972
+    },
+    {
+      "basis": "stop_mean_FLAG",
+      "district": "Baramulla",
+      "lat": 34.173220833333325,
+      "lon": 74.39534
+    },
+    {
+      "basis": "named_stop",
+      "district": "Budgam",
+      "lat": 34.0179,
+      "lon": 74.7139
+    },
+    {
+      "basis": "named_stop",
+      "district": "Ganderbal",
+      "lat": 34.19275,
+      "lon": 74.76975
+    },
+    {
+      "basis": "stop_mean_FLAG",
+      "district": "Kulgam",
+      "lat": 33.668681428571425,
+      "lon": 74.99559614285714
+    },
+    {
+      "basis": "named_stop",
+      "district": "Kupwara",
+      "lat": 34.60382,
+      "lon": 74.23032
+    },
+    {
+      "basis": "named_stop",
+      "district": "Pulwama",
+      "lat": 33.87563,
+      "lon": 74.90046
+    },
+    {
+      "basis": "named_stop",
+      "district": "Shopian",
+      "lat": 33.71923,
+      "lon": 74.83327
+    },
+    {
+      "basis": "named_stop",
+      "district": "Srinagar",
+      "lat": 34.07457,
+      "lon": 74.8205
+    }
+  ],
+  "literature_range_for_comparison": [
+    0.05,
+    0.12
+  ],
+  "network": {
+    "deadhead_km_per_day_D1": 5751.1230751256135,
+    "deadhead_share_D0": 0.0,
+    "deadhead_share_D1": 0.01749077023902598,
+    "service_km_per_day": 323057.9
+  },
+  "observed_day": {
+    "deadhead_share_D1": 0.05455217184067419,
+    "observed_service_km_per_bus_day": 98.58867483624469,
+    "plan_service_km_per_bus_day": 319.5429277942631,
+    "service_km_per_day": 99673.15025944338,
+    "service_min_per_bus_day": 217.0
+  },
+  "reason": "No depot register exists in any input; deadhead is bounded by two stated assumptions.",
+  "route_share_D1": {
+    "max": 0.1470658980069883,
+    "median": 0.010264534243001392,
+    "p90": 0.06302835759925642
+  },
+  "service_km_basis": "plan Daily_KM (16-h service day at the published headway)",
+  "status": "BOUNDED_NOT_MEASURED"
+}

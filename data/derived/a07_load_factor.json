@@ -1,0 +1,42 @@
+{
+  "observed_backbone": {
+    "chalo_daily_boardings": 31869.386301369865,
+    "chalo_daily_trip_count": 855.3890410958904,
+    "chalo_mean_vehicle_capacity": 41.37755102040816,
+    "note": "Day-one boardings per trip hold ridership at today's level; the growth figure is a requirement, not a forecast.",
+    "readings": {
+      "trip_count_is_one_way": {
+        "boardings_per_oneway_trip_plan_day_one": 8.299319349315068,
+        "boardings_per_oneway_trip_today": 37.25718330520119,
+        "boardings_per_seat_slot_today": 0.9004202130480189,
+        "oneway_trips_today": 855.3890410958904,
+        "plan_oneway_trips": 3840.0,
+        "ridership_growth_to_hold_today_per_trip": 4.489185406303949,
+        "trip_multiplier": 4.489185406303949
+      },
+      "trip_count_is_round_trip": {
+        "boardings_per_oneway_trip_plan_day_one": 8.299319349315068,
+        "boardings_per_oneway_trip_today": 18.628591652600594,
+        "boardings_per_seat_slot_today": 0.45021010652400945,
+        "oneway_trips_today": 1710.7780821917809,
+        "plan_oneway_trips": 3840.0,
+        "ridership_growth_to_hold_today_per_trip": 2.2445927031519743,
+        "trip_multiplier": 2.2445927031519743
+      }
+    }
+  },
+  "peak_hour_factor": 0.1067,
+  "proxy_network": {
+    "caveat": "Eq. 8 proxy (quarantined); boarding-to-capacity, not load.",
+    "median": 0.22656650641025639,
+    "n_above_085": 17,
+    "n_below_040": 152,
+    "p90": 0.779545119047619,
+    "total_proxy_daily_demand": 54894.0
+  },
+  "vehicle_capacity": {
+    "HPV": 60,
+    "LPV": 20,
+    "MPV": 35
+  }
+}

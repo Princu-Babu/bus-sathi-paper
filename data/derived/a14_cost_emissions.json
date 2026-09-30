@@ -1,0 +1,96 @@
+{
+  "bases": {
+    "OBSERVED": {
+      "co2_t_per_year": [
+        20911.964806062253,
+        32927.638542641
+      ],
+      "cost_inr_per_covered_resident_per_year": [
+        1295.1709737968827,
+        2123.9408390753424
+      ],
+      "cost_inr_per_year": [
+        2063008876.3066998,
+        3383112262.7134323
+      ],
+      "ebus_share_of_km": 0.27118155184366793,
+      "vehicle_km_per_year": 38479859.76711768
+    },
+    "PLAN": {
+      "co2_t_per_year": [
+        65238.22573011616,
+        102948.65948378528
+      ],
+      "cost_inr_per_covered_resident_per_year": [
+        4033.368741739718,
+        6615.151230597487
+      ],
+      "cost_inr_per_year": [
+        6424538291.831699,
+        10536922138.415707
+      ],
+      "ebus_share_of_km": 0.27950815674076374,
+      "vehicle_km_per_year": 120015293.42242084
+    }
+  },
+  "constants": {
+    "cost_inr_per_km_full_size": {
+      "high": 90.0,
+      "low": 55.0,
+      "source": "gross-cost-contract (GCC) per-km rates discovered in recent Indian e-bus and diesel bus tenders; engine uses 65",
+      "unit": "INR/km",
+      "verified": false
+    },
+    "cost_inr_per_km_lpv": {
+      "high": 45.0,
+      "low": 25.0,
+      "source": "private minibus operating cost; no Kashmir record",
+      "unit": "INR/km",
+      "verified": false
+    },
+    "diesel_kgco2_per_l": {
+      "high": 2.7,
+      "low": 2.64,
+      "source": "IPCC 2006 Guidelines Vol.2 Ch.3 default diesel factor (74,100 kg/TJ) at Indian HSD density",
+      "unit": "kg CO2/L",
+      "verified": false
+    },
+    "diesel_kmpl_full_size": {
+      "high": 5.0,
+      "low": 3.5,
+      "source": "ASRTU / CIRT State Transport Undertaking performance statistics (fleet HSD km/L); range spans city and mofussil operation",
+      "unit": "km/L",
+      "verified": false
+    },
+    "diesel_kmpl_lpv": {
+      "high": 10.0,
+      "low": 7.0,
+      "source": "manufacturer-rated economy for 12\u201320 seat minibuses/tempo travellers; no Kashmir record",
+      "unit": "km/L",
+      "verified": false
+    },
+    "ebus_kwh_per_km": {
+      "high": 1.4,
+      "low": 0.9,
+      "source": "reported energy intensity of 9\u201312 m Indian e-buses (CESL / operator disclosures)",
+      "unit": "kWh/km",
+      "verified": false
+    },
+    "grid_kgco2_per_kwh": {
+      "high": 0.82,
+      "low": 0.7,
+      "source": "CEA CO2 Baseline Database for the Indian Power Sector (weighted average; high end adds T&D and charging losses)",
+      "unit": "kg CO2/kWh",
+      "verified": false
+    }
+  },
+  "covered_residents": 1592846.75,
+  "engine_emission_factor_check": {
+    "engine_diesel_gco2_per_km": 950.0,
+    "engine_ebus_gco2_per_km": 30.0,
+    "midrange_ebus_gco2_per_km": 873.9999999999999,
+    "note": "Engine Phase-4 Emissions_GCO2_Daily not used; e-bus factor implausibly low.",
+    "understatement_factor": 29.13333333333333
+  },
+  "status": "PROVISIONAL_PENDING_D8"
+}

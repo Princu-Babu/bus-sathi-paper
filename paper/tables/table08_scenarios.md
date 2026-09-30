@@ -1,0 +1,10 @@
+**Policy scenarios: one lever changed at a time from the published plan (S0); coverage is the deduplicated share of 6,584,762 residents within a 400 m network walk**
+
+| Scenario   | Lever                                                           |   Routes |   Fleet | Δ fleet   | Coverage (any)   | Coverage ≤15 min   | Coverage ≤20 min   |   Max rural wait (min) |
+|:-----------|:----------------------------------------------------------------|---------:|--------:|:----------|:-----------------|:-------------------|:-------------------|-----------------------:|
+| S0         | Published plan (v3.4.5-geo)                                     |      186 |    1011 | +0.0%     | 24.2%            | 10.4%              | 12.2%              |                     50 |
+| S1         | Observed urban/peri-urban run time                              |      186 |    1169 | +15.6%    | 24.2%            | 10.4%              | 12.2%              |                     50 |
+| S2         | S1 + rural cap at observed rural pace (2.13 min/km, n=2; bound) |      186 |    1271 | +25.7%    | 24.2%            | 10.4%              | 12.2%              |                     50 |
+| S3         | Flat 35-min rural headway (no 50-min buckets)                   |      186 |    1106 | +9.4%     | 24.2%            | 10.4%              | 12.2%              |                     35 |
+| S4         | Consolidation at theta = 0.50 (engine merge test)               |       84 |     533 | -47.3%    | 20.3%            | 10.4%              | 11.2%              |                     50 |
+| S5         | Urban frequent network (all Urban routes 15 min)                |      186 |    1172 | +15.9%    | 24.2%            | 14.5%              | 14.5%              |                     50 |
