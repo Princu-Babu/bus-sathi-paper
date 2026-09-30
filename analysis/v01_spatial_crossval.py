@@ -309,7 +309,7 @@ def main() -> None:
         verdict_pass=results[primary]["verdict_pass"],
         completeness_by_district=comp.to_dict(orient="records"),
         provenance=dict(
-            osm_pbf=str(pbf), osm_pbf_sha256=sha256(pbf) if pbf.exists() else None,
+            osm_pbf=pbf.name, osm_pbf_sha256=sha256(pbf) if pbf.exists() else None,
             microsoft_release="Global ML Building Footprints, dataset-links 2026-02 (ODbL)",
             microsoft_tiles=sorted(p.name for p in MS_DIR.glob("*.csv.gz")),
         ),

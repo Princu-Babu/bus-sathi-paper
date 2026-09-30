@@ -169,7 +169,7 @@ def main() -> None:
     import networkx as nx
     comps = sorted((len(c) for c in nx.connected_components(G)), reverse=True)
     C.write_result(dict(
-        source_pbf=str(pbf),
+        source_pbf=pbf.name,
         source_pbf_bytes=pbf.stat().st_size,
         bbox=dict(min_lon=bbox[0], min_lat=bbox[1], max_lon=bbox[2], max_lat=bbox[3]),
         bbox_pad_deg=BBOX_PAD_DEG,

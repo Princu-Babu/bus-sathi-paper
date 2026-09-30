@@ -159,22 +159,8 @@
   "primary_source": "microsoft",
   "provenance": {
     "microsoft_release": "Global ML Building Footprints, dataset-links 2026-02 (ODbL)",
-    "microsoft_tiles": [
-      "Asia_123103022.csv.gz",
-      "India_123103022.csv.gz",
-      "India_123103023.csv.gz",
-      "India_123103032.csv.gz",
-      "India_123103033.csv.gz",
-      "India_123103201.csv.gz",
-      "India_123103203.csv.gz",
-      "India_123103210.csv.gz",
-      "India_123103211.csv.gz",
-      "India_123103212.csv.gz",
-      "India_123103213.csv.gz",
-      "Pakistan_123103022.csv.gz",
-      "Pakistan_123103023.csv.gz"
-    ],
-    "osm_pbf": "E:\\kash\\india-latest.osm.pbf",
+    "microsoft_tiles": [],
+    "osm_pbf": "india-latest.osm.pbf",
     "osm_pbf_sha256": "681021c55963ed736fd95dcb89c55ca34f0dbcb5431085eeb621dbc3bf9a908a"
   },
   "rho_target": 0.6,
