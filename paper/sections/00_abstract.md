@@ -1,30 +1,27 @@
 # Abstract
 
-> **Section owners:** Prashant, Ankit, Sharvesh. **Convention:** draft last. **Status:** complete draft on
-> locked numbers; headline evaluation figures (frequent-network coverage, interval fleet) to be confirmed
-> once §5.5–§5.13 modules run. Every value cites `[CL-xx]`. Kashmir-Division scope; the legacy
+> **Section owners:** Prashant, Ankit, Sharvesh. **Convention:** draft last. **Status (2026-09-30):** rewritten on
+> the executed modules, including the a09 fleet interval. Every value cites `[CL-xx]`. Kashmir-Division scope; the legacy
 > "342 permits → 207 routes / ~1,009 fleet / Srinagar-metropolitan" framing is **superseded and barred**.
 > ~230 words.
 
 ---
 
 Most Indian cities that need bus-network reform lack the origin–destination and ridership data that
-conventional route-optimisation methods assume, so the low-cost intervention — rationalising an
-inherited permit network — is precisely the one for which the required demand data are missing. We
-present a fully open-data, demand-free framework for bus route rationalisation and fleet sizing, and
-apply it to the ten districts of Kashmir Division, India (6,584,762 residents) `[CL-11]`, using only a
-gridded population surface, OpenStreetMap opportunity and road layers, a road-routing engine, and the
-digitised stage-carriage register. Catchments are measured on a walkable pedestrian network rather than
-as straight-line buffers; routes are scored by a composite population–opportunity index, consolidated on
-spatial overlap, tiered by natural breaks, and sized from cycle time by an auditable fleet rule. The
-central methodological result is that conventional straight-line buffers overstate population served by a
-**median of 37.4 % per route**, cutting defensible division coverage from **35.5 % to 24.2 %**
-`[CL-26, CL-28]`. The framework reorganises **614 permits across 157 corridors** `[CL-01, CL-02]` into
-**186 active routes and a 1,011-vehicle fleet** (+68.5 %) `[CL-06, CL-36]`, and shows the apparent 71 %
-"route reduction" to be **99.4 % corridor retention** plus a change of the unit of analysis `[CL-07,
-CL-08]`. Supply-side GPS validation reproduces route geometry, urban moving speed, and the fleet
-arithmetic exactly `[CL-33, CL-35, CL-36]`; the plan is thus **decision-robust, not demand-validated**.
-The method transfers to the ~400 Indian Class-I cities without an organised bus network.
+route-optimisation methods assume. We present an open-data, demand-free framework for bus route
+rationalisation and fleet sizing and apply it to Kashmir Division, India (6,584,762 residents)
+`[CL-11]`, using a gridded population surface, OpenStreetMap, a routing engine and the digitised permit
+register. The register's 614 permits describe only 157 corridors, so the plan's apparent 71 % "route
+reduction" is 99.4 % corridor retention plus a change of unit `[CL-01, CL-02, CL-07, CL-08]`. Measuring
+catchments on the pedestrian network rather than as straight-line buffers lowers population served by a
+median of **37.4 % per route** and division coverage from **35.5 % to 24.2 %** `[CL-26, CL-28]`; only
+10.4 % of residents live near a 15-minute service `[CL-42]`. Against 43,809 driver-GPS runs, modelled run
+times are too fast and a per-kilometre cap, not demand, sets cycle time on 169 of 186 routes
+`[CL-18, CL-31]`. Joint uncertainty analysis therefore reports the fleet as a range: 989–1,058 buses as
+specified, but **1,130–1,266 at observed pace**, against a published 1,011; the service hierarchy is
+robust (97.8 % tier agreement) `[CL-56, CL-57]`. Thirty per cent of the fleet, bought in order of new
+residents reached per bus, delivers 92 % of the plan's coverage `[CL-61]`. The plan is decision-robust in
+its hierarchy, not demand-validated.
 
 **Keywords:** bus route rationalisation; demand-data scarcity; open data; network walk catchments;
-fleet sizing; Kashmir
+fleet sizing; uncertainty analysis; Kashmir

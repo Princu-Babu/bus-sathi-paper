@@ -55,6 +55,14 @@ rest change its quality, not its viability.
 | D15 | Word budget: the draft is ~11,900 words against a 9,000–10,000 target | High | All | Submission |
 | D16 | What exactly goes in the public repository | Medium | Prashant | Data-availability statement |
 | D17 | Journal target — confirm *Transport Policy* | Low | All | Formatting |
+| D20 | Confirm four corrections to the method as published (Part G) | High | Prashant | §4 |
+| D21 | Per-lakh benchmark: 63.5 on network-served, above MoHUA band | Medium | Prashant | §4.8, §5.4, RTO deck |
+| D22 | V2 fails the ±15% band — report as fail | High | Prashant + Avny | §6 |
+| D23 | GPS collection window conflict (Feb–Jun vs Jun–Jul) | Blocker (with D4) | Prashant | Ethics, data availability |
+| D24 | Day-one load ~8 boardings/trip — "supply-led bet" framing | Medium | Prashant + Ankit | §5.11, §7 |
+| D25 | a14 cost/emission constants (was D8) | Medium | Prashant | §5.12 |
+
+*Status 2026-09-30: D9, D14 (except Fig 2, 9, 9b), D19 resolved — see Part G.*
 
 ---
 
@@ -953,3 +961,68 @@ If you only have ten minutes, answer these four:
 4. **D5 — the literature protocol.** Run it, or drop it. Either is fine; the current state is not.
 
 D1 is a one-paragraph fix whose replacement text is already drafted. Everything else can wait for the modules.
+
+---
+
+# Part G — Update, 2026-09-30
+
+Everything in this part was checked against the repository on the date above. It supersedes the status
+lines of D7, D9, D14, D15 and D19 earlier in this document; the original entries are kept for the record.
+
+## Resolved without you (reversible)
+
+| # | What happened | How to reverse |
+|---|---|---|
+| D9 | **No download needed.** Buildings were extracted from the local OSM India file already used for the walk graph (`E:/kash/india-latest.osm.pbf`). V1 ran: route-scale ρ = 0.657 on footprint area (pass), 0.544 on count (fail); 1 km grid 0.316 (fail) because only 4–31% of populated cells contain any mapped building. That file looks partially filtered (847,866 buildings for all of India). A full OSM or Microsoft/Google footprint layer would strengthen V1, but it is a large external download and needs your go-ahead. | Say "download footprints" and name the source. |
+| D19 | a03 now uses a04's Jenks convention and was re-run. Only a03's band-agreement statistics moved, by ≤0.02 κ, and none of them is quoted in the prose. | Revert `a03_index_weights.py:120`. |
+| D14 | Figures 1, 3, 4, 5, 6, 7, 8 and S1 (trade-off frontier) are drawn by `analysis/fig_generate_all.py` at 300 dpi + vector PDF. Figures 9/9b are drawn once a09 runs. Figure 2 (review flow) waits on D5. | Replace any figure; the script is the single source. |
+| D15 | Prashant's §4 was cut from 2,758 to 2,422 words. Co-author cuts are *proposed*, not applied, in `paper/WORD_BUDGET_PLAN.md`. | — |
+
+## New decisions raised by today's modules
+
+### D20 · The published method misdescribed the engine in four places — confirm the corrections
+Checked line by line against `transit_kashmir_v3.py`: (a) the capture scale is κ = 0.33, not 0.18;
+(b) Eq. 8 does set headways on the 67 non-backbone rural routes (5 at 35 min, 62 at 50 min), so
+"demand never sizes the fleet" was false; (c) the merge test also requires start points within 2.5 km,
+uses 80 m line buffers, and merges only into a cluster's leading trunk; (d) the backbone fleet is
+max(formula, CHALO deployment), which binds on 2 of 30 routes. §4 now says all four (CL-59).
+**Recommendation:** keep the corrections — a reviewer with the public code would find them.
+
+### D21 · The MoHUA benchmark sentence
+The engine's "43 buses per lakh served, inside the MoHUA 40–60 band" divides by the Euclidean served
+population this paper shows is overstated. On the network walkshed it is **63.5 per lakh, above the band**
+(15.4 on the whole division). §4.8 and §5.4 now report all three (CL-60). **Recommendation:** keep;
+say which denominator the RTO deck uses before it is quoted externally.
+
+### D22 · V2 fails — how to present it
+The plan's backbone fleet (283) is 1.29–1.58× CHALO's 98 buses scaled to 15 minutes, under every
+service-day assumption; route-level rank agreement is weak (ρ = 0.22). §6.2 reports this as a fail.
+**Recommendation:** report as a fail. The pre-registered ±15% band cannot be widened after the fact.
+
+### D23 · GPS collection window conflict (feeds D4)
+`DATA_AVAILABILITY.md` says June–July 2026; the ledger (CL-18) and the driver-day file say
+February–June 2026. The ethics statement must use the true window.
+
+### D24 · Load and ridership framing
+On day one the planned backbone carries ~8 boardings per trip against 19–37 today; ridership must grow
+2.2–4.5× to hold today's loads (CL-50). §5.11 frames the plan as a supply-led bet and recommends staged
+procurement. **Recommendation:** keep — it is the honest reading and a defensible policy recommendation.
+
+### D25 · Cost and emissions stay provisional
+a14 carries every constant as a range with `verified = false` (Table 5m-constants). Nothing from it is in
+the Abstract. The engine's own e-bus emission factor (30 g CO₂/km) is about 29× too low and is not used.
+This is D8; it now has concrete constants to confirm.
+
+## D7 and D6 — now answerable with numbers (a08/a09 ran 2026-09-30)
+
+**D7 · Fleet as a point or an interval.** The Monte Carlo gives 989–1,058 buses (median 1,013) as the
+engine specifies, and **1,130–1,266 (median 1,182)** when urban and peri-urban run times follow observed
+GPS pace; the published 1,011 lies below the whole observation-anchored interval (CL-56). The Abstract,
+§5.7, §6.2 V6, §8, the highlights and the cover letter now say this. **Recommendation stands (option A):**
+keep 1,011 as the plan's own figure and report the observation-anchored range as what to procure against.
+If the RTO needs one number, 1,182 is the median at observed pace.
+
+**D6 · Data-maturity ladder by variance reduction.** Written into §7.5 from the Sobol' indices (CL-58):
+vehicle-availability records first (spare ratio 55 % of fleet variance), then peri-urban GPS (32 %), then
+demand-side weights for the tiers (93 % of tier variance). Coverage is a walk-radius definition (97 %),
+which no dataset resolves.

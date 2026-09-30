@@ -8,6 +8,12 @@ Single source of truth for project state. Updated at the end of each working ses
 - **Python:** 3.14.2 venv at `E:\kash-paper\.venv`
 - **Last updated:** 2026-09-03 (Session Pause & State Freeze)
 
+> **Superseded 2026-09-30.** The sections below describe the 2026-09-03 state and are kept for history.
+> Current state: `PAPER_COMPLETION_PLAN.md` §1 (refreshed 2026-09-30), the claim ledger
+> (`paper/CLAIM_LEDGER.md`, CL-01…CL-61) and the decision queue (`paper/PENDING_DECISIONS.md`, Part G).
+> All 22 registered analysis modules are written; §1–§8 and front matter are drafted; decisions
+> D1–D5, D13 and D20–D25 wait on the team.
+
 ---
 
 ## 0. Locked Decisions — Do Not Relitigate

@@ -1,7 +1,7 @@
 # 5. Results
 
 > **Section owners:** Prashant, Misti. **Target length:** ~2,400 words. **Status (2026-09-30):** all
-> subsections drafted from executed modules. §5.7's interval fleet is filled from `a09` once it has run;
+> subsections drafted from executed modules, including the a09 interval fleet in §5.7;
 > §5.12 is provisional pending decision D8 (cost/emission constants). Every value cites `[CL-xx]`/`[F-x]`.
 > Each subsection closes with a single *italicised policy sentence* where one is warranted.
 
@@ -107,7 +107,23 @@ describes where operators already run.*
 
 ## 5.7 Fleet as an interval, and against peer cities
 
-<!-- A09-RESULTS: filled from data/derived/a09_monte_carlo_sobol.json once a09 has run. -->
+Sampling the eleven declared parameters jointly (5,000 draws) leaves the plan's own fleet almost where
+it was: **1,013 buses (90 % interval 989–1,058)** `[CL-56]`. That narrowness is not robustness. With the
+per-km cap in place, congestion, dwell and stop spacing each move the fleet by at most 17 buses, while
+removing the cap lets the same parameters move it by up to 956 `[CL-58]`; the cap has absorbed the
+uncertainty, and the spare ratio alone explains 94 % of what variance remains. When urban and
+peri-urban run times are instead set from the observed pace of 16 Srinagar-belt GPS corridors (regime
+B, §4.10), the fleet becomes **1,182 (1,130–1,266)** — 372 urban, 428 peri-urban and 384 regional
+buses, the regional figure unchanged because rural pace is unobserved `[CL-56]`. The published 1,011
+lies below the whole observation-anchored interval. Variance under regime B splits between the spare
+ratio (total-order index 0.55) and the two observed paces (0.32 peri-urban, 0.13 urban) `[CL-58]`, so
+more GPS on peri-urban corridors is the single most valuable data investment for the fleet (§7.5).
+The hierarchy, by contrast, is stable: tier agreement with the baseline partition is **97.8 %
+(94.6–100 %)**, 179 of 186 routes keep their tier in more than 80 % of draws, and the population weight
+of the index accounts for 93 % of the variance in agreement `[CL-57, CL-58]`.
+
+*Policy: procure against the observation-anchored range (about 1,130–1,270 buses), treating 1,011 as
+the floor the model's own guardrail produces; the service hierarchy can be adopted as it stands.*
 
 Against 36 Indian peer cities (ASRTU 2024 city fleets) [@asrtu2024fleet], the plan's **0.154 buses per 1,000 residents of
 the division** sits at the 61st percentile and inside the preferred log-model prediction interval;
@@ -125,7 +141,8 @@ only equal-count quantiles — which ignore gaps by construction — disagree ($
 The uncomfortable result is that the plan's *published* bands agree with this objective partition on
 only **68.3 % of routes ($\kappa = 0.503$)**, and **20 of the 55 routes the plan designates high-priority
 fall in the objective bottom tier** `[CL-39]`. The discrepancy has two identifiable sources: the engine
-banded on Euclidean rather than network catchments, and its post-Jenks overrides (backbone lock, social
+ran Jenks on Euclidean catchments across all 644 permit rows, including those later consolidated, and its
+post-Jenks overrides (backbone lock, social
 and district-headquarters floors) promote routes irrespective of index value.
 
 *Policy: the hierarchy should be re-derived on network catchments before headways are fixed; the 20

@@ -1,7 +1,7 @@
 # 6. Validation
 
-> **Section owners:** Prashant, Avny, Krishnan. **Target length:** ~900 words. **Status:** complete draft
-> for the established and planned channels. Every value cites `[CL-xx]`/`[F-x]`. **Standing constraints
+> **Section owners:** Prashant, Avny, Krishnan. **Target length:** ~900 words. **Status (2026-09-30):**
+> V1, V2, V4, V5 and V6 executed; V3 is forward work. Every value cites `[CL-xx]`/`[F-x]`. **Standing constraints
 > honoured:** convergent validity is stated first; the CHALO circularity is disclosed up front; ridership
 > is never claimed as a validation target; no field or expert-elicitation data are fabricated.
 >
@@ -35,93 +35,71 @@ run time → cycle time → fleet — and nothing about demand.
 
 **V1 — Spatial cross-validation** (executed, module `v01`). The population surface is checked against
 an independently mapped record of settlement, OpenStreetMap building footprints [@osm2024planet] (12,343 closed building
-ways inside the division), with the pre-declared threshold Spearman $
-ho > 0.60$. Two limits are stated
+ways inside the division), with the pre-declared threshold Spearman $\rho > 0.60$. Two limits are stated
 first: WorldPop uses building footprints as a covariate [@stevens2015disaggregating; @lloyd2017high], so some agreement is expected by construction,
 and building coverage in the OSM extract used here is thin (it may also be partially filtered;
 data/MANIFEST.md). At the scale the plan uses — the 186 route
-catchments — footprint area tracks catchment population at **$
-ho = 0.657$ (pass)**, building count at
+catchments — footprint area tracks catchment population at **$\rho = 0.657$ (pass)**, building count at
 0.544 (fail) `[CL-53]`. On a 1 km grid the correlation falls to **0.316 (fail)**, and the completeness
 table explains why: outside Srinagar only 4–17 % of populated cells contain any mapped building
 (Srinagar 31 %) `[CL-53]`. V1 therefore supports the population surface where the buildings are mapped
 and is uninformative where they are not; it is reported as a partial pass, not rounded up.
 
-**V2 — Benchmark consistency** (executed, module `v02`; circular, as disclosed in §6.1 — and more
-so than that paragraph alone implies, because the engine also floors the backbone fleet at CHALO's
-deployment on 2 of the 30 routes). CHALO runs 98 buses on the 30 backbone routes at about 855 bus-trips a
+**V2 — Benchmark consistency** (executed, module `v02`; circular, as disclosed in §6.1, and further
+because the engine floors the backbone fleet at CHALO's deployment on 2 of 30 routes). CHALO runs 98 buses on the 30 backbone routes at about 855 bus-trips a
 day (12-month mean); scaled to the plan's 15-minute headway that is **179–220 buses**, depending on
 whether the operating day is taken as 13 or 16 hours. The plan's backbone fleet is 283, a ratio of
 **1.29–1.58: V2 fails the pre-registered ±15 % band under every service-day assumption** `[CL-54]`, and the
 rank correlation between CHALO's per-route deployment and the plan's per-route fleet is weak
-($
-ho = 0.22$, $p = 0.24$) `[CL-54]`. Even against the operator it was calibrated to, the plan provisions
-more buses per route than frequency scaling alone explains. V2 cannot say whether the excess lies in
-the plan's cycle times or in CHALO's buses covering longer cycles than its trip count implies; it
-records the disagreement and localises it to the backbone.
+($\rho = 0.22$, $p = 0.24$) `[CL-54]`. Even against the operator it was calibrated to, the plan provisions
+more buses per route than frequency scaling alone explains; V2 localises the disagreement to the
+backbone but cannot say whether it lies in the plan's cycle times or in CHALO's operation.
 
-**V3 — Expert elicitation** (module `v03`, forward work — §6.4). A structured Delphi/AHP panel would
-ground the index weights against practitioner judgement (target Kendall's $W > 0.70$). Pending its
-elicitation, the index weighting is derived by three data-driven schemes — equal, entropy, and PCA
-(§4.5) — and the tier decision is shown to be robust across all three; the panel is planned rather
-than presumed.
+**V3 — Expert elicitation** (not conducted; §6.4). A Delphi/AHP panel would ground the index weights
+(target Kendall's $W > 0.70$). Meanwhile the weights are derived three data-driven ways (§4.5).
 
 **V4 — Supply-side GPS validation** (established, module `v04`). The empirical layer is **43,809 clean
 service runs from ≈157 driver devices, February–June 2026** `[CL-18]`; its results are detailed in
 §6.3. This is the study's one fully executed observational channel.
 
-**V5 — Global sensitivity** and **V6 — Decision robustness** (planned, module `a09`). A 5,000-draw
-Monte Carlo consuming the GPS pace prior yields Sobol' variance decomposition (V5) and a fleet 90 %
-confidence interval with a tier-stability rate (V6, target > 80 %). Method fixed in §4.10; results
-pending.
+**V5 — Global sensitivity** (executed, `a08`/`a09`). Sobol' indices from 15,360 evaluations show two
+different stories. Tier membership depends almost entirely on the population weight of the index
+(total-order index 0.93); coverage on the walk-radius definition (0.97). The fleet as specified depends
+almost only on the spare ratio (0.94), because the per-km cap discards the run-time parameters; with the
+cap removed those same parameters swing the fleet by up to 956 buses `[CL-58]`.
+
+**V6 — Decision robustness** (executed, `a09`). Tiers pass: agreement with the baseline partition is
+97.8 % (90 % interval 94.6–100 %) against the 80 % target, and 179 of 186 routes keep their tier in more
+than 80 % of 5,000 draws `[CL-57]`. The fleet does not have a single robust value: 989–1,058 as specified,
+but **1,130–1,266 once urban and peri-urban run times follow observed pace**, an interval that excludes
+the published 1,011 `[CL-56]`. The decision that survives is the hierarchy; the fleet survives only as a
+range whose lower end the plan reports.
 
 ## 6.3 What the GPS actually shows
 
-The GPS channel corroborates the parts of the supply chain it can see and falsifies two engine
-assumptions it cannot support — which is exactly the behaviour a convergent design should surface.
+The GPS channel corroborates what it can see and falsifies two assumptions it cannot support.
+*Geometry and moving speed pass:* 183 of 186 planned alignments run over roads carrying bus traffic
+(median 94 % of length) `[CL-35, F12]`, and the City-Core congestion multiplier reproduces observed urban
+moving speed to +1.4 % `[CL-33, F11]`. *Dwell and run time fail:* observed dwell is 1.76 min/km against the
+engine's 1.0, and is fixed layover rather than distance-proportional ($R^2 = 0.03$) `[CL-34]`; modelled
+one-way time is a median 0.51 of observed `[CL-17, F3]`, and the per-km cap that was meant as a guardrail
+binds on 169 of 186 routes while sitting below real pace `[CL-31, CL-32, F10]` (§5.3).
 
-*Geometry and moving speed pass.* GPS traces confirm that **183 of 186 planned alignments (median
-`obs_frac` = 94.0 %) run over roads carrying active bus traffic** `[CL-35, F12]`, and the City-Core
-congestion divisor (÷2.20) reproduces observed urban moving speed to **+1.4 % median bias** (modelled
-17.95 vs observed 20.55 km/h) `[CL-33, F11]`. Where the model represents motion on mapped roads, it is
-close.
+*Two coverage metrics, never conflated.* Alignment coverage (94 %) is not service validation: **66 of
+186 routes recur as observed services** `[CL-19, CL-35, F4, F12]`, a lower bound set by partial app
+uptake, not a dormancy rate.
 
-*Dwell and run time fail against reality.* The engine's constant 1.0 min/km dwell is unsupported:
-observed dwell is **1.76 min/km** (median dwell share 38 %), and an OLS fit
-$\text{dwell}=17.67+0.247\,\ell$ ($R^2=0.03$) has a significant intercept and a non-significant
-distance slope `[CL-34, F11]` — dwell is dominated by fixed terminal layover, not by distance.
-Consequently modelled run time understates observed run time badly: **MAPE(OSRM vs in-motion) = 65.1 %,
-MAPE(plan vs observed one-way) = 47.6 %, median ratio 0.51** `[CL-15, CL-16, CL-17, F3]`.
-
-*The cap is the hidden governor.* The per-km sanity ceiling (Eq. 12) **binds on 169 of 186 routes
-(90.9 %)** — 100 % of Regional, 97.9 % of Peri-Urban, 76.5 % of Urban `[CL-31, F10]` — while sitting
-*below* real pace (observed median 4.62 min/km against the 4.0 Urban cap; exceeded on 83–100 % of
-observed corridors) `[CL-32]`. An intended guardrail became the primary driver of cycle time and hence
-fleet across nine-tenths of the network, and it truncates cycle time downward.
-
-*Two coverage metrics, never conflated.* Physical alignment coverage (94 %) is not service validation:
-only **66 of 186 routes (35.5 %) recur as observed services** in the GPS record `[CL-19, CL-35, F4,
-F12]`, and the remaining 120 are `NO_APP_DATA` — an artefact of partial driver-app uptake, an
-**observational lower bound on activity, not a dormancy rate**.
-
-*The supply chain reproduces.* Against this, the fleet formula (Eqs. 13) reproduces the published
-per-route fleet on all 156 non-backbone routes with **zero mismatches** `[CL-36]`: the arithmetic is
-exact and auditable. The problem is not the formula but its inputs — the too-fast cap and the
-distance-proportional dwell — which is why the fleet is reported as an interval anchored to the
-GPS-measured 0.51 run-time ratio (V6, §4.10) rather than as a single number. Taken together, the
-channels agree that the geometry and network structure are sound and disagree, in a localised and
-explicable way, on time — precisely the finding a demand-free plan must expose rather than smooth over.
+*The supply chain reproduces.* The cycle-time and fleet arithmetic reproduces the published plan on
+all 186 routes `[CL-55]`. The problem is not the formula but its inputs — the too-fast cap and the
+distance-proportional dwell — which is why V6 carries observed pace into the fleet. Taken together, the
+channels agree that geometry, network structure and hierarchy are sound and disagree, in a localised and
+explicable way, on time.
 
 ## 6.4 Demand-side corroboration as near-term work
 
-The channels above validate the *supply* chain and the internal consistency of the index; they do not
-yet close the demand-side loop. Two steps are earmarked as immediate next work and should be completed
-before the framework is relied on for a live procurement decision: (i) the structured expert
-elicitation (V3) to anchor the index weights against practitioner judgement, and (ii) a stratified
-on-street boarding/enumeration survey on a sample of retained corridors, to test the index against
-observed patronage rank and to give the POI opportunity layer a ground-truth reference beyond
-OpenStreetMap mapping effort `[CL-20]`. The expert elicitation is scoped in §4.5; neither channel is
-presumed here.
-Until they are in hand, the plan's demand-side term rests on open proxies, and the honest ceiling on
-the present claim remains **decision-robustness of the supply plan**, not demand validation — the
-distinction §6.1 draws and §8 carries into the conclusions.
+The channels above validate the supply chain and the internal consistency of the index, not demand.
+Two steps should precede any live procurement decision: (i) the expert elicitation (V3), which V5 shows
+matters because the population weight governs the tiers; and (ii) a stratified on-street boarding count
+on retained corridors, to test the index against observed patronage and the POI layer against more than
+OpenStreetMap mapping effort `[CL-20]`. Neither was conducted. Until they are, the honest ceiling on the
+claim is **decision-robustness of the supply plan**, not demand validation.

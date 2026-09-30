@@ -95,6 +95,9 @@ FIGURES = [
      "uncertainty [CL-58]."),
     ("figS1_frontier", "**Figure S1.** The fleet price of city frequency: total fleet against a common "
      "urban/peri-urban headway, as specified and at observed pace [CL-52]."),
+    ("figS2_funding_curve", "**Figure S2.** Funding-constrained sequencing: residents reached as routes are "
+     "bought in order of new residents per bus. 30 % of the fleet reaches 92 % of the plan's coverage "
+     "[CL-61]."),
 ]
 
 

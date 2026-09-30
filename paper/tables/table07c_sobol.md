@@ -1,0 +1,17 @@
+**Total-order Sobol' indices (Saltelli, N = 1024, 15,360 evaluations)**
+
+| Parameter                            |   Fleet A (as specified) ST |   Fleet B (obs.-anchored) ST |   Tier agreement ST |   Coverage ST |
+|:-------------------------------------|----------------------------:|-----------------------------:|--------------------:|--------------:|
+| Fleet spare ratio                    |                       0.944 |                        0.549 |               0     |         0     |
+| Observed peri-urban pace (min/km)    |                       0     |                        0.32  |               0     |         0     |
+| Observed urban pace (min/km)         |                       0     |                        0.129 |               0     |         0     |
+| Dwell penalty per stop (min)         |                       0.039 |                        0.001 |               0     |         0     |
+| Assumed stop spacing for dwell (m)   |                       0.024 |                        0.001 |               0     |         0     |
+| Corridor consolidation threshold θ   |                       0     |                        0     |               0     |         0     |
+| Composite weight on population       |                       0     |                        0     |               0.932 |         0     |
+| City-core congestion multiplier      |                       0.009 |                        0     |               0     |         0     |
+| Catchment sampling interval (m)      |                       0     |                        0     |               0.099 |         0.026 |
+| Tier-2 opportunity weight            |                       0     |                        0     |               0.035 |         0     |
+| Tier-3 (seasonal) opportunity weight |                       0     |                        0     |               0.037 |         0     |
+| Tourist-corridor catchment boost     |                       0     |                        0     |               0.011 |         0     |
+| Walk catchment radius (m)            |                       0     |                        0     |               0.165 |         0.974 |

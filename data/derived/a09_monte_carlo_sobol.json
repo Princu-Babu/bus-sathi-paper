@@ -1,0 +1,616 @@
+{
+  "fleet_B_at_median_pace": 1169,
+  "fleet_published": 1011,
+  "headline": {
+    "coverage_90": [
+      0.2205656267649898,
+      0.32166211168328224
+    ],
+    "fleet_A_90": [
+      989.0,
+      1058.0
+    ],
+    "fleet_B_90": [
+      1130.0,
+      1266.0
+    ],
+    "fleet_B_median": 1182.0,
+    "p_tier_agreement_above_80": 1.0,
+    "tier_agreement_median": 0.978494623655914
+  },
+  "limitations": [
+    "Parameters sampled independently; no correlation structure is measured.",
+    "Regime B pace comes from 16 Srinagar-belt corridors; applying it to all Urban/Peri-Urban routes assumes those corridors are representative.",
+    "Regional lifeline pace is unobserved (2 long corridors); regional fleet is as modelled, cap included, in both regimes.",
+    "Headways held at published values; tier changes are not propagated to headway (tier and fleet are reported as separate decisions).",
+    "Rural headways are demand-responsive in the engine (Eq. 8 proxy); that dependence is not sampled here."
+  ],
+  "mc": {
+    "coverage": {
+      "max": 0.34816188941399095,
+      "mean": 0.26903161888002486,
+      "median": 0.26658023828548905,
+      "min": 0.1989487430260704,
+      "p5": 0.2205656267649898,
+      "p95": 0.32166211168328224
+    },
+    "fleet_A": {
+      "max": 1064.0,
+      "mean": 1016.6424,
+      "median": 1013.0,
+      "min": 967.0,
+      "p5": 989.0,
+      "p95": 1058.0
+    },
+    "fleet_B": {
+      "max": 1670.0,
+      "mean": 1189.1312,
+      "median": 1182.0,
+      "min": 1104.0,
+      "p5": 1130.0,
+      "p95": 1266.0
+    },
+    "fleet_B_Peri_Urban": {
+      "max": 877.0,
+      "mean": 428.8362,
+      "median": 428.0,
+      "min": 357.0,
+      "p5": 394.0,
+      "p95": 472.0
+    },
+    "fleet_B_Regional_District": {
+      "max": 400.0,
+      "mean": 384.6858,
+      "median": 384.0,
+      "min": 375.0,
+      "p5": 376.0,
+      "p95": 398.0
+    },
+    "fleet_B_Urban": {
+      "max": 534.0,
+      "mean": 375.6092,
+      "median": 372.0,
+      "min": 347.0,
+      "p5": 354.95000000000005,
+      "p95": 407.0
+    },
+    "tier_agreement": {
+      "max": 1.0,
+      "mean": 0.9762333333333334,
+      "median": 0.978494623655914,
+      "min": 0.8978494623655914,
+      "p5": 0.946236559139785,
+      "p95": 1.0
+    }
+  },
+  "n_mc": 5000,
+  "n_sobol_base": 1024,
+  "n_sobol_evals": 15360,
+  "pace_priors": {
+    "Peri_Urban": {
+      "boot_p5": 4.316546762589928,
+      "boot_p50": 4.545454545454546,
+      "boot_p95": 5.217391304347826,
+      "median": 4.545454545454546,
+      "n_corridors": 9,
+      "observed": [
+        3.593,
+        4.082,
+        4.317,
+        4.444,
+        4.545,
+        4.918,
+        5.217,
+        5.714,
+        13.043
+      ]
+    },
+    "Urban": {
+      "boot_p5": 4.580152671755726,
+      "boot_p50": 4.8,
+      "boot_p95": 5.263157894736842,
+      "median": 4.8,
+      "n_corridors": 7,
+      "observed": [
+        4.545,
+        4.58,
+        4.651,
+        4.8,
+        5.0,
+        5.263,
+        7.595
+      ]
+    },
+    "_regional_unobserved": {
+      "n_corridors": 2,
+      "note": "Too few to form a prior; regional routes stay as modelled with the cap.",
+      "paces": [
+        2.479,
+        1.786
+      ]
+    }
+  },
+  "parameters": {
+    "CDI_POP_WEIGHT": {
+      "dist": "unif",
+      "range": [
+        0.2,
+        0.8
+      ],
+      "value": 0.5
+    },
+    "CONGESTION_CITY_CORE": {
+      "dist": "tri",
+      "range": [
+        1.6,
+        2.8
+      ],
+      "value": 2.2
+    },
+    "FLEET_SPARE_RATIO": {
+      "dist": "tri",
+      "range": [
+        1.05,
+        1.25
+      ],
+      "value": 1.15
+    },
+    "OVERLAP_THRESHOLD": {
+      "dist": "unif",
+      "range": [
+        0.5,
+        0.9
+      ],
+      "value": 0.65
+    },
+    "POI_TIER2_WEIGHT": {
+      "dist": "tri",
+      "range": [
+        0.2,
+        0.6
+      ],
+      "value": 0.4
+    },
+    "POI_TIER3_WEIGHT": {
+      "dist": "tri",
+      "range": [
+        0.3,
+        0.9
+      ],
+      "value": 0.6
+    },
+    "STOP_PENALTY_MIN": {
+      "dist": "tri",
+      "range": [
+        0.3,
+        1.5
+      ],
+      "value": 0.5
+    },
+    "STOP_SPACING_M": {
+      "dist": "unif",
+      "range": [
+        300.0,
+        800.0
+      ],
+      "value": 500.0
+    },
+    "TOURIST_POPULATION_MULTIPLIER": {
+      "dist": "tri",
+      "range": [
+        1.0,
+        1.8
+      ],
+      "value": 1.3
+    },
+    "VIRTUAL_STOP_SPACING_M": {
+      "dist": "unif",
+      "range": [
+        150.0,
+        400.0
+      ],
+      "value": 250.0
+    },
+    "WALK_CATCHMENT_M": {
+      "dist": "tri",
+      "range": [
+        300.0,
+        800.0
+      ],
+      "value": 400.0
+    }
+  },
+  "runtime_sec": 88.1,
+  "seed": 20260823,
+  "sobol": {
+    "coverage": {
+      "CDI_POP_WEIGHT": {
+        "S1": 0.0,
+        "S1_conf": 0.0,
+        "ST": 0.0,
+        "ST_conf": 0.0
+      },
+      "CONGESTION_CITY_CORE": {
+        "S1": 0.0,
+        "S1_conf": 0.0,
+        "ST": 0.0,
+        "ST_conf": 0.0
+      },
+      "FLEET_SPARE_RATIO": {
+        "S1": 0.0,
+        "S1_conf": 0.0,
+        "ST": 0.0,
+        "ST_conf": 0.0
+      },
+      "OVERLAP_THRESHOLD": {
+        "S1": 0.0,
+        "S1_conf": 0.0,
+        "ST": 0.0,
+        "ST_conf": 0.0
+      },
+      "PACE_PERI": {
+        "S1": 0.0,
+        "S1_conf": 0.0,
+        "ST": 0.0,
+        "ST_conf": 0.0
+      },
+      "PACE_URBAN": {
+        "S1": 0.0,
+        "S1_conf": 0.0,
+        "ST": 0.0,
+        "ST_conf": 0.0
+      },
+      "POI_TIER2_WEIGHT": {
+        "S1": 0.0,
+        "S1_conf": 0.0,
+        "ST": 0.0,
+        "ST_conf": 0.0
+      },
+      "POI_TIER3_WEIGHT": {
+        "S1": 0.0,
+        "S1_conf": 0.0,
+        "ST": 0.0,
+        "ST_conf": 0.0
+      },
+      "STOP_PENALTY_MIN": {
+        "S1": 0.0,
+        "S1_conf": 0.0,
+        "ST": 0.0,
+        "ST_conf": 0.0
+      },
+      "STOP_SPACING_M": {
+        "S1": 0.0,
+        "S1_conf": 0.0,
+        "ST": 0.0,
+        "ST_conf": 0.0
+      },
+      "TOURIST_POPULATION_MULTIPLIER": {
+        "S1": 0.0,
+        "S1_conf": 0.0,
+        "ST": 0.0,
+        "ST_conf": 0.0
+      },
+      "VIRTUAL_STOP_SPACING_M": {
+        "S1": 0.025568117162913497,
+        "S1_conf": 0.013708289210575448,
+        "ST": 0.02596975786625628,
+        "ST_conf": 0.0020966472209051562
+      },
+      "WALK_CATCHMENT_M": {
+        "S1": 0.9738865811327845,
+        "S1_conf": 0.07658544468171395,
+        "ST": 0.9741662559730783,
+        "ST_conf": 0.061856612789850496
+      }
+    },
+    "fleet_A": {
+      "CDI_POP_WEIGHT": {
+        "S1": 0.0,
+        "S1_conf": 0.0,
+        "ST": 0.0,
+        "ST_conf": 0.0
+      },
+      "CONGESTION_CITY_CORE": {
+        "S1": 0.006693761913205186,
+        "S1_conf": 0.009564720073822072,
+        "ST": 0.009440014144454265,
+        "ST_conf": 0.001810091403275368
+      },
+      "FLEET_SPARE_RATIO": {
+        "S1": 0.9369620133671132,
+        "S1_conf": 0.07339160877097188,
+        "ST": 0.9437061791571602,
+        "ST_conf": 0.05720345494384449
+      },
+      "OVERLAP_THRESHOLD": {
+        "S1": 0.0,
+        "S1_conf": 0.0,
+        "ST": 0.0,
+        "ST_conf": 0.0
+      },
+      "PACE_PERI": {
+        "S1": 0.0,
+        "S1_conf": 0.0,
+        "ST": 0.0,
+        "ST_conf": 0.0
+      },
+      "PACE_URBAN": {
+        "S1": 0.0,
+        "S1_conf": 0.0,
+        "ST": 0.0,
+        "ST_conf": 0.0
+      },
+      "POI_TIER2_WEIGHT": {
+        "S1": 0.0,
+        "S1_conf": 0.0,
+        "ST": 0.0,
+        "ST_conf": 0.0
+      },
+      "POI_TIER3_WEIGHT": {
+        "S1": 0.0,
+        "S1_conf": 0.0,
+        "ST": 0.0,
+        "ST_conf": 0.0
+      },
+      "STOP_PENALTY_MIN": {
+        "S1": 0.026390906283428897,
+        "S1_conf": 0.016925113402524877,
+        "ST": 0.03928024991667151,
+        "ST_conf": 0.005972874823119388
+      },
+      "STOP_SPACING_M": {
+        "S1": 0.01696041179954799,
+        "S1_conf": 0.014334633216834829,
+        "ST": 0.024475542188703323,
+        "ST_conf": 0.0033909305198456243
+      },
+      "TOURIST_POPULATION_MULTIPLIER": {
+        "S1": 0.0,
+        "S1_conf": 0.0,
+        "ST": 0.0,
+        "ST_conf": 0.0
+      },
+      "VIRTUAL_STOP_SPACING_M": {
+        "S1": 0.0,
+        "S1_conf": 0.0,
+        "ST": 0.0,
+        "ST_conf": 0.0
+      },
+      "WALK_CATCHMENT_M": {
+        "S1": 0.0,
+        "S1_conf": 0.0,
+        "ST": 0.0,
+        "ST_conf": 0.0
+      }
+    },
+    "fleet_B": {
+      "CDI_POP_WEIGHT": {
+        "S1": 0.0,
+        "S1_conf": 0.0,
+        "ST": 0.0,
+        "ST_conf": 0.0
+      },
+      "CONGESTION_CITY_CORE": {
+        "S1": 1.3179054622146423e-05,
+        "S1_conf": 2.6504211107998686e-05,
+        "ST": 2.3610333690565468e-07,
+        "ST_conf": 4.748240950557071e-07
+      },
+      "FLEET_SPARE_RATIO": {
+        "S1": 0.5263219967124457,
+        "S1_conf": 0.08172284223162225,
+        "ST": 0.5491274882518102,
+        "ST_conf": 0.08983602509309674
+      },
+      "OVERLAP_THRESHOLD": {
+        "S1": 0.0,
+        "S1_conf": 0.0,
+        "ST": 0.0,
+        "ST_conf": 0.0
+      },
+      "PACE_PERI": {
+        "S1": 0.3317749858663995,
+        "S1_conf": 0.1956337067491961,
+        "ST": 0.3202132618515971,
+        "ST_conf": 0.1138073651344088
+      },
+      "PACE_URBAN": {
+        "S1": 0.1392680148355426,
+        "S1_conf": 0.06144702650151435,
+        "ST": 0.12927484057263688,
+        "ST_conf": 0.03611676489049043
+      },
+      "POI_TIER2_WEIGHT": {
+        "S1": 0.0,
+        "S1_conf": 0.0,
+        "ST": 0.0,
+        "ST_conf": 0.0
+      },
+      "POI_TIER3_WEIGHT": {
+        "S1": 0.0,
+        "S1_conf": 0.0,
+        "ST": 0.0,
+        "ST_conf": 0.0
+      },
+      "STOP_PENALTY_MIN": {
+        "S1": 0.002080284059361658,
+        "S1_conf": 0.0029159122989486437,
+        "ST": 0.000999897631795442,
+        "ST_conf": 0.00020408693120620047
+      },
+      "STOP_SPACING_M": {
+        "S1": 0.0013512012589640774,
+        "S1_conf": 0.0020738017536397865,
+        "ST": 0.0006745472335394514,
+        "ST_conf": 0.00011606589489799617
+      },
+      "TOURIST_POPULATION_MULTIPLIER": {
+        "S1": 0.0,
+        "S1_conf": 0.0,
+        "ST": 0.0,
+        "ST_conf": 0.0
+      },
+      "VIRTUAL_STOP_SPACING_M": {
+        "S1": 0.0,
+        "S1_conf": 0.0,
+        "ST": 0.0,
+        "ST_conf": 0.0
+      },
+      "WALK_CATCHMENT_M": {
+        "S1": 0.0,
+        "S1_conf": 0.0,
+        "ST": 0.0,
+        "ST_conf": 0.0
+      }
+    },
+    "tier_agreement": {
+      "CDI_POP_WEIGHT": {
+        "S1": 0.7862193806521304,
+        "S1_conf": 0.07891180891347867,
+        "ST": 0.9320967577169538,
+        "ST_conf": 0.0856291019870918
+      },
+      "CONGESTION_CITY_CORE": {
+        "S1": 0.0,
+        "S1_conf": 0.0,
+        "ST": 0.0,
+        "ST_conf": 0.0
+      },
+      "FLEET_SPARE_RATIO": {
+        "S1": 0.0,
+        "S1_conf": 0.0,
+        "ST": 0.0,
+        "ST_conf": 0.0
+      },
+      "OVERLAP_THRESHOLD": {
+        "S1": 0.0,
+        "S1_conf": 0.0,
+        "ST": 0.0,
+        "ST_conf": 0.0
+      },
+      "PACE_PERI": {
+        "S1": 0.0,
+        "S1_conf": 0.0,
+        "ST": 0.0,
+        "ST_conf": 0.0
+      },
+      "PACE_URBAN": {
+        "S1": 0.0,
+        "S1_conf": 0.0,
+        "ST": 0.0,
+        "ST_conf": 0.0
+      },
+      "POI_TIER2_WEIGHT": {
+        "S1": 0.0068791715496398275,
+        "S1_conf": 0.013587438441600812,
+        "ST": 0.03455677870816217,
+        "ST_conf": 0.014905242654721514
+      },
+      "POI_TIER3_WEIGHT": {
+        "S1": -0.0002705068037730094,
+        "S1_conf": 0.014890156892845074,
+        "ST": 0.03694000482596642,
+        "ST_conf": 0.011170869735135685
+      },
+      "STOP_PENALTY_MIN": {
+        "S1": 0.0,
+        "S1_conf": 0.0,
+        "ST": 0.0,
+        "ST_conf": 0.0
+      },
+      "STOP_SPACING_M": {
+        "S1": 0.0,
+        "S1_conf": 0.0,
+        "ST": 0.0,
+        "ST_conf": 0.0
+      },
+      "TOURIST_POPULATION_MULTIPLIER": {
+        "S1": 0.0011764519106081375,
+        "S1_conf": 0.008285889959134185,
+        "ST": 0.011405439278063362,
+        "ST_conf": 0.0042138525307510505
+      },
+      "VIRTUAL_STOP_SPACING_M": {
+        "S1": -0.008413539603637252,
+        "S1_conf": 0.02776023843352047,
+        "ST": 0.0992869023720964,
+        "ST_conf": 0.01883393201661056
+      },
+      "WALK_CATCHMENT_M": {
+        "S1": 0.03886709981779192,
+        "S1_conf": 0.03965941415061081,
+        "ST": 0.16482562061171438,
+        "ST_conf": 0.0278308566501482
+      }
+    }
+  },
+  "tier_stability": {
+    "least_stable": [
+      {
+        "New_Route_ID": "SSCL-12",
+        "Route_Name": "Rangreth to District Court Srinagar via Barzulla Jehangir Chowk",
+        "baseline_tier": 1,
+        "tier_stability_rate": 0.3392
+      },
+      {
+        "New_Route_ID": "FDR-455",
+        "Route_Name": "Narbal to Jehangir Chowk",
+        "baseline_tier": 0,
+        "tier_stability_rate": 0.4518
+      },
+      {
+        "New_Route_ID": "SSCL-29",
+        "Route_Name": "Pantha Chowk to Panzinara",
+        "baseline_tier": 0,
+        "tier_stability_rate": 0.5712
+      },
+      {
+        "New_Route_ID": "FDR-093",
+        "Route_Name": "Srinagar to Railway",
+        "baseline_tier": 1,
+        "tier_stability_rate": 0.6686
+      },
+      {
+        "New_Route_ID": "FDR-429",
+        "Route_Name": "Parimpora to Chadora",
+        "baseline_tier": 0,
+        "tier_stability_rate": 0.7004
+      },
+      {
+        "New_Route_ID": "FDR-219",
+        "Route_Name": "Qamarwari to Jehangir Chowk",
+        "baseline_tier": 2,
+        "tier_stability_rate": 0.7818
+      },
+      {
+        "New_Route_ID": "FDR-394",
+        "Route_Name": "Lawaypora to Jehangir Chowk",
+        "baseline_tier": 1,
+        "tier_stability_rate": 0.7862
+      },
+      {
+        "New_Route_ID": "FDR-406",
+        "Route_Name": "Qamarwari to Parimpora",
+        "baseline_tier": 1,
+        "tier_stability_rate": 0.8036
+      },
+      {
+        "New_Route_ID": "FDR-479",
+        "Route_Name": "Srinagar to Budgam",
+        "baseline_tier": 1,
+        "tier_stability_rate": 0.8154
+      },
+      {
+        "New_Route_ID": "FDR-106",
+        "Route_Name": "Parimpora to Saidakadal",
+        "baseline_tier": 2,
+        "tier_stability_rate": 0.817
+      }
+    ],
+    "n_routes_stability_below_target": 7,
+    "p_agreement_above_target": 1.0,
+    "route_stability_median": 1.0,
+    "share_routes_stability_above_target": 0.9623655913978495,
+    "target": 0.8
+  }
+}

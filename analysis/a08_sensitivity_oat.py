@@ -85,6 +85,10 @@ class CatchmentGrid:
 
     def __init__(self, route_ids):
         g = pd.read_csv(C.DERIVED / "a08a_catchment_grid.csv").set_index("New_Route_ID")
+        missing = [r for r in route_ids if r not in g.index]
+        if missing:
+            raise SystemExit(f"a08a catchment grid incomplete: {len(missing)} of {len(route_ids)} routes "
+                             f"missing — run analysis/a08a_catchment_grid.py (resumable) first")
         g = g.loc[list(route_ids)]
         meta = C.read_result("a08a_catchment_grid")
         self.W = np.array(meta["w_grid_m"], float)

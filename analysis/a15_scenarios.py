@@ -108,6 +108,78 @@ def consolidate(arr: F.PlanArrays, theta: float) -> np.ndarray:
     return keep
 
 
+FUNDED_SHARE = 0.30
+
+
+def funding_sequence(arr: F.PlanArrays):
+    """
+    If only part of the fleet is funded, what is bought first? (§7.7, FLAG 7-D)
+
+    Each route's network catchment is rasterised onto the WorldPop grid (cell
+    centres, as rasterstats counts them). Routes are then bought greedily by
+    NEW residents reached per bus — residents already inside a bought route's
+    walkshed count once — until the published fleet is exhausted; the funded
+    share is the prefix whose cumulative buses fit FUNDED_SHARE of 1,011.
+    Greedy marginal-gain-per-cost is the standard approximation for this
+    budgeted maximum-coverage problem; it is reported as a ranking, not an optimum.
+    Per-route fleet is the published value (headways as planned).
+    """
+    import geopandas as gpd
+    import rasterio
+    from rasterio.features import rasterize
+
+    g = gpd.read_file(C.CACHE / "catchments_network.gpkg").set_index("New_Route_ID")
+    g = g.loc[arr.df["New_Route_ID"]].to_crs(C.WGS84)
+    with rasterio.open(C.WORLDPOP_TIF) as src:
+        pop = src.read(1).astype(float)
+        if src.nodata is not None:
+            pop[pop == src.nodata] = 0.0
+        pop[~np.isfinite(pop)] = 0.0
+        tr, shape = src.transform, pop.shape
+    cells = []
+    for geom in g.geometry.values:
+        m = rasterize([(geom, 1)], out_shape=shape, transform=tr, fill=0, dtype="uint8")
+        cells.append(np.flatnonzero(m))
+    flat = pop.ravel()
+    fleet = arr.fleet_pub.astype(float)
+    covered = np.zeros(flat.size, bool)
+    remaining = list(range(len(cells)))
+    rows, cum_bus, cum_pop = [], 0, 0.0
+    budget = int(round(FUNDED_SHARE * fleet.sum()))
+    while remaining:
+        gains = np.array([flat[cells[r]][~covered[cells[r]]].sum() for r in remaining])
+        k = int(np.argmax(gains / fleet[remaining]))
+        r = remaining.pop(k)
+        covered[cells[r]] = True
+        cum_bus += int(fleet[r]); cum_pop += float(gains[k])
+        rows.append(dict(order=len(rows) + 1, New_Route_ID=arr.df["New_Route_ID"].iloc[r],
+                         Route_Name=arr.df["Route_Name"].iloc[r], Route_Type=arr.rtype[r],
+                         fleet=int(fleet[r]), marginal_pop=float(gains[k]),
+                         marginal_pop_per_bus=float(gains[k] / fleet[r]),
+                         cum_buses=cum_bus, cum_pop=cum_pop,
+                         cum_coverage=cum_pop / C.STUDY_AREA_POPULATION,
+                         within_budget=cum_bus <= budget))
+    seq = pd.DataFrame(rows)
+    full_pop = seq["cum_pop"].iloc[-1]
+    fund = seq[seq["within_budget"]]
+    funded_pop = float(fund["cum_pop"].iloc[-1]) if len(fund) else 0.0
+    summary = dict(
+        funded_share=FUNDED_SHARE, budget_buses=budget, n_routes_funded=int(len(fund)),
+        buses_used=int(fund["fleet"].sum()), coverage_funded=funded_pop / C.STUDY_AREA_POPULATION,
+        coverage_full=full_pop / C.STUDY_AREA_POPULATION,
+        share_of_full_coverage=funded_pop / full_pop,
+        class_mix_funded=fund["Route_Type"].value_counts().to_dict(),
+        n_backbone_funded=int(fund["New_Route_ID"].str.startswith("SSCL").sum()),
+        raster_vs_zonal_note="coverage_full is the raster count of the same union a11 reports as 24.19%; "
+                             "small differences are cell-centre rounding.",
+    )
+    log.info("funding sequence: %d%% of fleet (%d buses) buys %d routes and %.1f%% coverage = %.0f%% of "
+             "the full plan's %.1f%%", int(100 * FUNDED_SHARE), budget, summary["n_routes_funded"],
+             100 * summary["coverage_funded"], 100 * summary["share_of_full_coverage"],
+             100 * summary["coverage_full"])
+    return seq, summary
+
+
 def evaluate(name, desc, arr, cov, fleet_vec, headway, keep=None) -> dict:
     keep = np.ones(len(arr.km), bool) if keep is None else keep
     n = np.where(keep, fleet_vec, 0)
@@ -176,8 +248,21 @@ def main() -> None:
     fr = pd.DataFrame(fr)
     fr.to_csv(C.DERIVED / "a15_frontier.csv", index=False)
 
+    seq, seq_summary = funding_sequence(arr)
+    seq.to_csv(C.DERIVED / "a15_funding_sequence.csv", index=False)
+    top = seq[seq["within_budget"]]
+    C.write_table(pd.DataFrame({
+        "Order": top["order"], "Route": top["Route_Name"], "Class": top["Route_Type"],
+        "Buses": top["fleet"], "New residents reached": top["marginal_pop"].round(0).astype(int),
+        "Residents per bus": top["marginal_pop_per_bus"].round(0).astype(int),
+        "Cumulative coverage": top["cum_coverage"].map(lambda v: f"{100*v:.1f}%"),
+    }), "table08b_funding_sequence",
+        f"Funding-constrained sequencing: routes bought in order of new residents reached per bus, until "
+        f"{int(100*FUNDED_SHARE)}% of the fleet ({seq_summary['budget_buses']} buses) is spent")
+
     C.write_result(dict(
         scenarios=tab.to_dict(orient="records"), frontier=fr.to_dict(orient="records"),
+        funding_sequence=seq_summary,
         central_paces_min_per_km=paces, rural_bound_pace_min_per_km=rural_pace,
         s4_merged_routes=arr.df.loc[~keep, ["New_Route_ID", "Route_Name", "Route_Type"]].to_dict(orient="records"),
         notes=["Each scenario changes one lever; coverage is deduplicated.",

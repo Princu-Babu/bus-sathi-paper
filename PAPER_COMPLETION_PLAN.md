@@ -28,28 +28,27 @@ three — it does not repeat their content, it orders it.
 
 ---
 
-## 1. Where the paper actually stands
+## 1. Where the paper actually stands (refreshed 2026-09-30)
 
 Measured, not estimated:
 
 | Dimension | Done | Remaining | Basis |
 |---|---|---|---|
-| Analysis modules | **13 of 22 written and executed** | 9 PLANNED | `run_all.py --list` |
-| Manuscript sections | **9 of 9 drafted** (Abstract + §1–§8) | §5 under-written; co-author review not started | `paper/sections/` |
-| Body words | **11,920** | ~2,000 **over** the 10,000 ceiling | measured at PDF build |
-| Tables | **29 generated** (2a–2f, 3a–3b, 4a–4b, 5, 5b–5i, 6a–6c) | Table 7 (validation synthesis), Table 8 (scenarios) | `paper/tables/` |
-| Figures | **0 of 9** | all of them | `paper/figures/` empty |
-| References | **59 entries, 53 with DOI** | `\cite` keys not yet attached in prose | `paper/references.bib` |
-| Front/back matter | **0 of 6** | highlights, CRediT, competing interests, data availability, acknowledgements, cover letter | `paper/front_matter/` empty |
-| Tests | **53 passed / 2 skipped** | grows as modules land | `pytest tests/` |
-| Git | **1 commit** | everything since is uncommitted | `git log` |
+| Analysis modules | **23 of 23 written and executed** (incl. a08a grid precompute) | — | `run_all.py --list` |
+| Manuscript sections | **9 of 9 drafted**; §4–§6, §8, Abstract rewritten on final results | co-author review of §1–§3, §7 | `paper/sections/` |
+| Body words | **~13,600** | ~3,600 over; plan in `paper/WORD_BUDGET_PLAN.md` | measured at PDF build |
+| Tables | **43 generated**, incl. Table 7a–c (sensitivity, MC, Sobol'), Table 8 + 8b (scenarios, funding) | typeset from CSV at submission | `paper/tables/` |
+| Figures | **10 drawn** (1, 3–9, 9b, S1, S2) | Figure 2 waits on D5 | `paper/figures/` |
+| References | **62 entries**, 29 cited in §4–§6/§8, **0 unresolved** | co-author sections: `paper/COAUTHOR_CITATION_MAP.md` | `paper/citations.py` |
+| Front/back matter | **6 of 6 drafted** | placeholders for D4, D13, D16 | `paper/front_matter/` |
+| Claim ledger | **CL-01…CL-61** | — | `paper/CLAIM_LEDGER.md` |
+| Tests | **65 passed, 2 skipped, 0 failed** (incl. `run_all.py --quick` end to end) | — | `pytest tests/` |
+| Validation (Table 7) | V1 partial pass · V2 **fail** (circular) · V3 not run · V4 · V5 · V6 executed | V3 is forward work | ledger §6 |
 
-**The honest one-line summary.** The diagnostic half of the paper is finished and defensible. The
-evaluative half — uncertainty, scenarios, cost, and four of six validation channels — is written as
-stubs, and the manuscript is simultaneously *over* its word budget and *missing* its figures. Neither
-problem is hard. Both are unavoidable.
-
----
+**The honest one-line summary.** Every analysis the design promised has now run. What remains is human:
+the blocking decisions (D1–D5, D13, D23), co-author review and cutting of §1/§3/§7, and the choice of
+how to present two uncomfortable results — the fleet at observed pace (1,130–1,266, above the published
+1,011) and the failed operator benchmark.
 
 ## 2. The critical path
 

@@ -22,9 +22,9 @@ This ledger registers every quantitative claim, empirical finding, statistic, de
 
 ---
 
-## 2. Summary Master Table of Quantitative Claims (`CL-01` to `CL-59`)
+## 2. Summary Master Table of Quantitative Claims (`CL-01` to `CL-61`)
 
-CL-37 onward were added 2026-09-30 as modules a04–a16, a06/a07/a14/a15, v01/v02 and the fleet_model reproduction landed. CL-56–CL-58 are reserved for a08/a09 and are filled only after those modules run.
+CL-37 onward were added 2026-09-30 as modules a04–a16, a06/a07/a14/a15, v01/v02 and the fleet_model reproduction landed. CL-56–CL-58 were filled from a08/a09 on 2026-09-30.
 
 | Claim ID | Finding / Metric | Short Description | Numerical Value | Denominator / Universe | Primary Source Module | Manuscript Location |
 |---|---|---|---|---|---|---|
@@ -83,8 +83,12 @@ CL-37 onward were added 2026-09-30 as modules a04–a16, a06/a07/a14/a15, v01/v0
 | `CL-53` | V1 | Building-footprint cross-check | route ρ 0.657 (area, pass), 0.544 (count, fail); 1-km grid ρ 0.316 (fail); populated cells with any OSM building 4.2–30.6% by district | 12,343 footprints; 186 routes; 13,645 cells | `v01_spatial_crossval.py` | §6.2, Table 6d/6e |
 | `CL-54` | V2 | CHALO benchmark (circular) | plan 283 vs CHALO 98 scaled to 15 min = 179–220 → ratio 1.29–1.58: FAIL ±15% at every service-day assumption; route rank ρ 0.22 (p 0.24) | 30 SSCL routes, 12-month mean | `v02_benchmark.py` | §6.2, Table 6f |
 | `CL-55` | F10 | Supply-model reproduction & cap counterfactual | cycle 186/186, fleet 186/186 (1,011), 169 at cap; cap removed alone → 1,648 buses | 186 routes | `fleet_model.py` | §4.8, §5.4 |
+| `CL-56` | V6 | Fleet interval (Monte Carlo, 5,000 draws) | Regime A (as specified): 1,013 [989–1,058]; Regime B (observed urban/peri-urban pace): 1,182 [1,130–1,266] — Urban 372, Peri-Urban 428, Regional 384 (as modelled); B at median pace = 1,169 | 11 declared parameters + 2 pace priors (16 Srinagar-belt corridors) | `a09_monte_carlo_sobol.py` | Abstract, §5.7, §6.2, §8, Table 7b, Fig 9 |
+| `CL-57` | V6 | Tier stability and coverage interval | tier agreement 97.8% [94.6–100%], P(>80%) = 1.00; 179/186 routes (96.2%) keep their tier in >80% of draws, 7 do not; coverage 26.7% [22.1–32.2%] (driven by the walk-radius definition) | 5,000 draws | `a09_monte_carlo_sobol.py`, `a08_sensitivity_oat.py` | §5.7, §6.2, Table 7b |
+| `CL-58` | V5 | Sobol' variance decomposition (total order) | Fleet A: spare ratio 0.94; Fleet B: spare ratio 0.55, peri-urban pace 0.32, urban pace 0.13; tiers: population weight 0.93, walk radius 0.17; coverage: walk radius 0.97; OAT with cap on: run-time parameters move fleet ≤17 buses, with cap off up to 956 | Saltelli N = 1,024, 15,360 evaluations | `a09_monte_carlo_sobol.py`, `a08_sensitivity_oat.py` | §5.7, §6.2, §7.5, Table 7a/7c, Fig 9b |
 | `CL-59` | Method | Corrections to the method as published | engine capture scale κ = 0.33 (not 0.18); Eq. 8 demand proxy sets headway on the 67 non-backbone Regional routes (5 at 35, 62 at 50 min); engine merge test = 80 m line-buffer overlap ≥ θ AND starts ≤ 2.5 km | engine source | `transit_kashmir_v3.py:547, 5551, 2640` | §4.5, §4.6, §4.7 |
 | `CL-60` | Fleet | Buses per 100,000 by denominator | 15.4 (division 6,584,762); 43.6 (engine Euclidean served 2,317,958); 63.5 (network served 1,592,847) — last above MoHUA 40–60 | 1,011 buses | `a11`, plan CSV | §4.8, §5.4 |
+| `CL-61` | F23 | Funding-constrained sequencing | 30% of fleet (303 buses, 63 routes) reaches 22.4% of residents = 92% of the full plan's 24.2%; 50% of reach costs 54 buses, 90% costs 264 | greedy marginal coverage per bus | `a15_scenarios.py` | §7.7, Table 8b |
 
 ---
 
@@ -499,5 +503,5 @@ The 11 predeclared engine parameters swept in one-at-a-time (OAT) sensitivity an
 | **V2** | Benchmark consistency (circular) | CHALO 98 buses, 12-month trips | Plan SSCL fleet / CHALO scaled to 15 min | Ratio within $\pm 15\%$ | 1.29–1.58 at a 13–16 h service day; route rank $\rho$ 0.22 `[CL-54]` | Executed (`v02`); **fail** |
 | **V3** | Delphi / AHP expert survey | Independent expert panel | Panel consensus Kendall $W$ | $W > 0.70$ | Pending elicitation | Forward work (§6.4); weights meanwhile equal/entropy/PCA |
 | **V4** | Supply-side GPS validation | Driver-GPS trace logs (43,809 runs) | MAPE on runtime & pace; rank corr | MAPE $< 20\%$, $\rho > 0.50$ | Moving speed passes (+1.4%); Dwell fails (61.6% MAPE) | Established (`v04`) |
-| **V5** | Sobol global sensitivity | Monte Carlo output distributions | First- and total-order Sobol indices | Bootstrap CI bounds | Output variance decomposition | Planned (`a09`) |
-| **V6** | Decision robustness | 5,000 Monte Carlo draws with GPS prior | Fleet 90% CI, tier stability | Stability $> 80\%$ | Bounded fleet interval | Planned (`a09`) |
+| **V5** | Sobol' global sensitivity | 15,360 Saltelli evaluations | First- and total-order indices | Bootstrap 95% CI | Fleet B driven by spare ratio (0.55) and observed pace (0.45 combined); tiers by population weight (0.93) `[CL-58]` | Executed (`a09`) |
+| **V6** | Decision robustness | 5,000 Monte Carlo draws with GPS pace prior | Fleet 90% interval; tier stability | Stability $> 80\%$ | Fleet 989–1,058 (as specified) / 1,130–1,266 (observed pace); tier agreement 97.8%, 96.2% of routes stable `[CL-56, CL-57]` | Executed (`a09`); tiers pass, fleet interval excludes 1,011 at observed pace |

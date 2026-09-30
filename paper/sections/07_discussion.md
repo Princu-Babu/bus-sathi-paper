@@ -100,14 +100,25 @@ The framework defines four levels of data maturity, each of which unlocks a spec
 - **Level 3 — adds fare-card or automatic-passenger-count ridership.** Permits genuine demand validation and
   closes the loop the paper deliberately leaves open.
 
-> **[FLAG 7-B — ⚠ the ladder's most distinctive claim cannot be made yet. Escalated as Decision 6.]** The
-> attachment specifies: *"rank the missing datasets by the variance reduction each would deliver, taken
-> straight from the Sobol' indices. This converts the source deck's data request into a research contribution
-> and is one of the paper's most distinctive elements."* **The Sobol' decomposition has not been run**
-> (`a09_monte_carlo_sobol` is a stub). Until it does, this subsection can describe the ladder but **cannot
-> rank the rungs by variance reduction**, and the ranking must not be asserted from intuition. The ladder
-> above is therefore ordered by *methodological dependency*, which is defensible, and explicitly not by
-> variance contribution, which would not be. When `a09` runs, this subsection gains its best paragraph.
+The Sobol' decomposition (§5.7, §6.2) now ranks the rungs by what each would actually resolve
+`[CL-58]`, and the order is not the order of methodological dependency above:
+
+1. **For the fleet, the cheapest datum is the operator's own vehicle-availability record.** The spare
+   ratio carries 55 % of fleet variance at observed pace (94 % as specified). It is not a demand datum at
+   all and sits on no rung; a year of maintenance logs would pin it.
+2. **Next, peri-urban GPS (Level 2).** Observed peri-urban and urban pace together carry 45 % of fleet
+   variance, peri-urban alone 32 % — and the present GPS has only nine peri-urban corridors. Extending
+   instrumentation there buys more fleet certainty than any demand survey.
+3. **For the hierarchy, demand-side weighting (Level 3, or the V3 panel).** The population weight in the
+   index carries 93 % of the variance in tier agreement; only observed ridership or an expert elicitation
+   can fix it. Tiers are already 97.8 % stable, so this rung sharpens a decision that is largely made.
+4. **Coverage is a definition, not an uncertainty.** 97 % of its variance is the walk-radius choice
+   (20.3 % of residents at 300 m, 34.5 % at 800 m); no dataset resolves it — a standard does.
+
+Ward-level census population (Level 1) does not appear in the ranking because population uncertainty was
+not sampled; its value is therefore unmeasured here, not shown to be small.
+
+> **[FLAG 7-B — resolved 2026-09-30 (Decision 6).]** Ranking from the total-order Sobol' indices of a09.
 
 ## 7.6 Transferability: which cities, under what conditions
 
@@ -132,11 +143,18 @@ The question an authority actually asks is not "what is the optimal network?" bu
 is funded, what do I buy first?" The framework answers it directly: rank routes by **accessibility gain per
 additional bus**, and fund down that ranking until the budget is exhausted.
 
-> **[FLAG 7-D — this analysis has not been run.]** The attachment specifies a 30%-of-fleet funding scenario
-> ranked by accessibility gain per bus — *"small analysis, large payoff."* It requires a module that does not
-> exist (nearest candidate: `a15_scenarios`). **The ranking is not reported here and must not be described as
-> if it were.** This is among the highest value-per-hour items remaining in the whole paper, because it is
-> the one result that speaks directly to the commissioning authority's actual decision.
+Run that way (`a15`, Table 8b), the answer is stark. **Thirty per cent of the fleet — 303 buses, spent on
+63 routes — reaches 22.4 % of the division's residents, 92 % of the coverage the full 1,011-bus plan
+achieves** `[CL-61]`. Half of the plan's reach costs 54 buses; 90 % costs 264. The first routes bought are
+long radial lifelines (Srinagar–Aboora, Shopian–Srinagar, Bandipora–Baramulla), because a few buses on a
+long route put many residents inside a walkshed. The remaining 70 % of the fleet therefore buys
+*frequency* on corridors already reached, not *reach*. That split is the choice an authority should make
+explicitly: a coverage-first tranche that is cheap and nearly complete, followed by frequency tranches whose
+value depends on the ridership response §5.11 shows the plan is betting on.
+
+> **[FLAG 7-D — resolved 2026-09-30.]** The ranking is greedy marginal coverage per bus at published
+> headways — the standard approximation for budgeted maximum coverage, reported as a ranking, not an
+> optimum. It measures reach only; it says nothing about how many of the newly reached residents would ride.
 
 ## 7.8 Limitations
 
@@ -158,9 +176,9 @@ Stated flatly, because softening them invites reviewers to sharpen them.
    *observed* travel patterns understate its potential, so a supply-side method that plans to population
    rather than to revealed trips is less biased against the periphery than a demand-driven one would be.
 7. **The political feasibility of consolidating permits is not modelled** (see FLAG 7-A).
-8. **The analysis pipeline is partially implemented.** Several results specified in the design — Sobol'
-   variance decomposition, the fleet confidence interval, the funding-constrained sequencing — are not yet
-   produced, and are identified as such wherever they arise rather than approximated.
+8. **Two external validation channels are weak.** The operator benchmark fails its band and is not
+   independent (V2), and the building-footprint check is limited by OSM completeness (V1). Rural run time
+   is unobserved, so the rural fleet in every scenario is as modelled.
 
 ---
 

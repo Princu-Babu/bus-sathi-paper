@@ -68,6 +68,22 @@
       "fleet_observation_anchored": 1119
     }
   ],
+  "funding_sequence": {
+    "budget_buses": 303,
+    "buses_used": 299,
+    "class_mix_funded": {
+      "Peri_Urban": 14,
+      "Regional_District": 33,
+      "Urban": 16
+    },
+    "coverage_full": 0.24189889745571344,
+    "coverage_funded": 0.22363629829694148,
+    "funded_share": 0.3,
+    "n_backbone_funded": 5,
+    "n_routes_funded": 63,
+    "raster_vs_zonal_note": "coverage_full is the raster count of the same union a11 reports as 24.19%; small differences are cell-centre rounding.",
+    "share_of_full_coverage": 0.9245031732229559
+  },
   "notes": [
     "Each scenario changes one lever; coverage is deduplicated.",
     "S2 rural pace rests on 2 corridors and is a bound.",

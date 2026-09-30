@@ -254,15 +254,18 @@ def fig09_fleet_interval():
     mc = pd.read_csv(C.DERIVED / "a09_mc_draws.csv")
     j = C.read_result("a09_monte_carlo_sobol")
     fig, ax = plt.subplots(figsize=(6.4, 2.8))
-    lo = min(mc["fleet_A"].min(), mc["fleet_B"].min()); hi = max(mc["fleet_A"].max(), mc["fleet_B"].max())
-    bins = np.linspace(lo - 5, hi + 5, 60)
+    both = np.r_[mc["fleet_A"], mc["fleet_B"]]
+    lo, hi = np.percentile(both, [0.2, 99.8])
+    bins = np.arange(np.floor(lo / 5) * 5, np.ceil(hi / 5) * 5 + 5, 5)
     ax.hist(mc["fleet_A"], bins=bins, color="#2a78d6", ec=SURFACE, lw=0.6,
             label="A: as specified (cap on)")
     ax.hist(mc["fleet_B"], bins=bins, color=SERIES2, ec=SURFACE, lw=0.6,
             label="B: observed urban/peri-urban pace")
     ax.axvline(j["fleet_published"], color=INK, lw=1.2)
-    ax.text(j["fleet_published"], ax.get_ylim()[1] * 0.95, f" published {j['fleet_published']:,}",
-            color=INK, va="top")
+    gap_x = (mc["fleet_A"].quantile(0.99) + mc["fleet_B"].quantile(0.01)) / 2
+    ax.annotate(f"published {j['fleet_published']:,}", xy=(j["fleet_published"], ax.get_ylim()[1] * 0.8),
+                xytext=(gap_x, ax.get_ylim()[1] * 0.8), color=INK, va="center", ha="center",
+                arrowprops=dict(arrowstyle="-|>", color=INK, lw=0.8))
     for key, col in (("fleet_A", "#2a78d6"), ("fleet_B", SERIES2)):
         s = j["mc"][key]
         ax.plot([s["p5"], s["p95"]], [-ax.get_ylim()[1] * 0.04] * 2, color=col, lw=3,
@@ -303,8 +306,27 @@ def figS1_frontier():
     save(fig, "figS1_frontier")
 
 
+def figS2_funding_curve():
+    p = C.DERIVED / "a15_funding_sequence.csv"
+    if not p.exists():
+        log.warning("NOT_RUN: a15 funding sequence missing")
+        return
+    s = pd.read_csv(p)
+    j = C.read_result("a15_scenarios")["funding_sequence"]
+    fig, ax = plt.subplots(figsize=(5.6, 3.2))
+    ax.plot(np.r_[0, s["cum_buses"]], 100 * np.r_[0, s["cum_coverage"]], color="#2a78d6", lw=2)
+    ax.axvline(j["budget_buses"], color=MUTED, ls="--", lw=0.9)
+    ax.text(j["budget_buses"] + 12, 3, f"30% of fleet\n{100*j['coverage_funded']:.1f}% reached",
+            color=INK, va="bottom")
+    ax.set_xlabel("buses funded (routes bought by new residents reached per bus)")
+    ax.set_ylabel("residents within 400 m (%)")
+    ax.set_xlim(0, s["cum_buses"].max() * 1.02); ax.set_ylim(0, None)
+    ax.set_title("Reach is cheap; frequency is what the rest of the fleet buys", loc="left", color=INK)
+    save(fig, "figS2_funding_curve")
+
+
 def main() -> None:
-    for f in (fig01_framework, fig04_method_flow, fig03_study_area, fig05_permit_funnel,
+    for f in (figS2_funding_curve, fig01_framework, fig04_method_flow, fig03_study_area, fig05_permit_funnel,
               fig06_catchment_bias, fig07_tiers, fig08_coverage, fig09_fleet_interval,
               fig09b_sobol, figS1_frontier):
         try:
