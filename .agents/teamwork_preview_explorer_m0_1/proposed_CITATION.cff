@@ -1,0 +1,49 @@
+cff-version: 1.2.0
+message: "If you use this codebase, methodology, or derived datasets in your research, please cite it as below."
+title: "Planning What You Cannot Count: An Open-Data Framework for Bus Route Rationalisation and Fleet Sizing under Demand-Data Scarcity (Paper Companion)"
+version: 1.0.0
+date-released: 2026-09-03
+license: GPL-3.0-or-later
+repository-code: "https://github.com/prashant/kash-paper"
+authors:
+  - family-names: "Prashant"
+    given-names: ""
+  - family-names: "Misti"
+    given-names: ""
+  - family-names: "Avny"
+    given-names: ""
+  - family-names: "Krishnan"
+    given-names: ""
+  - family-names: "Ankit"
+    given-names: ""
+  - family-names: "Sharvesh"
+    given-names: ""
+preferred-citation:
+  type: article
+  title: "Planning What You Cannot Count: An Open-Data Framework for Bus Route Rationalisation and Fleet Sizing under Demand-Data Scarcity"
+  journal: "Transport Policy"
+  year: 2026
+  status: in-review
+  authors:
+    - family-names: "Prashant"
+      given-names: ""
+    - family-names: "Misti"
+      given-names: ""
+    - family-names: "Avny"
+      given-names: ""
+    - family-names: "Krishnan"
+      given-names: ""
+    - family-names: "Ankit"
+      given-names: ""
+    - family-names: "Sharvesh"
+      given-names: ""
+  abstract: "Public transit networks in secondary and regional agglomerations of the Global South frequently evolve through fragmented commercial permit issuance without formal ridership counts or travel surveys. We present a reproducible open-data framework for evaluating bus route rationalisation, pedestrian catchment accessibility, operational plausibility, and fleet sizing under severe demand-data scarcity, evaluated across the 10 districts of Kashmir Division, India (population 6.58 million). By auditing the operational baseline (Kashmir Valley v3.4.5), we reveal that apparent 71.1% route reductions represent unit changes (collapsing 614 permits into 157 corridors) rather than route withdrawals, that Euclidean buffer catchments overstate walking population served by a third (31.9% network-wide) relative to pedestrian network walksheds, and that operational sanity caps determine headline fleet allocations while understating observed GPS cycle times."
+  keywords:
+    - "public transit"
+    - "bus route rationalisation"
+    - "open data"
+    - "fleet sizing"
+    - "demand-data scarcity"
+    - "spatial equity"
+    - "walking catchments"
+    - "Kashmir Valley"

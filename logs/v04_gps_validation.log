@@ -1,0 +1,36 @@
+================================================================================
+MODULE:      v04_gps_validation
+SCRIPT:      v04_gps_validation.py
+STAGE:       Stage 1
+STARTED:     2026-09-30T14:41:49.558125+00:00
+PYTHON:      E:\kash-paper\.venv\Scripts\python.exe (3.14.2)
+COMMAND:     E:\kash-paper\.venv\Scripts\python.exe E:\kash-paper\analysis\v04_gps_validation.py
+================================================================================
+
+20:11:50  INFO    v04 \u2502 corridor matches 14 (5 matched / 9 partial), profiles 18, route-evidence rows 186, active plan routes 186
+20:11:51  INFO    v04 \u2502 SCOPE  14 matches -> 11 of 186 plan routes (5.9%), 815 total runs
+20:11:51  INFO    v04 \u2502   Pace: plan min/km vs observed min/km (all matches)         n=14 MAPE  32.9% bias  -31.3% ratio 0.68 rho +0.513  MAPE-FAIL/RANK-PASS
+20:11:51  INFO    v04 \u2502   Pace: plan min/km vs observed min/km (matched only)        n= 5 MAPE  36.3% bias  -36.3% ratio 0.67 rho +0.872  MAPE-FAIL/RANK-PASS
+20:11:51  INFO    v04 \u2502   One-way time: plan vs observed total (all matches)         n=14 MAPE  40.7% bias  -16.8% ratio 0.62 rho +0.221  MAPE-FAIL/RANK-FAIL
+20:11:51  INFO    v04 \u2502   One-way time: plan vs observed total (matched only)        n= 5 MAPE  47.6% bias  -47.6% ratio 0.51 rho +1.000  MAPE-FAIL/RANK-PASS
+20:11:51  INFO    v04 \u2502   Route length: plan Route_KM vs observed corridor           n=14 MAPE  51.1% bias  +26.2% ratio 0.97 rho +0.333  MAPE-FAIL/RANK-FAIL
+20:11:51  INFO    v04 \u2502   Moving speed: OSRM/2.2 (City_Core) vs observed             MAPE  28.4% bias   +1.4%
+20:11:51  INFO    v04 \u2502   Moving speed: OSRM/1.4 (Peri_Urban) vs observed            MAPE  59.4% bias  +59.4%
+20:11:51  INFO    v04 \u2502   Moving speed: OSRM/1.0 (Rural) vs observed                 MAPE 123.2% bias +123.2%
+20:11:51  INFO    v04 \u2502 DWELL  observed 1.76 min/km (engine 1.00), share of run time 0.38 (range 0.15-0.74)
+20:11:51  INFO    v04 \u2502        dwell = 17.67 + 0.247*km  (R2 0.03); intercept 95% CI [7.41, 27.94] significant=True; engine slope 1.0 inside CI False -> implied 0.12 min/stop
+20:11:51  INFO    v04 \u2502 CAP    Urban              cap 4.0 min/km -> 15 of 18 observed corridors exceed it (median observed pace 4.62, p90 6.28)
+20:11:51  INFO    v04 \u2502 CAP    Peri_Urban         cap 2.5 min/km -> 16 of 18 observed corridors exceed it (median observed pace 4.62, p90 6.28)
+20:11:51  INFO    v04 \u2502 CAP    Regional_District  cap 1.5 min/km -> 18 of 18 observed corridors exceed it (median observed pace 4.62, p90 6.28)
+20:11:51  INFO    v04 \u2502 CAP    169 of 186 planned routes sit exactly at their cap
+20:11:51  INFO    v04 \u2502 COVER  183 of 186 alignments seen in GPS; 171 at >=50%, 137 at >=80%, 33 fully; median obs_frac 0.94
+20:11:51  INFO    v04 \u2502 FLEET  re-timing 5 matched routes on observed pace: 27 -> 23 buses (-14.8%), median cycle ratio 1.10
+20:11:51  INFO    v04 \u2502 PRIOR  one-way pace 1.79-13.04 min/km (mode 4.62) -> Monte Carlo marginal for Urban/Peri_Urban
+
+================================================================================
+FINISHED:    2026-09-30T14:41:51.261598+00:00
+DURATION:    1.70s
+EXIT CODE:   0
+STATUS:      PASSED
+VERIFIED:    2/2 outputs
+================================================================================

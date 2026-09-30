@@ -1,0 +1,19 @@
+================================================================================
+MODULE:      a06_deadhead
+SCRIPT:      a06_deadhead.py
+STAGE:       Stage 3
+STARTED:     2026-09-30T14:43:43.968000+00:00
+PYTHON:      E:\kash-paper\.venv\Scripts\python.exe (3.14.2)
+COMMAND:     E:\kash-paper\.venv\Scripts\python.exe E:\kash-paper\analysis\a06_deadhead.py
+================================================================================
+
+20:13:44  INFO    a06 \u2502 observed-day denominator: 99 vs plan 320 service km/bus/day -> D1 5.5%
+20:13:44  INFO    a06 \u2502 deadhead share network: D0 0%, D1 1.7% (5751 of 328809 km/day); route median 1.0%
+
+================================================================================
+FINISHED:    2026-09-30T14:43:44.906805+00:00
+DURATION:    0.94s
+EXIT CODE:   0
+STATUS:      PASSED
+VERIFIED:    2/2 outputs
+================================================================================

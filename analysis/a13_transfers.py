@@ -63,10 +63,10 @@ Outputs
     data/derived/a13_transfers.json
     data/derived/a13_transfer_pairs.csv            per suppressed permit
     data/derived/a13_transfer_od.csv               per distinct OD pair
-    paper/tables/table05i_transfers.{csv,md}              0/1/2+ distribution
-    paper/tables/table05i_transfers_sensitivity.{csv,md}  catchment sweep
-    paper/tables/table05i_transfers_breakeven.{csv,md}    break-even penalty
-    paper/tables/table05i_transfers_geomaudit.{csv,md}    geometry defects
+    results/tables/table05i_transfers.{csv,md}              0/1/2+ distribution
+    results/tables/table05i_transfers_sensitivity.{csv,md}  catchment sweep
+    results/tables/table05i_transfers_breakeven.{csv,md}    break-even penalty
+    results/tables/table05i_transfers_geomaudit.{csv,md}    geometry defects
 
 Usage
     python analysis/a13_transfers.py
@@ -74,6 +74,7 @@ Usage
 from __future__ import annotations
 
 import itertools
+import json
 import sys
 from collections import deque
 from pathlib import Path
@@ -267,13 +268,23 @@ def observed_duty_factor() -> dict:
     which flatters the plan; the reported duty is therefore conservative in the
     plan's favour, and duty = 1 is carried as the opposite bound.
     """
-    dd = pd.read_csv(C.GPS_PERMIT_OBSERVED_CSV.parent / "driver_days.csv")
+    gps = C.GPS_PERMIT_OBSERVED_CSV.parent
+    if (gps / "driver_days.csv").exists():
+        dd = pd.read_csv(gps / "driver_days.csv")
+        n_drivers, n_days = int(dd["driver"].nunique()), int(dd["day"].nunique())
+    else:
+        # Public release: driver identifiers and dates removed, rows shuffled;
+        # the two counts that need them are carried in a sidecar
+        # (tools/deidentify_driver_days.py).
+        dd = pd.read_csv(gps / "driver_days_deidentified.csv")
+        meta = json.loads((gps / "driver_days_deidentified.meta.json").read_text(encoding="utf-8"))
+        n_drivers, n_days = int(meta["n_drivers"]), int(meta["n_calendar_days"])
     fs = pd.to_timedelta(dd["first_start"] + ":00").dt.total_seconds() / 60
     le = pd.to_timedelta(dd["last_end"] + ":00").dt.total_seconds() / 60
     window = float(le.quantile(0.95) - fs.quantile(0.05))
     return dict(
-        n_driver_days=int(len(dd)), n_drivers=int(dd["driver"].nunique()),
-        n_calendar_days=int(dd["day"].nunique()),
+        n_driver_days=int(len(dd)), n_drivers=n_drivers,
+        n_calendar_days=n_days,
         operating_window_min=round(window, 1),
         service_min_p25=float(dd["service_min"].quantile(0.25)),
         service_min_median=float(dd["service_min"].median()),

@@ -1,0 +1,36 @@
+================================================================================
+MODULE:      a05_headway_timeofday
+SCRIPT:      a05_headway_timeofday.py
+STAGE:       Stage 3
+STARTED:     2026-09-30T14:42:04.889221+00:00
+PYTHON:      E:\kash-paper\.venv\Scripts\python.exe (3.14.2)
+COMMAND:     E:\kash-paper\.venv\Scripts\python.exe E:\kash-paper\analysis\a05_headway_timeofday.py
+================================================================================
+
+20:12:05  INFO    a05 \u2502 counts: 30 days x 17 hours, 1,221,848 boardings (April 2026)
+20:12:05  INFO    a05 \u2502 provenance check: hourly total == monthly published total -> True
+20:12:05  INFO    a05 \u2502   collection differs by +5.63% (reported, not adjusted)
+20:12:05  INFO    a05 \u2502 contiguous-band GVF {2: 0.3945, 3: 0.8255, 4: 0.9192, 5: 0.9363, 6: 0.9525} -> k*=4
+20:12:05  INFO    a05 \u2502 magnitude-only Jenks GVF {2: 0.7167, 3: 0.8579, 4: 0.9278, 5: 0.9318, 6: 0.9402} -> k=4 (reported as contrast only)
+20:12:05  INFO    a05 \u2502 engine fleet rule reproduces 184/186 published route fleets
+20:12:05  WARNING a05 \u2502   unreproduced: SSCL-02 published 5, formula 4 (published value held as an empirical floor)
+20:12:05  WARNING a05 \u2502   unreproduced: SSCL-27 published 13, formula 10 (published value held as an empirical floor)
+20:12:05  INFO    a05 \u2502 hourly profile (mean boardings/h): 06h=37, 07h=768, 08h=3,590, 09h=4,346, 10h=4,030, 11h=3,544, 12h=3,104, 13h=2,553, 14h=2,463, 15h=2,823, 16h=3,234, 17h=3,286, 18h=3,081, 19h=2,159, 20h=1,146, 21h=521, 22h=43
+20:12:05  INFO    a05 \u2502 peak hour 09:00 at 4,346 boardings/h; peak-hour factor 10.67% of the day; all-day mean rate 2,396/h
+20:12:05  INFO    a05 \u2502 band Opening shoulder       06:00-07:59     402 pax/h    2.0% of day  headway x9.64 (prop) / x3.10 (sqrt), peak-anchored
+20:12:05  INFO    a05 \u2502 band Peak                   08:00-11:59    3878 pax/h   38.1% of day  headway x1.00 (prop) / x1.00 (sqrt), peak-anchored
+20:12:05  INFO    a05 \u2502 band Off-peak (base)        12:00-19:59    2838 pax/h   55.7% of day  headway x1.37 (prop) / x1.17 (sqrt), peak-anchored
+20:12:05  INFO    a05 \u2502 band Evening                20:00-22:59     570 pax/h    4.2% of day  headway x6.80 (prop) / x2.61 (sqrt), peak-anchored
+20:12:05  INFO    a05 \u2502 policy ceiling binds in 24 of the class x band x rule cells; classes with zero off-peak headroom: ['Medium-priority feeder', 'Rural lifeline (Regional, worst bucket)']
+20:12:05  INFO    a05 \u2502 peak-anchored proportional: peak fleet 1011 (plan 1011, +0 vehicles to buy); bus-hours/day 15577 vs flat 17187 (-9.4%)
+20:12:05  INFO    a05 \u2502 peak-anchored square-root : peak fleet 1011 (plan 1011, +0 vehicles to buy); bus-hours/day 15938 vs flat 17187 (-7.3%)
+20:12:05  INFO    a05 \u2502 mean-anchored proportional: peak fleet 1507 (plan 1011, +496 vehicles to buy); bus-hours/day 19449 vs flat 17187 (+13.2%)
+20:12:05  INFO    a05 \u2502 mean-anchored square-root : peak fleet 1226 (plan 1011, +215 vehicles to buy); bus-hours/day 17757 vs flat 17187 (+3.3%)
+
+================================================================================
+FINISHED:    2026-09-30T14:42:05.524441+00:00
+DURATION:    0.64s
+EXIT CODE:   0
+STATUS:      PASSED
+VERIFIED:    5/5 outputs
+================================================================================

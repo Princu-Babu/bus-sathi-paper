@@ -1,0 +1,19 @@
+22:17:45  INFO    a02 │ routes: 186 active features
+22:17:45  INFO    a02 │ plan self-consistency: 142/186 routes have geometry length within 1% of Route_KM; 44 carry a substituted distance
+22:18:01  INFO    a02 │ graph loaded: 961,927 nodes, 973,569 edges (16s)
+22:24:50  INFO    a02 │   20/186 routes (408s)
+22:30:22  INFO    a02 │   40/186 routes (740s)
+22:36:58  INFO    a02 │   60/186 routes (1136s)
+22:44:18  INFO    a02 │   80/186 routes (1576s)
+22:52:28  INFO    a02 │   100/186 routes (2066s)
+22:58:36  INFO    a02 │   120/186 routes (2434s)
+23:04:45  INFO    a02 │   140/186 routes (2803s)
+23:16:44  INFO    a02 │   160/186 routes (3522s)
+23:25:49  INFO    a02 │   180/186 routes (4067s)
+23:27:04  INFO    a02 │   186/186 routes (4142s)
+23:27:23  INFO    a02 │ reproduction on 142 self-consistent routes: median |err| 0.26%, max 58.14%, r = 0.97684
+23:27:23  INFO    a02 │ reproduction on 44 substituted-km routes: median |err| 21.99% (expected to fail: the plan's population is stale there)
+23:27:23  INFO    a02 │ per-route overstatement: median 37.4%, IQR 30.5-41.7%, max 56.8%; 184 routes >25%, 11 >50%
+23:27:23  INFO    a02 │ network-wide: Euclid 2,339,394 vs network 1,592,847 (31.9% overstated); coverage 35.5% -> 24.2% of study population
+23:27:23  INFO    a02 │ stops: 22360 total, 46 off-network (>400 m), median snap 11.0 m
+23:27:23  INFO    pyogrio._io │ Created 186 records

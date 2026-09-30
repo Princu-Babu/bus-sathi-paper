@@ -1,0 +1,42 @@
+================================================================================
+MODULE:      a04_class_count
+SCRIPT:      a04_class_count.py
+STAGE:       Stage 2
+STARTED:     2026-09-30T14:42:00.594148+00:00
+PYTHON:      E:\kash-paper\.venv\Scripts\python.exe (3.14.2)
+COMMAND:     E:\kash-paper\.venv\Scripts\python.exe E:\kash-paper\analysis\a04_class_count.py
+================================================================================
+
+20:12:01  INFO    a04 \u2502 index rows 186 from a03_index.csv
+20:12:01  INFO    a04 \u2502 cdi_net_equal: GVF k2=0.7855 k3=0.9023 k4=0.9331 k5=0.9582 k6=0.9702 k7=0.9775
+20:12:01  INFO    a04 \u2502 cdi_net_equal: exact  k2=0.7855 k3=0.9023 k4=0.9331 k5=0.9582 k6=0.9702 k7=0.9775
+20:12:01  INFO    a04 \u2502 cdi_net_equal: Rule A (first GVF>0.80) k=3 | Rule B (max d2GVF) k=3 | agree=True -> k=3
+20:12:02  INFO    a04 \u2502 cdi_net_entropy: GVF k2=0.7771 k3=0.8984 k4=0.9278 k5=0.9520 k6=0.9679 k7=0.9759
+20:12:02  INFO    a04 \u2502 cdi_net_entropy: exact  k2=0.7771 k3=0.8984 k4=0.9278 k5=0.9520 k6=0.9679 k7=0.9759
+20:12:02  INFO    a04 \u2502 cdi_net_entropy: Rule A (first GVF>0.80) k=3 | Rule B (max d2GVF) k=3 | agree=True -> k=3
+20:12:02  INFO    a04 \u2502 cdi_net_pca: GVF k2=0.7855 k3=0.9023 k4=0.9331 k5=0.9582 k6=0.9702 k7=0.9775
+20:12:02  INFO    a04 \u2502 cdi_net_pca: exact  k2=0.7855 k3=0.9023 k4=0.9331 k5=0.9582 k6=0.9702 k7=0.9775
+20:12:02  INFO    a04 \u2502 cdi_net_pca: Rule A (first GVF>0.80) k=3 | Rule B (max d2GVF) k=3 | agree=True -> k=3
+20:12:02  INFO    a04 \u2502 chosen k = 3 on cdi_net_equal; robustness weightings choose {'cdi_net_entropy': 3, 'cdi_net_pca': 3}
+20:12:04  INFO    a04 \u2502 k=3 jenks          GVF=0.9023 sizes=[108, 41, 37]
+20:12:04  INFO    a04 \u2502 k=3 quantile       GVF=0.8425 sizes=[62, 62, 62]
+20:12:04  INFO    a04 \u2502 k=3 kmeans         GVF=0.9023 sizes=[108, 41, 37]
+20:12:04  INFO    a04 \u2502 k=3 equal_interval GVF=0.8719 sizes=[117, 49, 20]
+20:12:04  INFO    a04 \u2502 jenkspy attains the exact Jenks optimum at k=3
+20:12:04  INFO    a04 \u2502 kappa jenks__vs__quantile                0.4274  (exact agreement 61.8%)
+20:12:04  INFO    a04 \u2502 kappa jenks__vs__kmeans                  1.0000  (exact agreement 100.0%)
+20:12:04  INFO    a04 \u2502 kappa kmeans__vs__quantile               0.4274  (exact agreement 61.8%)
+20:12:04  INFO    a04 \u2502 kappa equal_interval__vs__jenks          0.7483  (exact agreement 86.0%)
+20:12:04  INFO    a04 \u2502 kappa equal_interval__vs__quantile       0.2177  (exact agreement 47.8%)
+20:12:04  INFO    a04 \u2502 kappa equal_interval__vs__kmeans         0.7483  (exact agreement 86.0%)
+20:12:04  INFO    a04 \u2502 vs published Priority_Band: agreement 68.3% kappa 0.5034
+20:12:04  INFO    a04 \u2502 tier sizes at k=3: {'Tier 3': 108, 'Tier 2': 41, 'Tier 1': 37}
+20:12:04  INFO    a04 \u2502 wrote a04_class_count.json, a04_route_tiers.csv, table05_class_count, table05b_classifier_agreement
+
+================================================================================
+FINISHED:    2026-09-30T14:42:04.888638+00:00
+DURATION:    4.29s
+EXIT CODE:   0
+STATUS:      PASSED
+VERIFIED:    4/4 outputs
+================================================================================

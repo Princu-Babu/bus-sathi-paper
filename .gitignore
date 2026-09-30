@@ -21,24 +21,15 @@ ENV/
 *.pem
 *.key
 
-# ── Heavy Spatial Data & Precomputed Caches (CRITICAL RESEARCH CONTRACT) ─────
-data/cache/
-data/cache/**
-*.gpickle
-*.gpkg
-*.tif
-*.tiff
-walk_graph.gpickle
-catchments_network.gpkg
-kashmir_worldpop.tif
-osrm_responses.json
-
-# ── Large Raw Third-Party Data (Regenerable or Downloaded on Demand) ──────────
-data/raw/kashmir_worldpop.tif
-data/raw/*.tif
-data/raw/*.tiff
-data/raw/osm_india_extract.pbf
+# ── Heavy data ─────────────────────────────────────────────────────────────
+# Caches that take hours to rebuild are committed through Git LFS (see
+# .gitattributes): walk_graph.gpickle, catchments_network.gpkg,
+# osrm_responses.json, the WorldPop raster, clipped building footprints.
+# Only intermediates that are large AND quick/cheap to regenerate stay out.
+data/cache/a08a_polys/
+data/external/ms_buildings/*.csv.gz
 data/raw/*.pbf
+*.pbf
 
 # ── Operating System & Editor Artifacts ──────────────────────────────────────
 .DS_Store
@@ -60,14 +51,4 @@ scratch/
 *.tmp
 *.bak
 
-# ── Execution Logs (Whitelist WORK_REGISTER.md) ──────────────────────────────
-*.log
-logs/*.log
-logs/**/*.log
-!logs/WORK_REGISTER.md
-
-# ── Internal multi-agent orchestration scratch (not paper material) ───────────
-.agents/
-
-# ── QA render scratch (regenerable from _qa_render.py) ───────────────────────
-paper/_qa/
+data/external/ms_buildings/dataset-links.csv

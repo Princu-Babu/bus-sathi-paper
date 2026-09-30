@@ -1,0 +1,30 @@
+================================================================================
+MODULE:      a08_sensitivity_oat
+SCRIPT:      a08_sensitivity_oat.py
+STAGE:       Stage 4
+STARTED:     2026-09-30T14:45:39.675925+00:00
+PYTHON:      E:\kash-paper\.venv\Scripts\python.exe (3.14.2)
+COMMAND:     E:\kash-paper\.venv\Scripts\python.exe E:\kash-paper\analysis\a08_sensitivity_oat.py
+================================================================================
+
+20:15:40  INFO    a08 \u2502 baseline reproduced: {'n_routes': 186, 'cycle_reproduced': 186, 'fleet_reproduced': 186, 'fleet_total': 1011, 'fleet_total_published': 1011}
+20:15:40  INFO    a08 \u2502 baseline tiers vs a04 (mu applied here, not in a03): 100.0% agree
+20:15:45  INFO    a08 \u2502 WALK_CATCHMENT_M                 {'baseline': 400.0, 'range_lo': 300.0, 'range_hi': 800.0, 'tier_agreement_min': 0.9839, 'tier_kappa_min': 0.9719, 'coverage_min': 0.2028, 'coverage_max': 0.3448}
+20:15:45  INFO    a08 \u2502 VIRTUAL_STOP_SPACING_M           {'baseline': 250.0, 'range_lo': 150.0, 'range_hi': 400.0, 'tier_agreement_min': 0.9839, 'tier_kappa_min': 0.9721, 'coverage_min': 0.233, 'coverage_max': 0.2487}
+20:15:45  INFO    a08 \u2502 STOP_SPACING_M                   {'baseline': 500.0, 'range_lo': 300.0, 'range_hi': 800.0, 'fleet_min_cap_on': 1001.0, 'fleet_max_cap_on': 1016.0, 'fleet_swing_cap_on': 15.0, 'fleet_min_cap_off': 1497.0, 'fleet_max_cap_off': 1922.0, 'fleet_swing_cap_off': 425.0}
+20:15:45  INFO    a08 \u2502 CDI_POP_WEIGHT                   {'baseline': 0.5, 'range_lo': 0.2, 'range_hi': 0.8, 'tier_agreement_min': 0.9032, 'tier_kappa_min': 0.8363}
+20:15:45  INFO    a08 \u2502 POI_TIER2_WEIGHT                 {'baseline': 0.4, 'range_lo': 0.2, 'range_hi': 0.6, 'tier_agreement_min': 1.0, 'tier_kappa_min': 1.0}
+20:15:45  INFO    a08 \u2502 POI_TIER3_WEIGHT                 {'baseline': 0.6, 'range_lo': 0.3, 'range_hi': 0.9, 'tier_agreement_min': 0.9946, 'tier_kappa_min': 0.9906}
+20:15:45  INFO    a08 \u2502 TOURIST_POPULATION_MULTIPLIER    {'baseline': 1.3, 'range_lo': 1.0, 'range_hi': 1.8, 'tier_agreement_min': 1.0, 'tier_kappa_min': 1.0}
+20:15:45  INFO    a08 \u2502 OVERLAP_THRESHOLD                {'baseline': 0.65, 'range_lo': 0.5, 'range_hi': 0.9, 'engine_rule_pairs_at_lo': 354.0, 'engine_rule_pairs_at_base': 207.0, 'engine_rule_pairs_at_hi': 90.0, 'overlap_only_pairs_at_base': 614.0}
+20:15:45  INFO    a08 \u2502 CONGESTION_CITY_CORE             {'baseline': 2.2, 'range_lo': 1.6, 'range_hi': 2.8, 'fleet_min_cap_on': 1003.0, 'fleet_max_cap_on': 1014.0, 'fleet_swing_cap_on': 11.0, 'fleet_min_cap_off': 1408.0, 'fleet_max_cap_off': 1903.0, 'fleet_swing_cap_off': 495.0}
+20:15:45  INFO    a08 \u2502 STOP_PENALTY_MIN                 {'baseline': 0.5, 'range_lo': 0.3, 'range_hi': 1.5, 'fleet_min_cap_on': 999.0, 'fleet_max_cap_on': 1016.0, 'fleet_swing_cap_on': 17.0, 'fleet_min_cap_off': 1488.0, 'fleet_max_cap_off': 2444.0, 'fleet_swing_cap_off': 956.0}
+20:15:45  INFO    a08 \u2502 FLEET_SPARE_RATIO                {'baseline': 1.15, 'range_lo': 1.05, 'range_hi': 1.25, 'fleet_min_cap_on': 985.0, 'fleet_max_cap_on': 1059.0, 'fleet_swing_cap_on': 74.0, 'fleet_min_cap_off': 1546.0, 'fleet_max_cap_off': 1772.0, 'fleet_swing_cap_off': 226.0}
+
+================================================================================
+FINISHED:    2026-09-30T14:45:45.826050+00:00
+DURATION:    6.15s
+EXIT CODE:   0
+STATUS:      PASSED
+VERIFIED:    2/2 outputs
+================================================================================

@@ -1,0 +1,28 @@
+================================================================================
+MODULE:      a11_coverage_accessibility
+SCRIPT:      a11_coverage_accessibility.py
+STAGE:       Stage 3
+STARTED:     2026-09-30T14:42:12.282148+00:00
+PYTHON:      E:\kash-paper\.venv\Scripts\python.exe (3.14.2)
+COMMAND:     E:\kash-paper\.venv\Scripts\python.exe E:\kash-paper\analysis\a11_coverage_accessibility.py
+================================================================================
+
+20:12:13  INFO    a11 \u2502 inputs: 186 network catchments, 186 active routes, 10 districts
+20:12:23  INFO    a11 \u2502 RECONCILED: any-service coverage recomputed at 24.19% vs established 24.2% (drift -0.01 pp, within +-0.5 pp)
+20:12:23  INFO    a11 \u2502   <= 15 min                 30 routes -> 687,629 (10.44%)
+20:12:23  INFO    a11 \u2502   <= 20 min                 55 routes -> 804,175 (12.21%)
+20:12:23  INFO    a11 \u2502   <= 35 min                124 routes -> 1,263,222 (19.18%)
+20:12:23  INFO    a11 \u2502   any service (all active) 186 routes -> 1,592,847 (24.19%)
+20:12:30  INFO    a11 \u2502 surface: study-area WorldPop 6,584,762 inside union; covered 1,592,847; uncovered 4,991,916 (75.8% of study area unserved)
+20:12:51  INFO    a11 \u2502 lattice h=2 km: 4200 cells over union; 3526 with residents; uncovered captured 4,991,916
+20:12:53  INFO    a11 \u2502 lattice h=5 km: 711 cells over union; 670 with residents; uncovered captured 4,991,916
+20:12:54  INFO    a11 \u2502 MORAN (primary, uncovered pop, full lattice h=2 km): I=0.6639, E[I]=-0.0002, z=85.77, p_sim=0.0010 over 4200 cells -> CLUSTERED (policy-actionable)
+20:12:54  INFO    a11 \u2502 done (41s)
+
+================================================================================
+FINISHED:    2026-09-30T14:42:54.326439+00:00
+DURATION:    42.04s
+EXIT CODE:   0
+STATUS:      PASSED
+VERIFIED:    3/3 outputs
+================================================================================

@@ -1,0 +1,22 @@
+================================================================================
+MODULE:      a12_equity_gini
+SCRIPT:      a12_equity_gini.py
+STAGE:       Stage 3
+STARTED:     2026-09-30T14:42:54.327038+00:00
+PYTHON:      E:\kash-paper\.venv\Scripts\python.exe (3.14.2)
+COMMAND:     E:\kash-paper\.venv\Scripts\python.exe E:\kash-paper\analysis\a12_equity_gini.py
+================================================================================
+
+20:12:55  INFO    a12 \u2502 inputs: 186 network catchments, 186 active routes
+20:12:58  INFO    a12 \u2502 accessibility Gini (pop-weighted): frequency 0.9029, route-count 0.8993; 75.8% of residents have zero network service
+20:12:58  INFO    a12 \u2502   conditional on having service: frequency Gini 0.5986, route-count Gini 0.5835 over 1,592,847 served residents
+20:13:22  INFO    a12 \u2502 losers: 32 suppressed via-routings across 20 corridors; 31 costed, 1 not computable; dedup affected within 400 m = 114,879 (13,087 uncovered)
+20:13:22  INFO    a12 \u2502 done (27s)
+
+================================================================================
+FINISHED:    2026-09-30T14:43:22.832058+00:00
+DURATION:    28.51s
+EXIT CODE:   0
+STATUS:      PASSED
+VERIFIED:    3/3 outputs
+================================================================================

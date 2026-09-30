@@ -1,0 +1,48 @@
+15:10:40  INFO    a02 \u2502 graph loaded: 961,927 nodes, 973,569 edges (5s)
+15:10:40  INFO    a08a \u2502 resuming: 2 routes already in checkpoint
+15:12:40  INFO    a08a \u2502   7/186 routes (5 new, 119s, ~71 min left)
+15:14:46  INFO    a08a \u2502   12/186 routes (10 new, 245s, ~71 min left)
+15:17:29  INFO    a08a \u2502   17/186 routes (15 new, 408s, ~77 min left)
+15:19:50  INFO    a08a \u2502   22/186 routes (20 new, 550s, ~75 min left)
+15:22:12  INFO    a08a \u2502   27/186 routes (25 new, 692s, ~73 min left)
+15:24:29  INFO    a08a \u2502   32/186 routes (30 new, 828s, ~71 min left)
+15:26:33  INFO    a08a \u2502   37/186 routes (35 new, 952s, ~68 min left)
+15:28:35  INFO    a08a \u2502   42/186 routes (40 new, 1075s, ~64 min left)
+15:30:53  INFO    a08a \u2502   47/186 routes (45 new, 1213s, ~62 min left)
+15:32:41  INFO    a08a \u2502   52/186 routes (50 new, 1321s, ~59 min left)
+15:35:39  INFO    a08a \u2502   57/186 routes (55 new, 1498s, ~59 min left)
+15:38:34  INFO    a08a \u2502   62/186 routes (60 new, 1674s, ~58 min left)
+15:41:58  INFO    a08a \u2502   67/186 routes (65 new, 1878s, ~57 min left)
+15:45:26  INFO    a08a \u2502   72/186 routes (70 new, 2085s, ~57 min left)
+15:48:15  INFO    a08a \u2502   77/186 routes (75 new, 2255s, ~55 min left)
+15:51:55  INFO    a08a \u2502   82/186 routes (80 new, 2474s, ~54 min left)
+15:56:11  INFO    a08a \u2502   87/186 routes (85 new, 2730s, ~53 min left)
+15:58:41  INFO    a08a \u2502   92/186 routes (90 new, 2881s, ~50 min left)
+16:04:33  INFO    a08a \u2502   97/186 routes (95 new, 3232s, ~50 min left)
+16:16:36  INFO    a08a \u2502   102/186 routes (100 new, 3956s, ~55 min left)
+16:25:12  INFO    a08a \u2502   107/186 routes (105 new, 4472s, ~56 min left)
+16:27:48  INFO    a08a \u2502   112/186 routes (110 new, 4628s, ~52 min left)
+16:36:27  INFO    a08a \u2502   117/186 routes (115 new, 5147s, ~51 min left)
+16:43:40  INFO    a08a \u2502   122/186 routes (120 new, 5580s, ~50 min left)
+16:48:36  INFO    a08a \u2502   127/186 routes (125 new, 5876s, ~46 min left)
+16:55:33  INFO    a08a \u2502   132/186 routes (130 new, 6293s, ~44 min left)
+16:58:24  INFO    a08a \u2502   137/186 routes (135 new, 6463s, ~39 min left)
+17:03:18  INFO    a08a \u2502   142/186 routes (140 new, 6757s, ~35 min left)
+17:10:32  INFO    a08a \u2502   147/186 routes (145 new, 7191s, ~32 min left)
+17:20:27  INFO    a08a \u2502   152/186 routes (150 new, 7786s, ~29 min left)
+17:30:13  INFO    a08a \u2502   157/186 routes (155 new, 8373s, ~26 min left)
+17:38:10  INFO    a08a \u2502   162/186 routes (160 new, 8849s, ~22 min left)
+17:44:54  INFO    a08a \u2502   167/186 routes (165 new, 9253s, ~18 min left)
+17:54:29  INFO    a08a \u2502   172/186 routes (170 new, 9829s, ~13 min left)
+18:01:55  INFO    a08a \u2502   177/186 routes (175 new, 10274s, ~9 min left)
+19:56:56  INFO    a02 \u2502 graph loaded: 961,927 nodes, 973,569 edges (19s)
+19:56:57  INFO    a08a \u2502 resuming: 179 routes already in checkpoint
+20:03:07  INFO    a08a \u2502   184/186 routes (5 new, 369s, ~2 min left)
+20:03:58  INFO    a08a \u2502 baseline reproduction vs a02: n=186 median 0.00e+00 max 0.00e+00
+20:04:06  INFO    a08a \u2502 union W300_S250       1,335,163 residents  20.28%
+20:04:13  INFO    a08a \u2502 union W400_S250       1,592,847 residents  24.19%
+20:04:20  INFO    a08a \u2502 union W500_S250       1,804,751 residents  27.41%
+20:04:30  INFO    a08a \u2502 union W600_S250       1,984,274 residents  30.13%
+20:04:42  INFO    a08a \u2502 union W800_S250       2,270,472 residents  34.48%
+20:04:51  INFO    a08a \u2502 union W400_S150       1,637,571 residents  24.87%
+20:04:58  INFO    a08a \u2502 union W400_S400       1,534,516 residents  23.30%

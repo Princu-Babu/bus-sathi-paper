@@ -1,0 +1,6 @@
+21:19:05  INFO    walkgraph \u2502 study bbox (padded 0.05 deg): lon 73.700-75.645  lat 33.314-34.837
+21:23:23  INFO    walkgraph \u2502   1,000,000 highway ways scanned, 34,773 walkable, graph 792,955 nodes (256s)
+21:26:41  INFO    walkgraph \u2502 pass done: 1,837,605 highway ways seen, 46,278 contributed edges (454s)
+21:26:44  INFO    walkgraph \u2502 graph: 961,927 nodes, 973,569 edges, 23,323 km walkable network
+21:26:48  INFO    walkgraph \u2502 walk graph -> E:\kash-paper\data\cache\walk_graph.gpickle (77.1 MB)
+exit=0

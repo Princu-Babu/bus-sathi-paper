@@ -1,0 +1,20 @@
+================================================================================
+MODULE:      a14_cost_emissions
+SCRIPT:      a14_cost_emissions.py
+STAGE:       Stage 3
+STARTED:     2026-09-30T14:43:44.908983+00:00
+PYTHON:      E:\kash-paper\.venv\Scripts\python.exe (3.14.2)
+COMMAND:     E:\kash-paper\.venv\Scripts\python.exe E:\kash-paper\analysis\a14_cost_emissions.py
+================================================================================
+
+20:13:45  INFO    a14 \u2502 PLAN: 120M veh-km/yr; cost INR 642–1054 cr; CO2 65.2–102.9 kt; per covered resident INR 4033–6615
+20:13:45  INFO    a14 \u2502 OBSERVED: 38M veh-km/yr; cost INR 206–338 cr; CO2 20.9–32.9 kt; per covered resident INR 1295–2124
+20:13:45  INFO    a14 \u2502 engine e-bus factor 30 g/km vs mid-range 874 g/km (x29)
+
+================================================================================
+FINISHED:    2026-09-30T14:43:45.536871+00:00
+DURATION:    0.63s
+EXIT CODE:   0
+STATUS:      PASSED
+VERIFIED:    2/2 outputs
+================================================================================

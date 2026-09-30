@@ -85,9 +85,9 @@ bands is what has to be paid for every day.
 
 Outputs
     data/derived/a05_headway_timeofday.json
-    paper/tables/table05h_timeofday.{csv,md}       band profile + multipliers
-    paper/tables/table05h_timeofday_headways.{csv,md}   banded headway schedule
-    paper/tables/table05h_timeofday_fleet.{csv,md}      fleet and bus-hour effect
+    results/tables/table05h_timeofday.{csv,md}       band profile + multipliers
+    results/tables/table05h_timeofday_headways.{csv,md}   banded headway schedule
+    results/tables/table05h_timeofday_fleet.{csv,md}      fleet and bus-hour effect
 
 Usage
     python analysis/a05_headway_timeofday.py
@@ -541,7 +541,7 @@ def main() -> None:
 
     out = dict(
         status="OK",
-        source_file=str(C.HOURLY_PAX_CSV),
+        source_file=C.HOURLY_PAX_CSV.relative_to(C.ROOT).as_posix(),
         month=MONTH_LABEL,
         what_this_file_is=(
             "Whole-network hourly BOARDINGS (fare transactions) for the 30-route "
