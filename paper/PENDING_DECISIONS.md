@@ -152,10 +152,14 @@ count? how long?), the raw sheets (a photo is enough), then ledger IDs. **Recomm
 
 ## D5 · The §2.1 systematic-review protocol  *(7)*
 
-§2.1 describes a search that has **not been run** (placeholders `[Scopus]`, `[N]`). Option A: run it (~2 days)
-and code Table 1. Option B: delete §2.1 and Table 1 and keep §2 narrative (~2 hours; also helps D26). Fake
-PRISMA counts are misconduct; a narrative review is not. **Recommendation:** B unless someone has two days.
-**If nothing is done:** placeholders cannot go to the journal.
+**RESOLVED 2026-10-04 — Option A, executed by Sharvesh.** The search was run on OpenAlex and Scopus
+(5,488 unique records; 2,518 screened; 873 eligible), 60 studies were coded (46 from full text) and the
+§2.8 cross-tabulation is computed `[CL-62 – CL-65]`. Web of Science was not available. First-pass
+screening was LLM-assisted and must be named in the D28 declaration. A novelty check `[CL-66]` found
+prior work for every single step of the pipeline, so the novelty claim is the integration, the permit
+register as starting object and the decision-robust stance (FLAG 2-H in §2). Evidence:
+`paper/literature_review/`. Raw Scopus exports and publisher PDFs are **not** in the repository
+(licensed content).
 
 ## D3 · "Srinagar Municipal Area" wording  *(8)*
 
@@ -220,10 +224,15 @@ Open flags in the manuscript, grouped by owner. Each is a tinted callout in the 
 - PF-a/3-B — move the Policy-Failure block to §3.3 (also D26).
 
 **Sharvesh, Ankit (§2)**
-- 2-B — the Euclidean-vs-network critique is **not novel**: cite Gutiérrez & García-Palomares (2008) and Biba
-  et al. (2010) by name before §4 measures it.
-- 2-C — the data-intensity cross-tabulation depends on D5.
-- 2-D — reconcile every citation with `references.bib` (map in `COAUTHOR_CITATION_MAP.md`).
+- 2-B — **closed 2026-10-04**: §2.4 cites Gutiérrez & García-Palomares (2008), Biba et al. (2010),
+  El-Geneidy et al. (2014) and Yenisetty & Bahadure (2020) and states that the correction is applied, not
+  claimed.
+- 2-C — **closed 2026-10-04**: cross-tabulation computed (`CL-64`, Figure 2).
+- 2-D — **closed 2026-10-04**: every §2 citation resolves in `references.bib` (37 entries added, each
+  checked against Crossref).
+- **Open, raised by §2 (see callouts at the end of the section):** 2-E where this study sits on the
+  data-intensity scale (level 2, not 1); 2-F four studies not on both axes; 2-G three "full plan" codes
+  rest on method output; 2-H novelty wording to avoid across §1, §8 and the Abstract.
 
 **Krishna (§3)**
 - 3-C — Table 2 lists data the study does not hold (land use, terrain, tourist arrivals, fleet register,
@@ -248,7 +257,8 @@ Open flags in the manuscript, grouped by owner. Each is a tinted callout in the 
 |---|---|---|
 | D6 | Data-maturity ladder ranked by Sobol' indices (§7.5) | 2026-09-30 |
 | D9 | Microsoft footprints downloaded; V1 passes (ρ 0.975 route, 0.950 grid), partly circular | 2026-10-01 |
-| D14 | Figures 1, 3–9, 9b, S1, S2 drawn by `fig_generate_all.py`; Figure 2 waits on D5 | 2026-09-30 |
+| D14 | Figures 1, 3–9, 9b, S1, S2 drawn by `fig_generate_all.py`; Figure 2 drawn by `paper/literature_review/finalise_table1.py` (2026-10-04) | 2026-09-30 |
+| D5 | Literature protocol run (Option A): 5,488 records, 60 coded, cross-tab computed; §2 rewritten | 2026-10-04 |
 | D15 | Superseded by D26 (the limit is 8,000) | 2026-10-01 |
 | D19 | a03 aligned with a04's Jenks convention | 2026-09-30 |
 | D23 | GPS window is February–June 2026; `DATA_AVAILABILITY.md` corrected | 2026-10-01 |

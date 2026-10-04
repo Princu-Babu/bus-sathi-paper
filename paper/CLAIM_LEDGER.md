@@ -22,9 +22,9 @@ This ledger registers every quantitative claim, empirical finding, statistic, de
 
 ---
 
-## 2. Summary Master Table of Quantitative Claims (`CL-01` to `CL-61`)
+## 2. Summary Master Table of Quantitative Claims (`CL-01` to `CL-66`)
 
-CL-37 onward were added 2026-09-30 as modules a04–a16, a06/a07/a14/a15, v01/v02 and the fleet_model reproduction landed. CL-56–CL-58 were filled from a08/a09 on 2026-09-30.
+CL-37 onward were added 2026-09-30 as modules a04–a16, a06/a07/a14/a15, v01/v02 and the fleet_model reproduction landed. CL-56–CL-58 were filled from a08/a09 on 2026-09-30. CL-62–CL-66 (literature review, §2) were added 2026-10-04 from `paper/literature_review/`; they are produced by the review pipeline, not by an `analysis/` module.
 
 | Claim ID | Finding / Metric | Short Description | Numerical Value | Denominator / Universe | Primary Source Module | Manuscript Location |
 |---|---|---|---|---|---|---|
@@ -89,6 +89,11 @@ CL-37 onward were added 2026-09-30 as modules a04–a16, a06/a07/a14/a15, v01/v0
 | `CL-59` | Method | Corrections to the method as published | engine capture scale κ = 0.33 (not 0.18); Eq. 8 demand proxy sets headway on the 67 non-backbone Regional routes (5 at 35, 62 at 50 min); engine merge test = 80 m line-buffer overlap ≥ θ AND starts ≤ 2.5 km | engine source | `transit_kashmir_v3.py:547, 5551, 2640` | §4.5, §4.6, §4.7 |
 | `CL-60` | Fleet | Buses per 100,000 by denominator | 15.4 (division 6,584,762); 43.6 (engine Euclidean served 2,317,958); 63.5 (network served 1,592,847) — last above MoHUA 40–60 | 1,011 buses | `a11`, plan CSV | §4.8, §5.4 |
 | `CL-61` | F23 | Funding-constrained sequencing | 30% of fleet (303 buses, 63 routes) reaches 22.4% of residents = 92% of the full plan's 24.2%; 50% of reach costs 54 buses, 90% costs 264 | greedy marginal coverage per bus | `a15_scenarios.py` | §7.7, Table 8b |
+| `CL-62` | Lit | Literature search yield | 5,488 unique records (OpenAlex 3,584; Scopus 3,965; 2,061 overlap); 2,518 screened on title/abstract; 873 eligible (469 maybe, 1,176 excluded) | 13 OpenAlex + 19 Scopus queries, 2000–2026, run 2026-09-30/10-01 | `paper/literature_review/prisma_counts.md`, `search_log.csv`, `scopus_log.csv`, `screening_decisions.csv` | §2.1 |
+| `CL-63` | Lit | Coded corpus | 60 studies (57 from search + 3 seminal by citation chaining); 46 coded from full text, 14 from abstracts; 56 placed on both axes (C56, C57, C58, C60 excluded as unclear) | purposive, theme-stratified sample of the 873 | `paper/literature_review/table1_final.csv`, `table1_summary.json` | §2.1, §2.8, Table 1 |
+| `CL-64` | Lit | Data intensity × planning output | full plans: 6, all at intensity 4; intensity 2–3: 0 full / 8 partial of 30; intensity 5: 0 of 5; intensity 1: no coded study | 56 studies on both axes | `paper/literature_review/crosstab_intensity_plan.csv`, `finalise_table1.py` | §2.8, Figure 2 |
+| `CL-65` | Lit | Corpus descriptors | 10 of 60 demonstrated only on benchmark/synthetic OD; 42 of 60 report no equity treatment | 60 coded studies | `paper/literature_review/table1_summary.json` | §2.2, §2.6 |
+| `CL-66` | Lit | Novelty check | 750 records scored against six pipeline elements (359 Scopus novelty-query hits, 377 OpenAlex, 14 screener-flagged) + 12 web searches; five closest papers read in full; no study performs the whole chain, every single element has prior work | — | `paper/literature_review/03_novelty_check.md`, `04_fulltext_verification.md` | §1.5, §2.4, §2.7, §2.8 |
 
 ---
 

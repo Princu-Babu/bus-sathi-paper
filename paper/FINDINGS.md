@@ -179,9 +179,10 @@ of τ.
 offset is **11.0 m**.
 
 **Consequence.** This is the paper's central methodological result and the
-justification for the PDF's "non-negotiable" requirement. Euclidean buffers are
-the near-universal default in the rationalisation literature this paper sits in;
-the correction is a third of the reported benefit.
+justification for the PDF's "non-negotiable" requirement. The buffer bias itself is established
+(Gutiérrez and García-Palomares, 2008; Biba et al., 2010; El-Geneidy et al., 2014); how often
+rationalisation studies still use Euclidean buffers was not measured by the literature review, so no
+prevalence claim is made. On this network the correction is a third of the reported benefit.
 
 ---
 
