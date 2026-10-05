@@ -52,7 +52,7 @@ SECTIONS = {
     "01_introduction": ("1. Introduction", "Misti, Avny", 900,
                         "Co-author prose preserved verbatim + editorial flags"),
     "02_literature": ("2. Literature review and research gap", "Sharvesh, Ankit", 900,
-                      "Drafted for co-author review; §2.1 protocol NOT run"),
+                      "Rewritten on the executed review (D5 = A); Table 1 in supplement"),
     "03_study_area": ("3. Study area and data", "Krishna", 700,
                       "Drafted for co-author review; ethics paragraph blank"),
     "04_methodology": ("4. Methodology", "Prashant (sole owner)", 1700,
@@ -75,7 +75,7 @@ COAUTHOR_PROSE = {"01_introduction", "07_discussion"}
 FIGURES = [
     ("fig01_framework", "**Figure 1.** Conceptual framework: four open inputs produce a supply plan that is "
      "checked through six convergent channels. V3 (expert panel) was not run."),
-    ("fig02_review_flow", "**Figure 2.** Literature-review flow diagram — depends on decision D5 (§2.1 protocol)."),
+    ("fig02_gap_heatmap", "**Figure 2.** Reviewed studies by data intensity required and planning output (n = 56). All six full plans need a demand matrix; none at intensity 1–3 produces one [CL-64]."),
     ("fig03_study_area", "**Figure 3.** Study area: the ten districts of Kashmir Division and the 186 active "
      "routes of the rationalised plan by service class."),
     ("fig04_method_flow", "**Figure 4.** The four-phase method and the equations that implement each phase."),

@@ -1,0 +1,72 @@
+{
+ "n_corpus": 60,
+ "n_on_both_axes": 56,
+ "excluded_unclear": [
+  "C56",
+  "C57",
+  "C58",
+  "C60"
+ ],
+ "basis": {
+  "fulltext": 46,
+  "abstract": 13,
+  "abstract+web": 1
+ },
+ "plan_yes": [
+  {
+   "cid": "C02",
+   "data_intensity": 4,
+   "demand_input": "unclear"
+  },
+  {
+   "cid": "C03",
+   "data_intensity": 4,
+   "demand_input": "unclear"
+  },
+  {
+   "cid": "C04",
+   "data_intensity": 4,
+   "demand_input": "unclear"
+  },
+  {
+   "cid": "C06",
+   "data_intensity": 4,
+   "demand_input": "modelled OD (4-step/calibrated model)"
+  },
+  {
+   "cid": "C15",
+   "data_intensity": 4,
+   "demand_input": "mobile-phone/taxi-GPS traces"
+  },
+  {
+   "cid": "C48",
+   "data_intensity": 4,
+   "demand_input": "unclear"
+  }
+ ],
+ "equity_none": 42,
+ "benchmark_or_synthetic_od": 10,
+ "crosstab": {
+  "Yes": {
+   "1": 0,
+   "2": 0,
+   "3": 0,
+   "4": 6,
+   "5": 0
+  },
+  "Partial": {
+   "1": 0,
+   "2": 4,
+   "3": 4,
+   "4": 4,
+   "5": 0
+  },
+  "No": {
+   "1": 0,
+   "2": 9,
+   "3": 13,
+   "4": 11,
+   "5": 5
+  }
+ }
+}
