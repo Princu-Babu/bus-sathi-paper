@@ -1,4 +1,4 @@
-"""
+r"""
 md2pdf.py — a small, dependency-light Markdown -> PDF renderer for this repo.
 ==============================================================================
 
@@ -19,6 +19,19 @@ constructs used by `paper/sections/*.md` and `paper/PENDING_DECISIONS.md`:
     |a|b|                   pipe tables with a --- separator row
     ---                     horizontal rule
     ```fence```             code block
+    ```algorithm            ruled pseudocode box with line numbers (syntax: see
+      title / steps ```     `algorithm_block` docstring)
+    $$ ... $$               display equation (may span lines; \tag{n} -> "(n)")
+    $...$                   inline maths (simple -> text markup, else an image)
+
+Maths is delegated to `mathrender.py` (matplotlib mathtext, vector paths). It
+handles \begin{cases|aligned}, \text, \tfrac, \big-delimiters etc. via a
+pre-processor; an equation that cannot be parsed is drawn as a red flagged box
+and recorded (see `math_failures()`), never a crash. `find_unrendered_math(pdf)`
+scans a built PDF for raw TeX that leaked through. Currency (`US$ 40`, `US$0.05`)
+is not maths: an opening `$` must not follow a capital letter/digit, must not be
+followed by a space, and the closing `$` must not be followed by a digit. Write
+`\$` for a literal dollar sign next to something that looks like maths.
 
 Fonts: DejaVu (shipped with matplotlib) so that Greek letters, arrows and
 mathematical operators in the prose survive. Helvetica's WinAnsi encoding
@@ -31,6 +44,7 @@ Run:
 from __future__ import annotations
 
 import re
+import sys
 from pathlib import Path
 
 import matplotlib
@@ -54,6 +68,9 @@ from reportlab.platypus import (
     Table,
     TableStyle,
 )
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import mathrender as MR  # noqa: E402  (LaTeX-subset maths, see mathrender.py)
 
 # ---------------------------------------------------------------------------
 # Fonts
@@ -167,9 +184,12 @@ def _esc(s: str) -> str:
     return s
 
 
-def inline(text: str, mono: str = "DejaMono") -> str:
+def inline(text: str, mono: str = "DejaMono", size: float = 9.3) -> str:
     """Convert inline markdown to reportlab markup. Code spans are protected
-    from the emphasis pass so that `**` inside backticks survives."""
+    from the emphasis pass so that `**` inside backticks survives. `$...$`
+    maths is converted (see mathrender.py) and protected the same way; `size`
+    is the font size of the paragraph the text will sit in (inline math
+    images are scaled to it)."""
     holds: list[str] = []
 
     def _hold(m):
@@ -177,6 +197,23 @@ def inline(text: str, mono: str = "DejaMono") -> str:
         return f"\x00{len(holds) - 1}\x00"
 
     text = re.sub(r"`([^`]+)`", _hold, text)
+
+    # maths: pandoc rules (opening $ not followed by space, closing $ not
+    # followed by a digit, opening $ not preceded by a word char -> "US$ 40" and
+    # "US$0.05 ... US$2.5" are currency, not maths). \$ is a literal dollar.
+    if "$" in text:
+        mholds: list[str] = []
+
+        def _mhold(m):
+            mholds.append(MR.math_to_markup(m.group(1), size, where=text[:60]))
+            return f"\x01{len(mholds) - 1}\x01"
+
+        text = text.replace(r"\$", "\x02")
+        text = MR.DISPLAY_IN_TEXT.sub(_mhold, text)
+        text = MR.INLINE_MATH.sub(_mhold, text)
+        text = text.replace("\x02", "$")
+    else:
+        mholds = []
     text = _esc(text)
 
     # links -> "text" in blue (PDF link if absolute)
@@ -192,6 +229,8 @@ def inline(text: str, mono: str = "DejaMono") -> str:
     text = re.sub(r"(?<!\*)\*(?!\*)(.+?)(?<!\*)\*(?!\*)", r"<i>\1</i>", text, flags=re.S)
     text = re.sub(r"(?<![A-Za-z0-9_])_([^_]+)_(?![A-Za-z0-9_])", r"<i>\1</i>", text)
 
+    for i, h in enumerate(mholds):
+        text = text.replace(f"\x01{i}\x01", h)
     for i, h in enumerate(holds):
         text = text.replace(f"\x00{i}\x00", h)
     return text
@@ -229,9 +268,9 @@ def _callout(lines: list[str], st, width: float):
     flow = []
     for i, p in enumerate(paras):
         if p.lstrip().startswith(("- ", "* ")):
-            flow.append(Paragraph("\u2022 " + inline(p.lstrip()[2:]), st["callout"]))
+            flow.append(Paragraph("\u2022 " + inline(p.lstrip()[2:], size=st["callout"].fontSize), st["callout"]))
         else:
-            flow.append(Paragraph(inline(p), st["callout"]))
+            flow.append(Paragraph(inline(p, size=st["callout"].fontSize), st["callout"]))
         if i < len(paras) - 1:
             flow.append(Spacer(1, 2.5))
 
@@ -262,9 +301,9 @@ def _table(rows: list[list[str]], st, width: float):
     s = sum(frac)
     colw = [width * f / s for f in frac]
 
-    data = [[Paragraph(inline(c), st["cellh"]) for c in header]]
+    data = [[Paragraph(inline(c, size=st["cellh"].fontSize), st["cellh"]) for c in header]]
     for r in body_rows:
-        data.append([Paragraph(inline(c), st["cell"]) for c in r])
+        data.append([Paragraph(inline(c, size=st["cell"].fontSize), st["cell"]) for c in r])
 
     t = Table(data, colWidths=colw, repeatRows=1, hAlign="LEFT")
     style = [
@@ -307,14 +346,18 @@ def render_markdown(md: str, st, width: float, heading_page_breaks: bool = False
         ln = lines[i]
         stripped = ln.strip()
 
-        # ---- fenced code -------------------------------------------------
+        # ---- fenced code / algorithm ------------------------------------
         if stripped.startswith("```"):
+            kind = stripped[3:].strip().lower()
             i += 1
             buf = []
             while i < n and not lines[i].strip().startswith("```"):
                 buf.append(lines[i])
                 i += 1
             i += 1
+            if kind == "algorithm":
+                out += [Spacer(1, 3), KeepTogether([algorithm_block(buf, st, width)]), Spacer(1, 7)]
+                continue
             txt = "<br/>".join(_esc(b).replace(" ", "&nbsp;") for b in buf)
             t = Table([[Paragraph(txt, st["code"])]], colWidths=[width])
             t.setStyle(TableStyle([
@@ -331,6 +374,28 @@ def render_markdown(md: str, st, width: float, heading_page_breaks: bool = False
         # ---- blank -------------------------------------------------------
         if not stripped:
             i += 1
+            continue
+
+        # ---- display equation $$ ... $$ ----------------------------------
+        if stripped.startswith("$$"):
+            rest = stripped[2:]
+            buf = []
+            if "$$" in rest:                       # one-line equation
+                buf.append(rest[:rest.index("$$")])
+                i += 1
+            else:
+                buf.append(rest)
+                i += 1
+                while i < n and "$$" not in lines[i]:
+                    buf.append(lines[i])
+                    i += 1
+                if i < n:
+                    buf.append(lines[i][:lines[i].index("$$")])
+                    i += 1
+            where = f"line {i}"
+            fl = MR.display_equation("\n".join(buf), st["body"].fontSize,
+                                     number_font="DejaSerif", where=where)
+            out += [Spacer(1, 2), fl, Spacer(1, 3)]
             continue
 
         # ---- horizontal rule --------------------------------------------
@@ -350,12 +415,12 @@ def render_markdown(md: str, st, width: float, heading_page_breaks: bool = False
                 if heading_page_breaks and not first_h1:
                     out.append(PageBreak())
                 first_h1 = False
-                out.append(Paragraph(inline(txt), st["h1"]))
+                out.append(Paragraph(inline(txt, size=st["h1"].fontSize), st["h1"]))
                 out.append(HRFlowable(width="100%", thickness=1.1, color=ACCENT,
                                       spaceBefore=1, spaceAfter=7))
             else:
                 out.append(CondPageBreak(22 * mm if level == 2 else 14 * mm))
-                out.append(Paragraph(inline(txt), st[key]))
+                out.append(Paragraph(inline(txt, size=st[key].fontSize), st[key]))
             i += 1
             continue
 
@@ -397,7 +462,7 @@ def render_markdown(md: str, st, width: float, heading_page_breaks: bool = False
                 items.append(mm2.group(3).strip())
                 i += 1
             lf = ListFlowable(
-                [ListItem(Paragraph(inline(t), st["li"]), leftIndent=13,
+                [ListItem(Paragraph(inline(t, size=st["li"].fontSize), st["li"]), leftIndent=13,
                           value=(k + 1) if ordered else None)
                  for k, t in enumerate(items)],
                 bulletType="1" if ordered else "bullet",
@@ -414,16 +479,143 @@ def render_markdown(md: str, st, width: float, heading_page_breaks: bool = False
         i += 1
         while i < n:
             s2 = lines[i].strip()
-            if (not s2 or s2.startswith((">", "#", "```"))
+            if (not s2 or s2.startswith((">", "#", "```", "$$"))
                     or re.fullmatch(r"-{3,}|\*{3,}|_{3,}", s2)
-                    or re.match(r"^(\s*)([-*]|\d+[.)])\s+", lines[i])
+                    # a list may interrupt a paragraph only as a bullet or "1." --
+                    # a wrapped line that merely starts "614) ..." is prose
+                    or re.match(r"^(\s*)([-*]|1[.)])\s+", lines[i])
                     or ("|" in s2 and i + 1 < n and _TABLE_SEP.match(lines[i + 1]))):
                 break
             buf.append(s2)
             i += 1
-        out.append(Paragraph(inline(" ".join(buf)), st["body"]))
+        out.append(Paragraph(inline(" ".join(buf), size=st["body"].fontSize), st["body"]))
 
     return out
+
+
+# ---------------------------------------------------------------------------
+# Algorithm blocks
+# ---------------------------------------------------------------------------
+
+_ALG_LABEL = re.compile(r"^(Input|Output|Require|Ensure|Data|Result)\s*:\s*(.*)$", re.I)
+_ALG_KW_START = re.compile(
+    r"^(for each|for all|foreach|for|while|if|else if|elif|else|end for|end if|end while|"
+    r"repeat|until|return|break|continue)\b")
+_ALG_KW_END = re.compile(r"\b(do|then)(\s*:?)$")
+ALG_BG = colors.HexColor("#f8f9fb")
+
+
+def algorithm_block(buf: list[str], st, width: float):
+    """Ruled-box pseudocode. Syntax (inside a fenced block):
+
+        ```algorithm
+        Algorithm 1 - Permit consolidation        <- first non-empty line = title
+        Input: candidate routes $R$; threshold $\\theta$      <- unnumbered label line
+        Group $R$ by corridor key                 <- numbered 1, 2, 3 ... automatically
+        for each cluster $C$ do                   <- keywords at line start are bolded
+          merge members of $C$ into the trunk     <- deeper indentation = nested
+        return the trunk set                      <- an explicit "3." prefix is stripped
+        Output: 186 active routes
+        ```
+
+    Labels recognised: Input, Output, Require, Ensure, Data, Result. Keywords
+    bolded at line start: for, for each, while, if, else if, else, end for/if/
+    while, repeat, until, return, break, continue; a trailing `do` / `then` is
+    bolded too. Anything already wrapped in ** is left alone. A trailing
+    `// comment` is shown muted. Content lines accept all inline markdown and
+    `$...$` maths. Indentation is relative: the distinct indents used become
+    nesting levels 0, 1, 2 ... (any consistent spacing works).
+    """
+    from reportlab.platypus import Paragraph as P
+    rows = [ln.rstrip().replace("\t", "    ") for ln in buf if ln.strip()]
+    if not rows:
+        return Spacer(1, 1)
+    title = rows[0].strip()
+    body = rows[1:]
+    indents = sorted({len(r) - len(r.lstrip()) for r in body}) or [0]
+    level_of = {ind: k for k, ind in enumerate(indents)}
+    fs = st["body"].fontSize - 0.4
+    base = ParagraphStyle("alg", parent=st["body"], fontSize=fs, leading=fs * 1.42,
+                          alignment=0, spaceAfter=0)
+    numst = ParagraphStyle("algn", parent=st["small"], fontName="DejaMono", fontSize=fs - 1.6,
+                           leading=fs * 1.42, alignment=2, textColor=MUTED)
+    titlest = ParagraphStyle("algt", parent=st["body"], fontName="DejaSans-Bold", fontSize=fs,
+                             leading=fs * 1.4, alignment=0, spaceAfter=0)
+    data = [[P(inline(title, size=fs), titlest), ""]]
+    num = 0
+    for r in body:
+        ind = len(r) - len(r.lstrip())
+        lvl = level_of.get(ind, 0)
+        txt = r.strip()
+        m = _ALG_LABEL.match(txt)
+        if m:
+            data.append(["", P(f"<b>{m.group(1).capitalize()}:</b> " + inline(m.group(2), size=fs), base)])
+            continue
+        txt = re.sub(r"^\d+[.):]\s+", "", txt)
+        com = ""
+        if "//" in txt:
+            txt, com = txt.split("//", 1)
+            txt = txt.rstrip()
+        if not txt.startswith("**"):
+            txt = _ALG_KW_START.sub(lambda mm: f"**{mm.group(1)}**", txt, count=1)
+            txt = _ALG_KW_END.sub(lambda mm: f"**{mm.group(1)}**{mm.group(2)}", txt, count=1)
+        html = inline(txt, size=fs)
+        if com.strip():
+            html += f' <font color="#565d70"><i>// {inline(com.strip(), size=fs)}</i></font>'
+        num += 1
+        stl = ParagraphStyle("algl", parent=base, leftIndent=12 * lvl)
+        data.append([P(str(num), numst), P(html, stl)])
+    t = Table(data, colWidths=[9 * mm, width - 9 * mm])
+    last = len(data) - 1
+    t.setStyle(TableStyle([
+        ("SPAN", (0, 0), (1, 0)),
+        ("BACKGROUND", (0, 0), (-1, -1), ALG_BG),
+        ("LINEABOVE", (0, 0), (-1, 0), 1.3, INK),
+        ("LINEBELOW", (0, 0), (-1, 0), 0.5, INK),
+        ("LINEBELOW", (0, last), (-1, last), 1.3, INK),
+        ("VALIGN", (0, 0), (-1, -1), "TOP"),
+        ("LEFTPADDING", (0, 0), (-1, -1), 5),
+        ("RIGHTPADDING", (0, 0), (-1, -1), 6),
+        ("TOPPADDING", (0, 0), (-1, -1), 2.2),
+        ("BOTTOMPADDING", (0, 0), (-1, -1), 2.2),
+        ("TOPPADDING", (0, 0), (-1, 0), 4),
+        ("BOTTOMPADDING", (0, 0), (-1, 0), 4),
+    ]))
+    return t
+
+
+# ---------------------------------------------------------------------------
+# Build guard: maths that survived into the PDF as source
+# ---------------------------------------------------------------------------
+
+_SURVIVOR = re.compile(r"(?<!US)\$|\\[A-Za-z]+|@@ENV|\\begin\{|\[EQUATION NOT RENDERED\]")
+
+
+def find_unrendered_math(pdf_path) -> list[dict]:
+    """Extract text from a built PDF and report raw TeX that leaked through:
+    any `$` (except currency written `US$`), any `\\macro` (e.g. \\frac, \\tag,
+    \\text{, \\rho, \\begin{), and the failure-box banner. Returns a list of
+    {page, token, context}; empty list = clean."""
+    from pypdf import PdfReader
+    hits: list[dict] = []
+    reader = PdfReader(str(pdf_path))
+    for pno, page in enumerate(reader.pages, 1):
+        try:
+            txt = page.extract_text() or ""
+        except Exception as e:  # pragma: no cover
+            hits.append({"page": pno, "token": "<extract failed>", "context": str(e)})
+            continue
+        flat = " ".join(txt.split())
+        for m in _SURVIVOR.finditer(flat):
+            a, b = max(0, m.start() - 35), min(len(flat), m.end() + 45)
+            hits.append({"page": pno, "token": m.group(0), "context": flat[a:b]})
+    return hits
+
+
+def math_failures() -> list[dict]:
+    """Equations/inline maths that fell back to the flagged-source rendering
+    since the last `MR.reset_reports()`."""
+    return list(MR.MATH_FAILURES)
 
 
 # ---------------------------------------------------------------------------
@@ -465,6 +657,7 @@ def frame_width(margins_mm: float = 18.0, landscape_mode: bool = False) -> float
 
 
 __all__ = ["render_markdown", "make_styles", "build_pdf", "frame_width",
-           "inline", "register_fonts", "INK", "MUTED", "RULE", "ACCENT",
+           "inline", "register_fonts", "find_unrendered_math", "math_failures",
+           "algorithm_block", "MR", "INK", "MUTED", "RULE", "ACCENT",
            "KeepTogether", "Paragraph", "Spacer", "PageBreak", "Table",
            "TableStyle", "HRFlowable"]

@@ -101,6 +101,24 @@ FIGURES = [
 ]
 
 
+def figure_flow(stem: str, cap: str, st, W: float) -> list:
+    """Flowables for one entry of FIGURES: image + caption (or a 'not yet drawn'
+    callout). Shared by the full build and `make_section_pdf.py`."""
+    from reportlab.lib.utils import ImageReader
+    from reportlab.platypus import Image, KeepTogether
+    png = HERE / "figures" / f"{stem}.png"
+    if not png.exists():
+        return M.render_markdown(f"> **[FIGURE NOT YET DRAWN]** {stem}: {cap}", st, W)
+    iw, ih = ImageReader(str(png)).getSize()
+    w = min(W, 170 * mm)
+    h = w * ih / iw
+    if h > 200 * mm:
+        h = 200 * mm
+        w = h * iw / ih
+    return [Image(str(png), width=w, height=h), Spacer(1, 2 * mm),
+            *M.render_markdown(cap, st, W), Spacer(1, 6 * mm)]
+
+
 def word_count(md: str) -> int:
     """Words in the body only: drop blockquote callouts, headings, tables, fences."""
     out, in_fence = [], False
@@ -124,7 +142,12 @@ def git_rev() -> str:
         return "unknown"
 
 
+# Filled by main(): {"math_failures": [...], "unrendered_math": [...]}
+REPORT: dict = {"math_failures": [], "unrendered_math": []}
+
+
 def main() -> Path:
+    M.MR.reset_reports()
     st = M.make_styles(base_size=9.3)
     W = M.frame_width()
     flow: list = []
@@ -217,22 +240,10 @@ def main() -> Path:
     flow += [PageBreak()]
 
     # ------------------------------------------------------------------- figures
-    from reportlab.platypus import Image
     flow += [Paragraph("Figures", st["h1"]),
              HRFlowable(width="100%", thickness=1.1, color=M.ACCENT, spaceAfter=7)]
     for stem, cap in FIGURES:
-        png = HERE / "figures" / f"{stem}.png"
-        if not png.exists():
-            flow += M.render_markdown(f"> **[FIGURE NOT YET DRAWN]** {stem}: {cap}", st, W)
-            continue
-        from reportlab.lib.utils import ImageReader
-        iw, ih = ImageReader(str(png)).getSize()
-        w = min(W, 170 * mm); h = w * ih / iw
-        if h > 200 * mm:
-            h = 200 * mm; w = h * iw / ih
-        flow += [Image(str(png), width=w, height=h), Spacer(1, 2 * mm)]
-        flow += M.render_markdown(cap, st, W)
-        flow += [Spacer(1, 6 * mm)]
+        flow += figure_flow(stem, cap, st, W)
     flow += [PageBreak()]
 
     # ------------------------------------------------------------------- closing
@@ -254,6 +265,19 @@ def main() -> Path:
     M.build_pdf(OUT, flow, title="Kashmir manuscript working draft",
                 footer_left="Kashmir bus route rationalisation — working draft, not for submission")
     print(f"wrote {OUT}  ({OUT.stat().st_size/1024:.0f} KB, {total:,} body words)")
+
+    # ---- build guard: raw TeX that survived into the PDF (warn, never crash)
+    REPORT["math_failures"] = M.math_failures()
+    REPORT["unrendered_math"] = M.find_unrendered_math(OUT)
+    for f in REPORT["math_failures"]:
+        print(f"WARNING: maths fell back to flagged source [{f['kind']} {f.get('tag') or ''}] "
+              f"{f['where']}: {f['error'][:100]}")
+    if REPORT["unrendered_math"]:
+        print(f"WARNING: {len(REPORT['unrendered_math'])} unrendered-maths token(s) in {OUT.name}:")
+        for h in REPORT["unrendered_math"][:40]:
+            print(f"  p.{h['page']}: {h['token']!r}  ...{h['context']}...")
+    else:
+        print("maths check: no raw TeX in the PDF text")
     return OUT
 
 
