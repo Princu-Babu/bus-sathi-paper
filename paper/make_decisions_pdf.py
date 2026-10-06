@@ -65,17 +65,16 @@ def main() -> Path:
     ]
 
     flow += M.render_markdown(
-        "**Every question in this document needs a human on this project to answer it.** None of them can be "
-        "settled by reading the code, re-running a module or searching the literature — where a question "
-        "*could* be settled that way it already has been, and the answer is recorded in Part F rather than "
-        "asked here. Every analysis module has run; nothing below waits on computation.\n\n"
-        "**Read Part A first.** It ranks all open items. Items 1–9 block submission; items 1–4 are the ones "
-        "to start this week. Parts B–E give each item's question, evidence, options and recommendation.\n\n"
-        "**Checked against the journal.** The *Transport Policy* Guide for Authors was read on 2026-10-01: "
-        "8,000-word norm, 250-word abstract, double-anonymised review, and a mandatory declaration of "
-        "generative-AI use.\n\n"
-        "**Companion files.** Each editorial flag appears in place in `Kashmir_Manuscript_Working_Draft.pdf`. "
-        "The superseded v1 of this document is in `paper/archive/`.",
+        "**Every question in this document needs a person to answer it.** Anything that could be settled "
+        "from the code, the data or published sources already has been, and is recorded in Part D.\n\n"
+        "**Part A is the meeting list:** four questions for Avny ma'am and three for Prof. Kathuria. "
+        "Part B is for the lead author, Part C lists what each co-author is asked to fix in their own "
+        "section, and Part E is the remaining work in order.\n\n"
+        "**Where things stand.** Every analysis module has run and has been corrected after an independent "
+        "audit; the methodology section is rewritten on the corrected results. The other sections still "
+        "carry pre-correction numbers.\n\n"
+        "**Word limit.** Not assumed here. It follows Prof. Kathuria's answer to question K1.\n\n"
+        "Earlier versions of this document are in `paper/archive/`.",
         st, W)
 
     flow += [PageBreak()]
