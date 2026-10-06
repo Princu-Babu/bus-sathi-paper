@@ -1,0 +1,27 @@
+{
+  "by_release": {
+    "3.4.1": {
+      "euclid_union_pop": 2291655.0,
+      "n_routes": 186
+    },
+    "3.4.2": {
+      "euclid_union_pop": 2291655.0,
+      "n_routes": 186
+    },
+    "3.4.3": {
+      "euclid_union_pop": 2291655.0,
+      "n_routes": 186
+    },
+    "3.4.4": {
+      "euclid_union_pop": 2309018.0,
+      "n_routes": 186
+    },
+    "3.4.5": {
+      "euclid_union_pop": 2339393.75,
+      "n_routes": 186
+    }
+  },
+  "source_root": "E:/kash (not part of this repository; optional, regenerate with --engine-outputs-root)",
+  "status": "external_diagnostic",
+  "what": "Euclidean-union population of the ACTIVE routes' geometry in each engine release's Rationalised_Routes_Kashmir_v3.geojson, with this module's construction (W=400 m, S=250 m, quad_segs=8, cell-centre rule)."
+}

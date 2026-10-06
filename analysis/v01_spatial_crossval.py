@@ -10,22 +10,35 @@ buildings (or missed built-up areas), coverage and tiers would inherit the error
 Building footprints are a physical record of settlement, so agreement between
 the two surfaces — at the route-catchment scale the plan uses and on a regular
 grid — is evidence that the raster places population plausibly. The
-pre-registered target is Spearman rho > 0.60.
+threshold is Spearman rho > 0.60. It was written down in the claim ledger on
+2026-09-08, before this module existed, but it was never lodged with any
+registry, so it is described as "declared in advance in the repository", not
+"pre-registered".
 
-Two footprint sources, reported side by side:
-  osm        OpenStreetMap closed building ways from the local India extract
-             (volunteered; uneven completeness).
-  microsoft  Microsoft Global ML Building Footprints (2026-02 release, ODbL),
-             machine-detected from satellite imagery — near-complete coverage,
-             independent of volunteer effort. This is the primary V1 source when
-             present (data/external/ms_buildings/*.csv.gz, fetched per quadkey).
+Two footprint sources, reported side by side, IN THE ORDER THEY WERE ADOPTED:
+  osm        (declared first, ledger 2026-09-08) OpenStreetMap closed building
+             ways from the local India extract (volunteered; uneven
+             completeness). This is the layer the threshold was declared on, and
+             it FAILS at the 1 km grid scale.
+  microsoft  (added afterwards; first committed 2026-10-01, after the OSM
+             grid-scale result was known) Microsoft Global ML Building
+             Footprints (2026-02 release), machine-detected from satellite
+             imagery — near-complete coverage, independent of volunteer effort.
+             It is the primary V1 source when present
+             (data/external/ms_buildings/*.csv.gz, fetched per quadkey).
+The output carries a `sequence` block so that the pass on the second layer is
+never reported without that history.
 
 What it cannot establish, stated before the result.
-  1. Partial circularity. WorldPop's constrained/top-down models use building
-     footprints as a covariate when distributing census totals, so agreement is
-     expected by construction to some degree — more so for a machine-detected
-     layer of the kind such models ingest. V1 is a consistency check on the
-     spatial pattern, not an independent validation of population counts.
+  1. Circularity. WorldPop's modelling uses built-settlement layers as
+     covariates, and the product named in data/MANIFEST.md is a "constrained"
+     one. If it is building-constrained, cells without buildings receive zero
+     population by construction and a high rank correlation with a footprint
+     layer is expected from the method; V1 would then test the consistency of
+     the footprint layer with the surface, not the accuracy of population
+     counts. The release and covariates are not recorded in the raster file
+     (see `worldpop_variant` in the output), so the size of this effect cannot
+     be established from the repository.
   2. Completeness. The share of populated grid cells with any footprint is
      reported by district for each source, so a weak correlation can be read as
      a mapping gap rather than a raster error, and vice versa.
@@ -154,6 +167,173 @@ def extract_ms() -> pd.DataFrame:
         log.info("  %s: cumulative %s kept of %s read (%.0fs)", f.name, f"{len(rows):,}",
                  f"{seen:,}", time.time() - t0)
     return pd.DataFrame(rows, columns=["lat", "lon", "area_m2"])
+
+
+# ── history of the two layers (read-only git evidence) ───────────────────────
+# Commits are pinned and then verified against `git`; the module never reads the
+# "latest" commit, so re-running it after unrelated commits gives identical output.
+LEDGER_COMMIT = "1b9345f"      # claim ledger declares V1 on OSM footprints, rho > 0.60
+FIRST_OUTPUT_COMMIT = "ab672e3"  # first V1 output: OSM only
+MS_SUPPORT_COMMIT = "5d9dd64"    # module rewritten to accept a Microsoft source (data absent)
+MS_RESULT_COMMIT = "69a3d1e"     # Microsoft layer data + results first committed
+
+
+def _git(*args: str) -> str | None:
+    import subprocess
+    try:
+        r = subprocess.run(["git", *args], cwd=C.ROOT, capture_output=True, text=True,
+                           timeout=60, check=True)
+        return r.stdout
+    except Exception:
+        return None
+
+
+def _commit_info(h: str) -> dict:
+    out = _git("show", "-s", "--format=%h|%ad|%s", "--date=iso-strict", h)
+    if not out:
+        return dict(commit=h, verified=False)
+    short, when, subject = out.strip().split("|", 2)
+    return dict(commit=short, committed=when, subject=subject, verified=True)
+
+
+def build_sequence(results: dict, primary: str) -> dict:
+    """Which layer was declared first, how it fared, what was added later, and when."""
+    ledger = _git("show", f"{LEDGER_COMMIT}:paper/CLAIM_LEDGER.md")
+    declared_on_osm = bool(ledger and "OSM building footprint density" in ledger
+                           and "$\\rho > 0.60$" in ledger)
+    first_json = _git("show", f"{FIRST_OUTPUT_COMMIT}:data/derived/v01_spatial_crossval.json")
+    first = None
+    if first_json:
+        try:
+            first = json.loads(first_json)
+        except ValueError:
+            first = None
+    first_is_osm_only = bool(first is not None and "sources" not in first
+                             and "microsoft" not in first_json)
+    ms_json = _git("show", f"{MS_RESULT_COMMIT}:data/derived/v01_spatial_crossval.json")
+    ms_first_present = bool(ms_json and '"microsoft"' in ms_json)
+
+    def summary(label: str) -> dict:
+        r = results[label]
+        return dict(layer=label,
+                    route_scale_rho_area=r["route_scale"]["rho_area"],
+                    route_scale_rho_count=r["route_scale"]["rho_count"],
+                    grid_all_cells_rho=r["grid_scale"]["rho_all"],
+                    grid_populated_cells_rho=r["grid_scale"]["rho_populated"],
+                    n_routes=r["route_scale"]["n"],
+                    n_grid_cells_all=r["grid_scale"]["n_cells"],
+                    n_grid_cells_populated=r["grid_scale"]["n_populated"],
+                    passes_declared_criterion=r["verdict_pass"],
+                    n_tests_above_threshold=int(sum(
+                        v > RHO_TARGET for v in (r["route_scale"]["rho_area"],
+                                                 r["route_scale"]["rho_count"],
+                                                 r["grid_scale"]["rho_all"],
+                                                 r["grid_scale"]["rho_populated"])),
+                    ),
+                    n_tests_total=4)
+
+    seq = dict(
+        git_verified=bool(ledger is not None and first_json is not None
+                          and ms_json is not None),
+        threshold=RHO_TARGET,
+        declared_criterion=("module verdict: route-catchment footprint-area rho > "
+                            f"{RHO_TARGET} AND 1 km populated-cell footprint-area rho > "
+                            f"{RHO_TARGET}. The ledger entry of 2026-09-08 states only "
+                            f"'rho > 0.60' without naming the scale."),
+        declared_first=dict(
+            layer="osm",
+            declared_in=f"paper/CLAIM_LEDGER.md at {LEDGER_COMMIT}",
+            declaration_text_found_in_git=declared_on_osm,
+            **_commit_info(LEDGER_COMMIT),
+        ),
+        first_output=dict(
+            layer="osm",
+            only_layer_in_first_output=first_is_osm_only,
+            first_output_verdict_pass=(first or {}).get("verdict_pass"),
+            first_output_grid_rho_populated=((first or {}).get("grid_scale") or {}).get("rho_populated"),
+            **_commit_info(FIRST_OUTPUT_COMMIT),
+        ),
+        added_later=dict(
+            layer="microsoft",
+            module_support_added=_commit_info(MS_SUPPORT_COMMIT),
+            data_and_results_first_committed=_commit_info(MS_RESULT_COMMIT),
+            microsoft_results_first_present_at_that_commit=ms_first_present,
+            added_after_declared_layer_failed_at_grid_scale=bool(
+                results.get("osm", {}).get("verdict_pass") is False),
+            reason_recorded=("a more complete footprint source, because OpenStreetMap "
+                             "building coverage is sparse (share of populated 1 km cells "
+                             "containing any OSM footprint is 4-31 % by district)"),
+        ),
+        results_by_layer={k: summary(k) for k in results},
+        primary_reported_layer=primary,
+        primary_is_declared_layer=bool(primary == "osm"),
+        statement=(
+            "V1 was declared on the OSM layer. On that layer the module's criterion is "
+            f"{'met' if results['osm']['verdict_pass'] else 'NOT met'}"
+            f" (route-scale rho {results['osm']['route_scale']['rho_area']:.3f}, 1 km "
+            f"populated-cell rho {results['osm']['grid_scale']['rho_populated']:.3f}; threshold "
+            f"{RHO_TARGET}). The Microsoft layer was adopted afterwards and meets it "
+            f"(route-scale rho {results['microsoft']['route_scale']['rho_area']:.3f}, grid "
+            f"{results['microsoft']['grid_scale']['rho_populated']:.3f})."
+            if "microsoft" in results and "osm" in results else
+            "only one layer available in this run"),
+    )
+    return seq
+
+
+def worldpop_variant() -> dict:
+    """Product/version of the population raster, only as far as the repo records it."""
+    import rasterio
+    tags = {}
+    with rasterio.open(C.WORLDPOP_TIF) as src:
+        tags = dict(src.tags())
+    manifest = C.DATA / "MANIFEST.md"
+    named = None
+    if manifest.exists():
+        import re
+        for ln in manifest.read_text(encoding="utf-8").splitlines():
+            hit = re.search(r"\((WorldPop[^)]*constrained[^)]*)\)", ln)
+            if hit:
+                named = hit.group(1)
+                break
+    return dict(
+        product_named_in_manifest=named,
+        raster_file_tags=tags,
+        worldpop_variant=("not recorded in metadata"
+                          if not (set(tags) - {"AREA_OR_POINT"}) else tags),
+        release_or_version="not recorded in metadata",
+        covariates_used="not recorded in metadata",
+        note=("The raster file carries only the generic AREA_OR_POINT tag. data/MANIFEST.md "
+              "names a 'UN-adjusted constrained individual-countries 100 m' product but "
+              "gives no release identifier or version. The release must be established "
+              "from the download record before it is cited."),
+    )
+
+
+def circularity_block(results: dict) -> dict:
+    """Numbers that bear on whether a high V1 rho can fail; no verdict is drawn here."""
+    out = {}
+    for k, r in results.items():
+        out[k] = dict(
+            share_population_in_cells_with_buildings=r["grid_scale"]["share_population_in_cells_with_buildings"],
+            share_population_in_cells_without_buildings=1.0 - r["grid_scale"]["share_population_in_cells_with_buildings"],
+        )
+    return dict(
+        by_layer=out,
+        interpretation=("A surface that places almost no population in cells without "
+                        "buildings is what a building-constrained product would produce. "
+                        "The figures show the pattern; they do not show whether it comes "
+                        "from the model's constraint or from real settlement."),
+        independent_population_check=("none in V1; the only count-based comparison is the "
+                                      "Census 2011 district comparison in q01 (D4), which "
+                                      "is itself anchored on the same census frame"),
+    )
+
+
+# SHA-256 of the Geofabrik india-latest.osm.pbf used for the original build, recorded when the
+# file was present. On a clean clone the PBF (not committed) is absent: keep this recorded value
+# rather than blanking it, and say so via `pbf_present: false`.
+PBF_SHA256_RECORDED = "681021c55963ed736fd95dcb89c55ca34f0dbcb5431085eeb621dbc3bf9a908a"
 
 
 def sha256(path: Path) -> str:
@@ -294,9 +474,17 @@ def main() -> None:
         results[label], rows, comps = out, rows + r, comps + [comp]
     primary = "microsoft" if "microsoft" in results else "osm"
 
-    C.write_table(pd.DataFrame(rows), "table06d_v01_buildings",
-                  f"Validation V1: WorldPop population vs building footprints, by source "
-                  f"(Spearman rho, target > {RHO_TARGET}; partial circularity disclosed in text)")
+    sequence = build_sequence(results, primary)
+    wp_variant = worldpop_variant()
+    order = {"osm": "1st: declared 2026-09-08 (fails at grid scale)",
+             "microsoft": "2nd: added 2026-10-01, after the OSM grid result"}
+    rows_df = pd.DataFrame(rows)
+    rows_df["Declared_order"] = rows_df["Source"].map(order)
+    C.write_table(rows_df, "table06d_v01_buildings",
+                  f"Validation V1: WorldPop population vs building footprints, by source, in the "
+                  f"order the layers were adopted (Spearman rho; threshold > {RHO_TARGET} declared "
+                  f"in the claim ledger on 2026-09-08 for the OSM layer, not registered; the "
+                  f"Microsoft layer was added afterwards; circularity disclosed in text)")
     comp = pd.concat(comps).round(3)
     C.write_table(comp, "table06e_v01_completeness",
                   "Building-footprint completeness by district and source: share of populated 1 km "
@@ -307,17 +495,36 @@ def main() -> None:
         # primary-source headline, kept at top level for downstream readers
         route_scale=results[primary]["route_scale"], grid_scale=results[primary]["grid_scale"],
         verdict_pass=results[primary]["verdict_pass"],
+        verdict_pass_note=("verdict_pass is the verdict on the PRIMARY layer "
+                           f"({primary}), which is not the layer the threshold was declared on. "
+                           "See verdict_pass_by_layer and sequence."),
+        verdict_pass_by_layer={k: v["verdict_pass"] for k, v in results.items()},
+        verdict_pass_declared_layer=results["osm"]["verdict_pass"] if "osm" in results else None,
+        sequence=sequence,
+        worldpop_variant_block=wp_variant,
+        worldpop_variant=wp_variant["worldpop_variant"],
+        circularity=circularity_block(results),
         completeness_by_district=comp.to_dict(orient="records"),
         provenance=dict(
-            osm_pbf=pbf.name, osm_pbf_sha256=sha256(pbf) if pbf.exists() else None,
+            osm_pbf=pbf.name, osm_pbf_sha256=sha256(pbf) if pbf.exists() else PBF_SHA256_RECORDED,
+            pbf_present=pbf.exists(),
+            osm_cache_sha256=sha256(OSM_CSV) if OSM_CSV.exists() else None,
+            microsoft_cache_sha256=sha256(MS_CSV) if MS_CSV.exists() else None,
             microsoft_release="Global ML Building Footprints, dataset-links 2026-02 (ODbL)",
             microsoft_tiles=sorted(p.name for p in MS_DIR.glob("*.csv.gz")),
+            microsoft_tiles_note=("lists the tiles present in data/external/ms_buildings on the "
+                                  "machine that ran the module; empty on a clean clone, where the "
+                                  "cache file data/cache/ms_buildings_kashmir.csv.gz is used"),
         ),
         caveats=[
-            "WorldPop uses building footprints as a covariate; V1 is a consistency check on "
-            "spatial pattern, not independent validation of counts.",
+            "WorldPop's modelling uses built-settlement layers as covariates (a covariate "
+            "relationship with footprints is likely but its form is not recorded for this raster); "
+            "if the product is building-constrained, V1 tests the consistency of the footprint "
+            "layer with the surface, not the accuracy of population counts.",
             "OSM building mapping is volunteered and uneven; Microsoft footprints are "
             "machine-detected and uncorrected. See completeness table.",
+            "The threshold (rho > 0.60) was declared on the OSM layer, which fails at the 1 km "
+            "grid scale; the Microsoft layer was added afterwards. See sequence.",
         ],
     )
     C.write_result(out, "v01_spatial_crossval")

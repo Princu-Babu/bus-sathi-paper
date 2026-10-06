@@ -42,6 +42,10 @@ the rule would license — and, separately, pairs satisfying the overlap test on
 Inputs
     data/derived/a08a_catchment_grid.csv   per-route pop at W/spacing grid + POI tiers
     data/derived/a08a_catchment_grid.json  union coverage at each grid point
+Also reported (audit fix F-03-03/F-11-10, F-03-04/F-08-14): the baseline reproduction
+decomposed into the devices the plan supplies, and the congestion-zone rule as data with
+the fleet's dependence on the multiplier and the cap.
+
 Outputs
     data/derived/a08_sensitivity_oat.json
     data/derived/a08_oat_sweeps.csv
@@ -272,6 +276,15 @@ def main() -> None:
     fleet_swings = summ.dropna(subset=["fleet_swing_cap_on"])
     out = dict(
         baseline_reproduction=base_check,
+        baseline_reproduction_note=(
+            "186/186 cycle and fleet is reproduced WITH four plan-supplied devices (per-km cap, the five "
+            "measured cycles copied, SSCL floors defined from the published fleet, headways as inputs); "
+            "see baseline_reproduction_decomposed for the agreement without them (F-03-03, F-11-10)."),
+        baseline_reproduction_decomposed=F.verify_baseline_decomposed(arr),
+        congestion_disclosure=F.congestion_disclosure(arr),
+        congestion_disclosure_note=(
+            "Where the City-Core multiplier applies, by which rule, and the fleet with the cap removed and "
+            "with the peri-urban multiplier everywhere (F-03-04, F-08-14)."),
         fleet_baseline=fleet_base,
         fleet_baseline_cap_removed=fleet_nocap_base,
         n_at_cap_baseline=int(F.at_cap_mask(arr).sum()),

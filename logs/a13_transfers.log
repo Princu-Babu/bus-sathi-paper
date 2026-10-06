@@ -2,41 +2,37 @@
 MODULE:      a13_transfers
 SCRIPT:      a13_transfers.py
 STAGE:       Stage 3
-STARTED:     2026-09-30T14:43:22.834528+00:00
-PYTHON:      E:\kash-paper\.venv\Scripts\python.exe (3.14.2)
-COMMAND:     E:\kash-paper\.venv\Scripts\python.exe E:\kash-paper\analysis\a13_transfers.py
+COMMAND:     python analysis/a13_transfers.py
 ================================================================================
 
-20:13:23  INFO    a13 \u2502 canonical stops 143, active route geometries 186
-20:13:24  INFO    a13 \u2502 incidences 1267; mean 6.8 stops/route, 8.9 routes/stop; 1 stop(s) served by no route; route graph components 1
-20:13:24  WARNING a13 \u2502   unserved canonical stop: Isganderpora (BG-02-05, Budgam) -> its 142 pairs count as unreachable, not as 2+
-20:13:24  WARNING a13 \u2502 geometry audit: 14 of 130 active routes whose name cites two canonical stops have a drawn line >400 m from one of them (worst FDR-538: Srinagar is 10584 m from its own alignment)
-20:13:25  INFO    a13 \u2502 name-augmented graph: +17 asserted incidences -> 0=12.80% 1=76.09% 2+=11.11% unreachable=0.00% (components 1)
-20:13:27  INFO    a13 \u2502 catchment  200 m: 0= 8.87%  1=68.74%  2+=19.60%  unreachable=2.79%  (components 1)
-20:13:28  INFO    a13 \u2502 catchment  400 m: 0=12.54%  1=72.31%  2+=13.75%  unreachable=1.40%  (components 1)
-20:13:35  INFO    a13 \u2502 catchment  600 m: 0=14.65%  1=72.61%  2+=11.35%  unreachable=1.40%  (components 1)
-20:13:43  INFO    a13 \u2502 catchment  800 m: 0=17.49%  1=71.07%  2+=10.04%  unreachable=1.40%  (components 1)
-20:13:43  INFO    a13 \u2502 suppressed permits 458; 49 could not snap both terminals to a canonical stop within 400 m; 409 usable, on 71 ordered / 68 undirected OD pairs
-20:13:43  INFO    a13 \u2502 observed duty factor (GPS, 855 driver-days / 157 drivers over 131 calendar days): operating window 896 min, service min/vehicle-day p25 87 / median 217 / p75 411 -> duty 0.097 / 0.242 / 0.458
-20:13:43  INFO    a13 \u2502 distinct suppressed ODs by interchanges in the plan (geometry graph): {'0': 66, '1': 2}
-20:13:43  INFO    a13 \u2502 distinct suppressed ODs by interchanges in the plan (named graph): {'0': 68}
-20:13:43  INFO    a13 \u2502 break-even transfer penalty over 2 DISTINCT OD pairs that lose their one-seat ride (46 underlying permits), central case: median 31.39 min, 1 of 2 positive
-20:13:43  INFO    a13 \u2502   Chadora      -> Parimpora    :  6 register permits, baseline cycle 125 min; plan = 1 transfer via FDR-429 at 15+15 min headway; break-even duty 1.393
-20:13:43  INFO    a13 \u2502   Hazratbal    -> LD           : 42 register permits, baseline cycle 66 min; plan = 1 transfer via FDR-147 at 15+15 min headway; break-even duty 0.104
-20:13:43  INFO    a13 \u2502 all-day (duty=1.00)                        | even spacing E[W]=h/2      | baseline wait 10.49 vs plan 17.50 min;  38/ 68 ODs ( 55.9%) wait LONGER under the plan
-20:13:43  INFO    a13 \u2502 all-day (duty=1.00)                        | Poisson departures E[W]=h  | baseline wait 20.98 vs plan 17.50 min;  25/ 68 ODs ( 36.8%) wait LONGER under the plan
-20:13:43  INFO    a13 \u2502 observed median (duty=0.242)               | even spacing E[W]=h/2      | baseline wait 43.34 vs plan 17.50 min;  14/ 68 ODs ( 20.6%) wait LONGER under the plan
-20:13:43  INFO    a13 \u2502 observed median (duty=0.242)               | Poisson departures E[W]=h  | baseline wait 86.68 vs plan 17.50 min;   5/ 68 ODs (  7.4%) wait LONGER under the plan   <-- CENTRAL
-20:13:43  INFO    a13 \u2502 observed p25 (duty=0.097)                  | even spacing E[W]=h/2      | baseline wait 107.72 vs plan 17.50 min;   2/ 68 ODs (  2.9%) wait LONGER under the plan
-20:13:43  INFO    a13 \u2502 observed p25 (duty=0.097)                  | Poisson departures E[W]=h  | baseline wait 215.44 vs plan 17.50 min;   0/ 68 ODs (  0.0%) wait LONGER under the plan
-20:13:43  INFO    a13 \u2502 observed p75 (duty=0.458)                  | even spacing E[W]=h/2      | baseline wait 22.90 vs plan 17.50 min;  21/ 68 ODs ( 30.9%) wait LONGER under the plan
-20:13:43  INFO    a13 \u2502 observed p75 (duty=0.458)                  | Poisson departures E[W]=h  | baseline wait 45.81 vs plan 17.50 min;  13/ 68 ODs ( 19.1%) wait LONGER under the plan
-20:13:43  INFO    a13 \u2502 stop-pair interchange distribution over 10153 pairs (drawn geometry): 0 = 12.54%, 1 = 72.31%, 2+ = 13.75%, not connected = 1.40% (TOPOLOGICAL, not demand-weighted)
-20:13:43  INFO    a13 \u2502 HEADLINE \u2502 Of 68 distinct suppressed origin-destination pairs, 66 keep a one-seat ride and 2 fall to one interchange. In the central case 5 of 68 (7.4%) wait LONGER under the plan than under the permit network, before any transfer penalty is charged. Consolidation on the heavily duplicated corridors therefore cannot be defended on passenger wait; its case rests on vehicle productivity, operating cost and congestion, not on headway.
+INFO    a13 \u2502 canonical stops 143, active route geometries 186
+INFO    a13 \u2502 incidences 1267; mean 6.8 stops/route, 8.9 routes/stop; 1 stop(s) served by no route; route graph components 1
+WARNING a13 \u2502   unserved canonical stop: Isganderpora (BG-02-05, Budgam) -> its 142 pairs count as unreachable, not as 2+
+WARNING a13 \u2502 geometry audit: 14 of 130 active routes whose name cites two canonical stops have a drawn line >400 m from one of them (worst FDR-538: Srinagar is 10584 m from its own alignment)
+INFO    a13 \u2502 name-augmented graph: +17 asserted incidences -> 0=12.80% 1=76.09% 2+=11.11% unreachable=0.00% (components 1)
+INFO    a13 \u2502 catchment  200 m: 0= 8.87%  1=68.74%  2+=19.60%  unreachable=2.79%  (components 1)
+INFO    a13 \u2502 catchment  400 m: 0=12.54%  1=72.31%  2+=13.75%  unreachable=1.40%  (components 1)
+INFO    a13 \u2502 catchment  600 m: 0=14.65%  1=72.61%  2+=11.35%  unreachable=1.40%  (components 1)
+INFO    a13 \u2502 catchment  800 m: 0=17.49%  1=71.07%  2+=10.04%  unreachable=1.40%  (components 1)
+INFO    a13 \u2502 suppressed permits 458; 49 could not snap both terminals to a canonical stop within 400 m; 409 usable, on 71 ordered / 68 undirected OD pairs
+INFO    a13 \u2502 observed duty factor (GPS, 855 driver-days / 157 drivers over 131 calendar days): operating window 896 min, service min/vehicle-day p25 87 / median 217 / p75 411 -> duty 0.097 / 0.242 / 0.458
+INFO    a13 \u2502 distinct suppressed ODs by interchanges in the plan (geometry graph): {'0': 66, '1': 2}
+INFO    a13 \u2502 distinct suppressed ODs by interchanges in the plan (named graph): {'0': 68}
+INFO    a13 \u2502 break-even transfer penalty over 2 DISTINCT OD pairs that lose their one-seat ride (46 underlying permits), central case: median 31.39 min, 1 of 2 positive
+INFO    a13 \u2502   Chadora      -> Parimpora    :  6 register permits, baseline cycle 125 min; plan = 1 transfer via FDR-429 at 15+15 min headway; break-even duty 1.393
+INFO    a13 \u2502   Hazratbal    -> LD           : 42 register permits, baseline cycle 66 min; plan = 1 transfer via FDR-147 at 15+15 min headway; break-even duty 0.104
+INFO    a13 \u2502 all-day (duty=1.00)                        | even spacing E[W]=h/2      | baseline wait 10.49 vs plan 17.50 min;  38/ 68 ODs ( 55.9%) wait LONGER under the plan
+INFO    a13 \u2502 all-day (duty=1.00)                        | Poisson departures E[W]=h  | baseline wait 20.98 vs plan 17.50 min;  25/ 68 ODs ( 36.8%) wait LONGER under the plan
+INFO    a13 \u2502 observed median (duty=0.242)               | even spacing E[W]=h/2      | baseline wait 43.34 vs plan 17.50 min;  14/ 68 ODs ( 20.6%) wait LONGER under the plan
+INFO    a13 \u2502 observed median (duty=0.242)               | Poisson departures E[W]=h  | baseline wait 86.68 vs plan 17.50 min;   5/ 68 ODs (  7.4%) wait LONGER under the plan   <-- CENTRAL
+INFO    a13 \u2502 observed p25 (duty=0.097)                  | even spacing E[W]=h/2      | baseline wait 107.72 vs plan 17.50 min;   2/ 68 ODs (  2.9%) wait LONGER under the plan
+INFO    a13 \u2502 observed p25 (duty=0.097)                  | Poisson departures E[W]=h  | baseline wait 215.44 vs plan 17.50 min;   0/ 68 ODs (  0.0%) wait LONGER under the plan
+INFO    a13 \u2502 observed p75 (duty=0.458)                  | even spacing E[W]=h/2      | baseline wait 22.90 vs plan 17.50 min;  21/ 68 ODs ( 30.9%) wait LONGER under the plan
+INFO    a13 \u2502 observed p75 (duty=0.458)                  | Poisson departures E[W]=h  | baseline wait 45.81 vs plan 17.50 min;  13/ 68 ODs ( 19.1%) wait LONGER under the plan
+INFO    a13 \u2502 stop-pair interchange distribution over 10153 pairs (drawn geometry): 0 = 12.54%, 1 = 72.31%, 2+ = 13.75%, not connected = 1.40% (TOPOLOGICAL, not demand-weighted)
+INFO    a13 \u2502 HEADLINE \u2502 {'text': "Of 68 distinct suppressed origin-destination pairs, 66 keep a one-seat ride and 2 fall to one interchange. Across 16 wait cases (4 duty factors x baseline arrival model x plan arrival model), over 68 distinct suppressed origin-destination pairs, the plan's median wait differs from the permit baseline's by -199.2 to +16.4 min (negative = plan shorter); the plan is shorter at the median in 12 of 16 cases, and 0.0-83.8% of pairs wait longer under the plan. The previously quoted case (observed-median duty, Poisson baseline, evenly spaced plan) is 86.7 -> 17.5 min, -70.4; it uses a duty factor measured on SSCL e-bus app drivers, not permit-holders. Sign and size depend on the duty factor and arrival model; no single value is a finding. The break-even transfer penalty is defined for the 2 pairs that lose a one-seat ride only; see `breakeven.pairs` for each.", 'wait': {'n_cases': 16, 'n_od': 68, 'base': 'distinct suppressed origin-destination pairs of canonical stops (n_od), each compared with the permit baseline on the same pair; descriptive and in-sample, not demand-weighted', 'median_change_min_range': [-199.19, 16.45], 'median_change_min_min': -199.19, 'median_change_min_max': 16.45, 'pct_od_wait_worse_range': [0.0, 83.8], 'n_cases_plan_wait_shorter_at_median': 12, 'n_cases_plan_wait_longer_at_median': 4, 'previously_quoted_case': {'label': 'observed-median duty (0.242), permit baseline Poisson, plan evenly spaced', 'median_baseline_wait_min': 86.68, 'median_plan_wait_min': 17.5, 'median_change_min': -70.43, 'pct_od_wait_worse': 7.4, 'rank_by_plan_favourability': 5, 'note': 'rank 1 = most plan-favourable (most negative median change) of the n_cases; computed from the table, not asserted'}, 'duty_source': '855 driver-days from 157 drivers over 131 calendar days, captured by the Bus Sathi driver app on the SSCL e-bus operation; the median driver is observed on 2 of the 131 days', 'duty_is_from_permit_holder_operations': False, 'duty_transferability_note': 'The duty factor is measured on SSCL e-bus drivers who carry the app, a self-selected subset of one operator. It is NOT a measurement of permit-holder (private minibus) operations. Applying it to the permit baseline assumes permit buses run the same fraction of the day; that assumption is untested. Observed service minutes are a lower bound on true duty (partial app capture).', 'text': "Across 16 wait cases (4 duty factors x baseline arrival model x plan arrival model), over 68 distinct suppressed origin-destination pairs, the plan's median wait differs from the permit baseline's by -199.2 to +16.4 min (negative = plan shorter); the plan is shorter at the median in 12 of 16 cases, and 0.0-83.8% of pairs wait longer under the plan. The previously quoted case (observed-median duty, Poisson baseline, evenly spaced plan) is 86.7 -> 17.5 min, -70.4; it uses a duty factor measured on SSCL e-bus app drivers, not permit-holders. Sign and size depend on the duty factor and arrival model; no single value is a finding."}, 'n_od': 68, 'n_keep_one_seat': 66, 'n_one_interchange': 2, 'central_case_pct_od_wait_worse': np.float64(7.4), 'central_case_note': '`central_case` is the legacy corner (observed-median duty, Poisson baseline, even plan); it is one of 16 cases, not a finding on its own'}
 
 ================================================================================
-FINISHED:    2026-09-30T14:43:43.964980+00:00
-DURATION:    21.13s
 EXIT CODE:   0
 STATUS:      PASSED
 VERIFIED:    6/6 outputs

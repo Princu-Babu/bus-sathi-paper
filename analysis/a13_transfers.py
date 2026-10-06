@@ -261,17 +261,21 @@ def observed_duty_factor() -> dict:
     network operating window.
 
     Two caveats, both stated in the output. The traces are from the SSCL e-bus
-    operation, not from permit-holders, so transferability is assumed and
-    unverified. And app capture is partial — the median driver appears on only 2
-    of 131 calendar days — so observed service minutes are a LOWER bound on a
-    vehicle's true daily duty. A lower duty means a longer baseline headway,
-    which flatters the plan; the reported duty is therefore conservative in the
-    plan's favour, and duty = 1 is carried as the opposite bound.
+    operation (Bus Sathi driver app), NOT from permit-holders, so transferability
+    to permit minibuses is assumed and unverified. And app capture is partial —
+    the median driver appears on only a few of the calendar days (computed below
+    as `median_calendar_days_per_driver`) — so observed service minutes are a
+    LOWER bound on a vehicle's true daily duty. A lower duty means a longer
+    baseline headway, which flatters the plan; the reported duty is therefore
+    conservative in the plan's favour, and duty = 1 is carried as the opposite
+    bound.
     """
     gps = C.GPS_PERMIT_OBSERVED_CSV.parent
+    med_days_per_driver = None
     if (gps / "driver_days.csv").exists():
         dd = pd.read_csv(gps / "driver_days.csv")
         n_drivers, n_days = int(dd["driver"].nunique()), int(dd["day"].nunique())
+        med_days_per_driver = float(dd.groupby("driver")["day"].nunique().median())
     else:
         # Public release: driver identifiers and dates removed, rows shuffled;
         # the two counts that need them are carried in a sidecar
@@ -294,6 +298,21 @@ def observed_duty_factor() -> dict:
         duty_p75=round(float(dd["service_min"].quantile(0.75)) / window, 4),
         runs_per_vehicle_day_median=float(dd["n_runs"].median()),
         source="data/raw/gps/driver_days.csv (Bus Sathi driver GPS, Feb-Jun 2026)",
+        median_calendar_days_per_driver=med_days_per_driver,
+        sample_statement=(
+            f"{len(dd)} driver-days from {n_drivers} drivers over {n_days} calendar "
+            "days, captured by the Bus Sathi driver app on the SSCL e-bus "
+            "operation"
+            + (f"; the median driver is observed on {med_days_per_driver:g} of the "
+               f"{n_days} days" if med_days_per_driver is not None else "")),
+        is_from_permit_holder_operations=False,
+        transferability_note=(
+            "The duty factor is measured on SSCL e-bus drivers who carry the app, "
+            "a self-selected subset of one operator. It is NOT a measurement of "
+            "permit-holder (private minibus) operations. Applying it to the permit "
+            "baseline assumes permit buses run the same fraction of the day; that "
+            "assumption is untested. Observed service minutes are a lower bound "
+            "on true duty (partial app capture)."),
     )
 
 
@@ -538,6 +557,95 @@ def main() -> None:
             ))
 
     central = [c for c in corners if c["central"]][0]
+
+    # ── full wait-case table (audit F-04-13 / F-01-R) ────────────────────────
+    # Duty factor x baseline arrival model x PLAN arrival model. The legacy
+    # `wait_ledger_corners` always charged the plan kappa = 0.5 (evenly spaced)
+    # while giving the permit baseline kappa 0.5 or 1.0; the missing half of the
+    # grid (plan also Poisson) is added here so the paper can state the range
+    # over every combination, not the single most plan-favourable corner.
+    wp_geo = od["plan_wait_geometry_min"].to_numpy(float)
+    ok_w = np.isfinite(wp_geo)
+    wait_cases = []
+    for dlab, dval in (("all-day (duty=1.00)", 1.0),
+                       ("observed median", duty["duty_median"]),
+                       ("observed p25", duty["duty_p25"]),
+                       ("observed p75", duty["duty_p75"])):
+        for blab, bk in (("even", KAPPA_EVEN), ("Poisson", KAPPA_POISSON)):
+            for plab, pk in (("even", KAPPA_EVEN), ("Poisson", KAPPA_POISSON)):
+                wb = base_wait(n_od, cyc, dval, bk)[ok_w]
+                wp = wp_geo[ok_w] * (pk / KAPPA_EVEN)   # plan wait was built at kappa 0.5
+                delta = wp - wb
+                wait_cases.append(dict(
+                    duty_case=dlab, duty_factor=round(float(dval), 4),
+                    baseline_arrival_model=blab, plan_arrival_model=plab,
+                    n_od=int(ok_w.sum()),
+                    median_baseline_wait_min=round(float(np.median(wb)), 2),
+                    median_plan_wait_min=round(float(np.median(wp)), 2),
+                    median_change_min=round(float(np.median(delta)), 2),
+                    change_of_medians_min=round(float(np.median(wp) - np.median(wb)), 2),
+                    n_od_wait_worse=int((delta > 0).sum()),
+                    pct_od_wait_worse=round(100.0 * float((delta > 0).mean()), 1),
+                    previously_quoted=(dlab == "observed median" and blab == "Poisson"
+                                       and plab == "even"),
+                ))
+    quoted_case = [c for c in wait_cases if c["previously_quoted"]][0]
+    wait_cases_tab = pd.DataFrame(wait_cases)
+    wc_min = min(wait_cases, key=lambda c: c["median_change_min"])
+    wc_max = max(wait_cases, key=lambda c: c["median_change_min"])
+    pw_min = min(c["pct_od_wait_worse"] for c in wait_cases)
+    pw_max = max(c["pct_od_wait_worse"] for c in wait_cases)
+    n_plan_better = sum(c["median_change_min"] < 0 for c in wait_cases)
+    wait_headline = dict(
+        n_cases=len(wait_cases),
+        n_od=int(ok_w.sum()),
+        base=("distinct suppressed origin-destination pairs of canonical stops "
+              "(n_od), each compared with the permit baseline on the same pair; "
+              "descriptive and in-sample, not demand-weighted"),
+        median_change_min_range=[wc_min["median_change_min"], wc_max["median_change_min"]],
+        median_change_min_min=wc_min["median_change_min"],
+        median_change_min_max=wc_max["median_change_min"],
+        pct_od_wait_worse_range=[pw_min, pw_max],
+        n_cases_plan_wait_shorter_at_median=int(n_plan_better),
+        n_cases_plan_wait_longer_at_median=int(len(wait_cases) - n_plan_better),
+        previously_quoted_case=dict(
+            label="observed-median duty (0.242), permit baseline Poisson, plan evenly spaced",
+            median_baseline_wait_min=quoted_case["median_baseline_wait_min"],
+            median_plan_wait_min=quoted_case["median_plan_wait_min"],
+            median_change_min=quoted_case["median_change_min"],
+            pct_od_wait_worse=quoted_case["pct_od_wait_worse"],
+            rank_by_plan_favourability=int(
+                1 + sum(c["median_change_min"] < quoted_case["median_change_min"]
+                        for c in wait_cases)),
+            note=("rank 1 = most plan-favourable (most negative median change) of "
+                  "the n_cases; computed from the table, not asserted")),
+        duty_source=duty["sample_statement"],
+        duty_is_from_permit_holder_operations=duty["is_from_permit_holder_operations"],
+        duty_transferability_note=duty["transferability_note"],
+    )
+    wait_headline["text"] = (
+        f"Across {len(wait_cases)} wait cases (4 duty factors x baseline arrival "
+        f"model x plan arrival model), over {int(ok_w.sum())} distinct suppressed "
+        f"origin-destination pairs, the plan's median wait differs from the permit "
+        f"baseline's by {wc_min['median_change_min']:+.1f} to "
+        f"{wc_max['median_change_min']:+.1f} min (negative = plan shorter); the plan "
+        f"is shorter at the median in {n_plan_better} of {len(wait_cases)} cases, and "
+        f"{pw_min:.1f}-{pw_max:.1f}% of pairs wait longer under the plan. The "
+        f"previously quoted case (observed-median duty, Poisson baseline, evenly "
+        f"spaced plan) is {quoted_case['median_baseline_wait_min']:.1f} -> "
+        f"{quoted_case['median_plan_wait_min']:.1f} min, "
+        f"{quoted_case['median_change_min']:+.1f}; it uses a duty factor measured on "
+        f"SSCL e-bus app drivers, not permit-holders. Sign and size depend on the "
+        f"duty factor and arrival model; no single value is a finding.")
+    C.write_table(wait_cases_tab.drop(columns=["previously_quoted"])
+                  .assign(previously_quoted=wait_cases_tab["previously_quoted"]
+                          .map({True: "yes", False: ""})),
+                  "table05i_transfers_wait_cases",
+                  f"Median expected wait, permit baseline vs rationalised plan, "
+                  f"over {int(ok_w.sum())} distinct suppressed OD pairs, for every "
+                  f"combination of duty factor, baseline arrival model and plan "
+                  f"arrival model (negative change = plan waits less)")
+
     # Break-even duty factor per OD: the duty at which baseline and plan waits are
     # equal, i.e. duty* = kappa * cycle / (n * plan_wait). Above it, the permit
     # network offered the shorter wait. Reported because it converts an
@@ -581,7 +689,29 @@ def main() -> None:
                           "duty factor; plan evenly spaced"),
             central_breakeven_penalty_min=[round(float(x), 2) for x in p_c],
             central_breakeven_penalty_min_median=round(float(np.median(p_c)), 2),
+            central_breakeven_penalty_min_median_note=(
+                f"numpy median over n={len(p_c)} pairs. "
+                + ("With n=2 this is the MEAN of two numbers, not a distribution "
+                   "median; do not call it a median. " if len(p_c) == 2 else "")
+                + "Quote the per-pair values in `pairs` instead."),
+            central_breakeven_penalty_min_mean=round(float(np.mean(p_c)), 2),
+            summary_statistic_word=("mean of two pairs" if len(p_c) == 2
+                                    else f"median of {len(p_c)} pairs"),
             n_positive_breakeven=int((p_c > 0).sum()),
+            pairs=[dict(
+                origin_stop=r["origin_stop"], dest_stop=r["dest_stop"],
+                n_register_rows_same_od=int(r["n_register_rows_same_od"]),
+                n_suppressed_permits=int(r["n_suppressed_permits"]),
+                breakeven_penalty_min_central=round(float(pc), 2),
+                breakeven_penalty_min_duty_1=round(float(pa), 2),
+                breakeven_duty_factor=float(r["breakeven_duty_factor"]),
+                plan_wait_geometry_min=float(r["plan_wait_geometry_min"]),
+                sample_note="one distinct OD pair; n=1")
+                for (_, r), pc, pa in zip(
+                    losers.iterrows(), p_c,
+                    (base_wait(losers["n_register_rows_same_od"],
+                               losers["baseline_cycle_min"], 1.0, KAPPA_POISSON)
+                     .to_numpy(float) - losers["plan_wait_geometry_min"].to_numpy(float)))],
             interpretation=(
                 "A POSITIVE break-even is the transfer penalty at which the wait "
                 "saving is exactly cancelled: below it the passenger gains. A "
@@ -744,17 +874,25 @@ def main() -> None:
             od["plan_transfers_named"].value_counts().sort_index().items()},
         wait_ledger_corners=corners,
         central_case=central,
-        headline=(
-            f"Of {len(od)} distinct suppressed origin-destination pairs, "
-            f"{int((od['plan_transfers_geometry'] == 0).sum())} keep a one-seat "
-            f"ride and {int((od['plan_transfers_geometry'] == 1).sum())} fall to "
-            f"one interchange. In the central case "
-            f"{central['n_od_wait_worse']} of {central['n_od_evaluated']} "
-            f"({central['pct_od_wait_worse']}%) wait LONGER under the plan than "
-            f"under the permit network, before any transfer penalty is charged. "
-            f"Consolidation on the heavily duplicated corridors therefore cannot "
-            f"be defended on passenger wait; its case rests on vehicle "
-            f"productivity, operating cost and congestion, not on headway."),
+        wait_cases=wait_cases,
+        wait_headline=wait_headline,
+        headline=dict(
+            text=(
+                f"Of {len(od)} distinct suppressed origin-destination pairs, "
+                f"{int((od['plan_transfers_geometry'] == 0).sum())} keep a one-seat "
+                f"ride and {int((od['plan_transfers_geometry'] == 1).sum())} fall to "
+                f"one interchange. " + wait_headline["text"]
+                + " The break-even transfer penalty is defined for the "
+                f"{breakeven.get('n_distinct_od', 0)} pairs that lose a one-seat ride "
+                "only; see `breakeven.pairs` for each."),
+            wait=wait_headline,
+            n_od=int(len(od)),
+            n_keep_one_seat=int((od['plan_transfers_geometry'] == 0).sum()),
+            n_one_interchange=int((od['plan_transfers_geometry'] == 1).sum()),
+            central_case_pct_od_wait_worse=central["pct_od_wait_worse"],
+            central_case_note=("`central_case` is the legacy corner (observed-median "
+                               "duty, Poisson baseline, even plan); it is one of "
+                               f"{len(wait_cases)} cases, not a finding on its own")),
         breakeven=breakeven,
         penalty_sweep_is_not_a_calibration=(
             "The 0-20 minute sweep is a sensitivity range, not an estimate. No "

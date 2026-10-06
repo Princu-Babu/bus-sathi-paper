@@ -6,6 +6,7 @@
     "substituted_distance": 44,
     "superseded_geometry": 2
   },
+  "disposition_status": "RESIDUAL CLASSIFICATION, NOT TESTED CAUSES: the labels sort routes by the pattern of recomputed/published ratio; no test establishes why a route fails to reproduce (audit F-03-13). Per-route status in a02b_faithfulness.csv:cause_status.",
   "n_routes": 186,
   "n_tourist_flagged_active": 8,
   "not_reproduced": [
@@ -79,30 +80,260 @@
   "note": "Reproduction is assessed only on routes whose declared length agrees with their drawn geometry; on the remainder the published population belongs to a different alignment than the published distance, so no target exists. The tourist multiplier is applied to the recomputed value purely to make the two series comparable \u2014 the reproduction package itself keeps resident population and demand adjustments in separate columns.",
   "reproduction": {
     "after_tourist_adjustment": {
+      "basis": "geometry-consistent routes only (declared length agrees with drawn geometry); in-sample reproduction of one plan, no held-out data",
       "max_abs_pct_error": 58.139,
       "median_abs_pct_error": 0.245,
       "n": 142,
+      "n_not_within_1pct": 6,
       "n_within_1pct": 136,
       "n_within_5pct": 139,
       "p95_abs_pct_error": 0.65,
       "pearson_r": 0.99498
     },
     "before_tourist_adjustment": {
+      "basis": "geometry-consistent routes only (declared length agrees with drawn geometry); in-sample reproduction of one plan, no held-out data",
       "max_abs_pct_error": 58.139,
       "median_abs_pct_error": 0.257,
       "n": 142,
+      "n_not_within_1pct": 14,
       "n_within_1pct": 128,
       "n_within_5pct": 131,
       "p95_abs_pct_error": 23.247,
       "pearson_r": 0.97684
     }
   },
+  "reproduction_non_reproducing_routes": {
+    "after_tourist_adjustment": [
+      {
+        "New_Route_ID": "FDR-438",
+        "Tourist_Corridor": false,
+        "abs_pct_error": 58.139,
+        "recomputed": 31222.634765625,
+        "target_published": 74587.0
+      },
+      {
+        "New_Route_ID": "FDR-160",
+        "Tourist_Corridor": false,
+        "abs_pct_error": 37.039,
+        "recomputed": 45813.55859375,
+        "target_published": 72765.0
+      },
+      {
+        "New_Route_ID": "SSCL-27",
+        "Tourist_Corridor": false,
+        "abs_pct_error": 20.627,
+        "recomputed": 93746.25,
+        "target_published": 118108.0
+      },
+      {
+        "New_Route_ID": "FDR-525",
+        "Tourist_Corridor": false,
+        "abs_pct_error": 4.594,
+        "recomputed": 68864.3359375,
+        "target_published": 72180.0
+      },
+      {
+        "New_Route_ID": "FDR-479",
+        "Tourist_Corridor": false,
+        "abs_pct_error": 4.127,
+        "recomputed": 85255.75,
+        "target_published": 88926.0
+      },
+      {
+        "New_Route_ID": "SSCL-11",
+        "Tourist_Corridor": false,
+        "abs_pct_error": 1.259,
+        "recomputed": 17429.71484375,
+        "target_published": 17652.0
+      }
+    ],
+    "before_tourist_adjustment": [
+      {
+        "New_Route_ID": "FDR-438",
+        "Tourist_Corridor": false,
+        "abs_pct_error": 58.139,
+        "recomputed": 31222.634765625,
+        "target_published": 74587.0
+      },
+      {
+        "New_Route_ID": "FDR-160",
+        "Tourist_Corridor": false,
+        "abs_pct_error": 37.039,
+        "recomputed": 45813.55859375,
+        "target_published": 72765.0
+      },
+      {
+        "New_Route_ID": "FDR-536",
+        "Tourist_Corridor": true,
+        "abs_pct_error": 23.432,
+        "recomputed": 99594.6484375,
+        "target_published": 130074.0
+      },
+      {
+        "New_Route_ID": "FDR-453",
+        "Tourist_Corridor": true,
+        "abs_pct_error": 23.37,
+        "recomputed": 143203.453125,
+        "target_published": 186877.0
+      },
+      {
+        "New_Route_ID": "FDR-439",
+        "Tourist_Corridor": true,
+        "abs_pct_error": 23.362,
+        "recomputed": 146684.28125,
+        "target_published": 191399.0
+      },
+      {
+        "New_Route_ID": "FDR-006",
+        "Tourist_Corridor": true,
+        "abs_pct_error": 23.321,
+        "recomputed": 45203.890625,
+        "target_published": 58952.0
+      },
+      {
+        "New_Route_ID": "SSCL-01",
+        "Tourist_Corridor": true,
+        "abs_pct_error": 23.253,
+        "recomputed": 130613.453125,
+        "target_published": 170188.0
+      },
+      {
+        "New_Route_ID": "FDR-599",
+        "Tourist_Corridor": true,
+        "abs_pct_error": 23.248,
+        "recomputed": 54601.85546875,
+        "target_published": 71141.0
+      },
+      {
+        "New_Route_ID": "FDR-029",
+        "Tourist_Corridor": true,
+        "abs_pct_error": 23.213,
+        "recomputed": 162469.6875,
+        "target_published": 211586.0
+      },
+      {
+        "New_Route_ID": "FDR-028",
+        "Tourist_Corridor": true,
+        "abs_pct_error": 23.188,
+        "recomputed": 168021.03125,
+        "target_published": 218743.0
+      },
+      {
+        "New_Route_ID": "SSCL-27",
+        "Tourist_Corridor": false,
+        "abs_pct_error": 20.627,
+        "recomputed": 93746.25,
+        "target_published": 118108.0
+      },
+      {
+        "New_Route_ID": "FDR-525",
+        "Tourist_Corridor": false,
+        "abs_pct_error": 4.594,
+        "recomputed": 68864.3359375,
+        "target_published": 72180.0
+      },
+      {
+        "New_Route_ID": "FDR-479",
+        "Tourist_Corridor": false,
+        "abs_pct_error": 4.127,
+        "recomputed": 85255.75,
+        "target_published": 88926.0
+      },
+      {
+        "New_Route_ID": "SSCL-11",
+        "Tourist_Corridor": false,
+        "abs_pct_error": 1.259,
+        "recomputed": 17429.71484375,
+        "target_published": 17652.0
+      }
+    ],
+    "note": "geometry-consistent routes with absolute error above 1 %; ids, no personal data"
+  },
   "tourist_inflation": {
+    "data_support_for_reading_published_as_1p3_x_resident": {
+      "median_ratio_recomputed_resident_to_published": 0.7671285857139875,
+      "n_geometry_consistent_tourist_routes": 8,
+      "n_within_1pct_after_x1p3": 8,
+      "note": "on geometry-consistent tourist routes the recomputed resident count is about 1/1.3 of the published value and matches it within 1 % after x1.3; this is the evidence that the published per-route column carries the multiplier"
+    },
+    "entered_network_coverage": false,
+    "entered_network_coverage_evidence": "transit_kashmir_v3.py:1863 applies the multiplier to the per-route 'Population_Served' column only. The network coverage figure is compute_network_population_total (transit_kashmir_v3.py:1955-1980, called at :6029), which reads only gdf['Catchment'] and takes one rasterstats.zonal_stats sum over the dissolved union; it never reads Population_Served, so the multiplier has zero effect on the published network coverage (2,317,958 / 35.2 %). Established by reading the code, not by re-running it.",
     "excess": 285914,
+    "excess_note": "LEGACY key, same quantity as sum_of_per_route_increments; the earlier label 'synthetic persons injected into the coverage numerator' was wrong - see entered_network_coverage",
+    "multiplier": 1.3,
     "n_routes": 8,
-    "note": "Per-route walkshed counts overlap between routes and must not be summed for a network total; this sum is reported only to size the adjustment embedded in the published column.",
+    "n_routes_affected": 8,
+    "note": "Per-route walkshed counts overlap between routes and must not be summed for a network total; this sum is reported only to size the adjustment embedded in the published per-route column. It did not enter network coverage.",
+    "per_route_increments": [
+      {
+        "New_Route_ID": "FDR-028",
+        "disposition": "reproduced",
+        "implied_resident_count": 168263.84615384616,
+        "increment": 50479.153846153844,
+        "published_per_route_count": 218743.0,
+        "recomputed_resident_count": 168021.03125
+      },
+      {
+        "New_Route_ID": "FDR-029",
+        "disposition": "reproduced",
+        "implied_resident_count": 162758.46153846153,
+        "increment": 48827.53846153847,
+        "published_per_route_count": 211586.0,
+        "recomputed_resident_count": 162469.6875
+      },
+      {
+        "New_Route_ID": "FDR-439",
+        "disposition": "reproduced",
+        "implied_resident_count": 147230.0,
+        "increment": 44169.0,
+        "published_per_route_count": 191399.0,
+        "recomputed_resident_count": 146684.28125
+      },
+      {
+        "New_Route_ID": "FDR-453",
+        "disposition": "reproduced",
+        "implied_resident_count": 143751.53846153847,
+        "increment": 43125.46153846153,
+        "published_per_route_count": 186877.0,
+        "recomputed_resident_count": 143203.453125
+      },
+      {
+        "New_Route_ID": "SSCL-01",
+        "disposition": "reproduced",
+        "implied_resident_count": 130913.84615384616,
+        "increment": 39274.153846153844,
+        "published_per_route_count": 170188.0,
+        "recomputed_resident_count": 130613.453125
+      },
+      {
+        "New_Route_ID": "FDR-536",
+        "disposition": "reproduced",
+        "implied_resident_count": 100056.92307692308,
+        "increment": 30017.076923076922,
+        "published_per_route_count": 130074.0,
+        "recomputed_resident_count": 99594.6484375
+      },
+      {
+        "New_Route_ID": "FDR-599",
+        "disposition": "reproduced",
+        "implied_resident_count": 54723.84615384615,
+        "increment": 16417.15384615385,
+        "published_per_route_count": 71141.0,
+        "recomputed_resident_count": 54601.85546875
+      },
+      {
+        "New_Route_ID": "FDR-006",
+        "disposition": "reproduced",
+        "implied_resident_count": 45347.692307692305,
+        "increment": 13604.307692307695,
+        "published_per_route_count": 58952.0,
+        "recomputed_resident_count": 45203.890625
+      }
+    ],
     "published_sum": 1238960,
-    "resident_sum": 953046
+    "resident_sum": 953046,
+    "sum_of_per_route_increments": 285913.8461538461,
+    "sum_of_per_route_increments_note": "Sum over the affected routes of (published per-route walkshed count minus the same count divided by 1.3). Per-route walksheds overlap, so this double-counts residents who live in more than one of these walksheds. It is NOT a number of persons in any network coverage figure and is reported only to size the per-route adjustment."
   },
   "tourist_multiplier": 1.3,
   "tourist_multiplier_source": "transit_kashmir_v3.py:506, applied at line 1863"

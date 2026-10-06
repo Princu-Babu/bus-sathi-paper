@@ -6,15 +6,19 @@
       "duty_median": 0.2421,
       "duty_p25": 0.0974,
       "duty_p75": 0.4581,
+      "is_from_permit_holder_operations": false,
+      "median_calendar_days_per_driver": 2.0,
       "n_calendar_days": 131,
       "n_driver_days": 855,
       "n_drivers": 157,
       "operating_window_min": 896.5,
       "runs_per_vehicle_day_median": 2.0,
+      "sample_statement": "855 driver-days from 157 drivers over 131 calendar days, captured by the Bus Sathi driver app on the SSCL e-bus operation; the median driver is observed on 2 of the 131 days",
       "service_min_median": 217.0,
       "service_min_p25": 87.3,
       "service_min_p75": 410.65,
-      "source": "data/raw/gps/driver_days.csv (Bus Sathi driver GPS, Feb-Jun 2026)"
+      "source": "data/raw/gps/driver_days.csv (Bus Sathi driver GPS, Feb-Jun 2026)",
+      "transferability_note": "The duty factor is measured on SSCL e-bus drivers who carry the app, a self-selected subset of one operator. It is NOT a measurement of permit-holder (private minibus) operations. Applying it to the permit baseline assumes permit buses run the same fraction of the day; that assumption is untested. Observed service minutes are a lower bound on true duty (partial app capture)."
     },
     "max_register_rows_on_one_od": 42,
     "median_register_rows_per_od": 4.0,
@@ -58,12 +62,38 @@
       71.31,
       -8.54
     ],
+    "central_breakeven_penalty_min_mean": 31.39,
     "central_breakeven_penalty_min_median": 31.39,
+    "central_breakeven_penalty_min_median_note": "numpy median over n=2 pairs. With n=2 this is the MEAN of two numbers, not a distribution median; do not call it a median. Quote the per-pair values in `pairs` instead.",
     "central_case": "baseline Poisson departures with the observed median duty factor; plan evenly spaced",
     "interpretation": "A POSITIVE break-even is the transfer penalty at which the wait saving is exactly cancelled: below it the passenger gains. A NON-POSITIVE break-even means the plan's two waits already exceed the single baseline wait, so no transfer penalty is needed to make the passenger worse off and the consolidation cannot be defended on wait time for that pair.",
     "n_distinct_od": 2,
     "n_positive_breakeven": 1,
     "n_underlying_suppressed_permits": 46,
+    "pairs": [
+      {
+        "breakeven_duty_factor": 1.3931,
+        "breakeven_penalty_min_central": 71.31,
+        "breakeven_penalty_min_duty_1": 5.9,
+        "dest_stop": "Parimpora",
+        "n_register_rows_same_od": 6,
+        "n_suppressed_permits": 5,
+        "origin_stop": "Chadora",
+        "plan_wait_geometry_min": 15.0,
+        "sample_note": "one distinct OD pair; n=1"
+      },
+      {
+        "breakeven_duty_factor": 0.1042,
+        "breakeven_penalty_min_central": -8.54,
+        "breakeven_penalty_min_duty_1": -13.44,
+        "dest_stop": "LD",
+        "n_register_rows_same_od": 42,
+        "n_suppressed_permits": 41,
+        "origin_stop": "Hazratbal",
+        "plan_wait_geometry_min": 15.0,
+        "sample_note": "one distinct OD pair; n=1"
+      }
+    ],
     "penalty_sensitivity": [
       {
         "assumed_transfer_penalty_min": 0.0,
@@ -137,6 +167,7 @@
       }
     ],
     "status": "OK",
+    "summary_statistic_word": "mean of two pairs",
     "unit": "distinct origin-destination pair of canonical stops"
   },
   "catchment_sensitivity": [
@@ -410,7 +441,44 @@
     ],
     "walk_catchment_m": 400.0
   },
-  "headline": "Of 68 distinct suppressed origin-destination pairs, 66 keep a one-seat ride and 2 fall to one interchange. In the central case 5 of 68 (7.4%) wait LONGER under the plan than under the permit network, before any transfer penalty is charged. Consolidation on the heavily duplicated corridors therefore cannot be defended on passenger wait; its case rests on vehicle productivity, operating cost and congestion, not on headway.",
+  "headline": {
+    "central_case_note": "`central_case` is the legacy corner (observed-median duty, Poisson baseline, even plan); it is one of 16 cases, not a finding on its own",
+    "central_case_pct_od_wait_worse": 7.4,
+    "n_keep_one_seat": 66,
+    "n_od": 68,
+    "n_one_interchange": 2,
+    "text": "Of 68 distinct suppressed origin-destination pairs, 66 keep a one-seat ride and 2 fall to one interchange. Across 16 wait cases (4 duty factors x baseline arrival model x plan arrival model), over 68 distinct suppressed origin-destination pairs, the plan's median wait differs from the permit baseline's by -199.2 to +16.4 min (negative = plan shorter); the plan is shorter at the median in 12 of 16 cases, and 0.0-83.8% of pairs wait longer under the plan. The previously quoted case (observed-median duty, Poisson baseline, evenly spaced plan) is 86.7 -> 17.5 min, -70.4; it uses a duty factor measured on SSCL e-bus app drivers, not permit-holders. Sign and size depend on the duty factor and arrival model; no single value is a finding. The break-even transfer penalty is defined for the 2 pairs that lose a one-seat ride only; see `breakeven.pairs` for each.",
+    "wait": {
+      "base": "distinct suppressed origin-destination pairs of canonical stops (n_od), each compared with the permit baseline on the same pair; descriptive and in-sample, not demand-weighted",
+      "duty_is_from_permit_holder_operations": false,
+      "duty_source": "855 driver-days from 157 drivers over 131 calendar days, captured by the Bus Sathi driver app on the SSCL e-bus operation; the median driver is observed on 2 of the 131 days",
+      "duty_transferability_note": "The duty factor is measured on SSCL e-bus drivers who carry the app, a self-selected subset of one operator. It is NOT a measurement of permit-holder (private minibus) operations. Applying it to the permit baseline assumes permit buses run the same fraction of the day; that assumption is untested. Observed service minutes are a lower bound on true duty (partial app capture).",
+      "median_change_min_max": 16.45,
+      "median_change_min_min": -199.19,
+      "median_change_min_range": [
+        -199.19,
+        16.45
+      ],
+      "n_cases": 16,
+      "n_cases_plan_wait_longer_at_median": 4,
+      "n_cases_plan_wait_shorter_at_median": 12,
+      "n_od": 68,
+      "pct_od_wait_worse_range": [
+        0.0,
+        83.8
+      ],
+      "previously_quoted_case": {
+        "label": "observed-median duty (0.242), permit baseline Poisson, plan evenly spaced",
+        "median_baseline_wait_min": 86.68,
+        "median_change_min": -70.43,
+        "median_plan_wait_min": 17.5,
+        "note": "rank 1 = most plan-favourable (most negative median change) of the n_cases; computed from the table, not asserted",
+        "pct_od_wait_worse": 7.4,
+        "rank_by_plan_favourability": 5
+      },
+      "text": "Across 16 wait cases (4 duty factors x baseline arrival model x plan arrival model), over 68 distinct suppressed origin-destination pairs, the plan's median wait differs from the permit baseline's by -199.2 to +16.4 min (negative = plan shorter); the plan is shorter at the median in 12 of 16 cases, and 0.0-83.8% of pairs wait longer under the plan. The previously quoted case (observed-median duty, Poisson baseline, evenly spaced plan) is 86.7 -> 17.5 min, -70.4; it uses a duty factor measured on SSCL e-bus app drivers, not permit-holders. Sign and size depend on the duty factor and arrival model; no single value is a finding."
+    }
+  },
   "penalty_sweep_is_not_a_calibration": "The 0-20 minute sweep is a sensitivity range, not an estimate. No stated-preference study of interchange disutility exists for Kashmir and none was conducted here, so no single penalty is asserted. The cited literature establishes only that the penalty is substantial and varies with interchange quality.",
   "status": "OK",
   "suppressed_od_outcomes_geometry": {
@@ -419,6 +487,262 @@
   },
   "suppressed_od_outcomes_name_augmented": {
     "0": 68
+  },
+  "wait_cases": [
+    {
+      "baseline_arrival_model": "even",
+      "change_of_medians_min": 7.01,
+      "duty_case": "all-day (duty=1.00)",
+      "duty_factor": 1.0,
+      "median_baseline_wait_min": 10.49,
+      "median_change_min": 2.27,
+      "median_plan_wait_min": 17.5,
+      "n_od": 68,
+      "n_od_wait_worse": 38,
+      "pct_od_wait_worse": 55.9,
+      "plan_arrival_model": "even",
+      "previously_quoted": false
+    },
+    {
+      "baseline_arrival_model": "even",
+      "change_of_medians_min": 24.51,
+      "duty_case": "all-day (duty=1.00)",
+      "duty_factor": 1.0,
+      "median_baseline_wait_min": 10.49,
+      "median_change_min": 16.45,
+      "median_plan_wait_min": 35.0,
+      "n_od": 68,
+      "n_od_wait_worse": 57,
+      "pct_od_wait_worse": 83.8,
+      "plan_arrival_model": "Poisson",
+      "previously_quoted": false
+    },
+    {
+      "baseline_arrival_model": "Poisson",
+      "change_of_medians_min": -3.48,
+      "duty_case": "all-day (duty=1.00)",
+      "duty_factor": 1.0,
+      "median_baseline_wait_min": 20.98,
+      "median_change_min": -6.82,
+      "median_plan_wait_min": 17.5,
+      "n_od": 68,
+      "n_od_wait_worse": 25,
+      "pct_od_wait_worse": 36.8,
+      "plan_arrival_model": "even",
+      "previously_quoted": false
+    },
+    {
+      "baseline_arrival_model": "Poisson",
+      "change_of_medians_min": 14.02,
+      "duty_case": "all-day (duty=1.00)",
+      "duty_factor": 1.0,
+      "median_baseline_wait_min": 20.98,
+      "median_change_min": 4.54,
+      "median_plan_wait_min": 35.0,
+      "n_od": 68,
+      "n_od_wait_worse": 38,
+      "pct_od_wait_worse": 55.9,
+      "plan_arrival_model": "Poisson",
+      "previously_quoted": false
+    },
+    {
+      "baseline_arrival_model": "even",
+      "change_of_medians_min": -25.84,
+      "duty_case": "observed median",
+      "duty_factor": 0.2421,
+      "median_baseline_wait_min": 43.34,
+      "median_change_min": -27.74,
+      "median_plan_wait_min": 17.5,
+      "n_od": 68,
+      "n_od_wait_worse": 14,
+      "pct_od_wait_worse": 20.6,
+      "plan_arrival_model": "even",
+      "previously_quoted": false
+    },
+    {
+      "baseline_arrival_model": "even",
+      "change_of_medians_min": -8.34,
+      "duty_case": "observed median",
+      "duty_factor": 0.2421,
+      "median_baseline_wait_min": 43.34,
+      "median_change_min": -14.66,
+      "median_plan_wait_min": 35.0,
+      "n_od": 68,
+      "n_od_wait_worse": 25,
+      "pct_od_wait_worse": 36.8,
+      "plan_arrival_model": "Poisson",
+      "previously_quoted": false
+    },
+    {
+      "baseline_arrival_model": "Poisson",
+      "change_of_medians_min": -69.18,
+      "duty_case": "observed median",
+      "duty_factor": 0.2421,
+      "median_baseline_wait_min": 86.68,
+      "median_change_min": -70.43,
+      "median_plan_wait_min": 17.5,
+      "n_od": 68,
+      "n_od_wait_worse": 5,
+      "pct_od_wait_worse": 7.4,
+      "plan_arrival_model": "even",
+      "previously_quoted": true
+    },
+    {
+      "baseline_arrival_model": "Poisson",
+      "change_of_medians_min": -51.68,
+      "duty_case": "observed median",
+      "duty_factor": 0.2421,
+      "median_baseline_wait_min": 86.68,
+      "median_change_min": -55.49,
+      "median_plan_wait_min": 35.0,
+      "n_od": 68,
+      "n_od_wait_worse": 14,
+      "pct_od_wait_worse": 20.6,
+      "plan_arrival_model": "Poisson",
+      "previously_quoted": false
+    },
+    {
+      "baseline_arrival_model": "even",
+      "change_of_medians_min": -90.22,
+      "duty_case": "observed p25",
+      "duty_factor": 0.0974,
+      "median_baseline_wait_min": 107.72,
+      "median_change_min": -91.47,
+      "median_plan_wait_min": 17.5,
+      "n_od": 68,
+      "n_od_wait_worse": 2,
+      "pct_od_wait_worse": 2.9,
+      "plan_arrival_model": "even",
+      "previously_quoted": false
+    },
+    {
+      "baseline_arrival_model": "even",
+      "change_of_medians_min": -72.72,
+      "duty_case": "observed p25",
+      "duty_factor": 0.0974,
+      "median_baseline_wait_min": 107.72,
+      "median_change_min": -75.64,
+      "median_plan_wait_min": 35.0,
+      "n_od": 68,
+      "n_od_wait_worse": 9,
+      "pct_od_wait_worse": 13.2,
+      "plan_arrival_model": "Poisson",
+      "previously_quoted": false
+    },
+    {
+      "baseline_arrival_model": "Poisson",
+      "change_of_medians_min": -197.94,
+      "duty_case": "observed p25",
+      "duty_factor": 0.0974,
+      "median_baseline_wait_min": 215.44,
+      "median_change_min": -199.19,
+      "median_plan_wait_min": 17.5,
+      "n_od": 68,
+      "n_od_wait_worse": 0,
+      "pct_od_wait_worse": 0.0,
+      "plan_arrival_model": "even",
+      "previously_quoted": false
+    },
+    {
+      "baseline_arrival_model": "Poisson",
+      "change_of_medians_min": -180.44,
+      "duty_case": "observed p25",
+      "duty_factor": 0.0974,
+      "median_baseline_wait_min": 215.44,
+      "median_change_min": -182.94,
+      "median_plan_wait_min": 35.0,
+      "n_od": 68,
+      "n_od_wait_worse": 2,
+      "pct_od_wait_worse": 2.9,
+      "plan_arrival_model": "Poisson",
+      "previously_quoted": false
+    },
+    {
+      "baseline_arrival_model": "even",
+      "change_of_medians_min": -5.4,
+      "duty_case": "observed p75",
+      "duty_factor": 0.4581,
+      "median_baseline_wait_min": 22.9,
+      "median_change_min": -8.25,
+      "median_plan_wait_min": 17.5,
+      "n_od": 68,
+      "n_od_wait_worse": 21,
+      "pct_od_wait_worse": 30.9,
+      "plan_arrival_model": "even",
+      "previously_quoted": false
+    },
+    {
+      "baseline_arrival_model": "even",
+      "change_of_medians_min": 12.1,
+      "duty_case": "observed p75",
+      "duty_factor": 0.4581,
+      "median_baseline_wait_min": 22.9,
+      "median_change_min": 2.67,
+      "median_plan_wait_min": 35.0,
+      "n_od": 68,
+      "n_od_wait_worse": 36,
+      "pct_od_wait_worse": 52.9,
+      "plan_arrival_model": "Poisson",
+      "previously_quoted": false
+    },
+    {
+      "baseline_arrival_model": "Poisson",
+      "change_of_medians_min": -28.31,
+      "duty_case": "observed p75",
+      "duty_factor": 0.4581,
+      "median_baseline_wait_min": 45.81,
+      "median_change_min": -30.11,
+      "median_plan_wait_min": 17.5,
+      "n_od": 68,
+      "n_od_wait_worse": 13,
+      "pct_od_wait_worse": 19.1,
+      "plan_arrival_model": "even",
+      "previously_quoted": false
+    },
+    {
+      "baseline_arrival_model": "Poisson",
+      "change_of_medians_min": -10.81,
+      "duty_case": "observed p75",
+      "duty_factor": 0.4581,
+      "median_baseline_wait_min": 45.81,
+      "median_change_min": -16.49,
+      "median_plan_wait_min": 35.0,
+      "n_od": 68,
+      "n_od_wait_worse": 21,
+      "pct_od_wait_worse": 30.9,
+      "plan_arrival_model": "Poisson",
+      "previously_quoted": false
+    }
+  ],
+  "wait_headline": {
+    "base": "distinct suppressed origin-destination pairs of canonical stops (n_od), each compared with the permit baseline on the same pair; descriptive and in-sample, not demand-weighted",
+    "duty_is_from_permit_holder_operations": false,
+    "duty_source": "855 driver-days from 157 drivers over 131 calendar days, captured by the Bus Sathi driver app on the SSCL e-bus operation; the median driver is observed on 2 of the 131 days",
+    "duty_transferability_note": "The duty factor is measured on SSCL e-bus drivers who carry the app, a self-selected subset of one operator. It is NOT a measurement of permit-holder (private minibus) operations. Applying it to the permit baseline assumes permit buses run the same fraction of the day; that assumption is untested. Observed service minutes are a lower bound on true duty (partial app capture).",
+    "median_change_min_max": 16.45,
+    "median_change_min_min": -199.19,
+    "median_change_min_range": [
+      -199.19,
+      16.45
+    ],
+    "n_cases": 16,
+    "n_cases_plan_wait_longer_at_median": 4,
+    "n_cases_plan_wait_shorter_at_median": 12,
+    "n_od": 68,
+    "pct_od_wait_worse_range": [
+      0.0,
+      83.8
+    ],
+    "previously_quoted_case": {
+      "label": "observed-median duty (0.242), permit baseline Poisson, plan evenly spaced",
+      "median_baseline_wait_min": 86.68,
+      "median_change_min": -70.43,
+      "median_plan_wait_min": 17.5,
+      "note": "rank 1 = most plan-favourable (most negative median change) of the n_cases; computed from the table, not asserted",
+      "pct_od_wait_worse": 7.4,
+      "rank_by_plan_favourability": 5
+    },
+    "text": "Across 16 wait cases (4 duty factors x baseline arrival model x plan arrival model), over 68 distinct suppressed origin-destination pairs, the plan's median wait differs from the permit baseline's by -199.2 to +16.4 min (negative = plan shorter); the plan is shorter at the median in 12 of 16 cases, and 0.0-83.8% of pairs wait longer under the plan. The previously quoted case (observed-median duty, Poisson baseline, evenly spaced plan) is 86.7 -> 17.5 min, -70.4; it uses a duty factor measured on SSCL e-bus app drivers, not permit-holders. Sign and size depend on the duty factor and arrival model; no single value is a finding."
   },
   "wait_ledger_corners": [
     {

@@ -10,17 +10,20 @@ import analysis.common as C
 @pytest.mark.tier3
 def test_fleet_formula_extreme_boundaries():
     """Stress test fleet sizing formula under extreme inputs."""
-    # Extremely large cycle time (e.g. 1000 minutes)
-    operating = max(1, math.ceil(1000.0 / 15.0))
-    fleet = max(max(1, math.ceil(operating * 1.15)), 2)
-    assert fleet > 70
-    assert operating < fleet
+    from types import SimpleNamespace
+    from analysis import fleet_model as fm
 
-    # Extremely small cycle time (e.g. 0.1 minute)
-    operating_small = max(1, math.ceil(0.1 / 35.0))
-    fleet_small = max(max(1, math.ceil(operating_small * 1.15)), 2)
-    assert operating_small == 1
-    assert fleet_small == 2
+    def run(cycle, headway, rtype="Urban"):
+        arr = SimpleNamespace(headway=np.array([headway], float), floor=np.array([fm.FLOOR[rtype]]),
+                              sscl=np.array([False]), sscl_floor=np.array([0]))
+        return int(fm.fleet_from_cycle(arr, np.array([cycle], float), fm.BASE["FLEET_SPARE_RATIO"])[0])
+
+    # Extremely large cycle time (1000 min at 15-min headway): 67 operating buses, x1.15 spare = 78
+    assert run(1000.0, 15.0) == 78
+    # Extremely small cycle time (0.1 min at 35-min headway): the floor governs
+    assert run(0.1, 35.0) == 2
+    # one operating bus x 1.15 spare rounds up to 2 whatever the floor (floor 1 for Regional)
+    assert run(0.1, 35.0, "Regional_District") == 2
 
 
 @pytest.mark.tier3

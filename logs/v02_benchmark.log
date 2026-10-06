@@ -2,21 +2,24 @@
 MODULE:      v02_benchmark
 SCRIPT:      v02_benchmark.py
 STAGE:       Stage 4
-STARTED:     2026-09-30T14:47:18.163391+00:00
-PYTHON:      E:\kash-paper\.venv\Scripts\python.exe (3.14.2)
-COMMAND:     E:\kash-paper\.venv\Scripts\python.exe E:\kash-paper\analysis\v02_benchmark.py
+COMMAND:     python analysis/v02_benchmark.py
 ================================================================================
 
-20:17:19  INFO    v02 \u2502 CHALO 98 buses, 855 trips/day (28.5/route), 12-month mean
-20:17:19  INFO    v02 \u2502   13 h: h_eff 27.4 min, scaled 179, plan 283, ratio 1.583 FAIL
-20:17:19  INFO    v02 \u2502   14 h: h_eff 29.5 min, scaled 192, plan 283, ratio 1.470 FAIL
-20:17:19  INFO    v02 \u2502   15 h: h_eff 31.6 min, scaled 206, plan 283, ratio 1.372 FAIL
-20:17:19  INFO    v02 \u2502   16 h: h_eff 33.7 min, scaled 220, plan 283, ratio 1.287 FAIL
-20:17:19  INFO    v02 \u2502 route rank: rho(CHALO buses, plan fleet) = 0.220 (p=0.244)
+INFO    v02 \u2502 operator deploys 98 buses on 30 routes, 855 trips/day (28.5/route), 12-month mean; plan backbone fleet 283
+INFO    v02 \u2502 operated km per counted trip 21.5 (monthly 19.4-23.3) vs plan one-way mean 22.6 / round trip 45.2 -> evidence favours B_one_way_run
+INFO    v02 \u2502   A_departure    13 h: h_eff 27.4 min, scaled 179, plan 283, ratio 1.583 outside band
+INFO    v02 \u2502   A_departure    14 h: h_eff 29.5 min, scaled 192, plan 283, ratio 1.470 outside band
+INFO    v02 \u2502   A_departure    15 h: h_eff 31.6 min, scaled 206, plan 283, ratio 1.372 outside band
+INFO    v02 \u2502   A_departure    16 h: h_eff 33.7 min, scaled 220, plan 283, ratio 1.287 outside band
+INFO    v02 \u2502   A_departure verdict (±15%): fail; (±25%): fail
+INFO    v02 \u2502   B_one_way_run  13 h: h_eff 54.7 min, scaled 358, plan 283, ratio 0.792 outside band
+INFO    v02 \u2502   B_one_way_run  14 h: h_eff 58.9 min, scaled 385, plan 283, ratio 0.735 outside band
+INFO    v02 \u2502   B_one_way_run  15 h: h_eff 63.1 min, scaled 412, plan 283, ratio 0.686 outside band
+INFO    v02 \u2502   B_one_way_run  16 h: h_eff 67.3 min, scaled 440, plan 283, ratio 0.643 outside band
+INFO    v02 \u2502   B_one_way_run verdict (±15%): fail; (±25%): mixed
+INFO    v02 \u2502 route rank: rho(operator-deployed buses, plan fleet) = 0.220 (p=0.244)
 
 ================================================================================
-FINISHED:    2026-09-30T14:47:19.323436+00:00
-DURATION:    1.16s
 EXIT CODE:   0
 STATUS:      PASSED
 VERIFIED:    2/2 outputs

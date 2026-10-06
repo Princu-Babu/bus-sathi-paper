@@ -2,20 +2,30 @@
 MODULE:      a12_equity_gini
 SCRIPT:      a12_equity_gini.py
 STAGE:       Stage 3
-STARTED:     2026-09-30T14:42:54.327038+00:00
-PYTHON:      E:\kash-paper\.venv\Scripts\python.exe (3.14.2)
-COMMAND:     E:\kash-paper\.venv\Scripts\python.exe E:\kash-paper\analysis\a12_equity_gini.py
+COMMAND:     python analysis/a12_equity_gini.py
 ================================================================================
 
-20:12:55  INFO    a12 \u2502 inputs: 186 network catchments, 186 active routes
-20:12:58  INFO    a12 \u2502 accessibility Gini (pop-weighted): frequency 0.9029, route-count 0.8993; 75.8% of residents have zero network service
-20:12:58  INFO    a12 \u2502   conditional on having service: frequency Gini 0.5986, route-count Gini 0.5835 over 1,592,847 served residents
-20:13:22  INFO    a12 \u2502 losers: 32 suppressed via-routings across 20 corridors; 31 costed, 1 not computable; dedup affected within 400 m = 114,879 (13,087 uncovered)
-20:13:22  INFO    a12 \u2502 done (27s)
+INFO    a12 \u2502 inputs: 186 network catchments, 186 active routes
+INFO    a12 \u2502 Gini check frequency_weighted               fixed 0.902901 | independent 0.902901 | legacy 0.902901 (fixed - legacy = +0.00e+00)
+INFO    a12 \u2502 Gini check route_count                      fixed 0.899254 | independent 0.899254 | legacy 0.899254 (fixed - legacy = +0.00e+00)
+INFO    a12 \u2502 Gini check frequency_weighted_served_only   fixed 0.598599 | independent 0.598599 | legacy 0.598599 (fixed - legacy = -1.79e-11)
+INFO    a12 \u2502 Gini check route_count_served_only          fixed 0.583520 | independent 0.583520 | legacy 0.583520 (fixed - legacy = -1.47e-12)
+INFO    a12 \u2502 accessibility Gini (pop-weighted): frequency 0.9029, route-count 0.8993; 75.8% of residents have zero network service
+INFO    a12 \u2502   conditional on having service: frequency Gini 0.5986, route-count Gini 0.5835 over 1,592,847 served residents
+INFO    a12 \u2502 enumerated 32 suppressed via-routings on 20 corridors
+INFO    a02 \u2502 graph loaded: 961,927 nodes, 973,569 edges
+INFO    a12 \u2502 variant disc__published        costed 31/32 : union within 400 m 114,879, uncovered 13,087
+INFO    a12 \u2502 variant disc__screen1.5        costed 26/32 : union within 400 m 92,607, uncovered 10,974
+INFO    a12 \u2502 variant disc__screen2          costed 28/32 : union within 400 m 102,282, uncovered 11,277
+INFO    a12 \u2502 variant disc__screen3          costed 29/32 : union within 400 m 109,088, uncovered 12,217
+INFO    a12 \u2502 variant walkshed__published    costed 31/32 : union within 400 m 53,413, uncovered 3,857
+INFO    a12 \u2502 variant walkshed__screen1.5    costed 26/32 : union within 400 m 43,240, uncovered 3,822
+INFO    a12 \u2502 variant walkshed__screen2      costed 28/32 : union within 400 m 48,367, uncovered 3,822
+INFO    a12 \u2502 variant walkshed__screen3      costed 29/32 : union within 400 m 50,838, uncovered 3,822
+INFO    a12 \u2502 losers (published method): 32 routings, 31 costed; union within 400 m 114,879, uncovered 13,087 | range over 8 variants: uncovered 3,822 - 13,087
+INFO    a12 \u2502 done
 
 ================================================================================
-FINISHED:    2026-09-30T14:43:22.832058+00:00
-DURATION:    28.51s
 EXIT CODE:   0
 STATUS:      PASSED
 VERIFIED:    3/3 outputs

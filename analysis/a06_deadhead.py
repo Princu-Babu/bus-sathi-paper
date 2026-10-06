@@ -156,7 +156,31 @@ def main() -> None:
                           plan_service_km_per_bus_day=net_serv / float(fleet.sum()),
                           observed_service_km_per_bus_day=net_obs_serv / float(fleet.sum())),
         literature_range_for_comparison=[0.05, 0.12],
+        literature_range_source=("none cited: the 5-12 % range is a commonly quoted rule of thumb "
+                                 "with no reference in this module, the JSON or references.bib; "
+                                 "cite it or drop the comparison (audit F-03-22)"),
         d1_inside_literature_range=bool(0.05 <= share <= 0.12),
+        d1_position_vs_literature_range=("below" if share < 0.05 else
+                                         "above" if share > 0.12 else "inside"),
+        d1_below_literature_range_note=(
+            f"D1 network deadhead ({100*share:.2f} %) sits BELOW the quoted 5-12 % range, so "
+            "the D1 bound is probably optimistic (low); only the observed-operating-day "
+            f"variant ({100*net_dead/(net_dead+net_obs_serv):.1f} %) lies inside it."
+            if share < 0.05 else ""),
+        n_routes=int(len(df)), n_buses=int(fleet.sum()), in_sample=True,
+        depot_assumptions_stated=dict(
+            depot_register="none exists in any input (permit register names no depot; plan carries none)",
+            depot_location=("D1: district headquarters stand = stops-master entry named after the "
+                            "district; where none exists, mean of the district's stops "
+                            "(basis flagged per district in district_hq)"),
+            legs_per_day=LEGS_PER_DAY,
+            distance=("straight line from depot to the NEARER route terminus x the route's own "
+                      f"circuity clipped to {list(CIRCUITY_CLIP)}; all buses on a route share one depot"),
+            observed_day_caveat=("the 217 service-min observed day is the median of driver-GPS "
+                                 "vehicle-days from the Srinagar belt (a13 duty factor) and is applied "
+                                 "to all 186 routes, including the 15-min e-bus trunks and rural "
+                                 "lifelines"),
+            denominator_service_day="16 h plan day (Daily_KM) vs observed 217 min; both reported"),
         service_km_basis="plan Daily_KM (16-h service day at the published headway)",
     ), "a06_deadhead")
     log.info("observed-day denominator: %.0f vs plan %.0f service km/bus/day -> D1 %.1f%%",

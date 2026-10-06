@@ -1,16 +1,22 @@
 {
-  "timestamp_utc": "2026-09-30T14:48:25.946549+00:00",
-  "total_elapsed_sec": 402.86079849999805,
   "overall_status": "SUCCESS",
   "cli_args": [
     "--quick"
   ],
   "results": [
     {
+      "name": "a02_summary",
+      "stage": 0,
+      "status": "PASSED",
+      "exit_code": 0,
+      "outputs_verified": 3,
+      "outputs_total": 3,
+      "log_file": "logs\\a02_summary.log"
+    },
+    {
       "name": "a02b_faithfulness",
       "stage": 0,
       "status": "PASSED",
-      "duration": 1.2014218999975128,
       "exit_code": 0,
       "outputs_verified": 2,
       "outputs_total": 2,
@@ -20,17 +26,24 @@
       "name": "q01_data_quality",
       "stage": 0,
       "status": "PASSED",
-      "duration": 5.2702219000057084,
       "exit_code": 0,
       "outputs_verified": 2,
       "outputs_total": 2,
       "log_file": "logs\\q01_data_quality.log"
     },
     {
+      "name": "q02_fleet_baseline",
+      "stage": 0,
+      "status": "PASSED",
+      "exit_code": 0,
+      "outputs_verified": 1,
+      "outputs_total": 1,
+      "log_file": "logs\\q02_fleet_baseline.log"
+    },
+    {
       "name": "v04_gps_validation",
       "stage": 1,
       "status": "PASSED",
-      "duration": 1.7034668999986025,
       "exit_code": 0,
       "outputs_verified": 2,
       "outputs_total": 2,
@@ -40,27 +53,15 @@
       "name": "a03_index_weights",
       "stage": 2,
       "status": "PASSED",
-      "duration": 9.331553700001677,
       "exit_code": 0,
       "outputs_verified": 2,
       "outputs_total": 2,
       "log_file": "logs\\a03_index_weights.log"
     },
     {
-      "name": "a04_class_count",
-      "stage": 2,
-      "status": "PASSED",
-      "duration": 4.294482400000561,
-      "exit_code": 0,
-      "outputs_verified": 4,
-      "outputs_total": 4,
-      "log_file": "logs\\a04_class_count.log"
-    },
-    {
       "name": "a05_headway_timeofday",
       "stage": 3,
       "status": "PASSED",
-      "duration": 0.6352133000036702,
       "exit_code": 0,
       "outputs_verified": 5,
       "outputs_total": 5,
@@ -70,7 +71,6 @@
       "name": "a07_load_factor",
       "stage": 3,
       "status": "PASSED",
-      "duration": 0.6319325999938883,
       "exit_code": 0,
       "outputs_verified": 2,
       "outputs_total": 2,
@@ -80,7 +80,6 @@
       "name": "a10_network_diagnostics",
       "stage": 3,
       "status": "PASSED",
-      "duration": 6.123372300004121,
       "exit_code": 0,
       "outputs_verified": 2,
       "outputs_total": 2,
@@ -90,7 +89,6 @@
       "name": "a11_coverage_accessibility",
       "stage": 3,
       "status": "PASSED",
-      "duration": 42.044284100004006,
       "exit_code": 0,
       "outputs_verified": 3,
       "outputs_total": 3,
@@ -100,7 +98,6 @@
       "name": "a12_equity_gini",
       "stage": 3,
       "status": "PASSED",
-      "duration": 28.505008899999666,
       "exit_code": 0,
       "outputs_verified": 3,
       "outputs_total": 3,
@@ -110,7 +107,6 @@
       "name": "a13_transfers",
       "stage": 3,
       "status": "PASSED",
-      "duration": 21.130441700006486,
       "exit_code": 0,
       "outputs_verified": 6,
       "outputs_total": 6,
@@ -120,7 +116,6 @@
       "name": "a06_deadhead",
       "stage": 3,
       "status": "PASSED",
-      "duration": 0.9387887000048067,
       "exit_code": 0,
       "outputs_verified": 2,
       "outputs_total": 2,
@@ -130,7 +125,6 @@
       "name": "a14_cost_emissions",
       "stage": 3,
       "status": "PASSED",
-      "duration": 0.6278747000033036,
       "exit_code": 0,
       "outputs_verified": 2,
       "outputs_total": 2,
@@ -140,7 +134,6 @@
       "name": "a15_scenarios",
       "stage": 3,
       "status": "PASSED",
-      "duration": 112.20963749999646,
       "exit_code": 0,
       "outputs_verified": 2,
       "outputs_total": 2,
@@ -150,37 +143,42 @@
       "name": "a16_peer_regression",
       "stage": 3,
       "status": "PASSED",
-      "duration": 1.9226283000025433,
       "exit_code": 0,
       "outputs_verified": 2,
       "outputs_total": 2,
       "log_file": "logs\\a16_peer_regression.log"
     },
     {
-      "name": "a08_sensitivity_oat",
-      "stage": 4,
-      "status": "PASSED",
-      "duration": 6.150109900001553,
-      "exit_code": 0,
-      "outputs_verified": 2,
-      "outputs_total": 2,
-      "log_file": "logs\\a08_sensitivity_oat.log"
-    },
-    {
       "name": "a09_monte_carlo_sobol",
       "stage": 4,
       "status": "PASSED",
-      "duration": 89.69817070000863,
       "exit_code": 0,
       "outputs_verified": 3,
       "outputs_total": 3,
       "log_file": "logs\\a09_monte_carlo_sobol.log"
     },
     {
+      "name": "a04_class_count",
+      "stage": 2,
+      "status": "PASSED",
+      "exit_code": 0,
+      "outputs_verified": 4,
+      "outputs_total": 4,
+      "log_file": "logs\\a04_class_count.log"
+    },
+    {
+      "name": "a08_sensitivity_oat",
+      "stage": 4,
+      "status": "PASSED",
+      "exit_code": 0,
+      "outputs_verified": 2,
+      "outputs_total": 2,
+      "log_file": "logs\\a08_sensitivity_oat.log"
+    },
+    {
       "name": "v01_spatial_crossval",
       "stage": 4,
       "status": "PASSED",
-      "duration": 2.6325062999967486,
       "exit_code": 0,
       "outputs_verified": 2,
       "outputs_total": 2,
@@ -190,7 +188,6 @@
       "name": "v02_benchmark",
       "stage": 4,
       "status": "PASSED",
-      "duration": 1.1600307000044268,
       "exit_code": 0,
       "outputs_verified": 2,
       "outputs_total": 2,
@@ -200,11 +197,11 @@
       "name": "figures_tables",
       "stage": 5,
       "status": "PASSED",
-      "duration": 66.61915929999668,
       "exit_code": 0,
       "outputs_verified": 0,
       "outputs_total": 0,
       "log_file": "logs\\figures_tables.log"
     }
-  ]
+  ],
+  "note": "Deterministic summary (tracked). Timestamps/runtimes/host paths: logs/volatile/LATEST_RUN_volatile.json (git-ignored)."
 }

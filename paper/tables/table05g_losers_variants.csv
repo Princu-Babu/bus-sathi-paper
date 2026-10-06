@@ -1,0 +1,9 @@
+Variant,Via-place catchment,Pin rule,Routings costed,Residents within 400 m (union),Residents outside plan network (union)
+disc__published,straight-line disc,published (first register geocode),31 of 32,114879,13087
+disc__screen1.5,straight-line disc,"plausible pin, detour factor <= 1.5",26 of 32,92607,10974
+disc__screen2,straight-line disc,"plausible pin, detour factor <= 2",28 of 32,102282,11277
+disc__screen3,straight-line disc,"plausible pin, detour factor <= 3",29 of 32,109088,12217
+walkshed__published,network walkshed,published (first register geocode),31 of 32,53413,3857
+walkshed__screen1.5,network walkshed,"plausible pin, detour factor <= 1.5",26 of 32,43240,3822
+walkshed__screen2,network walkshed,"plausible pin, detour factor <= 2",28 of 32,48367,3822
+walkshed__screen3,network walkshed,"plausible pin, detour factor <= 3",29 of 32,50838,3822

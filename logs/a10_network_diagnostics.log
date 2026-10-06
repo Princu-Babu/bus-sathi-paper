@@ -2,33 +2,31 @@
 MODULE:      a10_network_diagnostics
 SCRIPT:      a10_network_diagnostics.py
 STAGE:       Stage 3
-STARTED:     2026-09-30T14:42:06.158255+00:00
-PYTHON:      E:\kash-paper\.venv\Scripts\python.exe (3.14.2)
-COMMAND:     E:\kash-paper\.venv\Scripts\python.exe E:\kash-paper\analysis\a10_network_diagnostics.py
+COMMAND:     python analysis/a10_network_diagnostics.py
 ================================================================================
 
-20:12:07  INFO    a10 \u2502 geojson features 186 | plan rows 644 (active 186, merged 458)
-20:12:07  INFO    a10 \u2502 links: 118447 vertex occurrences -> 35443 distinct vertices -> 35650 links
-20:12:07  INFO    a10 \u2502 route-km 5567.740 | unique network-km 1524.457 | RATIO 3.6523 : 1
-20:12:07  INFO    a10 \u2502 reconciliation: sum(dup x len) 5557.346 + self-repeats 10.394 = 5567.740 (residual 0.000000 km)
-20:12:11  INFO    a10 \u2502 union cross-check: native 1524.457 km (0.0000% vs link method); snapped {'grid_0.5m': 1513.1, 'grid_1m': 1474.9, 'grid_2m': 1434.9, 'grid_5m': 1401.3, 'grid_10m': 1395.2}
-20:12:11  INFO    a10 \u2502 published Route_KM (active) 5577.615 vs measured geometry 5567.740 (0.177% apart)
-20:12:11  INFO    a10 \u2502 duplication: mean 3.309, median 1, p90 9, max 53 routes per link; km-weighted mean 3.645 (median 2, p90 9)
-20:12:11  INFO    a10 \u2502 46.6% of network-km is sole-served; 8.4% carries >=10 routes
-20:12:11  INFO    a10 \u2502 most-duplicated corridor: 53 of 186 routes over 0.088 km near Lalchowk (Srinagar, 103 m away)
-20:12:11  INFO    a10 \u2502   corridor >=10 routes:  57.952 km  peak 53  near Batmaloo (Srinagar, 920 m)
-20:12:11  INFO    a10 \u2502   corridor >=10 routes:  31.182 km  peak 16  near Palhalan (Baramulla, 1888 m)
-20:12:11  INFO    a10 \u2502   corridor >=10 routes:  20.418 km  peak 13  near NEW Khanda (Pulwama, 4573 m)
-20:12:11  INFO    a10 \u2502   corridor >=10 routes:   6.548 km  peak 27  near Lalbazar (Srinagar, 1155 m)
-20:12:11  INFO    a10 \u2502   corridor >=10 routes:   5.483 km  peak 16  near Bone Joint Hospital Barzalla (Srinagar, 753 m)
-20:12:11  INFO    a10 \u2502 baseline: 644 rows, route-km 13756.433; unique network-km NOT_COMPUTABLE (bounds 1524.5 - 13756.4 km)
-20:12:11  INFO    a10 \u2502 consolidation: route count -71.1%, route-km -59.5%; 458/458 merged rows resolve to an active successor (75 distinct survivors)
-20:12:12  INFO    a10 \u2502 permit chord proxy: 614 permits -> 200 distinct chord geometries (67.4% exact duplicates); 10114.7 chord-km over 4039.3 union-km = 2.504 : 1
-20:12:12  INFO    a10 \u2502 wrote a10_network_diagnostics.json and table05c_network_diagnostics
+INFO    a10 \u2502 geojson features 186 | plan rows 644 (active 186, merged 458)
+INFO    a10 \u2502 links: 118447 vertex occurrences -> 35443 distinct vertices -> 35650 links
+INFO    a10 \u2502 route-km 5567.740 | unique network-km 1524.457 | RATIO 3.6523 : 1
+INFO    a10 \u2502 reconciliation: sum(dup x len) 5557.346 + self-repeats 10.394 = 5567.740 (residual 0.000000 km)
+INFO    a10 \u2502 snapping cross-check: ratio 3.652 exact; {0.5: 3.68, 1.0: 3.775, 2.0: 3.882, 5.0: 3.982, 10.0: 4.02, 20.0: 4.083}
+INFO    a10 \u2502 union cross-check: native 1524.457 km (0.0000% vs link method); snapped {'grid_0.5m': 1513.1, 'grid_1m': 1474.9, 'grid_2m': 1434.9, 'grid_5m': 1401.3, 'grid_10m': 1395.2}
+INFO    a10 \u2502 published Route_KM (active) 5577.615 vs measured geometry 5567.740 (0.177% apart)
+INFO    a10 \u2502 duplication: mean 3.309, median 1, p90 9, max 53 routes per link; km-weighted mean 3.645 (median 2, p90 9)
+INFO    a10 \u2502 46.6% of network-km is sole-served; 8.4% carries >=10 routes
+INFO    a10 \u2502 most-duplicated corridor: 53 of 186 routes over 0.088 km near Lalchowk (Srinagar, 103 m away)
+INFO    a10 \u2502   corridor >=10 routes:  57.952 km  peak 53  near Batmaloo (Srinagar, 920 m)
+INFO    a10 \u2502   corridor >=10 routes:  31.182 km  peak 16  near Palhalan (Baramulla, 1888 m)
+INFO    a10 \u2502   corridor >=10 routes:  20.418 km  peak 13  near NEW Khanda (Pulwama, 4573 m)
+INFO    a10 \u2502   corridor >=10 routes:   6.548 km  peak 27  near Lalbazar (Srinagar, 1155 m)
+INFO    a10 \u2502   corridor >=10 routes:   5.483 km  peak 16  near Bone Joint Hospital Barzalla (Srinagar, 753 m)
+INFO    a10 \u2502 baseline: 644 rows, route-km 13756.433; unique network-km NOT_COMPUTABLE (bounds 1524.5 - 13756.4 km)
+INFO    a10 \u2502 consolidation: route count -71.1%, route-km -59.5%; 458/458 merged rows resolve to an active successor (75 distinct survivors)
+INFO    a10 \u2502 permit chord proxy: 614 permits -> 200 distinct chord geometries (67.4% exact duplicates); 10114.7 chord-km over 4039.3 union-km = 2.504 : 1
+INFO    a10 \u2502 MORAN At h=2 km Moran's I is 0.664 for uncovered head-count but 0.726 for TOTAL population on the same lattice and weights: the head-count statistic largely reflects clustered settlement. The population-free statistics are I = 0.455 (uncovered share of cell population, inhabited cells, p_sim 0.001) and I = 0.425 (residual of uncovered on total, p_sim 0.001). The coverage gap is spatially structured beyond settlement clustering only to the extent that these two are positive and significant. No statistic here quantifies how many feeder corridors would close the gap.
+INFO    a10 \u2502 wrote a10_network_diagnostics.json and table05c_network_diagnostics
 
 ================================================================================
-FINISHED:    2026-09-30T14:42:12.281634+00:00
-DURATION:    6.12s
 EXIT CODE:   0
 STATUS:      PASSED
 VERIFIED:    2/2 outputs

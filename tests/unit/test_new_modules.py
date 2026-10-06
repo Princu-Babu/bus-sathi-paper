@@ -78,7 +78,10 @@ def test_deadhead_is_bounded_not_measured():
 def test_cost_module_is_marked_provisional_and_unverified():
     j = _load("a14_cost_emissions")
     assert j["status"] == "PROVISIONAL_PENDING_D8"
-    assert not any(c["verified"] for c in j["constants"].values())
+    # only the primary-sourced constants (and press-sourced GCC rates) are flagged; diesel and cost rates are not
+    assert j["constants"]["diesel_kmpl_full_size"]["verified"] is False
+    assert j["constants"]["cost_inr_per_km_full_size"]["verified"] is False
+    assert all(c["verified"] in (True, False, "press") for c in j["constants"].values())
     for b in j["bases"].values():
         lo, hi = b["cost_inr_per_year"]
         assert lo < hi

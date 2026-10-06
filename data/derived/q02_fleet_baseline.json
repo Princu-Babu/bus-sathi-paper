@@ -1,0 +1,182 @@
+{
+  "as_of_date": "2026-03-14",
+  "base": "permit register: all-J&K stage-carriage register, one row per permit; Kashmir Division = ten offices; counts are distinct registration numbers (numbers not stored)",
+  "baseline_valid_private_plus_ebuses": 777,
+  "bus_class_permit_rows": {
+    "by_class": {
+      "Bus": {
+        "expired": 1599,
+        "no_end_date": 0,
+        "placeholder": 80,
+        "valid": 649
+      },
+      "Omni Bus": {
+        "expired": 109,
+        "no_end_date": 0,
+        "placeholder": 4,
+        "valid": 30
+      }
+    },
+    "by_status": {
+      "expired": 1708,
+      "no_end_date": 0,
+      "placeholder": 84,
+      "valid": 679
+    },
+    "total": 2471
+  },
+  "bus_class_vehicles": {
+    "by_class": {
+      "Bus": {
+        "expired": 1575,
+        "no_end_date": 0,
+        "placeholder": 77,
+        "valid": 649
+      },
+      "Omni Bus": {
+        "expired": 100,
+        "no_end_date": 0,
+        "placeholder": 3,
+        "valid": 30
+      }
+    },
+    "by_status": {
+      "expired": 1675,
+      "no_end_date": 0,
+      "placeholder": 80,
+      "valid": 679
+    },
+    "total": 2434
+  },
+  "caveat": "A valid permit is not proof that the bus operates.",
+  "caveats": [
+    "A valid permit is not proof that the bus operates.",
+    "the register is a paper record: it does not show which permitted buses run, nor how many hours a day",
+    "a vehicle holding permits in several offices is counted once per division scope (see meta vehicle_rule)"
+  ],
+  "decided_by": "lead author (definition); figures computed",
+  "definition": "baseline = distinct bus-class vehicles with a valid permit on the register's latest permit date + e-buses in the CHALO deployment file; decided by the lead author; every figure recomputed from the inputs",
+  "ebuses": {
+    "n_ebuses": 98,
+    "n_routes": 30,
+    "source": "data/raw/chalo_deployed_buses.csv (column 'New Deployement', summed by route)"
+  },
+  "inputs": {
+    "ebus_deployment": "data/raw/chalo_deployed_buses.csv",
+    "permit_register_meta": "data/raw/permit_register_summary_meta.json",
+    "permit_register_sha256": "2258b3066d2cb1c81c0bc1522d66127b6d555f2e87854d6e38cc044c0041d718",
+    "permit_register_summary": "data/raw/permit_register_summary.csv (counts only; made by tools/summarise_permit_register.py)"
+  },
+  "jkrtc": {
+    "note": "JKRTC (state corporation) buses are not in the baseline by decision of the lead author. The plan's routes include former JKRTC services, so the baseline understates the fleet that served those routes and the uplift against it is overstated to that extent. No JKRTC fleet count is held in the repository.",
+    "status": "excluded_by_decision"
+  },
+  "kashmir_division_offices": [
+    "ANANTNAG ARTO",
+    "BANDIPORA ARTO",
+    "BARAMULLA ARTO",
+    "BUDGAM ARTO",
+    "GANDERBAL ARTO",
+    "KULGAM ARTO",
+    "KUPWARA ARTO",
+    "PULWAMA ARTO",
+    "SHOPIAN ARTO",
+    "SRINAGAR RTO"
+  ],
+  "n_kashmir_division_offices": 10,
+  "permit_validity_length_years": {
+    "all_statuses": {
+      "counts_by_years": {
+        "0": 5,
+        "1": 932,
+        "18": 1,
+        "19": 2,
+        "2": 378,
+        "3": 130,
+        "4": 54,
+        "5": 879,
+        "6": 4,
+        "7": 2,
+        "placeholder": 84
+      },
+      "n_permit_rows": 2471,
+      "shares_by_years": {
+        "0": 0.0020234722784297854,
+        "1": 0.377175232699312,
+        "18": 0.0004046944556859571,
+        "19": 0.0008093889113719142,
+        "2": 0.1529745042492918,
+        "3": 0.052610279239174426,
+        "4": 0.021853500607041682,
+        "5": 0.3557264265479563,
+        "6": 0.0016187778227438284,
+        "7": 0.0008093889113719142,
+        "placeholder": 0.0339943342776204
+      }
+    },
+    "valid_only": {
+      "counts_by_years": {
+        "4": 1,
+        "5": 678
+      },
+      "n_permit_rows": 679,
+      "shares_by_years": {
+        "4": 0.0014727540500736377,
+        "5": 0.9985272459499264
+      }
+    }
+  },
+  "plan_fleet": 1011,
+  "plan_fleet_base": "sum of Fleet_Required over the 186 active routes of the plan CSV (includes the 283-bus SSCL backbone)",
+  "route_recorded_both_ends": {
+    "all_statuses": {
+      "n_permit_rows": 2471,
+      "n_permit_rows_with_route": 538,
+      "share": 0.21772561715904493
+    },
+    "valid_only": {
+      "n_permit_rows": 679,
+      "n_permit_rows_with_route": 86,
+      "share": 0.12665684830633284
+    }
+  },
+  "route_recorded_either_end": {
+    "all_statuses": {
+      "n_permit_rows": 2471,
+      "n_permit_rows_with_route": 663,
+      "share": 0.26831242411978956
+    },
+    "valid_only": {
+      "n_permit_rows": 679,
+      "n_permit_rows_with_route": 89,
+      "share": 0.13107511045655376
+    }
+  },
+  "scope": "Kashmir Division: the ten RTO/ARTO offices; vehicle class Bus + Omni Bus",
+  "share_expired_on_paper": {
+    "base": "distinct bus-class vehicles (Bus + Omni Bus) in the ten Kashmir Division offices, status on the register's latest permit date",
+    "share_expired": 0.6881676253081348,
+    "share_expired_or_placeholder": 0.7210353327855382,
+    "vehicles_expired": 1675,
+    "vehicles_placeholder": 80,
+    "vehicles_total": 2434
+  },
+  "superseded_unsourced_baseline": {
+    "note": "The earlier '~600 buses today' figure (engine CLAUDE.md) has no source in this repository (audit F-02-13, F-09-06) and is replaced by the computed baseline.",
+    "status": "unsourced",
+    "value": "~600"
+  },
+  "uplift_vs_baseline": {
+    "additional_buses": 234,
+    "baseline": 777,
+    "plan_fleet": 1011,
+    "uplift_fraction": 0.3011583011583012
+  },
+  "uplift_vs_valid_private_only": {
+    "additional_buses": 332,
+    "baseline": 679,
+    "plan_fleet": 1011,
+    "uplift_fraction": 0.48895434462444776
+  },
+  "valid_private_buses": 679
+}

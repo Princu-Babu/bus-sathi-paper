@@ -3,6 +3,7 @@
     "Peri_Urban": 4.545454545454546,
     "Urban": 4.8
   },
+  "fleet_method_summary": "S0-S3 and S5 fleets are recomputed from the verified fleet model; none is obtained by scaling. S4 is the sum of the published fleet of surviving routes (no re-sizing).",
   "frontier": [
     {
       "city_headway_min": 10,
@@ -68,8 +69,12 @@
       "fleet_observation_anchored": 1119
     }
   ],
+  "frontier_fleet_method": "fleet_as_specified and fleet_observation_anchored are both recomputed from the fleet model at each city headway (published cycles / observed-pace cycles).",
   "funding_sequence": {
     "budget_buses": 303,
+    "buses_allocated": 299,
+    "buses_budgeted": 303,
+    "buses_unspent": 4,
     "buses_used": 299,
     "class_mix_funded": {
       "Peri_Urban": 14,
@@ -78,16 +83,30 @@
     },
     "coverage_full": 0.24189889745571344,
     "coverage_funded": 0.22363629829694148,
+    "coverage_reached_at_allocated_buses": 0.22363629829694148,
+    "coverage_reached_note": "299 of the 303-bus budget are allocated; the next route in the greedy order needs 5 buses and does not fit, so the prefix stops with 4 unspent. The coverage figures are at 299 buses.",
     "funded_share": 0.3,
     "n_backbone_funded": 5,
     "n_routes_funded": 63,
+    "ordering_method": "greedy by marginal coverage per bus; order-dependent; not an optimum",
+    "ordering_method_detail": "at each step buy the route with the most NEW residents (cells not already in a bought route's walkshed) per bus; residents counted once; later choices depend on earlier ones; per-route fleet is the published value.",
     "raster_vs_zonal_note": "coverage_full is the raster count of the same union a11 reports as 24.19%; small differences are cell-centre rounding.",
-    "share_of_full_coverage": 0.9245031732229559
+    "routes_funded": 63,
+    "share_of_full_coverage": 0.9245031732229559,
+    "share_of_full_coverage_note": "share_of_full_coverage is a share of the full plan's own reach (24.2% of study-area residents), not a share of residents; coverage_funded is the share of residents.",
+    "variant_fill_remaining_budget": {
+      "buses_allocated": 303,
+      "coverage": 0.22418496795245652,
+      "coverage_gain_pp": 0.05486696555150481,
+      "n_extra_routes": 1,
+      "note": "same greedy order, but continue past the first route that does not fit and buy any later route whose fleet fits the remainder; reported only to show how much the unspent buses matter"
+    }
   },
   "notes": [
     "Each scenario changes one lever; coverage is deduplicated.",
     "S2 rural pace rests on 2 corridors and is a bound.",
-    "S4 contracts connected components, which chains; it is an upper bound on what the stated rule would merge."
+    "S4 is an UPPER BOUND on consolidation (interpretation key): it contracts connected components, which chains, and the survivors are not re-sized; it is an upper bound on what the stated rule would merge.",
+    "Funding sequence: greedy by marginal coverage per bus; order-dependent; not an optimum. The budget is 303 buses, 299 are allocated (63 routes); coverage is reported at 299."
   ],
   "rural_bound_pace_min_per_km": 2.1325000000000003,
   "s4_merged_routes": [
@@ -611,6 +630,8 @@
       "description": "Published plan (v3.4.5-geo)",
       "fleet": 1011,
       "fleet_change_pct": 0.0,
+      "fleet_method": "recomputed from the fleet model (cycle time -> fleet formula); equals the published fleet on 186 of 186 routes",
+      "interpretation": "scenario result",
       "max_wait_rural_min": 50.0,
       "routes": 186,
       "scenario": "S0"
@@ -623,6 +644,8 @@
       "description": "Observed urban/peri-urban run time",
       "fleet": 1169,
       "fleet_change_pct": 15.62809099901088,
+      "fleet_method": "recomputed from the fleet model: urban and peri-urban cycle times re-derived at the observed pace, then the fleet formula",
+      "interpretation": "scenario result",
       "max_wait_rural_min": 50.0,
       "routes": 186,
       "scenario": "S1"
@@ -635,6 +658,8 @@
       "description": "S1 + rural cap at observed rural pace (2.13 min/km, n=2; bound)",
       "fleet": 1271,
       "fleet_change_pct": 25.717111770524227,
+      "fleet_method": "recomputed from the fleet model: S1 plus the rural per-km cap raised, then the fleet formula",
+      "interpretation": "scenario result",
       "max_wait_rural_min": 50.0,
       "routes": 186,
       "scenario": "S2"
@@ -647,18 +672,38 @@
       "description": "Flat 35-min rural headway (no 50-min buckets)",
       "fleet": 1106,
       "fleet_change_pct": 9.396636993076157,
+      "fleet_method": "recomputed from the fleet model: published cycle times, 35-min headway on rural non-backbone routes, fleet formula",
+      "interpretation": "scenario result",
       "max_wait_rural_min": 35.0,
       "routes": 186,
       "scenario": "S3"
     },
     {
       "buses_per_1000_covered": 0.3982419076758699,
+      "consolidation_diagnostics": {
+        "fleet_removed_buses": 478,
+        "fleet_removed_without_direct_pair_buses": 146,
+        "largest_component_routes": 45,
+        "n_backbone_routes_never_merged": 30,
+        "n_components_with_2plus_routes": 16,
+        "n_qualifying_pairs": 354,
+        "n_removed_with_no_direct_qualifying_pair_to_their_survivor": 34,
+        "n_routes_removed": 102,
+        "theta": 0.5
+      },
       "coverage_any": 0.20325449879585625,
       "coverage_le15": 0.10442732212644891,
       "coverage_le20": 0.11199831520106573,
       "description": "Consolidation at theta = 0.50 (engine merge test)",
       "fleet": 533,
       "fleet_change_pct": -47.279920870425315,
+      "fleet_method": "NOT recomputed: sum of the published fleet of the surviving routes; survivors keep their own fleet and headway (not re-sized for pooled demand)",
+      "interpretation": "upper bound on consolidation",
+      "interpretation_why": [
+        "components of qualifying pairs are contracted transitively: if A~B and B~C then A, B and C collapse to one route even when A and C do not overlap, so the stated pairwise rule would remove fewer routes",
+        "survivors are not re-sized: each keeps its own fleet and headway, so a pooled corridor that would need more buses than either route alone is not charged for them",
+        "the buses saved are the dropped routes' published fleet; no demand model re-allocates riders"
+      ],
       "max_wait_rural_min": 50.0,
       "routes": 84,
       "scenario": "S4"
@@ -671,6 +716,8 @@
       "description": "Urban frequent network (all Urban routes 15 min)",
       "fleet": 1172,
       "fleet_change_pct": 15.92482690405539,
+      "fleet_method": "recomputed from the fleet model: 15-min headway on Urban non-backbone routes, published cycle times, fleet formula",
+      "interpretation": "scenario result",
       "max_wait_rural_min": 50.0,
       "routes": 186,
       "scenario": "S5"

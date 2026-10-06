@@ -1,0 +1,19 @@
+================================================================================
+MODULE:      a02_summary
+SCRIPT:      a02_network_catchments.py
+STAGE:       Stage 0
+COMMAND:     python analysis/a02_network_catchments.py --summary-only
+================================================================================
+
+INFO    a02 \u2502 cache check: max |recomputed - cached| per route: Euclid 0, network 0
+INFO    a02 \u2502 reproduction on 142 self-consistent routes: median |err| 0.26%, max 58.14%, r = 0.97684
+INFO    a02 \u2502 per route (n=186): spurious share (E-N)/E median 37.4% IQR 30.5-41.7%; overstatement (E-N)/N median 59.7% IQR 43.9-71.6%
+INFO    a02 \u2502 union: Euclid 2,339,394 vs network 1,592,847: (E-N)/E 31.9%, (E-N)/N 46.9%; coverage 35.53% -> 24.19% of 6,584,762
+INFO    a02 \u2502 sensitivity: spurious-share median across 11 settings 28.7-52.8%; settings below the headline: ['W400_S150 (tau=100 m)', 'W500_S250 (tau=100 m)', 'W600_S250 (tau=100 m)', 'W800_S250 (tau=100 m)', 'all-touched rule (base W/S/tau)', 'tau=150 m']
+INFO    a02 \u2502 summary done
+
+================================================================================
+EXIT CODE:   0
+STATUS:      PASSED
+VERIFIED:    3/3 outputs
+================================================================================

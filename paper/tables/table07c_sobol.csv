@@ -1,14 +1,13 @@
-Parameter,Fleet A (as specified) ST,Fleet B (obs.-anchored) ST,Tier agreement ST,Coverage ST
-Fleet spare ratio,0.944,0.549,0.0,0.0
-Observed peri-urban pace (min/km),0.0,0.32,0.0,0.0
-Observed urban pace (min/km),0.0,0.129,0.0,0.0
-Dwell penalty per stop (min),0.039,0.001,0.0,0.0
-Assumed stop spacing for dwell (m),0.024,0.001,0.0,0.0
-Corridor consolidation threshold θ,0.0,0.0,0.0,0.0
-Composite weight on population,0.0,0.0,0.932,0.0
-City-core congestion multiplier,0.009,0.0,0.0,0.0
-Catchment sampling interval (m),0.0,0.0,0.099,0.026
-Tier-2 opportunity weight,0.0,0.0,0.035,0.0
-Tier-3 (seasonal) opportunity weight,0.0,0.0,0.037,0.0
-Tourist-corridor catchment boost,0.0,0.0,0.011,0.0
-Walk catchment radius (m),0.0,0.0,0.165,0.974
+Parameter,Fleet A (as specified) ST,Fleet A (as specified) S1,Fleet B (obs.-anchored) ST,Fleet B (obs.-anchored) S1,Fleet B-mov (engine method) ST,Fleet B-mov (engine method) S1,Tier agreement ST,Tier agreement S1,Coverage ST,Coverage S1
+Fleet spare ratio,0.946,0.944,0.581,0.569,0.201,0.193,0.0,0.0,0.0,0.0
+Observed peri-urban pace (min/km),0.0,0.0,0.3,0.244,0.02,0.02,0.0,0.0,0.0,0.0
+Observed urban pace (min/km),0.0,0.0,0.151,0.149,0.016,0.016,0.0,0.0,0.0,0.0
+Assumed stop spacing for dwell (m),0.023,0.008,0.001,-0.002,0.345,0.312,0.0,0.0,0.0,0.0
+Dwell penalty per stop (min),0.038,0.024,0.001,-0.001,0.46,0.423,0.0,0.0,0.0,0.0
+Composite weight on population,0.0,0.0,0.0,0.0,0.0,0.0,0.929,0.829,0.0,0.0
+Walk catchment radius (m),0.0,0.0,0.0,0.0,0.0,0.0,0.14,0.038,0.975,0.974
+Catchment sampling interval (m),0.0,0.0,0.0,0.0,0.0,0.0,0.129,0.006,0.026,0.026
+City-core congestion multiplier,0.011,0.002,0.0,0.0,0.0,-0.0,0.0,0.0,0.0,0.0
+Tourist-corridor catchment boost,0.0,0.0,0.0,0.0,0.0,0.0,0.008,-0.008,0.0,0.0
+Tier-3 (seasonal) opportunity weight,0.0,0.0,0.0,0.0,0.0,0.0,0.028,0.004,0.0,0.0
+Tier-2 opportunity weight,0.0,0.0,0.0,0.0,0.0,0.0,0.03,0.009,0.0,0.0

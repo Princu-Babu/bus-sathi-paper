@@ -1,0 +1,4 @@
+denominator,population,share_of_division,buses,buses_per_1000,buses_per_100000,vs_unverified_band_40_60,source
+Total Division population (10-district union),6584762,100.0,1011,0.15,15.4,below,data/derived/a11_coverage_accessibility.json : morans.study_area_worldpop_in_union
+Within 400 m straight-line (pipeline union),2339394,35.5,1011,0.43,43.2,within,data/derived/a02_network_catchments.json : pop_euclid_union
+Within 400 m by network (pipeline union),1592847,24.2,1011,0.63,63.5,above,data/derived/a02_network_catchments.json : pop_net_union

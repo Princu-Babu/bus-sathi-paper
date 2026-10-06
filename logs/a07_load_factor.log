@@ -2,18 +2,15 @@
 MODULE:      a07_load_factor
 SCRIPT:      a07_load_factor.py
 STAGE:       Stage 3
-STARTED:     2026-09-30T14:42:05.525449+00:00
-PYTHON:      E:\kash-paper\.venv\Scripts\python.exe (3.14.2)
-COMMAND:     E:\kash-paper\.venv\Scripts\python.exe E:\kash-paper\analysis\a07_load_factor.py
+COMMAND:     python analysis/a07_load_factor.py
 ================================================================================
 
-20:12:06  INFO    a07 \u2502 trip_count_is_one_way: today 37.3 boardings/one-way trip (0.90 per seat-slot); plan day-one 8.3; growth to hold 4.49x
-20:12:06  INFO    a07 \u2502 trip_count_is_round_trip: today 18.6 boardings/one-way trip (0.45 per seat-slot); plan day-one 8.3; growth to hold 2.24x
-20:12:06  INFO    a07 \u2502 proxy peak boarding/capacity median 0.227; 152 routes < 0.40
+INFO    a07 \u2502 trip_count_is_one_way: today 37.3 boardings/one-way trip (0.90 per seat-slot); plan day-one 8.3; growth to hold 4.49x
+INFO    a07 \u2502 trip_count_is_round_trip: today 18.6 boardings/one-way trip (0.45 per seat-slot); plan day-one 8.3; growth to hold 2.24x
+INFO    a07 \u2502 proxy peak boarding/capacity (legacy one-direction capacity) median 0.227; 152 routes < 0.40
+INFO    a07 \u2502 proxy peak boarding/capacity (both directions, corrected) median 0.113; 168 routes < 0.40; 9 > 0.85
 
 ================================================================================
-FINISHED:    2026-09-30T14:42:06.157391+00:00
-DURATION:    0.63s
 EXIT CODE:   0
 STATUS:      PASSED
 VERIFIED:    2/2 outputs

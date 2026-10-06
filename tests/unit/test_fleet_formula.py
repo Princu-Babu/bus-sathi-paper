@@ -6,14 +6,40 @@ operating = max(1, ceil(cycle_min / max(1, headway_min)))
 fleet = max(max(1, ceil(operating * 1.15)), 1 if route_type == 'Regional_District' else 2)
 """
 import math
+from types import SimpleNamespace
+
+import numpy as np
 import pytest
+
+from analysis import fleet_model as fm   # the production implementation under test
+
+SPARE = fm.BASE["FLEET_SPARE_RATIO"]
 
 
 def calc_fleet(cycle_min: float, headway_min: float, route_type: str) -> tuple[int, int]:
+    """Call the production `fleet_model.fleet_from_cycle` on a one-route stand-in (no formula is
+    re-implemented in this file). Returns (operating buses, fleet incl. spare and floor)."""
+    arr = SimpleNamespace(headway=np.array([headway_min], float),
+                          floor=np.array([fm.FLOOR[route_type]]),
+                          sscl=np.array([False]), sscl_floor=np.array([0]))
+    fleet = int(fm.fleet_from_cycle(arr, np.array([cycle_min], float), SPARE)[0])
     operating = max(1, math.ceil(cycle_min / max(1.0, headway_min)))
-    min_floor = 1 if route_type == "Regional_District" else 2
-    fleet = max(max(1, math.ceil(operating * 1.15)), min_floor)
     return operating, fleet
+
+
+@pytest.mark.tier1
+def test_production_function_reproduces_every_published_fleet():
+    """fleet_model on the real plan arrays equals the published Fleet_Required on all 186 routes."""
+    arr = fm.load_arrays()
+    out = fm.verify_baseline(arr)
+    assert out["fleet_reproduced"] == out["n_routes"] == 186
+    assert out["fleet_total"] == out["fleet_total_published"]
+
+
+@pytest.mark.tier1
+def test_spare_ratio_and_floor_constants_are_the_engine_values():
+    assert SPARE == pytest.approx(1.15)
+    assert fm.FLOOR == {"Urban": 2, "Peri_Urban": 2, "Regional_District": 1}
 
 
 @pytest.mark.tier1

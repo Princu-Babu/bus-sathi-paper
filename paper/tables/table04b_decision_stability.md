@@ -1,11 +1,11 @@
-**Stability of the trunk-eligibility gate and Jenks band under alternative weightings and accessibility measures**
+**Stability of the trunk-eligibility gate and Jenks band under alternative weightings and accessibility measures (in-sample, n = 186 routes)**
 
-| comparison                    |   gate_agreement |   gate_kappa |   band_agreement |   band_kappa |   spearman_cdi |
-|:------------------------------|-----------------:|-------------:|-----------------:|-------------:|---------------:|
-| euclid: equal vs entropy      |           0.9785 |       0.9489 |           0.8925 |       0.8211 |         0.9985 |
-| euclid: equal vs pca          |           1      |       1      |           1      |       1      |         1      |
-| net: equal vs entropy         |           0.9892 |       0.9745 |           0.9946 |       0.9906 |         0.9981 |
-| net: equal vs pca             |           1      |       1      |           1      |       1      |         1      |
-| equal: Euclidean vs network   |           0.9677 |       0.9234 |           0.9032 |       0.8388 |         0.9935 |
-| entropy: Euclidean vs network |           0.9677 |       0.9234 |           0.9301 |       0.8783 |         0.9934 |
-| pca: Euclidean vs network     |           0.9677 |       0.9234 |           0.9032 |       0.8388 |         0.9935 |
+| comparison                    |   gate_agreement |   gate_kappa |   band_agreement |   band_kappa |   spearman_cdi | note                                                        |
+|:------------------------------|-----------------:|-------------:|-----------------:|-------------:|---------------:|:------------------------------------------------------------|
+| euclid: equal vs entropy      |           0.9785 |       0.9489 |           0.8925 |       0.8211 |         0.9985 |                                                             |
+| euclid: equal vs pca          |           1      |       1      |           1      |       1      |         1      | identity, not a result: PCA on two criteria = equal weights |
+| net: equal vs entropy         |           0.9892 |       0.9745 |           0.9946 |       0.9906 |         0.9981 |                                                             |
+| net: equal vs pca             |           1      |       1      |           1      |       1      |         1      | identity, not a result: PCA on two criteria = equal weights |
+| equal: Euclidean vs network   |           0.9677 |       0.9234 |           0.9032 |       0.8388 |         0.9935 |                                                             |
+| entropy: Euclidean vs network |           0.9677 |       0.9234 |           0.9301 |       0.8783 |         0.9934 |                                                             |
+| pca: Euclidean vs network     |           0.9677 |       0.9234 |           0.9032 |       0.8388 |         0.9935 | same as the equal row: PCA = equal weights by construction  |

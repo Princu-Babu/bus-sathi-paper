@@ -108,6 +108,20 @@ log = C.get_logger("a05")
 SERVICE_HOURS = tuple(range(6, 23))     # observed operating window in the file
 K_RANGE = tuple(range(2, 7))            # class counts scanned for the GVF elbow
 MONTH_LABEL = "April 2026"
+# Service-day lengths used by different parts of the paper's operational
+# analyses. The headline (observed window, 17 h) is the first; the others are
+# reported as a sensitivity so no single length is silently preferred.
+#   observed  06:00-22:59  17 h  the window present in Hourly_Passenger_Count.csv
+#   engine16  06:00-21:59  16 h  the engine/a06 PHASE4_SERVICE_HOURS = 16 (no clock
+#                                position is defined in the engine; two placements)
+#   engine16b 07:00-22:59  16 h
+#   timetable 08:00-18:59  11 h  generate_timetables.py service day
+SERVICE_WINDOWS = {
+    "observed_17h": tuple(range(6, 23)),
+    "engine_16h_early": tuple(range(6, 22)),
+    "engine_16h_late": tuple(range(7, 23)),
+    "timetable_11h": tuple(range(8, 19)),
+}
 
 # Band names are assigned by clock position once the breaks are found, so that
 # the vocabulary of §5.6 (peak / off-peak / evening) attaches to bands the data
@@ -485,24 +499,51 @@ def main() -> None:
                            ("square-root", "mult_sqrt")):
             key = f"{stem}_{suffix}"
             tot_fleet, tot_bus_h, per_band = {}, 0.0, []
+            fleet_by_hour: dict[int, int] = {}
+            peak_mult = [b[key] for b in bands
+                         if b["band"] == peak_band["band"]][0]
             for b in bands:
                 h_b = np.minimum(act["Headway_Min"].to_numpy(float) * b[key], ceil_arr)
                 f_b = engine_fleet(act["Cycle_Time_Min"], h_b, floor=floor)
                 tot_fleet[b["band"]] = int(f_b.sum())
                 tot_bus_h += float(f_b.sum() * b["duration_h"])
+                for hh in range(b["hour_start"], b["hour_end"] + 1):
+                    fleet_by_hour[hh] = int(f_b.sum())
                 per_band.append(dict(anchor=anchor, rule=rule, band=b["band"],
                                      hours=b["hours"], duration_h=b["duration_h"],
                                      fleet=int(f_b.sum())))
-            flat_bus_h = float(act["Fleet_Required"].sum() * len(SERVICE_HOURS))
+            plan_fleet = float(act["Fleet_Required"].sum())
+            flat_bus_h = plan_fleet * len(SERVICE_HOURS)
+            # The same saving under each service-day length used elsewhere in the
+            # paper's operational analyses (baseline = plan fleet x window hours;
+            # both sides include the 15 % spare, so the ratio is like-for-like).
+            by_window = {}
+            for wname, whours in SERVICE_WINDOWS.items():
+                bh = float(sum(fleet_by_hour[h] for h in whours))
+                by_window[wname] = dict(
+                    hours=len(whours),
+                    window=f"{min(whours):02d}:00-{max(whours):02d}:59",
+                    bus_hour_saving_pct=round(100.0 * (1 - bh / (plan_fleet * len(whours))), 1))
+            peak_by_construction = bool(abs(peak_mult - 1.0) < 1e-12)
             fleet_rows.append(dict(
                 anchor=anchor, rule=rule,
                 peak_fleet=int(max(tot_fleet.values())),
-                plan_fleet=int(act["Fleet_Required"].sum()),
+                plan_fleet=int(plan_fleet),
                 vehicles_to_purchase_delta=int(max(tot_fleet.values())
-                                               - act["Fleet_Required"].sum()),
+                                               - plan_fleet),
+                peak_fleet_equals_plan_by_construction=peak_by_construction,
+                peak_fleet_note=(
+                    "IDENTITY, not a finding: the peak band's headway multiplier is "
+                    "exactly 1.0 (peak-anchored reading), so peak headways, and hence "
+                    "peak fleet, equal the plan's by construction; 'same fleet' here "
+                    "is the assumption that the published headway is the peak design."
+                    if peak_by_construction else
+                    "Peak multiplier != 1, so the peak fleet differs from the plan "
+                    "as a result of the rule (not an identity)."),
                 banded_bus_hours_per_day=round(tot_bus_h, 0),
                 flat_bus_hours_per_day=round(flat_bus_h, 0),
                 bus_hour_saving_pct=round(100.0 * (1 - tot_bus_h / flat_bus_h), 1),
+                bus_hour_saving_pct_by_service_window=by_window,
                 by_band=per_band,
             ))
 
@@ -516,6 +557,9 @@ def main() -> None:
         "Banded bus-hours/day": r["banded_bus_hours_per_day"],
         "Flat bus-hours/day": r["flat_bus_hours_per_day"],
         "Bus-hour change (%)": -r["bus_hour_saving_pct"],
+        "Peak fleet = plan by construction": ("yes (identity)"
+                                              if r["peak_fleet_equals_plan_by_construction"]
+                                              else "no"),
     } for r in fleet_rows])
 
     C.write_table(band_tab, "table05h_timeofday",
@@ -530,7 +574,10 @@ def main() -> None:
                   "mean-anchored: the peak tightens below the published headway")
     C.write_table(fleet_tab, "table05h_timeofday_fleet",
                   "Fleet and bus-hour consequence of time-of-day banding under "
-                  "two frequency rules and two reference anchors")
+                  "two frequency rules and two reference anchors (paper-side "
+                  "analysis; the engine has no time-of-day logic). Bus-hours are "
+                  "over the 17-hour observed window; in the peak-anchored rows "
+                  "'peak fleet = plan' holds by construction")
 
     # Where the ceiling destroys the off-peak saving: an MP feeder is already at
     # the 35-minute ceiling all day, so it has no off-peak headroom at all.
@@ -539,8 +586,74 @@ def main() -> None:
         if h0 >= ceil_min:
             ceiling_note.append(label)
 
+
+    # ── headline range, identities, labels ─────────────────────────────────
+    pa = [r for r in fleet_rows if r["anchor"] == "peak-anchored"]
+    sav = [r["bus_hour_saving_pct"] for r in pa]
+    win_names = list(SERVICE_WINDOWS)
+    saving_summary = dict(
+        definition=("Bus-hour saving of the banded schedule against the flat plan, "
+                    "peak-anchored reading (peak band keeps the published headway). "
+                    "BOTH frequency rules are reported; the paper must quote the range, "
+                    "not the larger end."),
+        n_routes=int(len(act)),
+        base=("plan Fleet_Required x service-window hours (flat) vs sum over bands of "
+              "resized fleet x band hours; both include the 15 % spare ratio"),
+        in_sample=True,
+        proportional_pct=next(r["bus_hour_saving_pct"] for r in pa
+                              if r["rule"] == "proportional"),
+        square_root_pct=next(r["bus_hour_saving_pct"] for r in pa
+                             if r["rule"] == "square-root"),
+        min_pct=float(min(sav)), max_pct=float(max(sav)),
+        range_text=f"{min(sav):.1f}-{max(sav):.1f} %",
+        range_across_service_windows_pct={
+            w: dict(window=pa[0]["bus_hour_saving_pct_by_service_window"][w]["window"],
+                    hours=pa[0]["bus_hour_saving_pct_by_service_window"][w]["hours"],
+                    min_pct=float(min(r["bus_hour_saving_pct_by_service_window"][w]
+                                      ["bus_hour_saving_pct"] for r in pa)),
+                    max_pct=float(max(r["bus_hour_saving_pct_by_service_window"][w]
+                                      ["bus_hour_saving_pct"] for r in pa)))
+            for w in win_names},
+        service_day_note=("The headline uses the 17-h window present in the count file "
+                          "(06:00-22:59). The engine's Daily_KM uses a 16-h day with no clock "
+                          "position, and the timetable generator uses 08:00-18:59 (11 h). "
+                          "The saving is recomputed for each; the paper should name the window."),
+        same_fleet_is_identity=bool(all(r["peak_fleet_equals_plan_by_construction"]
+                                        for r in pa)),
+        same_fleet_note=("'At the same 1,011 vehicles' is true by construction in both "
+                         "peak-anchored arms (peak multiplier = 1.0); it is the assumption "
+                         "that the published headway is a peak design, not a result. Under "
+                         "the mean-anchored reading the plan would need "
+                         f"{min(r['vehicles_to_purchase_delta'] for r in fleet_rows if r['anchor']=='mean-anchored')}"
+                         f"-{max(r['vehicles_to_purchase_delta'] for r in fleet_rows if r['anchor']=='mean-anchored')}"
+                         " extra vehicles and BUS-HOURS RISE."),
+        mean_anchored_bus_hour_change_pct={r["rule"]: -r["bus_hour_saving_pct"]
+                                           for r in fleet_rows if r["anchor"] == "mean-anchored"},
+        transferability=("Shape from the 30 SSCL e-bus routes, one month, applied to all 186 "
+                         "routes (incl. rural lifelines); cannot be tested with available data."),
+    )
+    identities_by_construction = [
+        "peak-anchored: peak-band headway multiplier = 1.0, hence peak fleet = plan fleet",
+        "boardings in the hourly file == April row of chalo_ridership.csv (provenance check, "
+        "not a test of the plan)",
+        "bus-hour baseline and banded schedule share the same 15 % spare ratio",
+    ]
+
     out = dict(
         status="OK",
+        analysis_scope="paper_side_analysis_not_in_engine",
+        analysis_scope_note=(
+            "The engine (transit_kashmir_v3.py) has no time-of-day logic: one flat "
+            "headway per route, fleet sized at that value (cross_evaluate.py notes "
+            "'time-of-day multipliers are v4'). Everything in this module is a "
+            "paper-side what-if applied AFTER the plan, using an SSCL-only April-2026 "
+            "boarding shape. It is not part of the published plan and is not evidence "
+            "about the engine."),
+        saving_summary=saving_summary,
+        identities_by_construction=identities_by_construction,
+        elbow_rule_note=("gvf_elbow() starts from k=3 (chosen = ks[1] with K_RANGE 2..6), so "
+                         "k=2 can never be returned; the 20 % marginal-gain cutoff is an "
+                         "uncited assumption (threshold_source: assumption)."),
         source_file=C.HOURLY_PAX_CSV.relative_to(C.ROOT).as_posix(),
         month=MONTH_LABEL,
         what_this_file_is=(
@@ -641,6 +754,8 @@ def main() -> None:
     log.info("policy ceiling binds in %d of the class x band x rule cells; "
              "classes with zero off-peak headroom: %s",
              n_ceiling_binds, ceiling_note or "none")
+    log.info("peak-anchored bus-hour saving range %s (identity: peak fleet = plan)",
+             saving_summary["range_text"])
     for r in fleet_rows:
         log.info("%-13s %-12s: peak fleet %d (plan %d, %+d vehicles to buy); "
                  "bus-hours/day %.0f vs flat %.0f (%+.1f%%)",

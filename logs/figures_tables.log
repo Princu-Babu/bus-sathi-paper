@@ -2,26 +2,22 @@
 MODULE:      figures_tables
 SCRIPT:      fig_generate_all.py
 STAGE:       Stage 5
-STARTED:     2026-09-30T14:47:19.325669+00:00
-PYTHON:      E:\kash-paper\.venv\Scripts\python.exe (3.14.2)
-COMMAND:     E:\kash-paper\.venv\Scripts\python.exe E:\kash-paper\analysis\fig_generate_all.py
+COMMAND:     python analysis/fig_generate_all.py
 ================================================================================
 
-20:17:20  INFO    figs \u2502 wrote figS2_funding_curve
-20:17:20  INFO    figs \u2502 wrote fig01_framework
-20:17:21  INFO    figs \u2502 wrote fig04_method_flow
-20:17:21  INFO    figs \u2502 wrote fig03_study_area
-20:17:21  INFO    figs \u2502 wrote fig05_permit_funnel
-20:17:22  INFO    figs \u2502 wrote fig06_catchment_bias
-20:17:24  INFO    figs \u2502 wrote fig07_tiers
-20:18:19  INFO    figs \u2502 wrote fig08_coverage
-20:18:21  INFO    figs \u2502 wrote fig09_fleet_interval
-20:18:23  INFO    figs \u2502 wrote fig09b_sobol
-20:18:25  INFO    figs \u2502 wrote figS1_frontier
+INFO    figs \u2502 wrote figS2_funding_curve
+INFO    figs \u2502 wrote fig01_framework
+INFO    figs \u2502 wrote fig04_method_flow
+INFO    figs \u2502 wrote fig03_study_area
+INFO    figs \u2502 wrote fig05_permit_funnel
+INFO    figs \u2502 wrote fig06_catchment_bias
+INFO    figs \u2502 wrote fig07_tiers
+INFO    figs \u2502 wrote fig08_coverage
+INFO    figs \u2502 wrote fig09_fleet_interval
+INFO    figs \u2502 wrote fig09b_sobol
+INFO    figs \u2502 wrote figS1_frontier
 
 ================================================================================
-FINISHED:    2026-09-30T14:48:25.944841+00:00
-DURATION:    66.62s
 EXIT CODE:   0
 STATUS:      PASSED
 VERIFIED:    0/0 outputs

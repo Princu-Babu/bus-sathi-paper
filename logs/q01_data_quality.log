@@ -2,26 +2,22 @@
 MODULE:      q01_data_quality
 SCRIPT:      q01_data_quality.py
 STAGE:       Stage 0
-STARTED:     2026-09-30T14:41:44.287372+00:00
-PYTHON:      E:\kash-paper\.venv\Scripts\python.exe (3.14.2)
-COMMAND:     E:\kash-paper\.venv\Scripts\python.exe E:\kash-paper\analysis\q01_data_quality.py
+COMMAND:     python analysis/q01_data_quality.py
 ================================================================================
 
-20:11:45  INFO    q01 \u2502 D4 WorldPop total 6584763 vs Census 2011 6888475 (ratio 0.956, implied CAGR -0.30%/yr)
-20:11:45  INFO    q01 \u2502 D4 raster covers district union: True; engine denominator match: True
-20:11:45  INFO    q01 \u2502 D1 positional join verified on 614 permit rows: 80.5% name-token match
-20:11:45  INFO    q01 \u2502 D1 register: 614 permit rows on 157 distinct corridors at 11 m (155 at 100 m); 457 duplicate rows (74.4%); mean 3.9, max 42 permits per corridor
-20:11:45  INFO    q01 \u2502 D1 collapsing cost: 20 corridors carry >1 via routing; 32 alternative routings suppressed; 38 mixed vehicle class, 34 mixed service type
-20:11:45  INFO    q01 \u2502 D1 funnel: 644 rows -> 186 active (71.1%), of which 156 permit-derived; 156/157 corridors retained (99.4%). Merges: 457 identical-corridor + 1 overlap (+0 unresolved). Reduction is 71.0 pp unit change and 0.2 pp consolidation.
-20:11:45  INFO    q01 \u2502 D2 activity: 66/186 active routes observed in driver GPS (35%)
-20:11:48  INFO    q01 \u2502 D3 OSM: 18533 km walkable network; rho(pop density, road density) = 0.92
-20:11:48  INFO    q01 \u2502 D5 POIs: 2431 total, 0 unplaced, 65% in Srinagar, per-100k range 0.3-120.4
-20:11:48  INFO    q01 \u2502 D6 travel time: MAPE(OSRM vs in-motion) = 65.1%, MAPE(plan vs observed total) = 47.6%, median plan/obs = 0.51
-20:11:48  INFO    q01 \u2502 q01 complete
+INFO    q01 \u2502 D4 WorldPop total 6584763 vs Census 2011 6888475 (ratio 0.956, implied CAGR -0.30%/yr)
+INFO    q01 \u2502 D4 raster covers district union: True; engine denominator match: True
+INFO    q01 \u2502 D1 positional join verified on 614 permit rows: 99.8% name-token match (1 mismatches; old len>2 filter gave 80.5%); offset test {'-2': 0.113, '-1': 0.14, '0': 0.998, '1': 0.142, '2': 0.111}
+INFO    q01 \u2502 D1 register: 614 permit rows on 157 distinct corridors at 11 m (155 at 100 m); 457 duplicate rows (74.4%); mean 3.9, max 42 permits per corridor
+INFO    q01 \u2502 D1 collapsing cost: 20 corridors carry >1 via routing; 32 alternative routings suppressed; 38 mixed vehicle class, 34 mixed service type
+INFO    q01 \u2502 D1 funnel: 644 rows -> 186 active (71.1%), of which 156 permit-derived; 156/157 corridors retained (99.4%). Merges: 457 identical-corridor + 1 overlap (+0 unresolved). Reduction is 71.0 pp unit change and 0.2 pp consolidation.
+INFO    q01 \u2502 D2 activity: 66/186 active routes observed in driver GPS (35%)
+INFO    q01 \u2502 D3 OSM: 18533 km walkable network; rho(pop density, road density) = 0.92
+INFO    q01 \u2502 D5 POIs: 2431 total, 0 unplaced, 65% in Srinagar, per-100k range 0.3-120.4
+INFO    q01 \u2502 D6 travel time: MAPE(OSRM vs in-motion) = 65.1%, MAPE(plan vs observed total) = 47.6%, median plan/obs = 0.51
+INFO    q01 \u2502 q01 complete
 
 ================================================================================
-FINISHED:    2026-09-30T14:41:49.557600+00:00
-DURATION:    5.27s
 EXIT CODE:   0
 STATUS:      PASSED
 VERIFIED:    2/2 outputs

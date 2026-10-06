@@ -1,9 +1,62 @@
 {
+  "adj_r_squared": {
+    "M1_pop_only": 0.0691,
+    "M2_pop_density": 0.0461,
+    "M2b_pop_density_excl_multicity": 0.1647,
+    "M3_log_pop_only": 0.0739,
+    "M3d_log_pop_density": 0.0525
+  },
+  "base": "n Indian peer cities with use_in_fit=True; in-sample OLS; Kashmir is out-of-sample",
   "citations": [
     "Association of State Road Transport Undertakings (2024). SRTU Fleet Handbook-2024: A Journey to Efficiency (Make-wise & Type-wise). New Delhi: ASRTU.",
     "Office of the Registrar General & Census Commissioner, India (2011). Census of India 2011, Table A-04(I): Towns and Urban Agglomerations Classified by Population Size Class. NADA catalogue 42876.",
     "Central Institute of Road Transport (2022). State Transport Undertakings \u2014 Profile & Performance 2021-22. Pune: CIRT (network-structure covariates)."
   ],
+  "coefficient_p_values": {
+    "M1_pop_only": {
+      "const": 0.16107214516847215,
+      "log10_pop": 0.06638726570418703
+    },
+    "M2_pop_density": {
+      "const": 0.1581173514817822,
+      "density": 0.6733407560249445,
+      "log10_pop": 0.06339389001603932
+    },
+    "M2b_pop_density_excl_multicity": {
+      "const": 0.020843573848081998,
+      "density": 0.991954712815077,
+      "log10_pop": 0.00823034171179214
+    },
+    "M3_log_pop_only": {
+      "const": 0.006198333589244306,
+      "log10_pop": 0.05975628679663385
+    },
+    "M3d_log_pop_density": {
+      "const": 0.006360144366740782,
+      "density": 0.6327081654978315,
+      "log10_pop": 0.05550711991680154
+    }
+  },
+  "denominators": {
+    "euclid_400m": {
+      "label": "Within 400 m straight-line (pipeline union)",
+      "source": "data/derived/a02_network_catchments.json : pop_euclid_union",
+      "value": 2339393.75
+    },
+    "network_400m": {
+      "equals_a11_any_service_population": true,
+      "label": "Within 400 m by network (pipeline union)",
+      "source": "data/derived/a02_network_catchments.json : pop_net_union",
+      "value": 1592846.75
+    },
+    "status": "OK",
+    "total": {
+      "equals_common_STUDY_AREA_POPULATION": true,
+      "label": "Total Division population (10-district union)",
+      "source": "data/derived/a11_coverage_accessibility.json : morans.study_area_worldpop_in_union",
+      "value": 6584762.0
+    }
+  },
   "dependent_variable": {
     "definition_mismatch_with_kashmir": "peer = public STU fleet; Kashmir 1,011 = planned ALL-operator fleet (absorbs private minibus permits + SSCL/CHALO e-buses). The regression benchmarks public STU provision, not a like-for-like target.",
     "name": "buses (public-sector city fleet held)",
@@ -15,11 +68,30 @@
     "source": "ASRTU (2024) SRTU Fleet Handbook-2024, 'City' column, as on 31 Oct 2023",
     "source_url": "https://www.asrtu.org/resource/front/uploads/STUs%20Fleet%20Book%202024.pdf"
   },
-  "headline": "Fit on 36 Indian peer cities (Srinagar excluded as a non-city undercount). The relationship is weak: population-only R^2=0.0957, adding density R^2=0.1006 (density p=0.67, i.e. it adds nothing). The plan's 1011 buses are 0.154/1,000 on the total population \u2014 the peer 61th percentile and inside prediction interval of the preferred (M3) 95% interval \u2014 and 0.436/1,000 on the served population. Kashmir's density 414/km^2 is below every fitted city, so the density term is extrapolation. Because R^2 is low the interval is wide, and the honest reading is a plausibility band: the plan is not an outlier against Indian public-sector fleet provision.",
+  "extrapolation": {
+    "density_outside_fitted_range": true,
+    "fitted_density_range": [
+      2809.4,
+      21833.1
+    ],
+    "fitted_population_range": [
+      347852,
+      18394912
+    ],
+    "kashmir_density": 413.8,
+    "kashmir_population": 6584762,
+    "models_flagged": [
+      "M2_pop_density",
+      "M2b_pop_density_excl_multicity",
+      "M3d_log_pop_density"
+    ],
+    "population_outside_fitted_range": false
+  },
+  "headline": "Fit on n=36 Indian peer cities (in-sample; Srinagar excluded). The fit is weak: R^2 = 0.0957 (population only, levels) and 0.1006 (with density; density p=0.67); across the five models R^2 is 0.0957 to 0.2169. At Kashmir's population the M3 95% prediction interval is 162 to 8181 buses (0.025 to 1.242 per 1,000); the plan's 1011 buses (0.154 per 1,000, peer percentile 61) are inside prediction interval. The plan falls inside the prediction interval of 5 of 5 models. Because the intervals are very wide, the regression cannot exclude a fleet several times larger or smaller than the plan's, and it cannot confirm the plan is the right size; on the total-population basis the plan's buses per 1,000 is inside the preferred model's interval, so the regression does not flag it as an outlier (a weak statement given the width). Kashmir's density 414/km^2 is below every fitted city, so the density models are extrapolations. The peer variable is public-sector fleet held; the plan's is a planned all-operator fleet.",
   "interpretation_caveats": [
     "Peer fleet is public-sector only; Kashmir fleet is planned all-operator \u2014 sitting above the public-STU expectation is partly this definitional gap.",
     "Kashmir Division is a mostly-rural region, not a city; its density is an extrapolation below the fitted range, so trust the population-only models.",
-    "R^2 is low (0.10 in levels), so population and density explain little of the variation in Indian city fleet provision. The regression supports a wide plausibility band, NOT a point target \u2014 do not read the fitted value as a norm.",
+    "R^2 is low (0.0957 population-only, levels), so population and density explain little of the variation in Indian city fleet provision. The regression supports a wide plausibility band, NOT a point target \u2014 do not read the fitted value as a norm.",
     "The level-form (M1/M2) 95% intervals have negative lower bounds, which is not a possible fleet; M3's log specification is the interval to quote.",
     "buses-per-1,000 is capitalisation (fleet held), not delivered service; and the 2011 population denominator predates the 2023 fleet by 12 years.",
     "The served-population predictions treat the covered population as a notional city of that size \u2014 a what-if, not a claim that the served area is a city."
@@ -32,13 +104,13 @@
     "population_denominators": {
       "served_a11": {
         "buses_per_1000": 0.6347,
-        "note": "a11_coverage_accessibility.json, in-repo network 400 m walkshed",
-        "value": 1592846
+        "note": "data/derived/a02_network_catchments.json : pop_net_union (key name kept for compatibility: network 400 m walkshed)",
+        "value": 1592847
       },
-      "served_engine": {
-        "buses_per_1000": 0.4362,
-        "note": "engine v3.4.5-geo CLAUDE.md, 400 m-walkshed coverage (35.2% of the 6.58M study area); not reproduced in-repo",
-        "value": 2317958
+      "served_euclid": {
+        "buses_per_1000": 0.4322,
+        "note": "data/derived/a02_network_catchments.json : pop_euclid_union",
+        "value": 2339394
       },
       "total": {
         "buses_per_1000": 0.1535,
@@ -47,6 +119,193 @@
       }
     }
   },
+  "legacy_engine_self_report": {
+    "buses_per_100000_on_engine_figure_rounded_half_up": 43.6,
+    "difference_vs_pipeline_straight_line": -21436,
+    "engine_served_population": 2317958,
+    "engine_share_of_division_pct": 35.2,
+    "note": "the earlier prose figure 43 per 100,000 was 43.6 truncated; on the pipeline's own straight-line union the ratio is in per_population_ratios",
+    "pipeline_straight_line_share_of_division_pct": 35.53,
+    "pipeline_straight_line_union": 2339394,
+    "source": "engine v3.4.5-geo CLAUDE.md, 400 m-walkshed coverage (35.2% of the study area); external to this repo, not reproducible here",
+    "status": "superseded; not used as a denominator, prediction point or table row"
+  },
+  "model_summary": [
+    {
+      "adj_r_squared": 0.0691,
+      "base_note": "n=36 Indian peer cities, in-sample fit; interval is a 95% prediction interval for a single new city at Kashmir's population",
+      "coefficient_p_values": {
+        "log10_pop": 0.06638726570418703
+      },
+      "dependent_variable": "buses_per_1000",
+      "extrapolation": false,
+      "extrapolation_reasons": [],
+      "f_pvalue": 0.06638726570418717,
+      "kashmir_design": {
+        "density": null,
+        "population": 6584762
+      },
+      "model": "M1_pop_only",
+      "n": 36,
+      "plan_fleet": 1011,
+      "plan_position": "inside_prediction_interval",
+      "plan_within_pred_interval": true,
+      "point_buses": 1660.1282994978556,
+      "point_buses_per_1000": 0.25211667475572475,
+      "point_is": "conditional mean",
+      "pred_interval_buses": [
+        -688.7004139803353,
+        4008.957012976046
+      ],
+      "pred_interval_buses_per_1000": [
+        -0.1045900237518585,
+        0.6088233732633079
+      ],
+      "pred_interval_lower_is_impossible": true,
+      "r_squared": 0.0957
+    },
+    {
+      "adj_r_squared": 0.0461,
+      "base_note": "n=36 Indian peer cities, in-sample fit; interval is a 95% prediction interval for a single new city at Kashmir's population and density",
+      "coefficient_p_values": {
+        "density": 0.6733407560249445,
+        "log10_pop": 0.06339389001603932
+      },
+      "dependent_variable": "buses_per_1000",
+      "extrapolation": true,
+      "extrapolation_reasons": [
+        "density 413.8/km2 outside fitted range [2809.4, 21833.1]"
+      ],
+      "f_pvalue": 0.1738168405046626,
+      "kashmir_design": {
+        "density": 413.8,
+        "population": 6584762
+      },
+      "model": "M2_pop_density",
+      "n": 36,
+      "plan_fleet": 1011,
+      "plan_position": "inside_prediction_interval",
+      "plan_within_pred_interval": true,
+      "point_buses": 1866.5314087631405,
+      "point_buses_per_1000": 0.2834622433981882,
+      "point_is": "conditional mean",
+      "pred_interval_buses": [
+        -710.3837106149417,
+        4443.446528141223
+      ],
+      "pred_interval_buses_per_1000": [
+        -0.10788297445145956,
+        0.674807461247836
+      ],
+      "pred_interval_lower_is_impossible": true,
+      "r_squared": 0.1006
+    },
+    {
+      "adj_r_squared": 0.1647,
+      "base_note": "n=33 Indian peer cities, in-sample fit; interval is a 95% prediction interval for a single new city at Kashmir's population and density",
+      "coefficient_p_values": {
+        "density": 0.991954712815077,
+        "log10_pop": 0.00823034171179214
+      },
+      "dependent_variable": "buses_per_1000",
+      "extrapolation": true,
+      "extrapolation_reasons": [
+        "density 413.8/km2 outside fitted range [2809.4, 21833.1]"
+      ],
+      "f_pvalue": 0.02553516205168332,
+      "kashmir_design": {
+        "density": 413.8,
+        "population": 6584762
+      },
+      "model": "M2b_pop_density_excl_multicity",
+      "n": 33,
+      "plan_fleet": 1011,
+      "plan_position": "inside_prediction_interval",
+      "plan_within_pred_interval": true,
+      "point_buses": 1806.269928812698,
+      "point_buses_per_1000": 0.2743105868993744,
+      "point_is": "conditional mean",
+      "pred_interval_buses": [
+        -535.4944676314168,
+        4148.034325256813
+      ],
+      "pred_interval_buses_per_1000": [
+        -0.08132328361016189,
+        0.6299444574089106
+      ],
+      "pred_interval_lower_is_impossible": true,
+      "r_squared": 0.2169
+    },
+    {
+      "adj_r_squared": 0.0739,
+      "base_note": "n=36 Indian peer cities, in-sample fit; interval is a 95% prediction interval for a single new city at Kashmir's population",
+      "coefficient_p_values": {
+        "log10_pop": 0.05975628679663385
+      },
+      "dependent_variable": "log10(buses_per_1000)",
+      "extrapolation": false,
+      "extrapolation_reasons": [],
+      "f_pvalue": 0.05975628679663382,
+      "kashmir_design": {
+        "density": null,
+        "population": 6584762
+      },
+      "model": "M3_log_pop_only",
+      "n": 36,
+      "plan_fleet": 1011,
+      "plan_position": "inside_prediction_interval",
+      "plan_within_pred_interval": true,
+      "point_buses": 1152.2473870829874,
+      "point_buses_per_1000": 0.17498694517478194,
+      "point_is": "conditional median (back-transformed from log10)",
+      "pred_interval_buses": [
+        162.29278618848213,
+        8180.733550890239
+      ],
+      "pred_interval_buses_per_1000": [
+        0.024646720137870153,
+        1.2423734602541807
+      ],
+      "pred_interval_lower_is_impossible": false,
+      "r_squared": 0.1004
+    },
+    {
+      "adj_r_squared": 0.0525,
+      "base_note": "n=36 Indian peer cities, in-sample fit; interval is a 95% prediction interval for a single new city at Kashmir's population and density",
+      "coefficient_p_values": {
+        "density": 0.6327081654978315,
+        "log10_pop": 0.05550711991680154
+      },
+      "dependent_variable": "log10(buses_per_1000)",
+      "extrapolation": true,
+      "extrapolation_reasons": [
+        "density 413.8/km2 outside fitted range [2809.4, 21833.1]"
+      ],
+      "f_pvalue": 0.15549515454639268,
+      "kashmir_design": {
+        "density": 413.8,
+        "population": 6584762
+      },
+      "model": "M3d_log_pop_density",
+      "n": 36,
+      "plan_fleet": 1011,
+      "plan_position": "inside_prediction_interval",
+      "plan_within_pred_interval": true,
+      "point_buses": 1400.6022335121945,
+      "point_buses_per_1000": 0.21270354699413502,
+      "point_is": "conditional median (back-transformed from log10)",
+      "pred_interval_buses": [
+        163.3558366224723,
+        12008.671725963206
+      ],
+      "pred_interval_buses_per_1000": [
+        0.02480816111842346,
+        1.8237062669787012
+      ],
+      "pred_interval_lower_is_impossible": false,
+      "r_squared": 0.1067
+    }
+  ],
   "models": [
     {
       "adj_r_squared": 0.0691,
@@ -199,6 +458,7 @@
       }
     }
   ],
+  "n": 36,
   "peer_set": {
     "buses_per_1000": {
       "max": 0.7317,
@@ -223,6 +483,51 @@
       18394912
     ]
   },
+  "per_population_ratios": {
+    "benchmark": {
+      "band_buses_per_100000": [
+        40.0,
+        60.0
+      ],
+      "defined_on": "a city's (urban) population, per 100,000",
+      "note": "the national benchmark is defined per city population; Division total is a mostly-rural 10-district region, so it is not like-for-like",
+      "status": "unverified: quoted by secondary sources; primary document not read"
+    },
+    "numerator_buses": 1011,
+    "rounding": "half-up to one decimal (Decimal ROUND_HALF_UP), not truncation",
+    "rows": [
+      {
+        "buses": 1011,
+        "buses_per_1000": 0.15,
+        "buses_per_100000": 15.4,
+        "denominator": "Total Division population (10-district union)",
+        "population": 6584762,
+        "share_of_division": 100.0,
+        "source": "data/derived/a11_coverage_accessibility.json : morans.study_area_worldpop_in_union",
+        "vs_unverified_band_40_60": "below"
+      },
+      {
+        "buses": 1011,
+        "buses_per_1000": 0.43,
+        "buses_per_100000": 43.2,
+        "denominator": "Within 400 m straight-line (pipeline union)",
+        "population": 2339394,
+        "share_of_division": 35.5,
+        "source": "data/derived/a02_network_catchments.json : pop_euclid_union",
+        "vs_unverified_band_40_60": "within"
+      },
+      {
+        "buses": 1011,
+        "buses_per_1000": 0.63,
+        "buses_per_100000": 63.5,
+        "denominator": "Within 400 m by network (pipeline union)",
+        "population": 1592847,
+        "share_of_division": 24.2,
+        "source": "data/derived/a02_network_catchments.json : pop_net_union",
+        "vs_unverified_band_40_60": "above"
+      }
+    ]
+  },
   "placement": {
     "served_a11_vs_M1": {
       "actual_buses_per_1000": 0.6347,
@@ -238,19 +543,19 @@
       "predicted_buses_per_1000": 0.115,
       "residual": 0.5197
     },
-    "served_engine_vs_M1": {
-      "actual_buses_per_1000": 0.4362,
-      "peer_percentile": 86.1,
+    "served_euclid_vs_M1": {
+      "actual_buses_per_1000": 0.4322,
+      "peer_percentile": 83.3,
       "position_vs_pred_interval": "inside_prediction_interval",
-      "predicted_buses_per_1000": 0.1974,
-      "residual": 0.2387
+      "predicted_buses_per_1000": 0.1979,
+      "residual": 0.2343
     },
-    "served_engine_vs_M3_preferred": {
-      "actual_buses_per_1000": 0.4362,
-      "peer_percentile": 86.1,
+    "served_euclid_vs_M3_preferred": {
+      "actual_buses_per_1000": 0.4322,
+      "peer_percentile": 83.3,
       "position_vs_pred_interval": "inside_prediction_interval",
-      "predicted_buses_per_1000": 0.1285,
-      "residual": 0.3076
+      "predicted_buses_per_1000": 0.1289,
+      "residual": 0.3033
     },
     "total_vs_M1": {
       "actual_buses_per_1000": 0.1535,
@@ -289,18 +594,18 @@
         0.5267049913262211
       ]
     },
-    "M1_at_served_engine": {
+    "M1_at_served_euclid": {
       "design": {
-        "population": 2317958
+        "population": 2339393
       },
       "mean_ci": [
-        0.13796709950574435,
-        0.256883759023654
+        0.13831107554315353,
+        0.2575041675425956
       ],
-      "point": 0.1974254292646992,
+      "point": 0.19790762154287456,
       "pred_interval": [
-        -0.15181616516007984,
-        0.5466670236894782
+        -0.15135753073220443,
+        0.5471727738179535
       ]
     },
     "M1_at_total": {
@@ -348,19 +653,19 @@
         0.782569868920864
       ]
     },
-    "M3_at_served_engine": {
+    "M3_at_served_euclid": {
       "design": {
-        "population": 2317958
+        "population": 2339393
       },
       "mean_ci": [
-        0.09270343914147665,
-        0.1781882704852257
+        0.09288542964785611,
+        0.17880948014674464
       ],
-      "point": 0.12852496056662338,
+      "point": 0.12887511547440092,
       "point_is": "conditional median (back-transformed from log10)",
       "pred_interval": [
-        0.01886060946066702,
-        0.8758288284957626
+        0.018909545564200405,
+        0.8783286373620728
       ]
     },
     "M3_at_total": {
@@ -385,6 +690,13 @@
     "sha256": "8ab1bafd6e49aec4a6b2709398dbdeaab2b53bc369a53e62eacac601647a58dd",
     "source": "Census of India 2011, Table A-04(I) (Class-I towns), CLASS_I.xlsx",
     "source_url": "https://censusindia.gov.in/nada/index.php/catalog/42876"
+  },
+  "r_squared": {
+    "M1_pop_only": 0.0957,
+    "M2_pop_density": 0.1006,
+    "M2b_pop_density_excl_multicity": 0.2169,
+    "M3_log_pop_only": 0.1004,
+    "M3d_log_pop_density": 0.1067
   },
   "specification_note": {
     "explanation": "buses per 1,000 is strictly positive and right-skewed across the peer set (0.021 to 0.732, a 35-fold spread), so a normal-error OLS in levels assigns probability to a negative fleet: the M1/M2 95% prediction intervals do have negative lower bounds. They are reported because they are the specification the analysis plan names, but M3 \u2014 the same regressors on log10(buses per 1,000) \u2014 is preferred for the interval, since a monotone back-transform gives an exact and strictly positive 95% prediction interval. M3's point estimate is a conditional median.",

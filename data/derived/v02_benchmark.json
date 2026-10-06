@@ -1,4 +1,14 @@
 {
+  "band": {
+    "declared_in": "analysis/v02_benchmark.py (TOLERANCE); first written in the claim ledger at commit 1b9345f (2026-09-08), before this module was first committed at ab672e3 (2026-09-30)",
+    "engine_cross_check_band": 0.25,
+    "engine_cross_check_source": "the engine's cross_evaluate.py in the engine repository (E:/kash/CLAUDE.md section 6: 'within +-25 % band')",
+    "git_check_ledger_states_15pct": true,
+    "pre_registered": false,
+    "registered_anywhere": false,
+    "value": 0.15,
+    "wording": "a +-15 % acceptance band declared in the analysis code before V2 was run; the engine's earlier cross-check used +-25 %"
+  },
   "chalo_daily_operated_km": 18362.117808219176,
   "chalo_daily_pax": 31869.386301369865,
   "chalo_daily_trips": 855.3890410958904,
@@ -17,12 +27,157 @@
   "n_assumptions_within_tolerance": 0,
   "n_routes": 30,
   "n_routes_floored_by_chalo": 2,
+  "needs_data_owner_confirmation": true,
+  "operator_deployed_buses": 98,
+  "operator_deployed_buses_note": "buses CHALO's deployment file lists on the 30 routes; an operator figure, not a plan output",
+  "plan_backbone_fleet": 283,
+  "plan_backbone_fleet_note": "the PLAN's recommended fleet for the 30 backbone routes: the larger of the formula and the operator's deployed count, which binds on 2 of 30 routes. It is not CHALO's deployment.",
   "plan_sscl_fleet": 283,
+  "plan_sscl_fleet_note": "same quantity as plan_backbone_fleet (283); not what CHALO deploys (98)",
   "ratio_range": [
     1.287,
     1.583
   ],
+  "ratio_range_all_readings": [
+    0.643,
+    1.583
+  ],
+  "readings": {
+    "A_departure": {
+      "departures_per_route_direction_per_day": 28.51296803652968,
+      "engine_assumption": {
+        "ratio": 1.287,
+        "service_hours": 16.0,
+        "within_tolerance": false
+      },
+      "label": "A: Trip Count = departures per route-direction (a round trip counts once)",
+      "n_assumptions_within_tolerance": 0,
+      "ratio_range": [
+        1.287,
+        1.583
+      ],
+      "sweep": [
+        {
+          "chalo_effective_headway_min": 27.4,
+          "chalo_scaled_fleet": 178.7,
+          "plan_fleet": 283,
+          "ratio": 1.583,
+          "service_hours": 13.0,
+          "within_engine_crosscheck_band": false,
+          "within_tolerance": false
+        },
+        {
+          "chalo_effective_headway_min": 29.5,
+          "chalo_scaled_fleet": 192.5,
+          "plan_fleet": 283,
+          "ratio": 1.47,
+          "service_hours": 14.0,
+          "within_engine_crosscheck_band": false,
+          "within_tolerance": false
+        },
+        {
+          "chalo_effective_headway_min": 31.6,
+          "chalo_scaled_fleet": 206.2,
+          "plan_fleet": 283,
+          "ratio": 1.372,
+          "service_hours": 15.0,
+          "within_engine_crosscheck_band": false,
+          "within_tolerance": false
+        },
+        {
+          "chalo_effective_headway_min": 33.7,
+          "chalo_scaled_fleet": 220.0,
+          "plan_fleet": 283,
+          "ratio": 1.287,
+          "service_hours": 16.0,
+          "within_engine_crosscheck_band": false,
+          "within_tolerance": false
+        }
+      ],
+      "verdict_declared_band": {
+        "band": 0.15,
+        "direction": "plan_above_scaled_reference",
+        "n_service_day_assumptions_in_band": 0,
+        "n_service_day_assumptions_total": 4,
+        "verdict": "fail"
+      },
+      "verdict_engine_crosscheck_band": {
+        "band": 0.25,
+        "direction": "plan_above_scaled_reference",
+        "n_service_day_assumptions_in_band": 0,
+        "n_service_day_assumptions_total": 4,
+        "verdict": "fail"
+      }
+    },
+    "B_one_way_run": {
+      "departures_per_route_direction_per_day": 14.25648401826484,
+      "engine_assumption": {
+        "ratio": 0.643,
+        "service_hours": 16.0,
+        "within_tolerance": false
+      },
+      "label": "B: Trip Count = one-way runs, both directions counted",
+      "n_assumptions_within_tolerance": 0,
+      "ratio_range": [
+        0.643,
+        0.792
+      ],
+      "sweep": [
+        {
+          "chalo_effective_headway_min": 54.7,
+          "chalo_scaled_fleet": 357.5,
+          "plan_fleet": 283,
+          "ratio": 0.792,
+          "service_hours": 13.0,
+          "within_engine_crosscheck_band": true,
+          "within_tolerance": false
+        },
+        {
+          "chalo_effective_headway_min": 58.9,
+          "chalo_scaled_fleet": 384.9,
+          "plan_fleet": 283,
+          "ratio": 0.735,
+          "service_hours": 14.0,
+          "within_engine_crosscheck_band": false,
+          "within_tolerance": false
+        },
+        {
+          "chalo_effective_headway_min": 63.1,
+          "chalo_scaled_fleet": 412.4,
+          "plan_fleet": 283,
+          "ratio": 0.686,
+          "service_hours": 15.0,
+          "within_engine_crosscheck_band": false,
+          "within_tolerance": false
+        },
+        {
+          "chalo_effective_headway_min": 67.3,
+          "chalo_scaled_fleet": 439.9,
+          "plan_fleet": 283,
+          "ratio": 0.643,
+          "service_hours": 16.0,
+          "within_engine_crosscheck_band": false,
+          "within_tolerance": false
+        }
+      ],
+      "verdict_declared_band": {
+        "band": 0.15,
+        "direction": "plan_below_scaled_reference",
+        "n_service_day_assumptions_in_band": 0,
+        "n_service_day_assumptions_total": 4,
+        "verdict": "fail"
+      },
+      "verdict_engine_crosscheck_band": {
+        "band": 0.25,
+        "direction": "mixed",
+        "n_service_day_assumptions_in_band": 1,
+        "n_service_day_assumptions_total": 4,
+        "verdict": "mixed"
+      }
+    }
+  },
   "route_rank": {
+    "base": "n = 30 backbone routes, plan fleet vs operator-deployed buses; independent of the Trip Count reading; partly mechanical because the plan floors the fleet at the deployed count on 2 routes",
     "n": 30,
     "p_cycle": 0.15261849590049403,
     "p_fleet": 0.24368792820398316,
@@ -36,6 +191,7 @@
       "plan_fleet": 283,
       "ratio": 1.583,
       "service_hours": 13.0,
+      "within_engine_crosscheck_band": false,
       "within_tolerance": false
     },
     {
@@ -44,6 +200,7 @@
       "plan_fleet": 283,
       "ratio": 1.47,
       "service_hours": 14.0,
+      "within_engine_crosscheck_band": false,
       "within_tolerance": false
     },
     {
@@ -52,6 +209,7 @@
       "plan_fleet": 283,
       "ratio": 1.372,
       "service_hours": 15.0,
+      "within_engine_crosscheck_band": false,
       "within_tolerance": false
     },
     {
@@ -60,8 +218,65 @@
       "plan_fleet": 283,
       "ratio": 1.287,
       "service_hours": 16.0,
+      "within_engine_crosscheck_band": false,
       "within_tolerance": false
     }
   ],
-  "tolerance": 0.15
+  "sweep_note": "These top-level sweep/ratio keys are READING A only (the module's original assumption). Reading B is under readings.B_one_way_run. Neither reading is confirmed.",
+  "tolerance": 0.15,
+  "trip_count_definition": {
+    "evidence": {
+      "base": "n = 12 monthly CHALO rows (operated km / trip count) against n = 30 plan backbone alignments (Route_KM, one-way); in-sample for the plan, since the alignments are the CHALO routes",
+      "evidence_favours": "B_one_way_run",
+      "operated_km_per_counted_trip_by_month": {
+        "April": 22.006664184661208,
+        "August": 23.303988403071617,
+        "December": 21.425686705940805,
+        "February": 21.71397492187809,
+        "January": 22.020980399889577,
+        "July": 22.23638228217568,
+        "June": 20.206160951933615,
+        "March": 22.3106520090978,
+        "May": 19.435639180962923,
+        "November": 21.538096813320102,
+        "October": 20.90351001847378,
+        "September": 20.83387315456463
+      },
+      "operated_km_per_counted_trip_overall": 21.46639356601338,
+      "operated_km_per_counted_trip_range": [
+        19.435639180962923,
+        23.303988403071617
+      ],
+      "plan_backbone_one_way_route_km": {
+        "mean": 22.619866666666663,
+        "median": 18.969,
+        "n_routes": 30
+      },
+      "plan_backbone_round_trip_km_mean": 45.23973333333333,
+      "reading": "If a counted trip were a complete there-and-back cycle (reading A), operated km per trip would be near the round-trip length; if it is a one-way run (reading B), near the one-way length. The observed figure is 21.5 km against 22.6 km one-way and 45.2 km round trip. This is circumstantial: route lengths are the plan's, and a definition from the data owner is needed.",
+      "relative_gap_to_one_way_mean": 0.05099380635842017,
+      "relative_gap_to_round_trip_mean": 0.52549690317921
+    },
+    "needs_data_owner_confirmation": true,
+    "question_for_data_owner": "In the CHALO / SSCL ridership export, does 'Trip Count' count one-way runs (each direction separately) or complete round trips / departures per route?",
+    "unresolved": true
+  },
+  "verdict_by_reading": {
+    "A_departure": {
+      "band": 0.15,
+      "direction": "plan_above_scaled_reference",
+      "n_service_day_assumptions_in_band": 0,
+      "n_service_day_assumptions_total": 4,
+      "verdict": "fail"
+    },
+    "B_one_way_run": {
+      "band": 0.15,
+      "direction": "plan_below_scaled_reference",
+      "n_service_day_assumptions_in_band": 0,
+      "n_service_day_assumptions_total": 4,
+      "verdict": "fail"
+    }
+  },
+  "verdict_robust_to_reading": true,
+  "verdict_summary": "Reading A: ratio 1.29-1.58 (fail, plan_above_scaled_reference); reading B: 0.64-0.79 (fail, plan_below_scaled_reference), against a +-15 % band over a 13-16 h service day. The plan falls outside the band under both readings, but on opposite sides of it, so the sign of the departure from the operator's scaled fleet is not established."
 }

@@ -131,8 +131,7 @@ RANDOM_SEED = 20260823
 def get_logger(name: str) -> logging.Logger:
     logging.basicConfig(
         level=logging.INFO,
-        format="%(asctime)s  %(levelname)-7s %(name)s │ %(message)s",
-        datefmt="%H:%M:%S",
+        format="%(levelname)-7s %(name)s │ %(message)s",   # no wall-clock time: logs are tracked and must be deterministic
     )
     return logging.getLogger(name)
 
@@ -175,7 +174,8 @@ def write_table(df: pd.DataFrame, stem: str, caption: str = "",
     with md_path.open("w", encoding="utf-8") as fh:
         if caption:
             fh.write(f"**{caption}**\n\n")
-        fh.write(df.to_markdown(index=index))
+        md_df = df.astype(object).where(df.notna(), None) if df.isna().any().any() else df
+        fh.write(md_df.to_markdown(index=index, missingval=""))   # missing values print blank, never "nan"
         fh.write("\n")
     return csv_path
 
@@ -235,9 +235,13 @@ def gini(x: np.ndarray, weights: np.ndarray | None = None) -> float:
     cw = np.cumsum(weights)
     cxw = np.cumsum(x * weights)
     total_w, total_xw = cw[-1], cxw[-1]
-    # trapezoidal Lorenz-curve integration
-    lorenz = cxw / total_xw
-    pop = cw / total_w
+    # Trapezoidal Lorenz-curve integration. The curve starts at the origin
+    # (0, 0): without that point the first segment (area 0.5 * pop[0] * lorenz[0])
+    # is dropped and the Gini is biased upward (gini([1, 1]) came out 0.25, not 0;
+    # audit F-03-01). For unweighted x this is exactly the mean-absolute-
+    # difference Gini sum_ij |x_i - x_j| / (2 n^2 mean(x)).
+    lorenz = np.r_[0.0, cxw / total_xw]
+    pop = np.r_[0.0, cw / total_w]
     area = np.trapezoid(lorenz, pop) if hasattr(np, "trapezoid") else np.trapz(lorenz, pop)
     return float(1.0 - 2.0 * area)
 

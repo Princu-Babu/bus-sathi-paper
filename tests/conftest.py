@@ -40,22 +40,24 @@ RANDOM_SEED = 20260823
 
 # Prohibited legacy phrases / patterns (when uncontextualized)
 PROHIBITED_PATTERNS = [
-    r"\b342\b(?!\s*pax|\s*meters|\s*m\b)", # 342 permits
+    r"(?<![\d,.])342\s+(?:permits?|routes?)",   # 342 permits (not 1,342 or a page range)
     r"207\s+routes",
-    r"39%\s*(route\s*)?reduction",
-    r"95\.7%\s*(coverage)?",
-    r"1,?009\s*(bus(es)?|fleet)",
+    r"(?<![\d.])39\s*%\s*(?:route\s*)?reduction",   # "39% reduction" and "39 % reduction"
+    r"(?<![\d.])95\.7\s*%\s*(?:coverage)?",         # "95.7%" and "95.7 %"
+    r"1,?009\s*(?:bus(?:es)?|fleet)",
     r"Srinagar\s+Metropolitan\s+City",
     r"validated\s+against\s+ridership",
 ]
 
-CONTEXT_EXCLUSION_WORDS = [
-    "obsolete", "legacy", "prior", "inherited", "kills every",
-    "superceded", "superseded", "instead of", "wrong", "false",
-    "prohibited", "stale", "claim", "refute", "earlier draft",
-    "would be false", "cannot validate", "not validate", "never write",
-    "watch-out", "anticipated objection", "not performed", "no ridership"
+# A paragraph may mention a barred figure only if it is an explicit editorial callout, i.e. it carries
+# one of these literal markers. Generic words such as "prior", "inherited" or "claim" no longer exempt
+# a paragraph (they let uncontextualised uses through).
+EDITORIAL_CALLOUT_MARKERS = [
+    "[retired-figure]",
+    "<!-- retired-figure -->",
+    "retired figure:",
 ]
+CONTEXT_EXCLUSION_WORDS = EDITORIAL_CALLOUT_MARKERS   # legacy name kept for importers
 
 
 def pytest_configure(config):
@@ -142,7 +144,7 @@ def check_no_legacy_strings(text: str, context: str = "") -> list[str]:
     """
     Search text for uncontextualized legacy metrics.
     Returns list of violations found.
-    Allows matches if paragraph contextualizes the mention as obsolete/prior/wrong/false.
+    Allows matches only inside an explicit editorial callout (see EDITORIAL_CALLOUT_MARKERS).
     """
     violations = []
     paragraphs = text.split("\n\n")

@@ -1,4 +1,5 @@
 {
+  "classifier_comparison_note": "Jenks vs 1-D k-means (kappa 1.0) is an implementation check: both minimise the same within-class sum of squares. It is not corroboration that the classes are a property of the index. Quantile and equal-interval use different objectives and are not mode tests.",
   "classifiers_at_k": {
     "equal_interval": {
       "breaks": [
@@ -62,6 +63,8 @@
       "cols": "jenks",
       "exact_agreement": 0.8602150537634409,
       "kappa": 0.7482692207589402,
+      "kind": "contrast_between_different_objectives",
+      "kind_note": "a classifier with a different objective; agreement or disagreement is not a test of tri-modality",
       "labels": [
         0,
         1,
@@ -90,6 +93,8 @@
       "cols": "kmeans",
       "exact_agreement": 0.8602150537634409,
       "kappa": 0.7482692207589402,
+      "kind": "contrast_between_different_objectives",
+      "kind_note": "a classifier with a different objective; agreement or disagreement is not a test of tri-modality",
       "labels": [
         0,
         1,
@@ -118,6 +123,8 @@
       "cols": "quantile",
       "exact_agreement": 0.478494623655914,
       "kappa": 0.217741935483871,
+      "kind": "contrast_between_different_objectives",
+      "kind_note": "a classifier with a different objective; agreement or disagreement is not a test of tri-modality",
       "labels": [
         0,
         1,
@@ -146,6 +153,8 @@
       "cols": "kmeans",
       "exact_agreement": 1.0,
       "kappa": 1.0,
+      "kind": "implementation_check_identity",
+      "kind_note": "Jenks and 1-D k-means minimise the same within-class sum of squares, so agreement is an identity of the objective (k-means converged), not corroboration of three modes",
       "labels": [
         0,
         1,
@@ -174,6 +183,8 @@
       "cols": "quantile",
       "exact_agreement": 0.6182795698924731,
       "kappa": 0.42741935483870963,
+      "kind": "contrast_between_different_objectives",
+      "kind_note": "a classifier with a different objective; agreement or disagreement is not a test of tri-modality",
       "labels": [
         0,
         1,
@@ -202,6 +213,8 @@
       "cols": "quantile",
       "exact_agreement": 0.6182795698924731,
       "kappa": 0.42741935483870963,
+      "kind": "contrast_between_different_objectives",
+      "kind_note": "a classifier with a different objective; agreement or disagreement is not a test of tri-modality",
       "labels": [
         0,
         1,
@@ -443,6 +456,67 @@
       "k_chosen": 3,
       "k_rule_a_first_gvf_above_threshold": 3,
       "k_rule_b_max_second_difference": 3,
+      "rule_a": {
+        "can_return_k": [
+          2,
+          7
+        ],
+        "floors_selecting_chosen_k": [
+          0.7770875844304056,
+          0.8984039505906944
+        ],
+        "floors_selecting_chosen_k_note": "Rule A returns the chosen k for every floor f with GVF(k-1) <= f < GVF(k)",
+        "gvf_just_below_selected_k": 0.7770875844304056,
+        "k_by_floor": {
+          "0.70": 2,
+          "0.71": 2,
+          "0.72": 2,
+          "0.73": 2,
+          "0.74": 2,
+          "0.75": 2,
+          "0.76": 2,
+          "0.77": 2,
+          "0.78": 3,
+          "0.79": 3,
+          "0.80": 3,
+          "0.81": 3,
+          "0.82": 3,
+          "0.83": 3,
+          "0.84": 3,
+          "0.85": 3,
+          "0.86": 3,
+          "0.87": 3,
+          "0.88": 3,
+          "0.89": 3,
+          "0.90": 4,
+          "0.91": 4,
+          "0.92": 4,
+          "0.93": 5,
+          "0.94": 5,
+          "0.95": 5,
+          "0.96": 6,
+          "0.97": 7,
+          "0.98": null
+        },
+        "shortfall_of_k_minus_1_below_floor": 0.022912415569594446,
+        "threshold": 0.8,
+        "threshold_source": "assumption (conventional adequacy level; no citation)"
+      },
+      "rule_b": {
+        "admissible_k": [
+          3,
+          4,
+          5,
+          6
+        ],
+        "cannot_return_k": [
+          2,
+          7
+        ],
+        "reason": "second difference needs a neighbour on each side, so the end values of the sweep cannot be returned; k = 2 is inadmissible by construction",
+        "threshold": null,
+        "threshold_source": "none (argmax rule)"
+      },
       "rules_agree": true,
       "second_difference_gvf": {
         "3": 0.09196919699728334,
@@ -666,6 +740,67 @@
       "k_chosen": 3,
       "k_rule_a_first_gvf_above_threshold": 3,
       "k_rule_b_max_second_difference": 3,
+      "rule_a": {
+        "can_return_k": [
+          2,
+          7
+        ],
+        "floors_selecting_chosen_k": [
+          0.7855014978094277,
+          0.9023288089647344
+        ],
+        "floors_selecting_chosen_k_note": "Rule A returns the chosen k for every floor f with GVF(k-1) <= f < GVF(k)",
+        "gvf_just_below_selected_k": 0.7855014978094277,
+        "k_by_floor": {
+          "0.70": 2,
+          "0.71": 2,
+          "0.72": 2,
+          "0.73": 2,
+          "0.74": 2,
+          "0.75": 2,
+          "0.76": 2,
+          "0.77": 2,
+          "0.78": 2,
+          "0.79": 3,
+          "0.80": 3,
+          "0.81": 3,
+          "0.82": 3,
+          "0.83": 3,
+          "0.84": 3,
+          "0.85": 3,
+          "0.86": 3,
+          "0.87": 3,
+          "0.88": 3,
+          "0.89": 3,
+          "0.90": 3,
+          "0.91": 4,
+          "0.92": 4,
+          "0.93": 4,
+          "0.94": 5,
+          "0.95": 5,
+          "0.96": 6,
+          "0.97": 6,
+          "0.98": null
+        },
+        "shortfall_of_k_minus_1_below_floor": 0.01449850219057236,
+        "threshold": 0.8,
+        "threshold_source": "assumption (conventional adequacy level; no citation)"
+      },
+      "rule_b": {
+        "admissible_k": [
+          3,
+          4,
+          5,
+          6
+        ],
+        "cannot_return_k": [
+          2,
+          7
+        ],
+        "reason": "second difference needs a neighbour on each side, so the end values of the sweep cannot be returned; k = 2 is inadmissible by construction",
+        "threshold": null,
+        "threshold_source": "none (argmax rule)"
+      },
       "rules_agree": true,
       "second_difference_gvf": {
         "3": 0.08602239576199522,
@@ -889,6 +1024,67 @@
       "k_chosen": 3,
       "k_rule_a_first_gvf_above_threshold": 3,
       "k_rule_b_max_second_difference": 3,
+      "rule_a": {
+        "can_return_k": [
+          2,
+          7
+        ],
+        "floors_selecting_chosen_k": [
+          0.7855014978094277,
+          0.9023288089647344
+        ],
+        "floors_selecting_chosen_k_note": "Rule A returns the chosen k for every floor f with GVF(k-1) <= f < GVF(k)",
+        "gvf_just_below_selected_k": 0.7855014978094277,
+        "k_by_floor": {
+          "0.70": 2,
+          "0.71": 2,
+          "0.72": 2,
+          "0.73": 2,
+          "0.74": 2,
+          "0.75": 2,
+          "0.76": 2,
+          "0.77": 2,
+          "0.78": 2,
+          "0.79": 3,
+          "0.80": 3,
+          "0.81": 3,
+          "0.82": 3,
+          "0.83": 3,
+          "0.84": 3,
+          "0.85": 3,
+          "0.86": 3,
+          "0.87": 3,
+          "0.88": 3,
+          "0.89": 3,
+          "0.90": 3,
+          "0.91": 4,
+          "0.92": 4,
+          "0.93": 4,
+          "0.94": 5,
+          "0.95": 5,
+          "0.96": 6,
+          "0.97": 6,
+          "0.98": null
+        },
+        "shortfall_of_k_minus_1_below_floor": 0.01449850219057236,
+        "threshold": 0.8,
+        "threshold_source": "assumption (conventional adequacy level; no citation)"
+      },
+      "rule_b": {
+        "admissible_k": [
+          3,
+          4,
+          5,
+          6
+        ],
+        "cannot_return_k": [
+          2,
+          7
+        ],
+        "reason": "second difference needs a neighbour on each side, so the end values of the sweep cannot be returned; k = 2 is inadmissible by construction",
+        "threshold": null,
+        "threshold_source": "none (argmax rule)"
+      },
       "rules_agree": true,
       "second_difference_gvf": {
         "3": 0.08602239576199522,
@@ -898,10 +1094,91 @@
       }
     }
   },
-  "elbow_rule_a": "smallest k with GVF > 0.80 (absolute adequacy floor)",
-  "elbow_rule_b": "argmax over k of [GVF(k)-GVF(k-1)] - [GVF(k+1)-GVF(k)], the discrete curvature of the GVF curve; defined k=3..6",
-  "elbow_tie_break": "pre-registered: Rule A governs if the two disagree, and the disagreement is reported",
+  "elbow_rule_a": "smallest k with GVF > 0.80 (absolute adequacy floor; the floor is an assumption)",
+  "elbow_rule_b": "argmax over k of [GVF(k)-GVF(k-1)] - [GVF(k+1)-GVF(k)], the discrete curvature of the GVF curve; admissible k = 3..6 only, so it cannot return k = 2",
+  "elbow_rules_summary": {
+    "independent_confirmation_of_k3": false,
+    "interpretation": "the elbow is consistent with a three-tier partition; it is a convention-compatible description of the GVF curve, not evidence of three modes (no mode test, gap statistic or dip test is run)",
+    "mode_test_run": false,
+    "rule_a": {
+      "can_return_k": [
+        2,
+        7
+      ],
+      "floors_selecting_chosen_k": [
+        0.7855014978094277,
+        0.9023288089647344
+      ],
+      "floors_selecting_chosen_k_note": "Rule A returns the chosen k for every floor f with GVF(k-1) <= f < GVF(k)",
+      "gvf_just_below_selected_k": 0.7855014978094277,
+      "k_by_floor": {
+        "0.70": 2,
+        "0.71": 2,
+        "0.72": 2,
+        "0.73": 2,
+        "0.74": 2,
+        "0.75": 2,
+        "0.76": 2,
+        "0.77": 2,
+        "0.78": 2,
+        "0.79": 3,
+        "0.80": 3,
+        "0.81": 3,
+        "0.82": 3,
+        "0.83": 3,
+        "0.84": 3,
+        "0.85": 3,
+        "0.86": 3,
+        "0.87": 3,
+        "0.88": 3,
+        "0.89": 3,
+        "0.90": 3,
+        "0.91": 4,
+        "0.92": 4,
+        "0.93": 4,
+        "0.94": 5,
+        "0.95": 5,
+        "0.96": 6,
+        "0.97": 6,
+        "0.98": null
+      },
+      "shortfall_of_k_minus_1_below_floor": 0.01449850219057236,
+      "threshold": 0.8,
+      "threshold_source": "assumption (conventional adequacy level; no citation)"
+    },
+    "rule_b": {
+      "admissible_k": [
+        3,
+        4,
+        5,
+        6
+      ],
+      "cannot_return_k": [
+        2,
+        7
+      ],
+      "reason": "second difference needs a neighbour on each side, so the end values of the sweep cannot be returned; k = 2 is inadmissible by construction",
+      "threshold": null,
+      "threshold_source": "none (argmax rule)"
+    },
+    "why_not_independent": "Rule A selects k = 3 only because GVF(2) = 0.7855 is below an uncited 0.80 floor (floors 0.79-0.90 give k = 3; floors below 0.79 give a smaller k); Rule B's admissible range is k = 3-6, so it cannot return k = 2, and its largest curvature is the first gain after k = 2"
+  },
+  "elbow_tie_break": "specified in the module code: Rule A governs if the two disagree, and the disagreement is reported. No dated external registration of this rule exists, and the module and its results were committed together",
+  "evidence_status": {
+    "base": "all 186 active plan routes; no hold-out",
+    "in_sample": true,
+    "n": 186
+  },
+  "gvf_by_k": {
+    "2": 0.7855014978094277,
+    "3": 0.9023288089647344,
+    "4": 0.933133724358046,
+    "5": 0.958227644117803,
+    "6": 0.9702200423315519,
+    "7": 0.9775408224633126
+  },
   "gvf_threshold": 0.8,
+  "gvf_threshold_source": "assumption (no citation for the 0.80 floor)",
   "jenks_implementation_check": {
     "elbow_unchanged_under_exact_optimum": true,
     "exact_class_sizes": [
@@ -968,10 +1245,318 @@
   "outputs": {
     "table5": "paper\\tables\\table05_class_count.csv",
     "table5b": "paper\\tables\\table05b_classifier_agreement.csv",
+    "table5c": "paper\\tables\\table05c_published_vs_objective.csv",
     "tiers_csv": "data\\derived\\a04_route_tiers.csv"
   },
-  "pca_equals_equal_note": "a03 derives PCA loadings of 0.500/0.500 on the two criteria, so cdi_net_pca is numerically identical to cdi_net_equal; its identical curve is expected",
+  "pca_equals_equal_note": "a03 PCA loadings on the two criteria are 0.500/0.500 by construction (two positively correlated criteria), so cdi_net_pca is numerically identical to cdi_net_equal; its identical curve is an identity, not a second weighting. Only entropy is independent",
   "primary_column": "cdi_net_equal",
+  "published_vs_objective_agreement": {
+    "agreement_pct": 68.27956989247312,
+    "comparison": "objective Jenks tier (k=3, network-catchment index, 0.5/0.5 weights) vs the plan's published Priority_Band HP/MP/LP",
+    "confusion": [
+      [
+        26,
+        10,
+        1
+      ],
+      [
+        9,
+        29,
+        3
+      ],
+      [
+        20,
+        16,
+        72
+      ]
+    ],
+    "confusion_cols": "published Priority_Band (HP=1, MP=2, LP=3)",
+    "confusion_rows": "objective tier rank (1 = highest index)",
+    "evidence_status": {
+      "base": "all 186 active plan routes",
+      "in_sample": true,
+      "n": 186
+    },
+    "excluding_sscl_backbone": {
+      "agreement_pct": 79.48717948717949,
+      "confusion": [
+        [
+          23,
+          10,
+          1
+        ],
+        [
+          2,
+          29,
+          3
+        ],
+        [
+          0,
+          16,
+          72
+        ]
+      ],
+      "confusion_cols": "published Priority_Band (HP=1, MP=2, LP=3)",
+      "confusion_rows": "objective tier rank (1 = highest index)",
+      "exact_agreement": 0.7948717948717948,
+      "kappa": 0.6655948553054662,
+      "n_agree": 124,
+      "n_routes": 156,
+      "note": "the 30 SSCL backbone routes are locked to HP by the engine regardless of index, so this is the agreement where the index can actually decide the band"
+    },
+    "high_priority_in_lowest_objective_tier": {
+      "all_explained_by_sscl_backbone_lock": true,
+      "n": 20,
+      "n_with_sscl_backbone_lock": 20,
+      "note": "Reason codes are the flag columns recorded in the plan CSV. The engine's only override that can set a route to HP regardless of its index is the SSCL backbone lock (CMP_Trunk); Social_Flag and the District-HQ floor lift LP to MP only. A route with no flag listed has no recorded override.",
+      "of_published_high_priority": 55,
+      "reason_code_counts": {
+        "social_flag": 3,
+        "sscl_backbone_lock_to_HP": 20,
+        "sscl_cdi_conflict_flag": 20
+      },
+      "routes": [
+        {
+          "New_Route_ID": "SSCL-26",
+          "Route_Name": "Batamaloo to Kangan via Hazratbal Manigam",
+          "Route_Type": "Regional_District",
+          "objective_index": 0.0608379509923122,
+          "plan_Final_CDI": 0.0734,
+          "reason_codes": [
+            "sscl_backbone_lock_to_HP",
+            "sscl_cdi_conflict_flag"
+          ]
+        },
+        {
+          "New_Route_ID": "SSCL-20",
+          "Route_Name": "Pantha Chowk to Safapora",
+          "Route_Type": "Regional_District",
+          "objective_index": 0.0727788935701178,
+          "plan_Final_CDI": 0.0856,
+          "reason_codes": [
+            "sscl_backbone_lock_to_HP",
+            "sscl_cdi_conflict_flag"
+          ]
+        },
+        {
+          "New_Route_ID": "SSCL-27",
+          "Route_Name": "Batamaloo to Manigam",
+          "Route_Type": "Regional_District",
+          "objective_index": 0.0799657895266329,
+          "plan_Final_CDI": 0.0742,
+          "reason_codes": [
+            "sscl_backbone_lock_to_HP",
+            "sscl_cdi_conflict_flag"
+          ]
+        },
+        {
+          "New_Route_ID": "SSCL-25",
+          "Route_Name": "Batamaloo to Dadsara Tral via Awantipora",
+          "Route_Type": "Regional_District",
+          "objective_index": 0.0889909542639871,
+          "plan_Final_CDI": 0.1291,
+          "reason_codes": [
+            "sscl_backbone_lock_to_HP",
+            "sscl_cdi_conflict_flag"
+          ]
+        },
+        {
+          "New_Route_ID": "SSCL-30",
+          "Route_Name": "Batamaloo to Dc Office Budgam",
+          "Route_Type": "Peri_Urban",
+          "objective_index": 0.1188624505064636,
+          "plan_Final_CDI": 0.1218,
+          "reason_codes": [
+            "sscl_backbone_lock_to_HP",
+            "sscl_cdi_conflict_flag",
+            "social_flag"
+          ]
+        },
+        {
+          "New_Route_ID": "SSCL-08",
+          "Route_Name": "Batamaloo to Budgam Railway Station via Khumeni Chowk",
+          "Route_Type": "Peri_Urban",
+          "objective_index": 0.1188624505064636,
+          "plan_Final_CDI": 0.1218,
+          "reason_codes": [
+            "sscl_backbone_lock_to_HP",
+            "sscl_cdi_conflict_flag",
+            "social_flag"
+          ]
+        },
+        {
+          "New_Route_ID": "SSCL-19",
+          "Route_Name": "Pantha Chowk to Sumbal",
+          "Route_Type": "Peri_Urban",
+          "objective_index": 0.1225060454581109,
+          "plan_Final_CDI": 0.1542,
+          "reason_codes": [
+            "sscl_backbone_lock_to_HP",
+            "sscl_cdi_conflict_flag"
+          ]
+        },
+        {
+          "New_Route_ID": "SSCL-24",
+          "Route_Name": "Pantha Chowk to Palhalan via Sangrama Sopore",
+          "Route_Type": "Peri_Urban",
+          "objective_index": 0.1273100833240335,
+          "plan_Final_CDI": 0.1758,
+          "reason_codes": [
+            "sscl_backbone_lock_to_HP",
+            "sscl_cdi_conflict_flag"
+          ]
+        },
+        {
+          "New_Route_ID": "SSCL-07",
+          "Route_Name": "Batamaloo to Drussu Pulwama via Marwal",
+          "Route_Type": "Peri_Urban",
+          "objective_index": 0.1448972869081925,
+          "plan_Final_CDI": 0.1924,
+          "reason_codes": [
+            "sscl_backbone_lock_to_HP",
+            "sscl_cdi_conflict_flag"
+          ]
+        },
+        {
+          "New_Route_ID": "SSCL-23",
+          "Route_Name": "Batamaloo to Charesharief via Chadoora",
+          "Route_Type": "Peri_Urban",
+          "objective_index": 0.1510379546818588,
+          "plan_Final_CDI": 0.199,
+          "reason_codes": [
+            "sscl_backbone_lock_to_HP",
+            "sscl_cdi_conflict_flag"
+          ]
+        },
+        {
+          "New_Route_ID": "SSCL-04",
+          "Route_Name": "Batamaloo to Chadoora Chowk via Jehangir Chowk",
+          "Route_Type": "Urban",
+          "objective_index": 0.1555224025405632,
+          "plan_Final_CDI": 0.1658,
+          "reason_codes": [
+            "sscl_backbone_lock_to_HP",
+            "sscl_cdi_conflict_flag"
+          ]
+        },
+        {
+          "New_Route_ID": "SSCL-10",
+          "Route_Name": "Pantha Chowk to Agri Kalan Kanihama via Bypass",
+          "Route_Type": "Peri_Urban",
+          "objective_index": 0.1807523674579962,
+          "plan_Final_CDI": 0.268,
+          "reason_codes": [
+            "sscl_backbone_lock_to_HP",
+            "sscl_cdi_conflict_flag"
+          ]
+        },
+        {
+          "New_Route_ID": "SSCL-28",
+          "Route_Name": "Batamaloo to Pinglena Pampore via Galandar",
+          "Route_Type": "Peri_Urban",
+          "objective_index": 0.1814563114889048,
+          "plan_Final_CDI": 0.2824,
+          "reason_codes": [
+            "sscl_backbone_lock_to_HP",
+            "sscl_cdi_conflict_flag"
+          ]
+        },
+        {
+          "New_Route_ID": "SSCL-06",
+          "Route_Name": "Pantha Chowk to Narbal Crossing via Sonwar Jehangir Chowk Qamarwari",
+          "Route_Type": "Peri_Urban",
+          "objective_index": 0.1934957957309775,
+          "plan_Final_CDI": 0.2834,
+          "reason_codes": [
+            "sscl_backbone_lock_to_HP",
+            "sscl_cdi_conflict_flag"
+          ]
+        },
+        {
+          "New_Route_ID": "SSCL-22",
+          "Route_Name": "Batamaloo to Khrew Bus Stand",
+          "Route_Type": "Peri_Urban",
+          "objective_index": 0.1956111183075261,
+          "plan_Final_CDI": 0.3096,
+          "reason_codes": [
+            "sscl_backbone_lock_to_HP",
+            "sscl_cdi_conflict_flag"
+          ]
+        },
+        {
+          "New_Route_ID": "SSCL-21",
+          "Route_Name": "Batamaloo to Arath",
+          "Route_Type": "Urban",
+          "objective_index": 0.2100705914720447,
+          "plan_Final_CDI": 0.359,
+          "reason_codes": [
+            "sscl_backbone_lock_to_HP",
+            "sscl_cdi_conflict_flag"
+          ]
+        },
+        {
+          "New_Route_ID": "SSCL-16",
+          "Route_Name": "Batamaloo Circular via Khonmoh",
+          "Route_Type": "Urban",
+          "objective_index": 0.2177249931382595,
+          "plan_Final_CDI": 0.3579,
+          "reason_codes": [
+            "sscl_backbone_lock_to_HP",
+            "sscl_cdi_conflict_flag"
+          ]
+        },
+        {
+          "New_Route_ID": "SSCL-02",
+          "Route_Name": "Batamaloo to Nasrullah Pora via Jehangir Chowk Rambagh Hyderpora",
+          "Route_Type": "Urban",
+          "objective_index": 0.2187266713133024,
+          "plan_Final_CDI": 0.2376,
+          "reason_codes": [
+            "sscl_backbone_lock_to_HP",
+            "sscl_cdi_conflict_flag"
+          ]
+        },
+        {
+          "New_Route_ID": "SSCL-15",
+          "Route_Name": "TRC to Pulwama via Nowgam Kaanipora",
+          "Route_Type": "Peri_Urban",
+          "objective_index": 0.2292115199942739,
+          "plan_Final_CDI": 0.2609,
+          "reason_codes": [
+            "sscl_backbone_lock_to_HP",
+            "sscl_cdi_conflict_flag",
+            "social_flag"
+          ]
+        },
+        {
+          "New_Route_ID": "SSCL-29",
+          "Route_Name": "Pantha Chowk to Panzinara",
+          "Route_Type": "Urban",
+          "objective_index": 0.2489062099072863,
+          "plan_Final_CDI": 0.332,
+          "reason_codes": [
+            "sscl_backbone_lock_to_HP",
+            "sscl_cdi_conflict_flag"
+          ]
+        }
+      ],
+      "share_pct": 36.36363636363637
+    },
+    "kappa": 0.503393972305186,
+    "n_agree": 127,
+    "n_routes": 186,
+    "objective_tier_sizes": {
+      "Tier 1": 37,
+      "Tier 2": 41,
+      "Tier 3": 108
+    },
+    "published_band_sizes": {
+      "HP": 55,
+      "LP": 76,
+      "MP": 55
+    },
+    "reading": "The published bands match the objective partition on 68.3% of routes (kappa 0.503), not on the Monte-Carlo stability share. That stability figure (see stability_under_uncertainty) measures how stable the objective partition is under noise and must not be quoted as agreement with the published tiers."
+  },
   "random_seed": 20260823,
   "robustness_columns": [
     "cdi_net_entropy",
@@ -979,6 +1564,39 @@
   ],
   "robustness_weightings_agree": true,
   "rules_agree": true,
+  "stability_under_uncertainty": {
+    "alternative_weightings": {
+      "cdi_net_entropy": {
+        "identical_by_construction": false,
+        "n_routes_changing_tier": 1,
+        "share_tier_unchanged": 0.9946236559139785
+      },
+      "cdi_net_pca": {
+        "identical_by_construction": true,
+        "n_routes_changing_tier": 0,
+        "share_tier_unchanged": 1.0
+      }
+    },
+    "evidence_status": {
+      "base": "all 186 active plan routes",
+      "in_sample": true,
+      "n": 186
+    },
+    "monte_carlo": {
+      "base": "each Monte-Carlo draw's tiers vs the baseline tiers of the same 186 routes; the baseline is the objective partition above, NOT the published Priority_Band",
+      "baseline_is_this_modules_objective_partition": true,
+      "conditional_on": "the published 186-route set: the draws re-derive tiers for the same 186 routes, so route-set uncertainty is not part of this stability figure",
+      "n_draws": 5000,
+      "n_routes_stability_below_target": 8,
+      "source": "data/derived/a09_monte_carlo_sobol.json (read at run time; refresh by re-running a04 after a09)",
+      "target": 0.8,
+      "tier_agreement_median": 0.9731182795698925,
+      "tier_agreement_min": 0.8978494623655914,
+      "tier_agreement_p5": 0.946236559139785,
+      "tier_agreement_p95": 1.0
+    },
+    "what_is_measured": "stability of this module's objective Jenks partition of the index under perturbation; agreement of the RE-IMPLEMENTATION'S own tiers with themselves, not with the published Priority_Band"
+  },
   "tier_sizes": {
     "Tier 1": 37,
     "Tier 2": 41,
@@ -1010,5 +1628,6 @@
       "LP": 76,
       "MP": 55
     }
-  }
+  },
+  "vs_published_priority_band_note": "legacy key, same content as the headline of published_vs_objective_agreement (agreement of the plan's published bands with the OBJECTIVE partition, 186 routes in-sample); it is NOT the Monte-Carlo stability share"
 }

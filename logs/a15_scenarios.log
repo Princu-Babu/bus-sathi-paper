@@ -2,19 +2,17 @@
 MODULE:      a15_scenarios
 SCRIPT:      a15_scenarios.py
 STAGE:       Stage 3
-STARTED:     2026-09-30T14:43:45.539098+00:00
-PYTHON:      E:\kash-paper\.venv\Scripts\python.exe (3.14.2)
-COMMAND:     E:\kash-paper\.venv\Scripts\python.exe E:\kash-paper\analysis\a15_scenarios.py
+COMMAND:     python analysis/a15_scenarios.py
 ================================================================================
 
-20:15:36  INFO    a15 \u2502 funding sequence: 30% of fleet (303 buses) buys 63 routes and 22.4% coverage = 92% of the full plan's 24.2%
-20:15:37  INFO    a15 \u2502 S0 Published plan (v3.4.5-geo)                                  routes 186 fleet  1011 (+0.0%) cov 24.2% le15 10.4% le20 12.2%
-20:15:37  INFO    a15 \u2502 S1 Observed urban/peri-urban run time                           routes 186 fleet  1169 (+15.6%) cov 24.2% le15 10.4% le20 12.2%
-20:15:37  INFO    a15 \u2502 S2 S1 + rural cap at observed rural pace (2.13 min/km, n=2; bou routes 186 fleet  1271 (+25.7%) cov 24.2% le15 10.4% le20 12.2%
-20:15:37  INFO    a15 \u2502 S3 Flat 35-min rural headway (no 50-min buckets)                routes 186 fleet  1106 (+9.4%) cov 24.2% le15 10.4% le20 12.2%
-20:15:37  INFO    a15 \u2502 S4 Consolidation at theta = 0.50 (engine merge test)            routes  84 fleet   533 (-47.3%) cov 20.3% le15 10.4% le20 11.2%
-20:15:37  INFO    a15 \u2502 S5 Urban frequent network (all Urban routes 15 min)             routes 186 fleet  1172 (+15.9%) cov 24.2% le15 14.5% le20 14.5%
-20:15:37  INFO    a15 \u2502 frontier:
+INFO    a15 \u2502 funding sequence: budget 303 buses, 299 allocated to 63 routes -> 22.4% coverage = 92% of the full plan's 24.2% (variant filling the remainder: +1 routes, +0.05 pp)
+INFO    a15 \u2502 S0 Published plan (v3.4.5-geo)                                  routes 186 fleet  1011 (+0.0%) cov 24.2% le15 10.4% le20 12.2%
+INFO    a15 \u2502 S1 Observed urban/peri-urban run time                           routes 186 fleet  1169 (+15.6%) cov 24.2% le15 10.4% le20 12.2%
+INFO    a15 \u2502 S2 S1 + rural cap at observed rural pace (2.13 min/km, n=2; bou routes 186 fleet  1271 (+25.7%) cov 24.2% le15 10.4% le20 12.2%
+INFO    a15 \u2502 S3 Flat 35-min rural headway (no 50-min buckets)                routes 186 fleet  1106 (+9.4%) cov 24.2% le15 10.4% le20 12.2%
+INFO    a15 \u2502 S4 Consolidation at theta = 0.50 (engine merge test)            routes  84 fleet   533 (-47.3%) cov 20.3% le15 10.4% le20 11.2%
+INFO    a15 \u2502 S5 Urban frequent network (all Urban routes 15 min)             routes 186 fleet  1172 (+15.9%) cov 24.2% le15 14.5% le20 14.5%
+INFO    a15 \u2502 frontier:
  city_headway_min  fleet_as_specified  fleet_observation_anchored  coverage_le_h  coverage_le15  coverage_le20  coverage_any
                10                1573                        2104       0.139314       0.164701       0.164701      0.241899
                12                1436                        1881       0.139314       0.164701       0.164701      0.241899
@@ -25,8 +23,6 @@ COMMAND:     E:\kash-paper\.venv\Scripts\python.exe E:\kash-paper\analysis\a15_s
                35                 980                        1119       0.191840       0.104427       0.106597      0.241899
 
 ================================================================================
-FINISHED:    2026-09-30T14:45:37.748750+00:00
-DURATION:    112.21s
 EXIT CODE:   0
 STATUS:      PASSED
 VERIFIED:    2/2 outputs

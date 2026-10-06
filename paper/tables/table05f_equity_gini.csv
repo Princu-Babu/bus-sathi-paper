@@ -7,4 +7,6 @@ Share of residents with any network service,0.2419
 Share of residents with zero network service,0.7581
 Mean departures/hour reachable (pop-weighted),3.5786
 Median departures/hour reachable (pop-weighted),0.0
-Before-state Gini,NOT_COMPUTABLE
+Gini component from zero-service residents (z),0.7581
+Gini component from unequal frequency among served ((1-z)*G_served),0.1448
+Before-state Gini / zero-service share / served-only Gini,NOT_COMPUTABLE

@@ -1,6 +1,6 @@
-route_id,route_name,corridor,n_runs,route_km,headway_min,cycle_plan_min,cycle_observed_min,cycle_ratio,fleet_plan,fleet_observed,fleet_delta
-FDR-050,Soura to Lalchowk,C1,211,9.49,20.0,100.8,110.1,1.09,7,6,-1
-FDR-262,Soura to Railway Station,C4,93,18.8,35.0,186.6,198.0,1.06,7,6,-1
-FDR-370,Srinagar to Pampore,C6,79,12.88,35.0,111.2,132.0,1.19,5,4,-1
-FDR-270,Soura to Qamarwari,C7,47,9.3,35.0,107.1,117.5,1.1,5,4,-1
-FDR-575,Safakadal to Jehangir Chowk,C8,40,3.15,20.0,32.6,52.7,1.62,3,3,0
+route_id,route_name,corridor,n_runs,route_km,headway_min,cycle_plan_min,cycle_observed_min,cycle_ratio,fleet_plan,fleet_observed,fleet_delta,cycle_plan_pre_correction_min,fleet_plan_pre_correction,fleet_delta_vs_pre_correction
+FDR-050,Soura to Lalchowk,C1,211,9.49,20.0,100.8,110.1,1.09,7,7,0,76.0,5,2
+FDR-262,Soura to Railway Station,C4,93,18.8,35.0,186.6,198.0,1.06,7,7,0,94.0,4,3
+FDR-370,Srinagar to Pampore,C6,79,12.88,35.0,111.2,132.0,1.19,5,5,0,80.8,4,1
+FDR-270,Soura to Qamarwari,C7,47,9.3,35.0,107.1,117.5,1.1,5,5,0,74.4,4,1
+FDR-575,Safakadal to Jehangir Chowk,C8,40,3.15,20.0,32.6,52.7,1.62,3,4,1,25.2,3,1

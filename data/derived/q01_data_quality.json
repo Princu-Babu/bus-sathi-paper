@@ -2,7 +2,38 @@
   "D1_register_hygiene": {
     "corridor_retention_rate": 0.9936305732484076,
     "duplicate_share": 0.744299674267101,
-    "join_match_rate": 0.8045602605863192,
+    "join_check": {
+      "genuine_mismatches": [
+        {
+          "Destination": "RAJIAKADAL",
+          "Origin": "PARIMPORA",
+          "Route_ID": "R0215",
+          "Route_Name": "Hazratbal, Lalbazar"
+        }
+      ],
+      "match_rate": 0.998371335504886,
+      "match_rate_old_filter_min_len_3": 0.8045602605863192,
+      "n_checked": 614,
+      "n_match": 613,
+      "n_mismatch": 1,
+      "n_mismatch_old_filter_min_len_3": 120,
+      "n_old_failures_cleared_by_counting_two_letter_tokens": 119,
+      "offset_test_match_rate_by_row_shift": {
+        "-1": 0.1402936378466558,
+        "-2": 0.11274509803921569,
+        "0": 0.998371335504886,
+        "1": 0.14192495921696574,
+        "2": 0.1111111111111111
+      },
+      "offset_test_note": "0 = the positional join actually used; a shift of +-1 or +-2 rows drops agreement to chance level, so the positional alignment is real",
+      "old_filter_note": "The earlier 80.5 % (120 of 614 failing) came from the filter dropping 2-letter tokens, chiefly the 'LD' stand; it is a property of the check, not of the data. The earlier explanation that the residual was 'vernacular spelling variants' is not supported: no spelling-variant case is among the failures.",
+      "rule": "engine route name shares the first 4 letters of a register origin token and of a register destination token; tokens of >= 2 letters",
+      "two_letter_tokens_in_old_failures": {
+        "LD": 119
+      }
+    },
+    "join_match_rate": 0.998371335504886,
+    "join_match_rate_note": "corrected: counts 2-letter place tokens (F-03-24); the earlier 0.8046 was an artefact of the filter. See join_check.",
     "max_permits_on_one_corridor": 42,
     "mean_permits_per_corridor": 3.910828025477707,
     "median_permits_per_corridor": 1.0,
@@ -58,6 +89,9 @@
     "observed_share": 0.3548387096774194
   },
   "D3_osm_completeness": {
+    "base": "n = 10 district-level points (mapped walkable-network km per km2 against WorldPop density); in-sample, descriptive",
+    "inference_limit": "With n = 10 districts this correlation cannot distinguish genuine road density from volunteered-mapping bias, and it is blind to within-district peripheral gaps, which is where rural lifelines operate. It is consistent with adequate district-scale completeness and does not exclude within-district under-mapping.",
+    "n_districts": 10,
     "note": "A strong positive rank correlation between population density and mapped road density is expected on real ground and is also the signature of volunteered-mapping bias; the two cannot be separated without an official road inventory, which the authority does not publish. Per-capita road length is reported so the reader can see the spread directly.",
     "p_value": 0.00020447240614883226,
     "ratio_max_min_km_per_1000": 1.547965121821969,
@@ -66,8 +100,98 @@
     "total_network_km": 18533.24254397876
   },
   "D4_worldpop": {
-    "approx_pixel_area_km2": 0.00860565437559921,
+    "approx_pixel_area_km2": 0.007128105520652249,
+    "approx_pixel_area_km2_note": "corrected to include cos(latitude) on the east-west side; the earlier 0.00861 was ~20 % too high. Not used in the paper.",
+    "base": "n = 10 districts, WorldPop 2026 zonal sum (cell-centre masking, nodata and negatives zeroed) over Census 2011 district totals; both are in-sample for the plan, which uses the same raster as its denominator",
+    "cagr_band_note": "declared in this module (CAGR_BAND) for flagging only; J&K 2001-11 growth was about 2.1 %/yr",
+    "cagr_band_per_year": [
+      0.005,
+      0.03
+    ],
     "census2011_total": 6888475.0,
+    "census_anchored": true,
+    "district_ratios": [
+      {
+        "census_2011": 870354,
+        "district": "Kupwara",
+        "implied_cagr_per_year": -0.022486068788604263,
+        "ratio_wp_to_census": 0.7109586345097114,
+        "within_declared_band": false,
+        "worldpop_2026": 618785.6913800654
+      },
+      {
+        "census_2011": 1078692,
+        "district": "Anantnag",
+        "implied_cagr_per_year": -0.013871114662854178,
+        "ratio_wp_to_census": 0.8109707731553185,
+        "within_declared_band": false,
+        "worldpop_2026": 874787.6852364568
+      },
+      {
+        "census_2011": 392232,
+        "district": "Bandipore",
+        "implied_cagr_per_year": -0.012441504156283978,
+        "ratio_wp_to_census": 0.828786070077244,
+        "within_declared_band": false,
+        "worldpop_2026": 325076.4178385376
+      },
+      {
+        "census_2011": 424483,
+        "district": "Kulgam",
+        "implied_cagr_per_year": -0.007672810395837892,
+        "ratio_wp_to_census": 0.8908885284231772,
+        "within_declared_band": false,
+        "worldpop_2026": 378167.03521065554
+      },
+      {
+        "census_2011": 753745,
+        "district": "Budgam",
+        "implied_cagr_per_year": -0.0004049327404525016,
+        "ratio_wp_to_census": 0.9939431956242796,
+        "within_declared_band": false,
+        "worldpop_2026": 749179.7139858226
+      },
+      {
+        "census_2011": 1008039,
+        "district": "Baramulla",
+        "implied_cagr_per_year": 0.004124629263243307,
+        "ratio_wp_to_census": 1.063688084706588,
+        "within_declared_band": false,
+        "worldpop_2026": 1072239.0732195443
+      },
+      {
+        "census_2011": 266215,
+        "district": "Shopian",
+        "implied_cagr_per_year": 0.004253298455314081,
+        "ratio_wp_to_census": 1.065734445020995,
+        "within_declared_band": false,
+        "worldpop_2026": 283714.4952812642
+      },
+      {
+        "census_2011": 1236829,
+        "district": "Srinagar",
+        "implied_cagr_per_year": 0.004269516572019905,
+        "ratio_wp_to_census": 1.065992639238737,
+        "within_declared_band": false,
+        "worldpop_2026": 1318450.609997008
+      },
+      {
+        "census_2011": 560440,
+        "district": "Pulwama",
+        "implied_cagr_per_year": 0.005322657817864673,
+        "ratio_wp_to_census": 1.0828843093741078,
+        "within_declared_band": true,
+        "worldpop_2026": 606891.682345625
+      },
+      {
+        "census_2011": 297446,
+        "district": "Ganderbal",
+        "implied_cagr_per_year": 0.012330018718254898,
+        "ratio_wp_to_census": 1.2017986953763111,
+        "within_declared_band": true,
+        "worldpop_2026": 357470.2147449022
+      }
+    ],
     "district_union_bounds": {
       "bottom": 33.363725,
       "left": 73.7500338,
@@ -77,8 +201,13 @@
     "engine_denominator": 6584762,
     "engine_denominator_matches_zonal": true,
     "implied_total_cagr": -0.003001582179225082,
+    "independent_of_census_frame": false,
+    "n_districts_outside_declared_band": 8,
     "n_districts_outside_plausible_cagr": 8,
-    "note": "WorldPop 2026 is a modelled, UN-adjusted surface anchored on the 2011 census frame, so it is not an independent count. Reporting the ratio district by district exposes where the surface is conservative; coverage figures computed on it inherit that conservatism, which biases the reported coverage share upward only if the denominator is understated, and is therefore stated explicitly rather than corrected.",
+    "n_districts_outside_plausible_cagr_note": "districts outside the declared growth band; see n_districts_within_declared_band / n_districts_total",
+    "n_districts_total": 10,
+    "n_districts_within_declared_band": 2,
+    "note": "WorldPop 2026 is a modelled, UN-adjusted surface anchored on the 2011 census frame, so this comparison is not an independent test of the surface. The division total (ratio 0.956) hides district ratios of 0.71 to 1.20, so a single division-level figure should not be read as district accuracy. Coverage numerators and the denominator come from the same raster, so a low district total does not by itself make a coverage share conservative or liberal; the direction of the bias is not established here.",
     "raster_bounds": {
       "bottom": 33.3000000062,
       "left": 73.7,
@@ -86,8 +215,24 @@
       "top": 34.85
     },
     "raster_covers_district_union": true,
+    "ratio_district_range": [
+      0.7109586345097114,
+      1.2017986953763111
+    ],
+    "ratio_max": {
+      "district": "Ganderbal",
+      "ratio": 1.2017986953763111
+    },
+    "ratio_min": {
+      "district": "Kupwara",
+      "ratio": 0.7109586345097114
+    },
     "ratio_total": 0.955910069970477,
-    "worldpop_total": 6584762.619239882
+    "statement": "2 of 10 districts have an implied 2011-2026 growth rate inside the declared 0.5-3.0 %/yr band; WorldPop/Census district ratios run from 0.71 (Kupwara) to 1.20 (Ganderbal); the division total ratio is 0.956",
+    "worldpop_product_named_in_manifest": "WorldPop 2026 UN-adjusted constrained individual countries 100m raster",
+    "worldpop_total": 6584762.619239882,
+    "worldpop_variant": "not recorded in metadata",
+    "worldpop_variant_note": "the raster carries only the AREA_OR_POINT tag; data/MANIFEST.md names the product but gives no release or version"
   },
   "D5_opportunities": {
     "by_importance": [

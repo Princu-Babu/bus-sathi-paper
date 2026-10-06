@@ -1,4 +1,43 @@
 {
+  "direction_consistency": {
+    "engine_refs": [
+      "transit_kashmir_v3.py:5630 daily_trips *2.0",
+      "transit_kashmir_v3.py:5687-5693 daily_demand"
+    ],
+    "finding": "Daily_Demand_Pax is whole-route boardings (both directions); Daily_Trips counts one-way trips in both directions; a07 peak_hour_capacity = 60/headway * capacity is one direction. The legacy ratio therefore compared 2-direction demand with 1-direction capacity.",
+    "fix": "capacity doubled to both directions (peak_hour_capacity_both_directions)",
+    "observed_anchor_consistent": true,
+    "ratio_effect_legacy_over_corrected": 2.0,
+    "status": "verified_real"
+  },
+  "load_statistics": {
+    "backbone_day_one": {
+      "base": "30 SSCL e-bus routes; CHALO monthly boardings and trip counts, 12 months May 2025-April 2026, per-calendar-day mean; plan one-way trips = Daily_Trips summed over the 30 SSCL plan routes (15-min headway, 16 h, both directions)",
+      "boardings_per_oneway_trip_plan_day_one": 8.299319349315068,
+      "boardings_per_oneway_trip_today_range": [
+        18.628591652600594,
+        37.25718330520119
+      ],
+      "ebus_comparison_note": "Boardings per one-way trip TODAY is the lower value if CHALO Trip Count is round trips and the higher if one-way (ambiguous in the source); plan day-one is the same under both readings because it uses plan trips only, with ridership held at today's level.",
+      "in_sample": true,
+      "n_routes": 30,
+      "observed_inputs_today": {
+        "daily_boardings": 31869.386301369865,
+        "daily_trip_count": 855.3890410958904
+      },
+      "plan_oneway_trips_per_day": 3840.0,
+      "trip_multiplier_range": [
+        2.2445927031519743,
+        4.489185406303949
+      ]
+    },
+    "induced_demand_note": "No elasticity is modelled; day-one load holds ridership fixed. Reported as a requirement (growth to hold today's boardings per trip), not as a forecast.",
+    "n_below_040_both_directions": 168,
+    "n_below_040_legacy": 152,
+    "n_routes_network": 186,
+    "whole_network_proxy_median_both_directions": 0.11328325320512819,
+    "whole_network_proxy_median_legacy": 0.22656650641025639
+  },
   "observed_backbone": {
     "chalo_daily_boardings": 31869.386301369865,
     "chalo_daily_trip_count": 855.3890410958904,
@@ -31,8 +70,26 @@
     "median": 0.22656650641025639,
     "n_above_085": 17,
     "n_below_040": 152,
+    "note": "LEGACY, direction-inconsistent: two-direction boardings divided by ONE-direction hourly capacity (overstates by up to 2x). Use proxy_network_both_directions; kept so existing readers do not break.",
     "p90": 0.779545119047619,
     "total_proxy_daily_demand": 54894.0
+  },
+  "proxy_network_both_directions": {
+    "base": "186 active plan routes; Eq. 8 Daily_Demand_Pax x peak-hour factor 0.1067 / (2 x 60/headway x mean vehicle capacity)",
+    "in_sample": true,
+    "is_model_proxy_not_observation": true,
+    "median": 0.11328325320512819,
+    "median_by_class": {
+      "Peri_Urban": 0.1149076923076923,
+      "Regional_District": 0.13290701754385967,
+      "Urban": 0.08135875000000001
+    },
+    "n_above_085": 9,
+    "n_below_040": 168,
+    "n_routes": 186,
+    "note": "Direction-consistent corrected statistic. Neither this nor the legacy figure is a max-load-section load factor; the demand term is the quarantined Eq. 8 proxy calibrated to the CHALO backbone total (capture scale), so it is not an independent test of the headways.",
+    "p90": 0.3897725595238095,
+    "share_below_040": 0.9032258064516129
   },
   "vehicle_capacity": {
     "HPV": 60,

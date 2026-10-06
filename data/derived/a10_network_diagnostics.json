@@ -14,6 +14,68 @@
       "self_repeated_link_traversals": 275
     },
     "route_km_to_network_km_ratio": 3.6523,
+    "snapping_cross_check": {
+      "interpretation": "Route-km : network-km is 3.65 at zero tolerance and 3.68-4.02 at 0.5-10 m snapping; the exact value is the conservative (low) end, since near-coincident polylines are counted as separate road at zero tolerance. Quote it as a range.",
+      "max_rise_pct_vs_exact": 10.08,
+      "ratio_exact": 3.6523,
+      "ratio_range_over_0_to_10m": [
+        3.6523,
+        4.0205
+      ],
+      "rows": [
+        {
+          "grid_m": 0.0,
+          "method": "exact vertex links",
+          "ratio": 3.6523,
+          "route_km": null,
+          "union_km": null
+        },
+        {
+          "grid_m": 0.5,
+          "method": "shapely union on snapped lines",
+          "ratio": 3.6797,
+          "route_km": 5567.873,
+          "union_km": 1513.1181
+        },
+        {
+          "grid_m": 1.0,
+          "method": "shapely union on snapped lines",
+          "ratio": 3.7753,
+          "route_km": 5568.2554,
+          "union_km": 1474.9004
+        },
+        {
+          "grid_m": 2.0,
+          "method": "shapely union on snapped lines",
+          "ratio": 3.8816,
+          "route_km": 5569.8798,
+          "union_km": 1434.938
+        },
+        {
+          "grid_m": 5.0,
+          "method": "shapely union on snapped lines",
+          "ratio": 3.9817,
+          "route_km": 5579.7446,
+          "union_km": 1401.3489
+        },
+        {
+          "grid_m": 10.0,
+          "method": "shapely union on snapped lines",
+          "ratio": 4.0205,
+          "route_km": 5609.269,
+          "union_km": 1395.1697
+        },
+        {
+          "grid_m": 20.0,
+          "method": "shapely union on snapped lines",
+          "ratio": 4.0829,
+          "route_km": 5704.2662,
+          "union_km": 1397.1164
+        }
+      ],
+      "verdict": "ratio_depends_on_tolerance",
+      "verdict_rule": "robust only if every snapped ratio (0.5-10 m, route-km re-measured on the snapped lines) is within 2% of the exact ratio"
+    },
     "total_route_km": 5567.74,
     "total_route_km_published_attribute": 5577.615,
     "union_cross_check_km": {
@@ -24,6 +86,7 @@
       "grid_5m": 1401.349,
       "native": 1524.457
     },
+    "union_cross_check_note": "the native (zero-tolerance) union agrees with the link method; the snapped-grid UNION lengths fall with tolerance because near-coincident polylines merge. Compare ratios, not lengths: see snapping_cross_check.",
     "union_vs_link_pct": 0.0,
     "unique_network_km": 1524.457
   },
@@ -295,6 +358,182 @@
         "peak_routes": 13
       }
     ]
+  },
+  "morans_i_decomposition": {
+    "interpretation": "At h=2 km Moran's I is 0.664 for uncovered head-count but 0.726 for TOTAL population on the same lattice and weights: the head-count statistic largely reflects clustered settlement. The population-free statistics are I = 0.455 (uncovered share of cell population, inhabited cells, p_sim 0.001) and I = 0.425 (residual of uncovered on total, p_sim 0.001). The coverage gap is spatially structured beyond settlement clustering only to the extent that these two are positive and significant. No statistic here quantifies how many feeder corridors would close the gap.",
+    "label": "descriptive, in-sample: one 2 km and one 5 km lattice, one network",
+    "permutations": 999,
+    "primary_h2km": {
+      "I_residual_inhabited": 0.42534375631883997,
+      "I_total_population": 0.7258597646437387,
+      "I_uncovered_headcount": 0.6638621168693664,
+      "I_uncovered_share_inhabited": 0.4550349824404955,
+      "p_residual": 0.001,
+      "p_total_population": 0.001,
+      "p_uncovered_headcount": 0.001,
+      "p_uncovered_share": 0.001
+    },
+    "seed": 20260823,
+    "status": "OK",
+    "variants": [
+      {
+        "cell_km": 2.0,
+        "corr_uncovered_total_inhabited": 0.8359490723854495,
+        "n_cells_full": 4200,
+        "n_cells_inhabited": 3526,
+        "total_population_full_lattice": {
+          "expected_I": -0.00023815194093831864,
+          "label": "total population, full lattice, h=2 km",
+          "morans_I": 0.7258597646437387,
+          "n_cells": 4200,
+          "n_islands_dropped": 0,
+          "p_norm": 0.0,
+          "p_sim": 0.001,
+          "variable_mean": 1567.8006223406962,
+          "variable_nonzero_cells": 3526,
+          "z_sim": 93.37815801007163
+        },
+        "total_population_inhabited": {
+          "expected_I": -0.0002841716396703609,
+          "label": "total population, inhabited cells, h=2 km",
+          "morans_I": 0.7158808462265579,
+          "n_cells": 3520,
+          "n_islands_dropped": 6,
+          "p_norm": 0.0,
+          "p_sim": 0.001,
+          "variable_mean": 1870.6659101381558,
+          "variable_nonzero_cells": 3520,
+          "z_sim": 82.65776450117329
+        },
+        "uncovered_headcount_full_lattice": {
+          "expected_I": -0.00023815194093831864,
+          "label": "uncovered head-count, full lattice, h=2 km",
+          "morans_I": 0.6638621168693664,
+          "n_cells": 4200,
+          "n_islands_dropped": 0,
+          "p_norm": 0.0,
+          "p_sim": 0.001,
+          "variable_mean": 1188.5514151139203,
+          "variable_nonzero_cells": 3526,
+          "z_sim": 85.7680611204478
+        },
+        "uncovered_headcount_inhabited": {
+          "expected_I": -0.0002841716396703609,
+          "label": "uncovered head-count, inhabited cells, h=2 km",
+          "morans_I": 0.6409636151155012,
+          "n_cells": 3520,
+          "n_islands_dropped": 6,
+          "p_norm": 0.0,
+          "p_sim": 0.001,
+          "variable_mean": 1418.1526515152982,
+          "variable_nonzero_cells": 3520,
+          "z_sim": 70.5624486109624
+        },
+        "uncovered_residual_on_total_inhabited": {
+          "expected_I": -0.0002841716396703609,
+          "label": "OLS residual of uncovered ~ total, inhabited cells, h=2 km",
+          "morans_I": 0.42534375631883997,
+          "n_cells": 3520,
+          "n_islands_dropped": 6,
+          "p_norm": 0.0,
+          "p_sim": 0.001,
+          "variable_mean": 0.9368874355762852,
+          "variable_nonzero_cells": 1255,
+          "z_sim": 48.08236168968667
+        },
+        "uncovered_share_inhabited": {
+          "expected_I": -0.0002841716396703609,
+          "label": "uncovered SHARE of cell population, inhabited cells, h=2 km",
+          "morans_I": 0.4550349824404955,
+          "n_cells": 3520,
+          "n_islands_dropped": 6,
+          "p_norm": 0.0,
+          "p_sim": 0.001,
+          "variable_mean": 0.9456439716959782,
+          "variable_nonzero_cells": 3520,
+          "z_sim": 50.217366707608264
+        }
+      },
+      {
+        "cell_km": 5.0,
+        "corr_uncovered_total_inhabited": 0.8856551544921553,
+        "n_cells_full": 711,
+        "n_cells_inhabited": 670,
+        "total_population_full_lattice": {
+          "expected_I": -0.0014084507042253522,
+          "label": "total population, full lattice, h=5 km",
+          "morans_I": 0.6002837994998484,
+          "n_cells": 711,
+          "n_islands_dropped": 0,
+          "p_norm": 2.9025555217368928e-208,
+          "p_sim": 0.001,
+          "variable_mean": 9261.269474839904,
+          "variable_nonzero_cells": 670,
+          "z_sim": 31.748516419165604
+        },
+        "total_population_inhabited": {
+          "expected_I": -0.0014947683109118087,
+          "label": "total population, inhabited cells, h=5 km",
+          "morans_I": 0.5944158445312613,
+          "n_cells": 670,
+          "n_islands_dropped": 0,
+          "p_norm": 1.3803809396998093e-190,
+          "p_sim": 0.001,
+          "variable_mean": 9828.003875539063,
+          "variable_nonzero_cells": 670,
+          "z_sim": 31.080987473649188
+        },
+        "uncovered_headcount_full_lattice": {
+          "expected_I": -0.0014084507042253522,
+          "label": "uncovered head-count, full lattice, h=5 km",
+          "morans_I": 0.7293242899008364,
+          "n_cells": 711,
+          "n_islands_dropped": 0,
+          "p_norm": 3.7050314542342485e-306,
+          "p_sim": 0.001,
+          "variable_mean": 7020.978819406024,
+          "variable_nonzero_cells": 670,
+          "z_sim": 37.30699065231042
+        },
+        "uncovered_headcount_inhabited": {
+          "expected_I": -0.0014947683109118087,
+          "label": "uncovered head-count, inhabited cells, h=5 km",
+          "morans_I": 0.7206112828596816,
+          "n_cells": 670,
+          "n_islands_dropped": 0,
+          "p_norm": 7.303572577335207e-279,
+          "p_sim": 0.001,
+          "variable_mean": 7450.620806862214,
+          "variable_nonzero_cells": 670,
+          "z_sim": 36.1768510838021
+        },
+        "uncovered_residual_on_total_inhabited": {
+          "expected_I": -0.0014947683109118087,
+          "label": "OLS residual of uncovered ~ total, inhabited cells, h=5 km",
+          "morans_I": 0.42765816540264306,
+          "n_cells": 670,
+          "n_islands_dropped": 0,
+          "p_norm": 8.30719978121529e-100,
+          "p_sim": 0.001,
+          "variable_mean": 2.3022433047863974e-12,
+          "variable_nonzero_cells": 246,
+          "z_sim": 21.591039024842935
+        },
+        "uncovered_share_inhabited": {
+          "expected_I": -0.0014947683109118087,
+          "label": "uncovered SHARE of cell population, inhabited cells, h=5 km",
+          "morans_I": 0.5161155132245302,
+          "n_cells": 670,
+          "n_islands_dropped": 0,
+          "p_norm": 2.7035493674728455e-144,
+          "p_sim": 0.001,
+          "variable_mean": 0.9382578356545691,
+          "variable_nonzero_cells": 670,
+          "z_sim": 23.63908524371252
+        }
+      }
+    ],
+    "weights": "Queen contiguity, row-standardised"
   },
   "permit_chord_proxy": {
     "caveat": "origin -> via -> destination chords from the permit register's own coordinates. Chords are not road alignments, so these kilometres are NOT comparable with the routed figures above; and two permits along one road with different intermediate stops produce different chords, so the ratio is a floor on permit duplication rather than a measurement of it",

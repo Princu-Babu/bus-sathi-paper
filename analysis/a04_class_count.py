@@ -19,40 +19,62 @@ Two elbow rules are computed, and BOTH are reported, because a single rule
 chosen after seeing the curve is a rule chosen to give the answer wanted:
 
   Rule A — threshold. The smallest k whose GVF exceeds 0.80. The 0.80 floor is
-    the conventional adequacy level for a class-interval scheme: below it the
-    classes retain more than a fifth of the total squared deviation as
-    within-class noise.
+    an ASSUMPTION: no source is cited for it (it is recorded with
+    `threshold_source: "assumption"`). The result turns on it: k = 2 scores
+    0.7855, 0.0145 below the floor, and any floor in (GVF(2), GVF(3)] selects
+    k = 3 while a floor at or below 0.78 selects k = 2. The k selected for every
+    floor from 0.70 to 0.98 is reported (`rule_a_floor_sweep`).
   Rule B — maximum second difference. The k at which the marginal return to an
     extra class falls off most sharply, argmax over k of
         [GVF(k) - GVF(k-1)] - [GVF(k+1) - GVF(k)],
-    i.e. the discrete curvature of the GVF curve. Defined for k = 3..6 given a
-    2..7 sweep, since it needs a neighbour on each side.
+    i.e. the discrete curvature of the GVF curve. It needs a neighbour on each
+    side, so with a 2..7 sweep it can return only k = 3..6: it CANNOT return
+    k = 2 (or 7) by construction, and the largest curvature is the first gain
+    after k = 2, which almost any unimodal right-skewed index would produce.
+    Rule A can return any k in 2..7.
 
-The pre-registered tie-break, stated before the numbers are looked at: if the
-two rules disagree, Rule A governs (an absolute adequacy floor is harder to
-tune than a curvature argmax) and the disagreement is flagged in the JSON and
-in the paper rather than buried.
+Because of that, the two rules are not independent confirmations of k = 3: one
+rests on an uncited floor, the other cannot return the main rival. The elbow is
+a convention-compatible DESCRIPTION of the GVF curve, not evidence of three
+modes — no mode test, gap statistic or dip test is run here (`mode_test_run`
+is false in the JSON).
 
-Why classifier agreement matters too. An elbow tells you how many classes; it
-does not tell you that the classes are a property of the data rather than of
-Jenks. So the chosen k is also cut by three alternative rules — equal-count
-quantiles, 1-D k-means, and equal intervals — and pairwise Cohen's kappa is
-reported with the full confusion matrices. Two of these comparisons are
-diagnostics with known expectations, and saying so in advance keeps them
-honest: Jenks and 1-D k-means minimise the same within-class sum of squares on
-one dimension, so once Jenks is evaluated on the partition it actually selected
-they should agree exactly (any disagreement is an implementation fault or an
-unconverged k-means, not a finding); equal-interval is the naive cut and should
-agree worst on a right-skewed index. The informative comparison is Jenks vs
-quantile, which asks whether the breaks sit at real gaps or merely at
-convenient counts.
+Tie-break between the rules. The module's rule is: if the two disagree, Rule A
+governs and the disagreement is flagged. This is stated in the code only: there
+is no dated external registration of it, and this module and its results were
+committed together. It is "specified in the analysis code", nothing stronger.
 
-Robustness. Everything is run on all three a03 weightings of the network-
-catchment index: `cdi_net_equal` (primary — the plan's own 50/50 assertion),
-`cdi_net_entropy` and `cdi_net_pca`. Note before anyone reports it as a bug:
-a03's PCA loadings on two positively correlated criteria came out 0.500/0.500,
-so `cdi_net_pca` is numerically identical to `cdi_net_equal` and its curve is
-identical too. That is a property of the two-criterion problem, not a copy.
+Classifier comparison. The chosen k is also cut by three alternative rules —
+equal-count quantiles, 1-D k-means, and equal intervals — and pairwise Cohen's
+kappa is reported with the full confusion matrices. The Jenks vs 1-D k-means
+comparison is an IMPLEMENTATION CHECK, not corroboration: Jenks and 1-D k-means
+minimise the same within-class sum of squares on one dimension, so their
+agreement is an identity of the objective (it only shows that k-means
+converged); it is labelled as such in the JSON. Quantile and equal-interval are
+classifiers with different objectives, not tests of tri-modality; the
+informative one is Jenks vs quantile, which asks whether the breaks sit at real
+gaps or merely at convenient counts.
+
+Two separate results about the hierarchy are kept apart, because they answer
+different questions and the second was previously quoted as if it were the
+first:
+  (i)  `published_vs_objective_agreement` — how far the PLAN'S published
+       Priority_Band (HP/MP/LP) agrees with this module's objective partition of
+       the index (routes, %, kappa, confusion matrix, and the high-priority
+       routes that sit in the lowest objective tier with the override flags the
+       plan CSV records for them).
+  (ii) `stability_under_uncertainty` — how stable the OBJECTIVE partition is
+       under parameter noise (a09 Monte Carlo) and under the alternative
+       weightings computed here. That is the stability of this re-implementation's
+       own tiers; it says nothing about whether the published tiers match them.
+
+Robustness. Everything is run on all three a03 weighting columns of the
+network-catchment index: `cdi_net_equal` (primary — the plan's own 50/50
+assertion), `cdi_net_entropy` and `cdi_net_pca`. Note before anyone reports it
+as a bug: a03's PCA loadings on two positively correlated criteria are 0.500/0.500
+by construction, so `cdi_net_pca` is numerically identical to `cdi_net_equal`
+and its curve is identical too. That is an identity of the two-criterion
+problem, not a second weighting: only entropy is an independent robustness check.
 
 One arithmetic trap, recorded because it produced a wrong number before it was
 caught. jenkspy returns interior breaks that are observed data values marking
@@ -66,17 +88,18 @@ objective, which cannot happen. This module therefore classifies with
 side="left" and always derives GVF from the label-implied lower-bound breaks,
 and every k is checked against an exact Fisher (1958) dynamic program that
 solves the contiguous partition to global optimality. jenkspy attains it at
-every k here. Related: a03's own `jenks_bands` helper uses the shifted
-convention, so its band labels differ from this module's at class boundaries;
-that affects a03's band-agreement diagnostics symmetrically (both sides of
-every comparison are shifted alike) and is left untouched rather than edited
-from here.
+every k here. (a03's `jenks_bands` now uses the same side="left" convention.)
 
 Outputs
-    data/derived/a04_class_count.json     GVF curves, both elbow rules, kappas
+    data/derived/a04_class_count.json     GVF curves, both elbow rules, kappas,
+                                          published-vs-objective agreement,
+                                          stability under uncertainty
     data/derived/a04_route_tiers.csv      per-route tier at the chosen k
     paper/tables/table05_class_count.{csv,md}
     paper/tables/table05b_classifier_agreement.{csv,md}
+    paper/tables/table05c_published_vs_objective.{csv,md}
+
+All statistics are in-sample over the n = 186 active plan routes.
 
 Usage
     python analysis/a04_class_count.py
@@ -252,6 +275,203 @@ def class_sizes(labels: np.ndarray, k: int) -> list[int]:
     return [int((labels == c).sum()) for c in range(k)]
 
 
+def rule_a_k(gvf: dict[int, float], floor: float) -> int | None:
+    """Rule A: smallest k whose GVF strictly exceeds `floor` (None if none does)."""
+    above = [k for k in sorted(gvf) if gvf[k] > floor]
+    return min(above) if above else None
+
+
+def rule_b_k(gvf: dict[int, float]) -> int | None:
+    """
+    Rule B: argmax of the second difference of GVF.
+
+    Admissible k are only those with a neighbour on each side (k = 3..6 for a
+    2..7 sweep); k = 2 and k = 7 cannot be returned by construction.
+    """
+    ks = sorted(gvf)
+    d1 = {k: gvf[k] - gvf[k - 1] for k in ks if k - 1 in gvf}
+    d2 = {k: d1[k] - d1[k + 1] for k in ks if k in d1 and k + 1 in d1}
+    return max(d2, key=lambda k: d2[k]) if d2 else None
+
+
+def floor_sweep(gvf: dict[int, float]) -> dict[str, int | None]:
+    """k selected by Rule A for every floor 0.70, 0.71, ..., 0.98."""
+    return {f"{f:.2f}": rule_a_k(gvf, float(f)) for f in np.round(np.arange(0.70, 0.9801, 0.01), 2)}
+
+
+# Reason codes for the published band, read from the plan CSV's own flag columns.
+# Engine overrides (transit_kashmir_v3.py, Priority_Band assignment): the SSCL
+# backbone lock re-sets every CMP_Trunk route to HP after Jenks; the Social_Flag
+# and District-HQ floors lift LP to MP only and so cannot by themselves explain HP.
+REASON_FLAGS = (
+    ("CMP_Trunk", "sscl_backbone_lock_to_HP"),
+    ("SSCL_CDI_Conflict", "sscl_cdi_conflict_flag"),
+    ("Social_Flag", "social_flag"),
+    ("District_HQ_Floor", "district_hq_floor"),
+    ("Tourist_Corridor", "tourist_corridor"),
+)
+
+
+def reason_codes(row: pd.Series) -> list[str]:
+    codes = [name for col, name in REASON_FLAGS if bool(row.get(col, False))]
+    return codes or ["no_override_flag_in_plan_csv"]
+
+
+def agreement_block(obj_rank: pd.Series, pub_rank: pd.Series) -> dict:
+    """Routes, %, kappa and confusion matrix of two 1/2/3 tier labellings."""
+    from sklearn.metrics import cohen_kappa_score, confusion_matrix
+    n = int(len(obj_rank))
+    n_agree = int((obj_rank == pub_rank).sum())
+    return dict(
+        n_routes=n, n_agree=n_agree, agreement_pct=100.0 * n_agree / n,
+        exact_agreement=n_agree / n,
+        kappa=float(cohen_kappa_score(obj_rank, pub_rank)),
+        confusion_rows="objective tier rank (1 = highest index)",
+        confusion_cols="published Priority_Band (HP=1, MP=2, LP=3)",
+        confusion=confusion_matrix(obj_rank, pub_rank, labels=[1, 2, 3]).tolist(),
+    )
+
+
+def published_vs_objective(tiers: pd.DataFrame, plan: pd.DataFrame, K: int) -> dict:
+    """
+    How far the published Priority_Band agrees with the objective Jenks partition.
+
+    This is NOT the Monte-Carlo stability figure: that measures how stable the
+    objective partition is under noise (see stability_under_uncertainty); this
+    measures whether the plan's own tiers coincide with it.
+    """
+    need = ["New_Route_ID", "Priority_Band", "Final_CDI",
+            *[c for c, _ in REASON_FLAGS]]
+    m = tiers.merge(plan[need], on="New_Route_ID", how="left")
+    if K != 3 or m["Priority_Band"].isna().any():
+        return dict(status="not_computable",
+                    why=("Priority_Band missing for some active routes"
+                         if m["Priority_Band"].isna().any()
+                         else f"chosen k={K} is not 3, so HP/MP/LP is not a "
+                              "like-for-like partition"))
+    band_rank = {"HP": 1, "MP": 2, "LP": 3}
+    pub = m["Priority_Band"].map(band_rank)
+    overall = agreement_block(m["tier_rank"], pub)
+
+    non_sscl = ~m["CMP_Trunk"].astype(bool)
+    excl = agreement_block(m.loc[non_sscl, "tier_rank"], pub[non_sscl])
+
+    hp = m["Priority_Band"].eq("HP")
+    low = m["tier_rank"].eq(K)                    # lowest objective tier
+    sel = m[hp & low].sort_values("cdi_net_equal")
+    routes = []
+    reason_counts: dict[str, int] = {}
+    for _, r in sel.iterrows():
+        codes = reason_codes(r)
+        for c in codes:
+            reason_counts[c] = reason_counts.get(c, 0) + 1
+        routes.append(dict(
+            New_Route_ID=r["New_Route_ID"], Route_Name=r["Route_Name"],
+            Route_Type=r["Route_Type"], objective_index=float(r["cdi_net_equal"]),
+            plan_Final_CDI=float(r["Final_CDI"]), reason_codes=codes))
+    n_sscl_lock = int(sel["CMP_Trunk"].astype(bool).sum())
+    return dict(
+        comparison=("objective Jenks tier (k=3, network-catchment index, 0.5/0.5 "
+                    "weights) vs the plan's published Priority_Band HP/MP/LP"),
+        evidence_status=dict(in_sample=True, n=int(len(m)),
+                             base="all 186 active plan routes"),
+        n_routes=overall["n_routes"], n_agree=overall["n_agree"],
+        agreement_pct=overall["agreement_pct"], kappa=overall["kappa"],
+        confusion_rows=overall["confusion_rows"],
+        confusion_cols=overall["confusion_cols"], confusion=overall["confusion"],
+        objective_tier_sizes={f"Tier {r}": int((m["tier_rank"] == r).sum())
+                              for r in (1, 2, 3)},
+        published_band_sizes={b: int((m["Priority_Band"] == b).sum())
+                              for b in ("HP", "MP", "LP")},
+        excluding_sscl_backbone=dict(
+            note=("the 30 SSCL backbone routes are locked to HP by the engine "
+                  "regardless of index, so this is the agreement where the index "
+                  "can actually decide the band"),
+            **excl),
+        high_priority_in_lowest_objective_tier=dict(
+            n=int(len(sel)), of_published_high_priority=int(hp.sum()),
+            share_pct=100.0 * len(sel) / int(hp.sum()),
+            n_with_sscl_backbone_lock=n_sscl_lock,
+            all_explained_by_sscl_backbone_lock=bool(n_sscl_lock == len(sel)),
+            reason_code_counts=reason_counts,
+            routes=routes,
+            note=("Reason codes are the flag columns recorded in the plan CSV. The "
+                  "engine's only override that can set a route to HP regardless of "
+                  "its index is the SSCL backbone lock (CMP_Trunk); Social_Flag and "
+                  "the District-HQ floor lift LP to MP only. A route with no flag "
+                  "listed has no recorded override."),
+        ),
+        reading=("The published bands match the objective partition on "
+                 f"{overall['agreement_pct']:.1f}% of routes (kappa "
+                 f"{overall['kappa']:.3f}), not on the Monte-Carlo stability share. "
+                 "That stability figure (see stability_under_uncertainty) measures "
+                 "how stable the objective partition is under noise and must not be "
+                 "quoted as agreement with the published tiers."),
+    )
+
+
+def stability_under_uncertainty(out: pd.DataFrame, curves: dict, primary: str,
+                                robustness: tuple[str, ...], K: int) -> dict:
+    """
+    Stability of the OBJECTIVE partition (not of the published tiers).
+
+    (a) Alternative weightings computed here: share of routes whose tier is
+        unchanged. The PCA column equals the primary by construction.
+    (b) The a09 Monte-Carlo tier agreement, copied from a09's output when it
+        exists. a09 runs after a04, so the file is optional and its provenance is
+        recorded; rerun a04 after a09 to refresh it. Its baseline is checked here
+        against this module's own tiers.
+    """
+    res: dict = dict(
+        what_is_measured=("stability of this module's objective Jenks partition of "
+                          "the index under perturbation; agreement of the "
+                          "RE-IMPLEMENTATION'S own tiers with themselves, not with "
+                          "the published Priority_Band"),
+        evidence_status=dict(in_sample=True, n=int(len(out)),
+                             base="all 186 active plan routes"),
+    )
+    base = out["tier_class"].to_numpy()
+    wt = {}
+    for col in robustness:
+        other = out[f"tier_class_{col}"].to_numpy()
+        wt[col] = dict(
+            share_tier_unchanged=float((other == base).mean()),
+            n_routes_changing_tier=int((other != base).sum()),
+            identical_by_construction=bool(col.endswith("_pca")),
+        )
+    res["alternative_weightings"] = wt
+
+    a09_json = C.DERIVED / "a09_monte_carlo_sobol.json"
+    a09_csv = C.DERIVED / "a09_route_tier_stability.csv"
+    if a09_json.exists() and a09_csv.exists():
+        j = C.read_result("a09_monte_carlo_sobol")
+        st = pd.read_csv(a09_csv)
+        mm = st.merge(out[["New_Route_ID", "tier_class"]], on="New_Route_ID")
+        mc = j["mc"]["tier_agreement"]
+        res["monte_carlo"] = dict(
+            source="data/derived/a09_monte_carlo_sobol.json (read at run time; "
+                   "refresh by re-running a04 after a09)",
+            n_draws=j.get("n_mc"),
+            tier_agreement_median=mc["median"], tier_agreement_p5=mc["p5"],
+            tier_agreement_p95=mc["p95"], tier_agreement_min=mc["min"],
+            n_routes_stability_below_target=j["tier_stability"]["n_routes_stability_below_target"],
+            target=j["tier_stability"]["target"],
+            baseline_is_this_modules_objective_partition=bool(
+                len(mm) == len(out)
+                and (mm["baseline_tier"].to_numpy() == mm["tier_class"].to_numpy()).all()),
+            base=("each Monte-Carlo draw's tiers vs the baseline tiers of the same "
+                  "186 routes; the baseline is the objective partition above, NOT "
+                  "the published Priority_Band"),
+            conditional_on=("the published 186-route set: the draws re-derive tiers "
+                            "for the same 186 routes, so route-set uncertainty is "
+                            "not part of this stability figure"),
+        )
+    else:
+        res["monte_carlo"] = dict(status="not_available",
+                                  why="a09 outputs not present when a04 ran")
+    return res
+
+
 def main() -> None:
     from sklearn.metrics import cohen_kappa_score, confusion_matrix
 
@@ -321,6 +541,7 @@ def main() -> None:
         k_b_ex = max(d2e, key=lambda k: d2e[k]) if d2e else None
         k_chosen_ex = k_a_ex if k_a_ex is not None else k_b_ex
 
+        lo_edge = gvf.get(k_chosen - 1)
         curves[col] = dict(
             gvf={str(k): gvf[k] for k in ks},
             delta_gvf={str(k): d1[k] for k in ks},
@@ -330,6 +551,25 @@ def main() -> None:
             k_rule_a_first_gvf_above_threshold=k_rule_a,
             k_rule_b_max_second_difference=k_rule_b,
             rules_agree=bool(rules_agree),
+            rule_a=dict(
+                threshold=GVF_THRESHOLD,
+                threshold_source="assumption (conventional adequacy level; no citation)",
+                can_return_k=[min(ks), max(ks)],
+                gvf_just_below_selected_k=lo_edge,
+                shortfall_of_k_minus_1_below_floor=(
+                    None if lo_edge is None else GVF_THRESHOLD - lo_edge),
+                floors_selecting_chosen_k=[lo_edge, gvf[k_chosen]],
+                floors_selecting_chosen_k_note=(
+                    "Rule A returns the chosen k for every floor f with "
+                    "GVF(k-1) <= f < GVF(k)"),
+                k_by_floor=floor_sweep(gvf)),
+            rule_b=dict(
+                admissible_k=sorted(d2),
+                cannot_return_k=[k for k in ks if k not in d2],
+                reason=("second difference needs a neighbour on each side, so "
+                        "the end values of the sweep cannot be returned; k = 2 is "
+                        "inadmissible by construction"),
+                threshold=None, threshold_source="none (argmax rule)"),
             k_chosen=int(k_chosen),
             exact_optimum=dict(
                 method=("Fisher 1958 exact dynamic program over the sorted values; "
@@ -357,7 +597,7 @@ def main() -> None:
     prim = curves[PRIMARY_COL]
     K = int(prim["k_chosen"])
     if not prim["rules_agree"]:
-        log.warning("elbow rules DISAGREE on %s (A=%s, B=%s); pre-registered "
+        log.warning("elbow rules DISAGREE on %s (A=%s, B=%s); the module's "
                     "tie-break selects Rule A", PRIMARY_COL,
                     prim["k_rule_a_first_gvf_above_threshold"],
                     prim["k_rule_b_max_second_difference"])
@@ -367,27 +607,34 @@ def main() -> None:
              K, PRIMARY_COL, robust_agreement)
 
     # ── Table 5: the curve the choice of k rests on ───────────────────────────
+    # Missing first/second differences are written as empty strings, never NaN;
+    # class sizes are joined with " / " because "|" is the markdown cell delimiter
+    # (an unescaped "|" shifted every later column — audit F-10-23).
     rows = []
     for k in K_RANGE:
         rows.append(dict(
             k=k,
             gvf=round(prim["gvf"][str(k)], 4),
             gvf_exact_optimum=round(prim["exact_optimum"]["gvf"][str(k)], 4),
-            delta_gvf=(None if prim["delta_gvf"][str(k)] is None
+            gvf_above_floor_0_80=("yes" if prim["gvf"][str(k)] > GVF_THRESHOLD else "no"),
+            delta_gvf=("" if prim["delta_gvf"][str(k)] is None
                        else round(prim["delta_gvf"][str(k)], 4)),
             second_difference_gvf=(round(prim["second_difference_gvf"][str(k)], 4)
-                                   if str(k) in prim["second_difference_gvf"] else None),
-            n_per_class=" | ".join(str(n) for n in prim["class_sizes"][str(k)]),
+                                   if str(k) in prim["second_difference_gvf"] else ""),
+            n_per_class=" / ".join(str(n) for n in prim["class_sizes"][str(k)]),
             smallest_class_n=min(prim["class_sizes"][str(k)]),
             selected=("yes" if k == K else ""),
         ))
     tab5 = pd.DataFrame(rows)
     C.write_table(tab5, "table05_class_count",
                   f"Jenks natural-breaks goodness of variance fit for k = 2..7 on "
-                  f"{PRIMARY_COL}, with the marginal and second-difference returns "
-                  f"that locate the elbow. `gvf_exact_optimum` is the globally "
-                  f"optimal contiguous partition from an exact dynamic program, "
-                  f"reported so the library's result is auditable")
+                  f"the network-catchment index (n = {len(df)} routes), with the "
+                  f"marginal and second-difference returns that locate the elbow. "
+                  f"The 0.80 floor is an assumption (no source cited); k = 2 scores "
+                  f"{prim['gvf']['2']:.4f}, just below it, and the second difference "
+                  f"is undefined at k = 2 and k = 7, so neither rule independently "
+                  f"establishes three tiers. Exact-optimum column: globally optimal "
+                  f"contiguous partition from an exact dynamic program")
 
     # ── classifier agreement at the chosen k ──────────────────────────────────
     v = df[PRIMARY_COL].to_numpy(dtype=float)
@@ -469,16 +716,29 @@ def main() -> None:
                                else float(cohen_kappa_score(labels[a], labels[b])))
             if a < b:
                 cm = confusion_matrix(labels[a], labels[b], labels=list(range(K)))
+                is_identity = {a, b} == {"jenks", "kmeans"}
                 confusions[f"{a}__vs__{b}"] = dict(
                     rows=a, cols=b, labels=list(range(K)),
                     matrix=cm.tolist(),
                     exact_agreement=float((labels[a] == labels[b]).mean()),
                     kappa=float(cohen_kappa_score(labels[a], labels[b])),
+                    kind=("implementation_check_identity" if is_identity
+                          else "contrast_between_different_objectives"),
+                    kind_note=("Jenks and 1-D k-means minimise the same within-class "
+                               "sum of squares, so agreement is an identity of the "
+                               "objective (k-means converged), not corroboration of "
+                               "three modes" if is_identity else
+                               "a classifier with a different objective; agreement "
+                               "or disagreement is not a test of tri-modality"),
                 )
     kappa_out = kappa.round(4).reset_index().rename(columns={"index": "classifier"})
     C.write_table(kappa_out, "table05b_classifier_agreement",
                   f"Pairwise Cohen's kappa between four class-interval rules at "
-                  f"k = {K} on {PRIMARY_COL} (n = {len(df)} active routes)")
+                  f"k = {K} on the network-catchment index (n = {len(df)} active "
+                  f"routes). Jenks vs k-means = 1 is an identity of the shared "
+                  f"objective (implementation check), not corroboration; quantile "
+                  f"and equal-interval optimise different objectives and are not "
+                  f"tests of tri-modality")
 
     for key, cm in confusions.items():
         log.info("kappa %-34s %.4f  (exact agreement %.1f%%)", key,
@@ -505,7 +765,8 @@ def main() -> None:
     # This is the claim §4.7 actually needs: not that three is a nice number,
     # but that a blind cut of the index lands where the plan says it lands.
     published = None
-    plan = C.load_active()[["New_Route_ID", "Priority_Band"]]
+    plan_full = C.load_active()
+    plan = plan_full[["New_Route_ID", "Priority_Band"]]
     merged = out.merge(plan, on="New_Route_ID", how="left")
     if merged["Priority_Band"].notna().all() and K == 3:
         band_rank = {"HP": 1, "MP": 2, "LP": 3}
@@ -528,31 +789,108 @@ def main() -> None:
                                       "bands are not a like-for-like partition"))
         log.warning("published-band comparison skipped: %s", published["reason"])
 
+    # (i) published vs objective, and (ii) stability of the objective partition —
+    # two different results, kept in two different keys.
+    pub_obj = published_vs_objective(out, plan_full, K)
+    stab_unc = stability_under_uncertainty(out, curves, PRIMARY_COL, ROBUSTNESS_COLS, K)
+    if pub_obj.get("n_routes"):
+        cm = pub_obj["confusion"]
+        t5c = pd.DataFrame(
+            [dict(objective_tier=f"Tier {r}",
+                  published_HP=cm[r - 1][0], published_MP=cm[r - 1][1],
+                  published_LP=cm[r - 1][2], routes=int(sum(cm[r - 1])))
+             for r in (1, 2, 3)]
+            + [dict(objective_tier="All", published_HP=int(sum(row[0] for row in cm)),
+                    published_MP=int(sum(row[1] for row in cm)),
+                    published_LP=int(sum(row[2] for row in cm)),
+                    routes=int(sum(map(sum, cm))))])
+        C.write_table(
+            t5c, "table05c_published_vs_objective",
+            f"Objective Jenks tier (rows) against the plan's published Priority_Band "
+            f"(columns), n = {pub_obj['n_routes']} routes, in-sample. Agreement on the "
+            f"diagonal: {pub_obj['n_agree']} routes = {pub_obj['agreement_pct']:.1f}% "
+            f"(kappa {pub_obj['kappa']:.3f}); "
+            f"{pub_obj['high_priority_in_lowest_objective_tier']['n']} of "
+            f"{pub_obj['high_priority_in_lowest_objective_tier']['of_published_high_priority']} "
+            f"published high-priority routes fall in the lowest objective tier. "
+            f"This is not the Monte-Carlo stability figure")
+        log.info("published vs objective: %d/%d = %.1f%% (kappa %.3f); %d of %d HP "
+                 "routes in the lowest objective tier (%d explained by the SSCL lock)",
+                 pub_obj["n_agree"], pub_obj["n_routes"], pub_obj["agreement_pct"],
+                 pub_obj["kappa"],
+                 pub_obj["high_priority_in_lowest_objective_tier"]["n"],
+                 pub_obj["high_priority_in_lowest_objective_tier"]["of_published_high_priority"],
+                 pub_obj["high_priority_in_lowest_objective_tier"]["n_with_sscl_backbone_lock"])
+
+    floors_chosen = [f for f, k_ in prim["rule_a"]["k_by_floor"].items() if k_ == K]
+    if not floors_chosen:
+        floors_chosen = ["n/a"]
+
     payload = dict(
         n_routes=int(len(df)),
+        evidence_status=dict(in_sample=True, n=int(len(df)),
+                             base="all 186 active plan routes; no hold-out"),
         primary_column=PRIMARY_COL,
         robustness_columns=list(ROBUSTNESS_COLS),
         k_range=[min(K_RANGE), max(K_RANGE)],
         gvf_threshold=GVF_THRESHOLD,
-        elbow_rule_a="smallest k with GVF > 0.80 (absolute adequacy floor)",
+        gvf_threshold_source="assumption (no citation for the 0.80 floor)",
+        gvf_by_k={str(k): prim["gvf"][str(k)] for k in K_RANGE},
+        elbow_rule_a="smallest k with GVF > 0.80 (absolute adequacy floor; the floor is an assumption)",
         elbow_rule_b=("argmax over k of [GVF(k)-GVF(k-1)] - [GVF(k+1)-GVF(k)], "
-                      "the discrete curvature of the GVF curve; defined k=3..6"),
-        elbow_tie_break=("pre-registered: Rule A governs if the two disagree, and "
-                         "the disagreement is reported"),
+                      "the discrete curvature of the GVF curve; admissible k = 3..6 "
+                      "only, so it cannot return k = 2"),
+        elbow_rules_summary=dict(
+            rule_a=prim["rule_a"], rule_b=prim["rule_b"],
+            independent_confirmation_of_k3=False,
+            why_not_independent=(
+                f"Rule A selects k = {K} only because GVF({K - 1}) = "
+                f"{prim['gvf'][str(K - 1)]:.4f} is below an uncited "
+                f"{GVF_THRESHOLD:.2f} floor (floors {floors_chosen[0]}-"
+                f"{floors_chosen[-1]} give k = {K}; floors below "
+                f"{floors_chosen[0]} give a smaller k); Rule B's admissible range "
+                f"is k = {min(prim['rule_b']['admissible_k'])}-"
+                f"{max(prim['rule_b']['admissible_k'])}, so it cannot return k = "
+                f"{min(K_RANGE)}, and its largest curvature is the first gain after "
+                f"k = {min(K_RANGE)}"),
+            mode_test_run=False,
+            interpretation=("the elbow is consistent with a three-tier partition; it "
+                            "is a convention-compatible description of the GVF curve, "
+                            "not evidence of three modes (no mode test, gap statistic "
+                            "or dip test is run)"),
+        ),
+        elbow_tie_break=("specified in the module code: Rule A governs if the two "
+                         "disagree, and the disagreement is reported. No dated "
+                         "external registration of this rule exists, and the module "
+                         "and its results were committed together"),
         k_chosen=K,
         rules_agree=bool(prim["rules_agree"]),
         k_chosen_by_robustness_weighting=robust_agreement,
         robustness_weightings_agree=bool(
             all(x == K for x in robust_agreement.values())),
-        pca_equals_equal_note=("a03 derives PCA loadings of 0.500/0.500 on the two "
-                               "criteria, so cdi_net_pca is numerically identical "
-                               "to cdi_net_equal; its identical curve is expected"),
+        pca_equals_equal_note=("a03 PCA loadings on the two criteria are 0.500/0.500 "
+                               "by construction (two positively correlated criteria), "
+                               "so cdi_net_pca is numerically identical to "
+                               "cdi_net_equal; its identical curve is an identity, "
+                               "not a second weighting. Only entropy is independent"),
         curves=curves,
         classifiers_at_k=per_classifier,
         jenks_implementation_check=jenks_check,
         kappa_matrix=kappa.round(6).to_dict(),
         confusion_matrices=confusions,
+        classifier_comparison_note=("Jenks vs 1-D k-means (kappa 1.0) is an implementation "
+                                    "check: both minimise the same within-class sum of "
+                                    "squares. It is not corroboration that the classes are "
+                                    "a property of the index. Quantile and equal-interval "
+                                    "use different objectives and are not mode tests."),
+        published_vs_objective_agreement=pub_obj,
+        stability_under_uncertainty=stab_unc,
         vs_published_priority_band=published,
+        vs_published_priority_band_note=("legacy key, same content as the headline of "
+                                         "published_vs_objective_agreement (agreement of "
+                                         "the plan's published bands with the OBJECTIVE "
+                                         "partition, 186 routes in-sample); it is NOT the "
+                                         "Monte-Carlo stability share"),
         tier_sizes={f"Tier {K - c}": int((labels['jenks'] == c).sum())
                     for c in range(K)},
         random_seed=C.RANDOM_SEED,
@@ -560,13 +898,15 @@ def main() -> None:
             tiers_csv=str((C.DERIVED / "a04_route_tiers.csv").relative_to(C.ROOT)),
             table5=str((C.TABLES / "table05_class_count.csv").relative_to(C.ROOT)),
             table5b=str((C.TABLES / "table05b_classifier_agreement.csv").relative_to(C.ROOT)),
+            table5c=str((C.TABLES / "table05c_published_vs_objective.csv").relative_to(C.ROOT)),
         ),
     )
     C.write_result(payload, "a04_class_count")
 
     log.info("tier sizes at k=%d: %s", K, payload["tier_sizes"])
     log.info("wrote a04_class_count.json, a04_route_tiers.csv, "
-             "table05_class_count, table05b_classifier_agreement")
+             "table05_class_count, table05b_classifier_agreement, "
+             "table05c_published_vs_objective")
 
 
 if __name__ == "__main__":

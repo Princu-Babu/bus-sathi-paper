@@ -1,0 +1,15 @@
+================================================================================
+MODULE:      q02_fleet_baseline
+SCRIPT:      q02_fleet_baseline.py
+STAGE:       Stage 0
+COMMAND:     python analysis/q02_fleet_baseline.py
+================================================================================
+
+INFO    q02 \u2502 valid private buses 679 + e-buses 98 = baseline 777; plan 1011 (uplift 30.1 % vs baseline, 48.9 % vs valid private only)
+INFO    q02 \u2502 bus-class vehicles 2434: {'valid': 679, 'expired': 1675, 'placeholder': 80, 'no_end_date': 0}; expired on paper 68.8 %
+
+================================================================================
+EXIT CODE:   0
+STATUS:      PASSED
+VERIFIED:    1/1 outputs
+================================================================================

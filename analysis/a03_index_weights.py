@@ -1,7 +1,18 @@
 #!/usr/bin/env python
 """
-a03_index_weights.py — derive the composite demand index three ways, and test
-whether the planning decision survives the choice.
+a03_index_weights.py — derive the composite demand index under alternative
+weightings, and test whether the planning decision survives the choice.
+
+HOW MANY WEIGHTINGS ARE THERE? Two, not three. Three schemes are computed (equal,
+Shannon entropy, first principal component) but with exactly TWO criteria the
+first principal component of the correlation matrix [[1, r], [r, 1]] is
+(1, 1)/sqrt(2) for every r > 0, so PCA weights are 0.5/0.5 — identical to equal
+weights BY CONSTRUCTION, not by finding. PCA is therefore reported only as a
+check; the number of genuinely distinct weightings (`n_distinct_weightings` in
+the JSON) is computed from the weight vectors rather than asserted, and every
+pair that coincides is listed in `identical_by_construction`. The only
+data-driven, non-trivial alternative is entropy; a direct sweep of the
+population weight from 0.1 to 0.9 is added as the genuine robustness evidence.
 
 The objection this module exists to answer. A referee's summary rejection of a
 supply-side plan reads: "the paper does not establish that their composite index
@@ -30,16 +41,23 @@ What is done here.
      is within the 250 m budget, offset from the network included. No Euclidean
      tail is needed for point opportunities, so this measure is exact rather than
      an upper bound.
-  2. Three weightings are derived: equal (the plan's assertion), Shannon entropy
-     (Zhou, Ang & Poh 2006 — weight rises with the information content of a
-     criterion across alternatives) and the first principal component. Analytic
-     hierarchy process weights are NOT derived: no expert panel was convened for
-     this study, and inventing pairwise comparisons would be fabrication. That
-     absence is stated in the paper rather than papered over.
+  2. Three weighting schemes are computed: equal (the plan's assertion), Shannon
+     entropy (Zhou, Ang & Poh 2006 — weight rises with the information content
+     of a criterion across alternatives) and the first principal component (a
+     check that equals the equal weights here by construction — see above).
+     Analytic hierarchy process weights are NOT derived: no expert panel was
+     convened for this study, and inventing pairwise comparisons would be
+     fabrication. That absence is stated in the paper rather than papered over.
   3. Redundancy between the two channels is measured. If population and
      opportunity density are near-collinear the weighting cannot matter much,
      which is a robustness result and must be reported as such rather than
-     presented as a validated weighting.
+     presented as a validated weighting. The paper (§4.5) declares a rule — if
+     rho(Pop, POI) > 0.85 the composite adds little beyond the first principal
+     component and a PCA reduction is substituted. The statistic, the declared
+     threshold (an assumption: no source is cited for 0.85) and the rule's
+     outcome AS WRITTEN are all recorded in `collinearity_rule` in the JSON,
+     including the case where the rule fires and the substitution changes
+     nothing because PCA equals equal weights.
   4. Decision stability. The policy-relevant output is not the index value but
      the decision it drives: whether a route clears the trunk-eligibility gate at
      the 30th percentile of the CDI, and which of three Jenks bands it lands in.
@@ -51,9 +69,19 @@ Outputs
     data/derived/a03_index_weights.json      weights, correlations, stability
     paper/tables/table04a_index_weights.{csv,md}
     paper/tables/table04b_decision_stability.{csv,md}
+    paper/tables/table04c_weight_sweep.{csv,md}
+
+All statistics are in-sample over the n = 186 active plan routes; none is
+out-of-sample.
 
 Usage
-    python analysis/a03_index_weights.py
+    python analysis/a03_index_weights.py                  # reuse cached POI incidence
+    python analysis/a03_index_weights.py --recompute-poi  # rebuild it (slow: network Dijkstra)
+
+The per-route opportunity incidence (poi_w_*, n_poi_*) is the only slow step. It
+is deterministic, so when data/derived/a03_index.csv already holds it for exactly
+the same routes it is re-read rather than recomputed; the weighting analysis
+below it always runs afresh. `--recompute-poi` forces the full rebuild.
 """
 from __future__ import annotations
 
@@ -76,6 +104,7 @@ POI_BUDGET_M = 250.0          # engine POI_BUFFER_M
 POP_CAP_PERCENTILE = 95       # engine POP_CAP_PERCENTILE (Directive 5)
 TRUNK_GATE_PERCENTILE = 30    # engine TRUNK_CDI_GATE_PERCENTILE
 N_BANDS = 3
+COLLINEARITY_THRESHOLD = 0.85  # paper §4.5 rule: rho(Pop, POI) above this -> PCA reduction
 TIER_WEIGHT = {"high": 1.0, "medium": 0.4, "seasonal": 0.6}
 
 
@@ -148,16 +177,38 @@ def poi_tier_weights(pois: pd.DataFrame) -> pd.Series:
     return w.fillna(TIER_WEIGHT["medium"])
 
 
-def main() -> None:
+POI_INCIDENCE_COLS = ["New_Route_ID", "poi_w_euclid", "n_poi_euclid",
+                      "poi_w_net", "n_poi_net"]
+
+
+def cached_poi_incidence(catch: pd.DataFrame) -> pd.DataFrame | None:
+    """
+    Per-route opportunity incidence from a previous run of this module, or None.
+
+    Reused only when the cached file covers exactly the same route ids as the
+    catchment table, so a stale cache for a different route set is never used.
+    """
+    path = C.DERIVED / "a03_index.csv"
+    if not path.exists():
+        return None
+    # round_trip: pandas' default float parser is inexact in the last bit, which
+    # would make a cached re-read differ from the freshly computed values.
+    prev = pd.read_csv(path, float_precision="round_trip")
+    if any(c not in prev.columns for c in POI_INCIDENCE_COLS):
+        return None
+    if set(prev["New_Route_ID"]) != set(catch["New_Route_ID"]):
+        return None
+    return prev[POI_INCIDENCE_COLS].copy()
+
+
+def compute_poi_incidence() -> pd.DataFrame:
+    """The slow step: Euclidean and exact network opportunity incidence per route."""
     import geopandas as gpd
     from scipy.spatial import cKDTree
-    from scipy.stats import pearsonr, spearmanr
-    from shapely import MultiPoint
 
-    catch = pd.read_csv(C.DERIVED / "a02_catchments.csv")
     routes = gpd.read_file(C.PLAN_GEOJSON).to_crs(C.UTM)
     routes["geometry"] = routes.geometry.simplify(SIMPLIFY_TOL_M)
-    log.info("routes %d, catchment rows %d", len(routes), len(catch))
+    log.info("routes %d", len(routes))
 
     pois = pd.read_csv(C.POIS_CSV)
     pw = poi_tier_weights(pois).to_numpy()
@@ -207,13 +258,136 @@ def main() -> None:
             poi_w_net=float(pw[net_mask].sum()), n_poi_net=int(net_mask.sum()),
         ))
         if pos % 25 == 0 or pos == len(routes):
-            log.info("  %d/%d routes (%.0fs)", pos, len(routes), time.time() - t0)
+            log.info("  %d/%d routes", pos, len(routes))
 
-    poi_df = pd.DataFrame(rows)
-    df = catch.merge(poi_df.drop(columns=["Route_Name", "Route_Type", "Route_KM"]),
-                     on="New_Route_ID", how="inner")
-    if len(df) != len(routes):
-        raise SystemExit(f"join lost rows: {len(df)} of {len(routes)}")
+    return pd.DataFrame(rows)[POI_INCIDENCE_COLS]
+
+
+def distinct_weightings(schemes: dict[str, np.ndarray], tol: float = 1e-6) -> dict:
+    """
+    How many of the named weighting schemes are genuinely different vectors?
+
+    Computed from the weight vectors, not asserted. Two schemes are the same
+    weighting when every component agrees within `tol`. Returns the number of
+    distinct vectors, the groups of coincident schemes and, for each coincident
+    pair, whether the coincidence is an identity of the method (PCA on exactly
+    two positively correlated criteria is (1,1)/sqrt(2) whatever the
+    correlation, so it must equal equal weights) rather than a finding.
+    """
+    names = list(schemes)
+    groups: list[list[str]] = []
+    for nm in names:
+        for g in groups:
+            if np.allclose(schemes[nm], schemes[g[0]], atol=tol, rtol=0):
+                g.append(nm)
+                break
+        else:
+            groups.append([nm])
+    n_criteria = len(next(iter(schemes.values())))
+    pairs = []
+    for g in groups:
+        for i in range(len(g)):
+            for j in range(i + 1, len(g)):
+                pair = sorted([g[i], g[j]])
+                by_construction = (pair == ["equal", "pca"] and n_criteria == 2)
+                pairs.append(dict(
+                    schemes=pair,
+                    identical_by_construction=bool(by_construction),
+                    reason=("PCA on two positively correlated criteria loads "
+                            "(1,1)/sqrt(2) for every correlation r > 0, so its "
+                            "normalised weights are exactly 0.5/0.5 — an identity "
+                            "of the method, not an empirical agreement"
+                            if by_construction else
+                            "coincident numerically; not shown to be an identity")))
+    return dict(n_schemes_computed=len(names), n_distinct_weightings=len(groups),
+                groups=groups, identical_pairs=pairs)
+
+
+def collinearity_rule_record(pearson_r: float, spearman_rho: float,
+                             w_pca: np.ndarray, w_equal: np.ndarray) -> dict:
+    """
+    The paper's declared collinearity rule, its statistic and its outcome as written.
+
+    Declared rule (paper §4.5): if rho(Pop, POI) > 0.85, the composite adds little
+    beyond the first principal component and a PCA reduction is substituted. The
+    paper does not say which correlation coefficient, so both are evaluated and
+    the rule is recorded as fired if EITHER exceeds the threshold. The threshold
+    0.85 carries no citation here: it is an assumption.
+    """
+    thr = COLLINEARITY_THRESHOLD
+    fired_p, fired_s = bool(pearson_r > thr), bool(spearman_rho > thr)
+    fired = fired_p or fired_s
+    pca_same = bool(np.allclose(w_pca, w_equal, atol=1e-6, rtol=0))
+    if fired:
+        outcome = ("rule fired: the declared action is to substitute the PCA "
+                   "reduction for the 50/50 composite; here the PCA weights equal "
+                   "the equal weights, so the substitution changes nothing")
+        if not pca_same:
+            outcome = ("rule fired: the declared action is to substitute the PCA "
+                       "reduction; PCA weights differ from equal weights here, so "
+                       "the substitution WOULD change the composite")
+    else:
+        outcome = "rule did not fire; the 50/50 composite is kept"
+    return dict(
+        declared_rule="if rho(Pop, POI) > threshold, substitute the first-principal-"
+                      "component reduction for the composite",
+        threshold=thr,
+        threshold_source="assumption (declared in paper §4.5; no citation)",
+        pearson_r=float(pearson_r), spearman_rho=float(spearman_rho),
+        pearson_r_squared=float(pearson_r ** 2),
+        pearson_exceeds_threshold=fired_p, spearman_exceeds_threshold=fired_s,
+        rule_fired=fired,
+        pca_weights_equal_equal_weights=pca_same,
+        outcome_as_written=outcome,
+        interpretation=("the two criteria share about "
+                        f"{100 * pearson_r ** 2:.0f}% of their variance (Pearson r^2), "
+                        "so the composite is close to one-dimensional; the 50/50 "
+                        "asymmetry argument cannot be read as two independent "
+                        "channels"),
+    )
+
+
+def weight_sweep(P: np.ndarray, Q: np.ndarray, base_cdi: np.ndarray,
+                 base_gate: np.ndarray, base_band: np.ndarray) -> list[dict]:
+    """
+    Direct sweep of the population weight, w_pop from 0.1 to 0.9, w_poi = 1 - w_pop.
+
+    This, not PCA, is the genuine weighting-robustness evidence: it moves the
+    weight over most of its feasible range and reports how many routes change
+    gate status or Jenks band relative to the plan's 0.5/0.5.
+    """
+    from scipy.stats import spearmanr
+    out = []
+    for wp in (0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9):
+        cdi = wp * P + (1 - wp) * Q
+        gate = (cdi >= np.percentile(cdi, TRUNK_GATE_PERCENTILE)).astype(int)
+        band = jenks_bands(cdi)
+        out.append(dict(
+            w_population=wp, w_opportunity=round(1 - wp, 1),
+            gate_agreement_with_equal=float((gate == base_gate).mean()),
+            gate_kappa=cohen_kappa(base_gate, gate),
+            band_agreement_with_equal=float((band == base_band).mean()),
+            band_kappa=cohen_kappa(base_band, band),
+            n_routes_changing_band=int((band != base_band).sum()),
+            spearman_cdi_with_equal=float(spearmanr(base_cdi, cdi)[0]),
+        ))
+    return out
+
+
+def main(recompute_poi: bool = False) -> None:
+    from scipy.stats import pearsonr, spearmanr
+
+    catch = pd.read_csv(C.DERIVED / "a02_catchments.csv")
+    poi_df = None if recompute_poi else cached_poi_incidence(catch)
+    poi_source = "cached_from_a03_index_csv"
+    if poi_df is None:
+        poi_df = compute_poi_incidence()
+        poi_source = "recomputed"
+    log.info("catchment rows %d; opportunity incidence %s", len(catch), poi_source)
+
+    df = catch.merge(poi_df, on="New_Route_ID", how="inner")
+    if len(df) != len(catch) or len(poi_df) != len(catch):
+        raise SystemExit(f"join lost rows: {len(df)} of {len(catch)}")
 
     # Two variants of each channel: as-published (Euclidean) and corrected
     # (network). Route length is the plan's own Route_KM in both, so the only
@@ -237,10 +411,13 @@ def main() -> None:
 
         pr, pp = pearsonr(P, Q)
         sr, sp = spearmanr(P, Q)
+        dw = distinct_weightings(schemes)
         results[variant] = dict(
             pearson_r=float(pr), pearson_p=float(pp),
             spearman_rho=float(sr), spearman_p=float(sp),
             weights={k: [float(x) for x in v] for k, v in schemes.items()},
+            distinct_weightings=dw,
+            collinearity_rule=collinearity_rule_record(pr, sr, w_pca, w_equal),
         )
         for name, w in schemes.items():
             cdi = M @ w
@@ -252,11 +429,15 @@ def main() -> None:
                                     w_population=round(float(w[0]), 4),
                                     w_opportunity=round(float(w[1]), 4),
                                     cdi_gate_30th=round(gate, 4),
-                                    cdi_mean=round(float(cdi.mean()), 4)))
+                                    cdi_mean=round(float(cdi.mean()), 4),
+                                    identical_to_equal_by_construction=(
+                                        "yes (2 criteria)" if name == "pca" else "")))
 
         # Stability of the decision across weightings, within this variant.
         for other in ("entropy", "pca"):
             stability_rows.append(dict(
+                note=("identity, not a result: PCA on two criteria = equal weights"
+                      if other == "pca" else ""),
                 comparison=f"{variant}: equal vs {other}",
                 gate_agreement=float((df[f"gate_{variant}_equal"]
                                       == df[f"gate_{variant}_{other}"]).mean()),
@@ -273,6 +454,8 @@ def main() -> None:
     # Stability across the Euclidean/network switch, holding the weighting fixed.
     for name in ("equal", "entropy", "pca"):
         stability_rows.append(dict(
+            note=("same as the equal row: PCA = equal weights by construction"
+                  if name == "pca" else ""),
             comparison=f"{name}: Euclidean vs network",
             gate_agreement=float((df[f"gate_euclid_{name}"] == df[f"gate_net_{name}"]).mean()),
             gate_kappa=cohen_kappa(df[f"gate_euclid_{name}"], df[f"gate_net_{name}"]),
@@ -283,14 +466,36 @@ def main() -> None:
         ))
 
     stab = pd.DataFrame(stability_rows).round(4)
+    stab = stab[["comparison", "gate_agreement", "gate_kappa", "band_agreement",
+                 "band_kappa", "spearman_cdi", "note"]]
     wtab = pd.DataFrame(weight_rows)
     df.to_csv(C.DERIVED / "a03_index.csv", index=False)
     C.write_table(wtab, "table04a_index_weights",
-                  "Composite index weights under three derivations, "
-                  "for Euclidean and network accessibility")
+                  "Composite index weights under three schemes, for Euclidean and "
+                  "network accessibility (two are distinct: PCA equals equal "
+                  "weights by construction with two criteria; n = 186 routes)")
     C.write_table(stab, "table04b_decision_stability",
                   "Stability of the trunk-eligibility gate and Jenks band "
-                  "under alternative weightings and accessibility measures")
+                  "under alternative weightings and accessibility measures "
+                  "(in-sample, n = 186 routes)")
+
+    # Direct weight sweep — the genuine weighting-robustness evidence.
+    sweeps = {}
+    for variant in ("net", "euclid"):
+        Pv = df[f"pop_score_{variant}"].to_numpy()
+        Qv = df[f"poi_score_{variant}"].to_numpy()
+        sweeps[variant] = weight_sweep(
+            Pv, Qv, df[f"cdi_{variant}_equal"].to_numpy(),
+            df[f"gate_{variant}_equal"].to_numpy(),
+            df[f"band_{variant}_equal"].to_numpy())
+    sweep_tab = pd.DataFrame(
+        [dict(variant=v, **{k: (round(x, 4) if isinstance(x, float) else x)
+                            for k, x in r.items()})
+         for v, rows_ in sweeps.items() for r in rows_])
+    C.write_table(sweep_tab, "table04c_weight_sweep",
+                  "Population-weight sweep (w_population 0.1-0.9, opportunity "
+                  "weight = 1 - w_population): agreement of trunk gate and Jenks "
+                  "band with the plan's 0.5/0.5 weighting (in-sample, n = 186 routes)")
 
     poi_shift = 100 * (df["poi_w_euclid"] - df["poi_w_net"]) / df["poi_w_euclid"].replace(0, np.nan)
     out = dict(
@@ -300,9 +505,52 @@ def main() -> None:
         n_bands=N_BANDS,
         ahp_weights_derived=False,
         ahp_note=("No expert panel was convened for this study, so analytic "
-                  "hierarchy process weights are not derived. Reported "
-                  "weightings are equal, Shannon entropy and first principal "
-                  "component."),
+                  "hierarchy process weights are not derived. Weighting schemes "
+                  "computed are equal, Shannon entropy and first principal "
+                  "component; only two of the three are distinct (see "
+                  "n_distinct_weightings)."),
+        evidence_status=dict(
+            in_sample=True, n=int(len(df)),
+            base="all 186 active plan routes; no hold-out",
+            poi_incidence_source=poi_source),
+        n_schemes_computed=results["net"]["distinct_weightings"]["n_schemes_computed"],
+        n_distinct_weightings=int(min(
+            results[v]["distinct_weightings"]["n_distinct_weightings"]
+            for v in results)),
+        n_distinct_weightings_note=(
+            "Three schemes are computed but only two are distinct weightings: "
+            "PCA on exactly two positively correlated criteria returns 0.5/0.5 "
+            "for every correlation, so 'equal' and 'pca' are identical by "
+            "construction (not a robustness finding). The data-driven "
+            "alternative is entropy only."),
+        identical_by_construction=[
+            dict(variant=v, **p)
+            for v in results
+            for p in results[v]["distinct_weightings"]["identical_pairs"]
+            if p["identical_by_construction"]],
+        collinearity_rule=dict(
+            threshold=COLLINEARITY_THRESHOLD,
+            threshold_source="assumption (paper §4.5; no citation)",
+            by_variant={v: results[v]["collinearity_rule"] for v in results},
+            fired_in_all_variants=bool(all(results[v]["collinearity_rule"]["rule_fired"]
+                                           for v in results)),
+            headline=(
+                "Pearson r = {:.3f} (Euclidean) / {:.3f} (network); Spearman rho = "
+                "{:.3f} / {:.3f}. The declared rho > 0.85 rule fires; its declared "
+                "action (substitute PCA) leaves the composite unchanged because PCA "
+                "= equal weights here.").format(
+                    results["euclid"]["pearson_r"], results["net"]["pearson_r"],
+                    results["euclid"]["spearman_rho"], results["net"]["spearman_rho"]),
+        ),
+        weight_sweep_population_weight=dict(
+            note=("w_population swept 0.1-0.9; agreement is with the plan's "
+                  "0.5/0.5 composite; in-sample over the 186 routes"),
+            by_variant=sweeps,
+        ),
+        opportunity_overstatement_note=(
+            "The Euclidean arm measures distance to the continuous route line, the "
+            "network arm to discrete virtual stops up to 125 m apart, so part of the "
+            "median overstatement is stop discretisation, not the network itself."),
         by_variant=results,
         opportunity_overstatement_pct_median=float(poi_shift.median()),
         n_poi_euclid_total=int(df["n_poi_euclid"].sum()),
@@ -332,4 +580,4 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    main(recompute_poi="--recompute-poi" in sys.argv[1:])

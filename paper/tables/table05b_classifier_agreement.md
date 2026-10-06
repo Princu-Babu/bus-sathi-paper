@@ -1,4 +1,4 @@
-**Pairwise Cohen's kappa between four class-interval rules at k = 3 on cdi_net_equal (n = 186 active routes)**
+**Pairwise Cohen's kappa between four class-interval rules at k = 3 on the network-catchment index (n = 186 active routes). Jenks vs k-means = 1 is an identity of the shared objective (implementation check), not corroboration; quantile and equal-interval optimise different objectives and are not tests of tri-modality**
 
 | classifier     |   jenks |   quantile |   kmeans |   equal_interval |
 |:---------------|--------:|-----------:|---------:|-----------------:|

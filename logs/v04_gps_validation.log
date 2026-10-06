@@ -2,34 +2,55 @@
 MODULE:      v04_gps_validation
 SCRIPT:      v04_gps_validation.py
 STAGE:       Stage 1
-STARTED:     2026-09-30T14:41:49.558125+00:00
-PYTHON:      E:\kash-paper\.venv\Scripts\python.exe (3.14.2)
-COMMAND:     E:\kash-paper\.venv\Scripts\python.exe E:\kash-paper\analysis\v04_gps_validation.py
+COMMAND:     python analysis/v04_gps_validation.py
 ================================================================================
 
-20:11:50  INFO    v04 \u2502 corridor matches 14 (5 matched / 9 partial), profiles 18, route-evidence rows 186, active plan routes 186
-20:11:51  INFO    v04 \u2502 SCOPE  14 matches -> 11 of 186 plan routes (5.9%), 815 total runs
-20:11:51  INFO    v04 \u2502   Pace: plan min/km vs observed min/km (all matches)         n=14 MAPE  32.9% bias  -31.3% ratio 0.68 rho +0.513  MAPE-FAIL/RANK-PASS
-20:11:51  INFO    v04 \u2502   Pace: plan min/km vs observed min/km (matched only)        n= 5 MAPE  36.3% bias  -36.3% ratio 0.67 rho +0.872  MAPE-FAIL/RANK-PASS
-20:11:51  INFO    v04 \u2502   One-way time: plan vs observed total (all matches)         n=14 MAPE  40.7% bias  -16.8% ratio 0.62 rho +0.221  MAPE-FAIL/RANK-FAIL
-20:11:51  INFO    v04 \u2502   One-way time: plan vs observed total (matched only)        n= 5 MAPE  47.6% bias  -47.6% ratio 0.51 rho +1.000  MAPE-FAIL/RANK-PASS
-20:11:51  INFO    v04 \u2502   Route length: plan Route_KM vs observed corridor           n=14 MAPE  51.1% bias  +26.2% ratio 0.97 rho +0.333  MAPE-FAIL/RANK-FAIL
-20:11:51  INFO    v04 \u2502   Moving speed: OSRM/2.2 (City_Core) vs observed             MAPE  28.4% bias   +1.4%
-20:11:51  INFO    v04 \u2502   Moving speed: OSRM/1.4 (Peri_Urban) vs observed            MAPE  59.4% bias  +59.4%
-20:11:51  INFO    v04 \u2502   Moving speed: OSRM/1.0 (Rural) vs observed                 MAPE 123.2% bias +123.2%
-20:11:51  INFO    v04 \u2502 DWELL  observed 1.76 min/km (engine 1.00), share of run time 0.38 (range 0.15-0.74)
-20:11:51  INFO    v04 \u2502        dwell = 17.67 + 0.247*km  (R2 0.03); intercept 95% CI [7.41, 27.94] significant=True; engine slope 1.0 inside CI False -> implied 0.12 min/stop
-20:11:51  INFO    v04 \u2502 CAP    Urban              cap 4.0 min/km -> 15 of 18 observed corridors exceed it (median observed pace 4.62, p90 6.28)
-20:11:51  INFO    v04 \u2502 CAP    Peri_Urban         cap 2.5 min/km -> 16 of 18 observed corridors exceed it (median observed pace 4.62, p90 6.28)
-20:11:51  INFO    v04 \u2502 CAP    Regional_District  cap 1.5 min/km -> 18 of 18 observed corridors exceed it (median observed pace 4.62, p90 6.28)
-20:11:51  INFO    v04 \u2502 CAP    169 of 186 planned routes sit exactly at their cap
-20:11:51  INFO    v04 \u2502 COVER  183 of 186 alignments seen in GPS; 171 at >=50%, 137 at >=80%, 33 fully; median obs_frac 0.94
-20:11:51  INFO    v04 \u2502 FLEET  re-timing 5 matched routes on observed pace: 27 -> 23 buses (-14.8%), median cycle ratio 1.10
-20:11:51  INFO    v04 \u2502 PRIOR  one-way pace 1.79-13.04 min/km (mode 4.62) -> Monte Carlo marginal for Urban/Peri_Urban
+INFO    v04 \u2502 corridor matches 14 (5 matched / 9 partial), profiles 18, route-evidence rows 186, active plan routes 186
+INFO    v04 \u2502 re-timing log read from the engine checkout (E:\kash\corrections_applied_v345.csv); snapshot refreshed
+INFO    v04 \u2502 re-timed in v3.4.5 (in-sample): ['FDR-050', 'FDR-262', 'FDR-270', 'FDR-370', 'FDR-575']
+INFO    v04 \u2502 HEADLINE  Corpus: 2,526 distinct driver-GPS service runs (2,426 clean after map-matching) from 157 hashed driver accounts over 855 driver-days (2026-02-06 to 2026-06-29). The figure 43,809 is the sum of per-route run counts over 186 plan routes (run-route incidences, 17.3 per run), not a count of runs.
+INFO    v04 \u2502 HEADLINE  The run-time checks use 14 corridor matches on 11 plan routes (815 runs, 53 distinct drivers [private one-off count]), all in Srinagar and its immediate belt, one operator's app; the headline plan-vs-observed time statistics use only the 5 `matched` corridors (470 runs, 48 distinct drivers; routes FDR-050, FDR-262, FDR-270, FDR-370, FDR-575).
+INFO    v04 \u2502 HEADLINE  Those 5 are the corridors the plan was re-timed on in v3.4.5, so any comparison of the published plan with them is in-sample. Plan/observed one-way time on them: median ratio 0.51, MAPE 47.6 % against the pre-correction plan (verdict fail); median ratio 0.71, MAPE 25.6 % against the published plan (verdict fail; in-sample; n = 5, criterion MAPE < 20 % and rho > 0.5).
+INFO    v04 \u2502 HEADLINE  Out-of-sample (8 partial-match corridors on 6 routes, 263 runs; 21 distinct drivers [private one-off count]): plan/observed pace median ratio 0.66, MAPE 31.1 %, rho +0.12 (verdict fail); over all 14 corridors: median ratio 0.84, MAPE 21.3 % (verdict fail).
+INFO    v04 \u2502 HEADLINE  Moving speed (OSRM / 2.2 against observed, n = 14 corridors, 815 runs): MAPE 28.4 %, rho -0.07, verdict fail; the mean signed bias of +1.4 % is descriptive only (errors of opposite sign cancel) and is not a pass statistic.
+INFO    v04 \u2502 HEADLINE  Route length, matched corridors only (n = 5): MAPE 18.3 %, rho +1.00, verdict pass (n < 8: no usable interval); on all 14 matches incl. partials the same test is not valid.
+INFO    v04 \u2502 HEADLINE  Dwell (engine 1.0 min/km against observed, n = 18 corridors, 964 runs): MAPE 61.6 %, rho -0.37, verdict fail.
+INFO    v04 \u2502 HEADLINE  Alignment coverage of the 186 plan routes: observed at all on 183 (weakest criterion), >= 50 % of length on 171, >= 80 % on 137, fully on 33; median 94 % of length.
+INFO    v04 \u2502 HEADLINE  Fleet on the 5 re-timed routes at observed pace: 28 buses against 27 in the published plan (+3.7 %, in-sample) and 20 before re-timing (+40.0 %); not extrapolable to the 186 routes.
+INFO    v04 \u2502 HEADLINE  Criteria declared in: module, same commit as first results.
+INFO    v04 \u2502   Pace: plan min/km vs observed min/km           all                pre_v3.4.5_cycle         n=14 MAPE  32.9% bias  -31.3% ratio 0.68 rho +0.513 -> fail
+INFO    v04 \u2502   One-way time: plan vs observed total           all                pre_v3.4.5_cycle         n=14 MAPE  40.7% bias  -16.8% ratio 0.62 rho +0.221 -> fail
+INFO    v04 \u2502   Pace: plan min/km vs observed min/km           all                published_v3.4.5_cycle   n=14 MAPE  21.3% bias  -19.0% ratio 0.84 rho +0.612 -> fail
+INFO    v04 \u2502   One-way time: plan vs observed total           all                published_v3.4.5_cycle   n=14 MAPE  31.7% bias   -6.4% ratio 0.78 rho +0.455 -> fail
+INFO    v04 \u2502   Pace: plan min/km vs observed min/km           retimed_in_sample  pre_v3.4.5_cycle         n= 5 MAPE  36.3% bias  -36.3% ratio 0.67 rho +0.872 -> fail
+INFO    v04 \u2502   One-way time: plan vs observed total           retimed_in_sample  pre_v3.4.5_cycle         n= 5 MAPE  47.6% bias  -47.6% ratio 0.51 rho +1.000 -> fail
+INFO    v04 \u2502   Pace: plan min/km vs observed min/km           retimed_in_sample  published_v3.4.5_cycle   n= 5 MAPE   8.8% bias   -6.9% ratio 1.00 rho +0.700 -> pass
+INFO    v04 \u2502   One-way time: plan vs observed total           retimed_in_sample  published_v3.4.5_cycle   n= 5 MAPE  25.6% bias  -21.8% ratio 0.71 rho +0.900 -> fail
+INFO    v04 \u2502   Pace: plan min/km vs observed min/km           out_of_sample      pre_v3.4.5_cycle         n= 8 MAPE  31.0% bias  -28.2% ratio 0.66 rho +0.390 -> fail
+INFO    v04 \u2502   One-way time: plan vs observed total           out_of_sample      pre_v3.4.5_cycle         n= 8 MAPE  34.4% bias   +7.4% ratio 1.03 rho +0.268 -> fail
+INFO    v04 \u2502   Pace: plan min/km vs observed min/km           out_of_sample      published_v3.4.5_cycle   n= 8 MAPE  31.1% bias  -28.3% ratio 0.66 rho +0.122 -> fail
+INFO    v04 \u2502   One-way time: plan vs observed total           out_of_sample      published_v3.4.5_cycle   n= 8 MAPE  34.4% bias   +7.4% ratio 1.03 rho +0.268 -> fail
+INFO    v04 \u2502   Route length: plan Route_KM vs observed corrid retimed_in_sample                           n= 5 MAPE  18.3% bias  -16.1% ratio 0.83 rho +1.000 -> pass
+INFO    v04 \u2502   Route length: plan Route_KM vs observed corrid all                                         n=14 MAPE  51.1% bias  +26.2% ratio 0.97 rho +0.333 -> fail
+INFO    v04 \u2502   Moving speed: OSRM/2.2 (City_Core) vs observed             all                n=14 MAPE  28.4% bias   +1.4% -> fail
+INFO    v04 \u2502   Moving speed: OSRM/1.4 (Peri_Urban) vs observed            all                n=14 MAPE  59.4% bias  +59.4% -> fail
+INFO    v04 \u2502   Moving speed: OSRM/1.0 (Rural) vs observed                 all                n=14 MAPE 123.2% bias +123.2% -> fail
+INFO    v04 \u2502   Moving speed: OSRM/2.2 (City_Core) vs observed             retimed_in_sample  n= 5 MAPE  24.6% bias  +14.9% -> fail
+INFO    v04 \u2502   Moving speed: OSRM/1.4 (Peri_Urban) vs observed            retimed_in_sample  n= 5 MAPE  80.6% bias  +80.6% -> fail
+INFO    v04 \u2502   Moving speed: OSRM/1.0 (Rural) vs observed                 retimed_in_sample  n= 5 MAPE 152.8% bias +152.8% -> fail
+INFO    v04 \u2502   Moving speed: OSRM/2.2 (City_Core) vs observed             out_of_sample      n= 8 MAPE  27.9% bias  -13.2% -> fail
+INFO    v04 \u2502   Moving speed: OSRM/1.4 (Peri_Urban) vs observed            out_of_sample      n= 8 MAPE  36.5% bias  +36.5% -> fail
+INFO    v04 \u2502   Moving speed: OSRM/1.0 (Rural) vs observed                 out_of_sample      n= 8 MAPE  91.1% bias  +91.1% -> fail
+INFO    v04 \u2502 DWELL  observed 1.76 min/km (engine 1.00), share of run time 0.38 (range 0.15-0.74)
+INFO    v04 \u2502        dwell = 17.67 + 0.247*km  (R2 0.03); intercept 95% CI [7.41, 27.94] significant=True; engine slope 1.0 inside CI False -> implied 0.12 min/stop
+INFO    v04 \u2502 CAP    Urban              cap 4.0 min/km -> 15 of 18 observed corridors exceed it (median observed pace 4.62, p90 6.28)
+INFO    v04 \u2502 CAP    Peri_Urban         cap 2.5 min/km -> 16 of 18 observed corridors exceed it (median observed pace 4.62, p90 6.28)
+INFO    v04 \u2502 CAP    Regional_District  cap 1.5 min/km -> 18 of 18 observed corridors exceed it (median observed pace 4.62, p90 6.28)
+INFO    v04 \u2502 CAP    169 of 186 planned routes sit exactly at their cap
+INFO    v04 \u2502 FLEET  fleet rule self-test 156/156; re-timing 5 matched routes on observed pace: 27 -> 28 buses (+3.7% vs published, in-sample; +40.0% vs pre-correction 20)
+INFO    v04 \u2502 PRIOR  one-way pace 1.79-13.04 min/km (mode 4.62) -> Monte Carlo marginal for Urban/Peri_Urban
 
 ================================================================================
-FINISHED:    2026-09-30T14:41:51.261598+00:00
-DURATION:    1.70s
 EXIT CODE:   0
 STATUS:      PASSED
 VERIFIED:    2/2 outputs

@@ -46,20 +46,12 @@ def test_scenario_3_supply_side_gps_and_fleet_reproduction(active_df, reality_ch
     non_sscl = active_df[~active_df["New_Route_ID"].astype(str).str.startswith("SSCL-")]
     assert len(non_sscl) == 156
     
-    # 0 mismatches check
-    mismatches = 0
-    for _, r in non_sscl.iterrows():
-        cycle = float(r["Cycle_Time_Min"])
-        headway = float(r["Headway_Min"])
-        rtype = str(r["Route_Type"]).strip()
-        pub_fleet = int(r["Fleet_Required"])
-        
-        operating = max(1, math.ceil(cycle / max(1.0, headway)))
-        min_floor = 1 if rtype == "Regional_District" else 2
-        calc = max(max(1, math.ceil(operating * 1.15)), min_floor)
-        if calc != pub_fleet:
-            mismatches += 1
-            
+    # 0 mismatches: the production fleet model (analysis/fleet_model.py), not a re-typed formula
+    from analysis import fleet_model as fm
+    arr = fm.load_arrays()
+    calc = fm.fleet(arr)
+    mismatches = int((calc[~arr.sscl] != arr.fleet_pub[~arr.sscl]).sum())
+    assert int((~arr.sscl).sum()) == 156
     assert mismatches == 0, f"Expected 0 mismatches, found {mismatches}"
     
     # Verify GPS groupings
@@ -80,15 +72,15 @@ def test_scenario_4_spatial_accessibility_and_walkshed_f8():
     with f_json.open("r", encoding="utf-8") as fh:
         data = json.load(fh)
         
-    # Overstatement median ~37.4%
-    med = data.get("overstatement_pct_median", 0)
-    assert 30.0 <= med <= 45.0, f"Expected median overstatement in [30%, 45%], got {med}%"
-    
-    # Coverage drops from ~35.5% to ~24.2%
-    share_euc = data.get("coverage_share_euclid", 0)
-    share_net = data.get("coverage_share_net", 0)
-    assert 0.30 <= share_euc <= 0.40, f"Expected Euclidean coverage ~35.5%, got {share_euc}"
-    assert 0.20 <= share_net <= 0.28, f"Expected Network coverage ~24.2%, got {share_net}"
+    # The module's figures must equal an independent recomputation from the per-route CSV and the
+    # union populations it reports (a module bug cannot hide behind a wide tolerance band).
+    csv = pd.read_csv(DERIVED_DIR / "a02_catchments.csv")
+    assert data["n_routes"] == len(csv) == EXPECTED_ACTIVE_ROUTES
+    assert data["overstatement_pct_median"] == pytest.approx(
+        float(((csv["pop_euclid"] - csv["pop_net"]) / csv["pop_euclid"] * 100).median()), abs=1e-9)
+    assert data["coverage_share_euclid"] == pytest.approx(data["pop_euclid_union"] / EXPECTED_POPULATION, rel=1e-6)
+    assert data["coverage_share_net"] == pytest.approx(data["pop_net_union"] / EXPECTED_POPULATION, rel=1e-6)
+    assert data["pop_euclid_union"] > data["pop_net_union"] > 0
 
 
 @pytest.mark.tier4

@@ -1,6 +1,6 @@
-disposition,n_routes,median_abs_pct_error,max_abs_pct_error
-reproduced,136,0.239,0.68
-substituted_distance,44,21.985,68.601
-reproduced_minor_drift,3,4.127,4.594
-superseded_geometry,2,47.589,58.139
-stale_tourist_flag,1,20.627,20.627
+disposition,n_routes,median_abs_pct_error_before_adjustment,median_abs_pct_error,max_abs_pct_error,cause_status
+reproduced,136,0.247,0.239,0.68,reproduced (measured agreement within 1 %)
+substituted_distance,44,21.985,21.985,68.601,km/geometry mismatch established by length comparison in a02; cause of the population gap not tested
+reproduced_minor_drift,3,4.127,4.127,4.594,"residual classification, not tested"
+superseded_geometry,2,47.589,47.589,58.139,"residual classification, not tested"
+stale_tourist_flag,1,20.627,20.627,20.627,"residual classification, not tested"

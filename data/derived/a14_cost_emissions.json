@@ -1,96 +1,1066 @@
 {
   "bases": {
     "OBSERVED": {
+      "by_class": {
+        "HPV": {
+          "co2_t_per_year": [
+            4981.557860196911,
+            7199.216578039193
+          ],
+          "cost_inr_per_year": [
+            496921077.12987226,
+            813143580.7579727
+          ],
+          "cost_rate_inr_per_km": [
+            55.0,
+            90.0
+          ],
+          "description": "high-capacity bus (~12 m)",
+          "diesel_km_per_litre": [
+            3.5,
+            5.0
+          ],
+          "diesel_km_per_year": 7453539.014038878,
+          "ebus_km_per_year": 1581389.6610497092,
+          "n_buses": 187,
+          "vehicle_km_per_year": 9034928.675088586
+        },
+        "LPV": {
+          "co2_t_per_year": [
+            469.77401578600126,
+            686.3581399470798
+          ],
+          "cost_inr_per_year": [
+            44486175.73731072,
+            80075116.3271593
+          ],
+          "cost_rate_inr_per_km": [
+            25.0,
+            45.0
+          ],
+          "description": "minibus",
+          "diesel_km_per_litre": [
+            7.0,
+            10.0
+          ],
+          "diesel_km_per_year": 1779447.029492429,
+          "ebus_km_per_year": 0.0,
+          "n_buses": 70,
+          "vehicle_km_per_year": 1779447.029492429
+        },
+        "MPV": {
+          "co2_t_per_year": [
+            12000.355007683187,
+            18413.204596361295
+          ],
+          "cost_inr_per_year": [
+            1106619362.5014668,
+            1867420174.2212253
+          ],
+          "cost_rate_inr_per_km": [
+            40.0,
+            67.5
+          ],
+          "description": "mid-size bus (~9 m)",
+          "diesel_km_per_litre": [
+            5.25,
+            7.5
+          ],
+          "diesel_km_per_year": 18811845.637212683,
+          "ebus_km_per_year": 8853638.425323987,
+          "n_buses": 754,
+          "vehicle_km_per_year": 27665484.06253667
+        }
+      },
       "co2_t_per_year": [
-        20911.964806062253,
-        32927.638542641
+        17451.686883666098,
+        26298.77931434757
       ],
       "cost_inr_per_covered_resident_per_year": [
-        1295.1709737968827,
-        2123.9408390753424
+        1034.6422939737608,
+        1733.14781934066
       ],
       "cost_inr_per_year": [
-        2063008876.3066998,
-        3383112262.7134323
+        1648026615.3686497,
+        2760638871.3063574
       ],
+      "description": "observed 217 min in-service per vehicle-day at route cycle time + D1 deadhead",
       "ebus_share_of_km": 0.27118155184366793,
-      "vehicle_km_per_year": 38479859.76711768
+      "mpv_pricing_sensitivity": {
+        "mpv_midpoint_central": {
+          "co2_t_per_year": [
+            17451.686883666098,
+            26298.77931434757
+          ],
+          "cost_inr_per_year": [
+            1648026615.3686497,
+            2760638871.3063574
+          ]
+        },
+        "mpv_priced_as_hpv": {
+          "co2_t_per_year": [
+            21240.668190783024,
+            30511.92954064549
+          ],
+          "cost_inr_per_year": [
+            2063008876.3067,
+            3383112262.713433
+          ]
+        },
+        "mpv_priced_as_lpv": {
+          "co2_t_per_year": [
+            15796.244467591385,
+            23880.11344670594
+          ],
+          "cost_inr_per_year": [
+            1233044354.4306,
+            2138165479.8992825
+          ]
+        }
+      },
+      "sum_of_classes_check": {
+        "cost_inr_per_year": [
+          1648026615.3686497,
+          2760638871.3063574
+        ],
+        "note": "total is the sum of the three class rows, low with low and high with high"
+      },
+      "vehicle_km_per_year": 38479859.76711769
     },
     "PLAN": {
+      "by_class": {
+        "HPV": {
+          "co2_t_per_year": [
+            15280.30121194972,
+            22061.588145113237
+          ],
+          "cost_inr_per_year": [
+            1518371192.7934551,
+            2484607406.3892903
+          ],
+          "cost_rate_inr_per_km": [
+            55.0,
+            90.0
+          ],
+          "description": "high-capacity bus (~12 m)",
+          "diesel_km_per_litre": [
+            3.5,
+            5.0
+          ],
+          "diesel_km_per_year": 22333806.92892558,
+          "ebus_km_per_year": 5272942.030955424,
+          "n_buses": 187,
+          "vehicle_km_per_year": 27606748.959881004
+        },
+        "LPV": {
+          "co2_t_per_year": [
+            1551.465048332731,
+            2266.750882304315
+          ],
+          "cost_inr_per_year": [
+            146919038.66787228,
+            264454269.60217008
+          ],
+          "cost_rate_inr_per_km": [
+            25.0,
+            45.0
+          ],
+          "description": "minibus",
+          "diesel_km_per_litre": [
+            7.0,
+            10.0
+          ],
+          "diesel_km_per_year": 5876761.546714891,
+          "ebus_km_per_year": 0.0,
+          "n_buses": 70,
+          "vehicle_km_per_year": 5876761.546714891
+        },
+        "MPV": {
+          "co2_t_per_year": [
+            37682.76315271057,
+            57866.78528095917
+          ],
+          "cost_inr_per_year": [
+            3461271316.632998,
+            5840895346.818184
+          ],
+          "cost_rate_inr_per_km": [
+            40.0,
+            67.5
+          ],
+          "description": "mid-size bus (~9 m)",
+          "diesel_km_per_litre": [
+            5.25,
+            7.5
+          ],
+          "diesel_km_per_year": 58259471.501577616,
+          "ebus_km_per_year": 28272311.414247334,
+          "n_buses": 754,
+          "vehicle_km_per_year": 86531782.91582495
+        }
+      },
       "co2_t_per_year": [
-        65238.22573011616,
-        102948.65948378528
+        54514.52941299302,
+        82195.12430837672
       ],
       "cost_inr_per_covered_resident_per_year": [
-        4033.368741739718,
-        6615.151230597487
+        3218.4901328984256,
+        5392.833317335547
       ],
       "cost_inr_per_year": [
-        6424538291.831699,
-        10536922138.415707
+        5126561548.094325,
+        8589957022.809645
       ],
+      "description": "published Daily_KM (16-h service day at the published headway) + D1 deadhead",
       "ebus_share_of_km": 0.27950815674076374,
+      "mpv_pricing_sensitivity": {
+        "mpv_midpoint_central": {
+          "co2_t_per_year": [
+            54514.52941299302,
+            82195.12430837672
+          ],
+          "cost_inr_per_year": [
+            5126561548.094325,
+            8589957022.809645
+          ]
+        },
+        "mpv_priced_as_hpv": {
+          "co2_t_per_year": [
+            66294.90121364004,
+            95182.93331122081
+          ],
+          "cost_inr_per_year": [
+            6424538291.831699,
+            10536922138.415707
+          ]
+        },
+        "mpv_priced_as_lpv": {
+          "co2_t_per_year": [
+            49387.695920854196,
+            74704.62082960246
+          ],
+          "cost_inr_per_year": [
+            3828584804.356951,
+            6642991907.203584
+          ]
+        }
+      },
+      "sum_of_classes_check": {
+        "cost_inr_per_year": [
+          5126561548.094325,
+          8589957022.809645
+        ],
+        "note": "total is the sum of the three class rows, low with low and high with high"
+      },
       "vehicle_km_per_year": 120015293.42242084
+    },
+    "PLAN_TRIPS_X_LENGTH": {
+      "by_class": {
+        "HPV": {
+          "co2_t_per_year": [
+            15266.013491312335,
+            22040.713858294977
+          ],
+          "cost_inr_per_year": [
+            1516883063.7746277,
+            2482172286.1766634
+          ],
+          "cost_rate_inr_per_km": [
+            55.0,
+            90.0
+          ],
+          "description": "high-capacity bus (~12 m)",
+          "diesel_km_per_litre": [
+            3.5,
+            5.0
+          ],
+          "diesel_km_per_year": 22306762.637349386,
+          "ebus_km_per_year": 5272929.431280209,
+          "n_buses": 187,
+          "vehicle_km_per_year": 27579692.068629593
+        },
+        "LPV": {
+          "co2_t_per_year": [
+            1141.4211700887313,
+            1667.660800454315
+          ],
+          "cost_inr_per_year": [
+            108089125.95537226,
+            194560426.71967006
+          ],
+          "cost_rate_inr_per_km": [
+            25.0,
+            45.0
+          ],
+          "description": "minibus",
+          "diesel_km_per_litre": [
+            7.0,
+            10.0
+          ],
+          "diesel_km_per_year": 4323565.03821489,
+          "ebus_km_per_year": 0.0,
+          "n_buses": 70,
+          "vehicle_km_per_year": 4323565.03821489
+        },
+        "MPV": {
+          "co2_t_per_year": [
+            36095.59886621209,
+            55467.1766364035
+          ],
+          "cost_inr_per_year": [
+            3304479153.863054,
+            5576308572.143904
+          ],
+          "cost_rate_inr_per_km": [
+            40.0,
+            67.5
+          ],
+          "description": "mid-size bus (~9 m)",
+          "diesel_km_per_litre": [
+            5.25,
+            7.5
+          ],
+          "diesel_km_per_year": 55151382.7126538,
+          "ebus_km_per_year": 27460596.133922543,
+          "n_buses": 754,
+          "vehicle_km_per_year": 82611978.84657635
+        }
+      },
+      "co2_t_per_year": [
+        52503.03352761315,
+        79175.55129515279
+      ],
+      "cost_inr_per_covered_resident_per_year": [
+        3094.743008762804,
+        5181.315330580445
+      ],
+      "cost_inr_per_year": [
+        4929451343.593054,
+        8253041285.040237
+      ],
+      "description": "Daily_Trips x Route_KM (internally consistent plan km) + D1 deadhead",
+      "ebus_share_of_km": 0.28584428344990825,
+      "mpv_pricing_sensitivity": {
+        "mpv_midpoint_central": {
+          "co2_t_per_year": [
+            52503.03352761315,
+            79175.55129515279
+          ],
+          "cost_inr_per_year": [
+            4929451343.593054,
+            8253041285.040237
+          ]
+        },
+        "mpv_priced_as_hpv": {
+          "co2_t_per_year": [
+            63692.54907627204,
+            91421.36339382223
+          ],
+          "cost_inr_per_year": [
+            6168631026.291698,
+            10111810809.088205
+          ]
+        },
+        "mpv_priced_as_lpv": {
+          "co2_t_per_year": [
+            47649.71184889962,
+            72084.6592320973
+          ],
+          "cost_inr_per_year": [
+            3690271660.8944087,
+            6394271760.9922695
+          ]
+        }
+      },
+      "sum_of_classes_check": {
+        "cost_inr_per_year": [
+          4929451343.593054,
+          8253041285.040237
+        ],
+        "note": "total is the sum of the three class rows, low with low and high with high"
+      },
+      "vehicle_km_per_year": 114515235.95342083
+    },
+    "SRTU_MORTH": {
+      "by_class": {
+        "HPV": {
+          "co2_t_per_year": [
+            8299.5572085,
+            11962.782503785716
+          ],
+          "cost_inr_per_year": [
+            819128255.0,
+            1340391690.0
+          ],
+          "cost_rate_inr_per_km": [
+            55.0,
+            90.0
+          ],
+          "description": "high-capacity bus (~12 m)",
+          "diesel_km_per_litre": [
+            3.5,
+            5.0
+          ],
+          "diesel_km_per_year": 11627878.0,
+          "ebus_km_per_year": 3265363.0,
+          "n_buses": 187,
+          "vehicle_km_per_year": 14893241.0
+        },
+        "LPV": {
+          "co2_t_per_year": [
+            1471.80264,
+            2150.361
+          ],
+          "cost_inr_per_year": [
+            139375250.0,
+            250875450.0
+          ],
+          "cost_rate_inr_per_km": [
+            25.0,
+            45.0
+          ],
+          "description": "minibus",
+          "diesel_km_per_litre": [
+            7.0,
+            10.0
+          ],
+          "diesel_km_per_year": 5575010.0,
+          "ebus_km_per_year": 0.0,
+          "n_buses": 70,
+          "vehicle_km_per_year": 5575010.0
+        },
+        "MPV": {
+          "co2_t_per_year": [
+            26062.295677000002,
+            39994.18877914286
+          ],
+          "cost_inr_per_year": [
+            2402032880.0,
+            4053430485.0
+          ],
+          "cost_rate_inr_per_km": [
+            40.0,
+            67.5
+          ],
+          "description": "mid-size bus (~9 m)",
+          "diesel_km_per_litre": [
+            5.25,
+            7.5
+          ],
+          "diesel_km_per_year": 40777216.0,
+          "ebus_km_per_year": 19273606.0,
+          "n_buses": 754,
+          "vehicle_km_per_year": 60050822.0
+        }
+      },
+      "co2_t_per_year": [
+        35833.655525500006,
+        54107.332282928575
+      ],
+      "cost_inr_per_covered_resident_per_year": [
+        2109.767549828632,
+        3543.779478471485
+      ],
+      "cost_inr_per_year": [
+        3360536385.0,
+        5644697625.0
+      ],
+      "description": "218.2 bus-km per bus per day, all-India state road transport undertakings 2021-22 (MoRTH review), x each route's fleet; deadhead not added",
+      "ebus_share_of_km": 0.2799208704253215,
+      "mpv_pricing_sensitivity": {
+        "mpv_midpoint_central": {
+          "co2_t_per_year": [
+            35833.655525500006,
+            54107.332282928575
+          ],
+          "cost_inr_per_year": [
+            3360536385.0,
+            5644697625.0
+          ]
+        },
+        "mpv_priced_as_hpv": {
+          "co2_t_per_year": [
+            44051.22026550001,
+            63234.11288850001
+          ],
+          "cost_inr_per_year": [
+            4261298715.0,
+            6995841120.0
+          ]
+        },
+        "mpv_priced_as_lpv": {
+          "co2_t_per_year": [
+            32245.2605175,
+            48864.54736864286
+          ],
+          "cost_inr_per_year": [
+            2459774055.0,
+            4293554130.0
+          ]
+        }
+      },
+      "sum_of_classes_check": {
+        "cost_inr_per_year": [
+          3360536385.0,
+          5644697625.0
+        ],
+        "note": "total is the sum of the three class rows, low with low and high with high"
+      },
+      "vehicle_km_per_year": 80519073.0
     }
   },
   "constants": {
     "cost_inr_per_km_full_size": {
+      "applies_to": [
+        "HPV"
+      ],
       "high": 90.0,
       "low": 55.0,
+      "note": "legacy key name; applies to the HPV class. No tender id, page or year recorded. Same range used for diesel and e-bus.",
       "source": "gross-cost-contract (GCC) per-km rates discovered in recent Indian e-bus and diesel bus tenders; engine uses 65",
+      "source_status": "named_source_not_in_repo",
       "unit": "INR/km",
-      "verified": false
+      "verified": false,
+      "year": null
     },
     "cost_inr_per_km_lpv": {
+      "applies_to": [
+        "LPV"
+      ],
       "high": 45.0,
       "low": 25.0,
-      "source": "private minibus operating cost; no Kashmir record",
+      "note": "repo text was 'private minibus operating cost; no Kashmir record' \u2014 no named document, so treated as an assumption.",
+      "source": "assumption",
+      "source_status": "assumption",
       "unit": "INR/km",
-      "verified": false
+      "verified": false,
+      "year": null
+    },
+    "cost_inr_per_km_mpv": {
+      "applies_to": [
+        "MPV"
+      ],
+      "high": 67.5,
+      "low": 40.0,
+      "note": "arithmetic midpoint of the HPV and LPV bounds; no 9 m-bus rate source in the repo.",
+      "source": "assumption",
+      "source_status": "assumption",
+      "unit": "INR/km",
+      "verified": false,
+      "year": null
     },
     "diesel_kgco2_per_l": {
+      "applies_to": [
+        "HPV",
+        "MPV",
+        "LPV"
+      ],
       "high": 2.7,
       "low": 2.64,
+      "note": "IPCC document not held in the repo; density assumption not recorded.",
       "source": "IPCC 2006 Guidelines Vol.2 Ch.3 default diesel factor (74,100 kg/TJ) at Indian HSD density",
+      "source_status": "named_source_not_in_repo",
       "unit": "kg CO2/L",
-      "verified": false
+      "verified": false,
+      "year": 2006
     },
     "diesel_kmpl_full_size": {
+      "applies_to": [
+        "HPV"
+      ],
       "high": 5.0,
       "low": 3.5,
+      "note": "legacy key name; applies to the HPV class. Table, page and year not recorded.",
       "source": "ASRTU / CIRT State Transport Undertaking performance statistics (fleet HSD km/L); range spans city and mofussil operation",
+      "source_status": "named_source_not_in_repo",
       "unit": "km/L",
-      "verified": false
+      "verified": false,
+      "year": null
     },
     "diesel_kmpl_lpv": {
+      "applies_to": [
+        "LPV"
+      ],
       "high": 10.0,
       "low": 7.0,
-      "source": "manufacturer-rated economy for 12\u201320 seat minibuses/tempo travellers; no Kashmir record",
+      "note": "repo text was 'manufacturer-rated economy for 12-20 seat minibuses/tempo travellers; no Kashmir record' \u2014 no named document, so treated as an assumption.",
+      "source": "assumption",
+      "source_status": "assumption",
       "unit": "km/L",
-      "verified": false
+      "verified": false,
+      "year": null
+    },
+    "diesel_kmpl_mpv": {
+      "applies_to": [
+        "MPV"
+      ],
+      "high": 7.5,
+      "low": 5.25,
+      "note": "arithmetic midpoint of the HPV and LPV bounds; no 9 m-bus economy source in the repo.",
+      "source": "assumption",
+      "source_status": "assumption",
+      "unit": "km/L",
+      "verified": false,
+      "year": null
     },
     "ebus_kwh_per_km": {
+      "applies_to": [
+        "HPV"
+      ],
+      "high": 1.3,
+      "low": 0.98,
+      "note": "legacy key name; the 12 m (HPV) e-bus range, two Indian operators. Replaces the earlier unsourced 0.9-1.4 range.",
+      "source": "ITDP India (2022) Guidance for Electric Bus Rollout in Indian Cities, p.20 and p.33: 12 m e-bus 0.98 kWh/km (Hyderabad) to 1.3 kWh/km (PMPML Pune)",
+      "source_status": "primary_source_url",
+      "unit": "kWh/km",
+      "url": "https://www.itdp.in/wp-content/uploads/2022/10/Guidance-for-e-Bus-Rollout-in-Indian-Cities.pdf",
+      "verified": true,
+      "year": 2022
+    },
+    "ebus_kwh_per_km_mpv": {
+      "applies_to": [
+        "MPV"
+      ],
       "high": 1.4,
       "low": 0.9,
-      "source": "reported energy intensity of 9\u201312 m Indian e-buses (CESL / operator disclosures)",
+      "note": "9 m e-bus kWh/km NOT FOUND from a citable source; applied only to MPVs on an SSCL backbone route.",
+      "source": "no citable measured 9 m e-bus energy use found (research_R2 item 10); earlier unsourced range kept",
+      "source_status": "assumption",
       "unit": "kWh/km",
-      "verified": false
+      "verified": false,
+      "year": null
+    },
+    "gcc_inr_per_km_ebus_12m": {
+      "applies_to": [
+        "HPV"
+      ],
+      "high": 63.0,
+      "low": 54.3,
+      "note": "press-sourced low end (secondary reporting, CESL primary result not located); high end from an ITDP report. Gross-cost-contract rate for e-buses; used only in the `sourced_gcc_cross_check` block.",
+      "source": "low: CESL National Electric Bus Programme Jan 2023 tender, 12 m intra-city, discovered Rs 54.3/km (Outlook Business, 3 Jan 2023); high: ITDP India (2022) p.47, FAME-II tenders average L1 about Rs 63/km",
+      "source_status": "press",
+      "unit": "INR/km",
+      "url": "https://www.outlookbusiness.com/news/e-bus-tender-discovers-29-lower-price-than-diesel-ones-cesl-news-250554",
+      "verified": "press",
+      "year": 2023
+    },
+    "gcc_inr_per_km_ebus_9m": {
+      "applies_to": [
+        "MPV"
+      ],
+      "high": 63.0,
+      "low": 54.46,
+      "note": "press-sourced; used only in the `sourced_gcc_cross_check` block.",
+      "source": "low: CESL Jan 2023 tender, 9 m, discovered Rs 54.46/km (Outlook Business / Mercom, press); high: ITDP India (2022) FAME-II average L1 about Rs 63/km (not size-specific)",
+      "source_status": "press",
+      "unit": "INR/km",
+      "url": "https://mercomindia.com/e-buses-cost-effective-cesl-bidding-results-show/",
+      "verified": "press",
+      "year": 2023
     },
     "grid_kgco2_per_kwh": {
-      "high": 0.82,
-      "low": 0.7,
-      "source": "CEA CO2 Baseline Database for the Indian Power Sector (weighted average; high end adds T&D and charging losses)",
+      "applies_to": [
+        "HPV",
+        "MPV"
+      ],
+      "high": 0.705,
+      "low": 0.675,
+      "note": "national-average factor applied to Kashmir charging; no J&K state factor in the repo. The operating margin (0.963) is not used; no source for T&D/charging-loss uplift, so none is added (earlier range 0.70-0.82 included an unsourced loss allowance).",
+      "source": "CEA CO2 Baseline Database for the Indian Power Sector, User Guide v22.0, Table S, FY2025-26: weighted average 0.675 (low) to combined margin 0.705 (high) tCO2/MWh",
+      "source_status": "primary_source_url",
       "unit": "kg CO2/kWh",
-      "verified": false
+      "url": "https://cea.nic.in/wp-content/uploads/baseline/2026/09/User_Guide__Version_22.0.pdf",
+      "verified": true,
+      "year": 2026
+    },
+    "operating_days_per_year": {
+      "applies_to": [
+        "HPV",
+        "MPV",
+        "LPV"
+      ],
+      "high": 365.0,
+      "low": 365.0,
+      "note": "every route runs every day; the plan has no operating calendar. Upper bound: seasonal closures and winter reductions are not modelled.",
+      "source": "assumption",
+      "source_status": "assumption",
+      "unit": "days/yr",
+      "verified": false,
+      "year": null
+    },
+    "srtu_km_per_bus_day": {
+      "applies_to": [
+        "HPV",
+        "MPV",
+        "LPV"
+      ],
+      "high": 218.2,
+      "low": 218.2,
+      "note": "third vehicle-km basis (SRTU_MORTH); an all-India state-undertaking average, not Kashmir. Used as total km per bus per day, deadhead not added (the source does not split it).",
+      "source": "MoRTH Transport Research Wing, Review of the Performance of SRTUs 2019-20 to 2021-22, executive-summary table: 218.2 bus-km per bus per day, 58 SRTUs, 2021-22",
+      "source_status": "primary_source_url",
+      "unit": "km/bus/day",
+      "url": "http://morth.gov.in/backend/documents/uploaded/Review%20of%20the%20performance%20of%20State%20Road%20Transport%20Undertakings%20for%202019-20%20to%202021-22.pdf",
+      "verified": true,
+      "year": 2022
     }
   },
+  "constants_table": [
+    {
+      "applies_to": [
+        "HPV"
+      ],
+      "constant": "diesel_kmpl_full_size",
+      "high": 5.0,
+      "low": 3.5,
+      "note": "legacy key name; applies to the HPV class. Table, page and year not recorded.",
+      "source": "ASRTU / CIRT State Transport Undertaking performance statistics (fleet HSD km/L); range spans city and mofussil operation",
+      "source_status": "named_source_not_in_repo",
+      "unit": "km/L",
+      "verified": false,
+      "year": null
+    },
+    {
+      "applies_to": [
+        "MPV"
+      ],
+      "constant": "diesel_kmpl_mpv",
+      "high": 7.5,
+      "low": 5.25,
+      "note": "arithmetic midpoint of the HPV and LPV bounds; no 9 m-bus economy source in the repo.",
+      "source": "assumption",
+      "source_status": "assumption",
+      "unit": "km/L",
+      "verified": false,
+      "year": null
+    },
+    {
+      "applies_to": [
+        "LPV"
+      ],
+      "constant": "diesel_kmpl_lpv",
+      "high": 10.0,
+      "low": 7.0,
+      "note": "repo text was 'manufacturer-rated economy for 12-20 seat minibuses/tempo travellers; no Kashmir record' \u2014 no named document, so treated as an assumption.",
+      "source": "assumption",
+      "source_status": "assumption",
+      "unit": "km/L",
+      "verified": false,
+      "year": null
+    },
+    {
+      "applies_to": [
+        "HPV",
+        "MPV",
+        "LPV"
+      ],
+      "constant": "diesel_kgco2_per_l",
+      "high": 2.7,
+      "low": 2.64,
+      "note": "IPCC document not held in the repo; density assumption not recorded.",
+      "source": "IPCC 2006 Guidelines Vol.2 Ch.3 default diesel factor (74,100 kg/TJ) at Indian HSD density",
+      "source_status": "named_source_not_in_repo",
+      "unit": "kg CO2/L",
+      "verified": false,
+      "year": 2006
+    },
+    {
+      "applies_to": [
+        "HPV"
+      ],
+      "constant": "ebus_kwh_per_km",
+      "high": 1.3,
+      "low": 0.98,
+      "note": "legacy key name; the 12 m (HPV) e-bus range, two Indian operators. Replaces the earlier unsourced 0.9-1.4 range.",
+      "source": "ITDP India (2022) Guidance for Electric Bus Rollout in Indian Cities, p.20 and p.33: 12 m e-bus 0.98 kWh/km (Hyderabad) to 1.3 kWh/km (PMPML Pune)",
+      "source_status": "primary_source_url",
+      "unit": "kWh/km",
+      "verified": true,
+      "year": 2022
+    },
+    {
+      "applies_to": [
+        "MPV"
+      ],
+      "constant": "ebus_kwh_per_km_mpv",
+      "high": 1.4,
+      "low": 0.9,
+      "note": "9 m e-bus kWh/km NOT FOUND from a citable source; applied only to MPVs on an SSCL backbone route.",
+      "source": "no citable measured 9 m e-bus energy use found (research_R2 item 10); earlier unsourced range kept",
+      "source_status": "assumption",
+      "unit": "kWh/km",
+      "verified": false,
+      "year": null
+    },
+    {
+      "applies_to": [
+        "HPV",
+        "MPV"
+      ],
+      "constant": "grid_kgco2_per_kwh",
+      "high": 0.705,
+      "low": 0.675,
+      "note": "national-average factor applied to Kashmir charging; no J&K state factor in the repo. The operating margin (0.963) is not used; no source for T&D/charging-loss uplift, so none is added (earlier range 0.70-0.82 included an unsourced loss allowance).",
+      "source": "CEA CO2 Baseline Database for the Indian Power Sector, User Guide v22.0, Table S, FY2025-26: weighted average 0.675 (low) to combined margin 0.705 (high) tCO2/MWh",
+      "source_status": "primary_source_url",
+      "unit": "kg CO2/kWh",
+      "verified": true,
+      "year": 2026
+    },
+    {
+      "applies_to": [
+        "HPV",
+        "MPV",
+        "LPV"
+      ],
+      "constant": "srtu_km_per_bus_day",
+      "high": 218.2,
+      "low": 218.2,
+      "note": "third vehicle-km basis (SRTU_MORTH); an all-India state-undertaking average, not Kashmir. Used as total km per bus per day, deadhead not added (the source does not split it).",
+      "source": "MoRTH Transport Research Wing, Review of the Performance of SRTUs 2019-20 to 2021-22, executive-summary table: 218.2 bus-km per bus per day, 58 SRTUs, 2021-22",
+      "source_status": "primary_source_url",
+      "unit": "km/bus/day",
+      "verified": true,
+      "year": 2022
+    },
+    {
+      "applies_to": [
+        "HPV"
+      ],
+      "constant": "gcc_inr_per_km_ebus_12m",
+      "high": 63.0,
+      "low": 54.3,
+      "note": "press-sourced low end (secondary reporting, CESL primary result not located); high end from an ITDP report. Gross-cost-contract rate for e-buses; used only in the `sourced_gcc_cross_check` block.",
+      "source": "low: CESL National Electric Bus Programme Jan 2023 tender, 12 m intra-city, discovered Rs 54.3/km (Outlook Business, 3 Jan 2023); high: ITDP India (2022) p.47, FAME-II tenders average L1 about Rs 63/km",
+      "source_status": "press",
+      "unit": "INR/km",
+      "verified": "press",
+      "year": 2023
+    },
+    {
+      "applies_to": [
+        "MPV"
+      ],
+      "constant": "gcc_inr_per_km_ebus_9m",
+      "high": 63.0,
+      "low": 54.46,
+      "note": "press-sourced; used only in the `sourced_gcc_cross_check` block.",
+      "source": "low: CESL Jan 2023 tender, 9 m, discovered Rs 54.46/km (Outlook Business / Mercom, press); high: ITDP India (2022) FAME-II average L1 about Rs 63/km (not size-specific)",
+      "source_status": "press",
+      "unit": "INR/km",
+      "verified": "press",
+      "year": 2023
+    },
+    {
+      "applies_to": [
+        "HPV"
+      ],
+      "constant": "cost_inr_per_km_full_size",
+      "high": 90.0,
+      "low": 55.0,
+      "note": "legacy key name; applies to the HPV class. No tender id, page or year recorded. Same range used for diesel and e-bus.",
+      "source": "gross-cost-contract (GCC) per-km rates discovered in recent Indian e-bus and diesel bus tenders; engine uses 65",
+      "source_status": "named_source_not_in_repo",
+      "unit": "INR/km",
+      "verified": false,
+      "year": null
+    },
+    {
+      "applies_to": [
+        "MPV"
+      ],
+      "constant": "cost_inr_per_km_mpv",
+      "high": 67.5,
+      "low": 40.0,
+      "note": "arithmetic midpoint of the HPV and LPV bounds; no 9 m-bus rate source in the repo.",
+      "source": "assumption",
+      "source_status": "assumption",
+      "unit": "INR/km",
+      "verified": false,
+      "year": null
+    },
+    {
+      "applies_to": [
+        "LPV"
+      ],
+      "constant": "cost_inr_per_km_lpv",
+      "high": 45.0,
+      "low": 25.0,
+      "note": "repo text was 'private minibus operating cost; no Kashmir record' \u2014 no named document, so treated as an assumption.",
+      "source": "assumption",
+      "source_status": "assumption",
+      "unit": "INR/km",
+      "verified": false,
+      "year": null
+    },
+    {
+      "applies_to": [
+        "HPV",
+        "MPV",
+        "LPV"
+      ],
+      "constant": "operating_days_per_year",
+      "high": 365.0,
+      "low": 365.0,
+      "note": "every route runs every day; the plan has no operating calendar. Upper bound: seasonal closures and winter reductions are not modelled.",
+      "source": "assumption",
+      "source_status": "assumption",
+      "unit": "days/yr",
+      "verified": false,
+      "year": null
+    }
+  ],
   "covered_residents": 1592846.75,
+  "daily_km_assumption": {
+    "explanation": "Daily_KM equals Daily_Trips x Route_KM (within 1%) on 137 of 186 routes; it differs on the other 49. 44 of those coincide with the routes whose Route_KM was replaced by an externally researched distance in v3.4.4 (the a02 km-substituted flag), so Daily_KM probably kept the pre-substitution length (inferred from the overlap, not traced in the engine); the other 5 are unexplained here. PLAN_TRIPS_X_LENGTH is the internally consistent basis.",
+    "n_of_those_with_km_substituted_in_v344": 44,
+    "n_routes_daily_km_differs_from_trips_x_length_gt_1pct": 49,
+    "n_routes_km_substituted_in_v344": 44,
+    "observed_km_per_bus_day": {
+      "network": 98.58867483624469,
+      "service_min_per_bus_day": 217.0,
+      "source": "a06_deadhead.json observed_day (a13 duty model, driver GPS)"
+    },
+    "plan_daily_km_total": 323057.9,
+    "plan_km_per_bus_day": {
+      "network_mean": 319.5429277942631,
+      "note": "Daily_KM / Fleet_Required, with Fleet_Required including the 1.15 spare ratio",
+      "route_max": 875.15,
+      "route_median": 295.5833333333333,
+      "route_p90": 480.5225
+    },
+    "plan_over_observed_ratio": 3.241172764772651,
+    "plan_over_trips_x_length_ratio": 1.048925897995971,
+    "plan_trips_x_route_km_total": 307989.2494,
+    "reading": "The plan costs a 16-hour day for every bus, minibuses included, at ~320 km per bus; today's observed duty is ~99 km. PLAN is therefore an upper bound and OBSERVED a lower bound; neither is a costed duty roster, and no crew count is derived.",
+    "service_day_hours_both_directions": {
+      "derivation": "Daily_Trips x Headway_Min / 60 per route; Daily_Trips counts departures in both directions",
+      "max": 32.025,
+      "min": 32.0,
+      "reading": "32 vehicle-departure-hours = 2 directions x 16 service hours"
+    }
+  },
   "engine_emission_factor_check": {
+    "basis": "12 m e-bus kWh/km (ITDP 2022, verified) x CEA v22.0 FY2025-26 grid factor (verified); the 9 m figure is not sourced and is not used in this check",
+    "breakeven_grid_gco2_per_kwh_range": [
+      23.076923076923077,
+      30.612244897959183
+    ],
+    "breakeven_note": "the grid factor (g CO2/kWh) at which the engine's 30 g/km would be right for the stated 12 m kWh/km range; compare with the CEA FY2025-26 range 675-705 g/kWh",
+    "ebus_gco2_per_km_range": [
+      661.5,
+      916.5
+    ],
     "engine_diesel_gco2_per_km": 950.0,
     "engine_ebus_gco2_per_km": 30.0,
-    "midrange_ebus_gco2_per_km": 873.9999999999999,
-    "note": "Engine Phase-4 Emissions_GCO2_Daily not used; e-bus factor implausibly low.",
-    "understatement_factor": 29.13333333333333
+    "grid_basis_caveat": "national-average grid factor; J&K's supply mix differs and no state-level factor is in the repo, so this is an order-of-magnitude check, not a measured error",
+    "midrange_ebus_gco2_per_km": 786.6,
+    "module_diesel_gco2_per_km_by_class": {
+      "HPV": [
+        528.0,
+        771.4285714285714
+      ],
+      "LPV": [
+        264.0,
+        385.7142857142857
+      ],
+      "MPV": [
+        352.00000000000006,
+        514.2857142857143
+      ]
+    },
+    "note": "Engine Phase-4 Emissions_GCO2_Daily is not used; diesel constants are unverified (see constants_table).",
+    "understatement_factor": 26.220000000000002,
+    "understatement_factor_note": "mid-range ratio (kWh/km and grid factor each at the midpoint of their ranges)",
+    "understatement_factor_range": [
+      22.05,
+      30.55
+    ]
   },
-  "status": "PROVISIONAL_PENDING_D8"
+  "envelope": {
+    "co2_t_per_year": [
+      17451.686883666098,
+      82195.12430837672
+    ],
+    "cost_inr_per_year": [
+      1648026615.3686497,
+      8589957022.809645
+    ],
+    "note": "lowest end of OBSERVED to highest end of PLAN (SRTU_MORTH lies between them); PROVISIONAL, cost and diesel constants unverified"
+  },
+  "exclusions": [
+    "crew (driver/conductor) wages as a separate line: not modelled and no crew count derived from any input; whether the per-km rate embeds crew is unverified",
+    "vehicle purchase or lease (capital for the ~400 vehicles above today's fleet and for replacement): not modelled; whether the per-km rate embeds capital recovery is unverified",
+    "depots, workshops and layover land",
+    "charging infrastructure and grid connection for the SSCL e-bus backbone",
+    "fuel/energy taxes, insurance, permits, tolls",
+    "fare revenue: figures are gross operating cost, not net subsidy",
+    "seasonal or winter service reduction: 365 operating days assumed (upper bound)"
+  ],
+  "headline": "PROVISIONAL (grid factor, 12 m e-bus energy and SRTU utilisation are sourced; diesel economy and per-km cost rates are not). Annual gross operating cost for 1011 buses (HPV 187 / MPV 754 / LPV 70), each class costed on its own constants: INR 513\u2013859 crore on the plan's own kilometres (16-hour day, a ceiling) and INR 165\u2013276 crore on observed duty (a floor); CO2 55\u201382 kt and 17\u201326 kt. Pricing the 754 MPVs as full-size buses (the earlier treatment) would give INR 642\u20131,054 crore on the plan basis. Crew as a separate line, vehicle capital, depots and charging infrastructure are excluded.",
+  "sourced_gcc_cross_check": {
+    "basis": "all HPV vehicle-km at the 12 m e-bus GCC range, all MPV km at the 9 m range, LPV km at the module's own (unverified) minibus range; i.e. what the plan would cost if every bus were procured on an e-bus GCC",
+    "by_basis": {
+      "OBSERVED": {
+        "cost_inr_per_year": [
+          2041745064.840368,
+          2392201118.7975507
+        ],
+        "module_range_cost_inr_per_year": [
+          1648026615.3686497,
+          2760638871.3063574
+        ]
+      },
+      "PLAN": {
+        "cost_inr_per_year": [
+          6358486404.785238,
+          7455181777.771646
+        ],
+        "module_range_cost_inr_per_year": [
+          5126561548.094325,
+          8589957022.809645
+        ]
+      },
+      "PLAN_TRIPS_X_LENGTH": {
+        "cost_inr_per_year": [
+          6104714773.266506,
+          7136635694.377645
+        ],
+        "module_range_cost_inr_per_year": [
+          4929451343.593054,
+          8253041285.040237
+        ]
+      },
+      "SRTU_MORTH": {
+        "cost_inr_per_year": [
+          4218446002.42,
+          4972351419.0
+        ],
+        "module_range_cost_inr_per_year": [
+          3360536385.0,
+          5644697625.0
+        ]
+      }
+    },
+    "caveat": "press-sourced (CESL tender results, Outlook Business / Mercom 2023) plus one ITDP figure; a different question from the diesel-oriented module range, so reported beside it and not substituted for it",
+    "verified": "press"
+  },
+  "status": "PROVISIONAL_PENDING_D8",
+  "vehicle_classes": {
+    "HPV": {
+      "description": "high-capacity bus (~12 m)",
+      "design_load": 60,
+      "n_buses": 187
+    },
+    "LPV": {
+      "description": "minibus",
+      "design_load": 20,
+      "n_buses": 70
+    },
+    "MPV": {
+      "description": "mid-size bus (~9 m)",
+      "design_load": 35,
+      "n_buses": 754
+    }
+  }
 }

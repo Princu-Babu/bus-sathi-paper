@@ -6,12 +6,303 @@
     "fleet_total_published": 1011,
     "n_routes": 186
   },
+  "baseline_reproduction_decomposed": {
+    "agreement": {
+      "V0_published_devices_kept": {
+        "cycle_reproduced": 186,
+        "fleet_reproduced": 186,
+        "fleet_total": 1011,
+        "fleet_total_published": 1011,
+        "max_abs_cycle_diff_min": 0.0,
+        "routes_fleet_differs": []
+      },
+      "V1_measured_recomputed_uncapped_sscl_floor_kept": {
+        "cycle_reproduced": 186,
+        "fleet_reproduced": 186,
+        "fleet_total": 1011,
+        "fleet_total_published": 1011,
+        "max_abs_cycle_diff_min": 0.0,
+        "routes_fleet_differs": []
+      },
+      "V2_measured_recomputed_capped_sscl_floor_kept": {
+        "cycle_reproduced": 181,
+        "fleet_reproduced": 182,
+        "fleet_total": 1004,
+        "fleet_total_published": 1011,
+        "max_abs_cycle_diff_min": 92.6,
+        "routes_fleet_differs": [
+          "FDR-262",
+          "FDR-270",
+          "FDR-050",
+          "FDR-370"
+        ]
+      },
+      "V3_measured_published_sscl_floor_removed": {
+        "cycle_reproduced": 186,
+        "fleet_reproduced": 184,
+        "fleet_total": 1007,
+        "fleet_total_published": 1011,
+        "max_abs_cycle_diff_min": 0.0,
+        "routes_fleet_differs": [
+          "SSCL-02",
+          "SSCL-27"
+        ]
+      },
+      "V4_measured_recomputed_capped_sscl_floor_removed": {
+        "cycle_reproduced": 181,
+        "fleet_reproduced": 180,
+        "fleet_total": 1000,
+        "fleet_total_published": 1011,
+        "max_abs_cycle_diff_min": 92.6,
+        "routes_fleet_differs": [
+          "FDR-262",
+          "FDR-270",
+          "FDR-050",
+          "FDR-370",
+          "SSCL-02",
+          "SSCL-27"
+        ]
+      },
+      "V5_measured_recomputed_uncapped_sscl_floor_removed": {
+        "cycle_reproduced": 186,
+        "fleet_reproduced": 184,
+        "fleet_total": 1007,
+        "fleet_total_published": 1011,
+        "max_abs_cycle_diff_min": 0.0,
+        "routes_fleet_differs": [
+          "SSCL-02",
+          "SSCL-27"
+        ]
+      }
+    },
+    "agreement_without_devices_D2_D3": {
+      "cycle_reproduced": 181,
+      "fleet_reproduced": 180,
+      "fleet_total": 1000,
+      "fleet_total_published": 1011,
+      "max_abs_cycle_diff_min": 92.6,
+      "routes_fleet_differs": [
+        "FDR-262",
+        "FDR-270",
+        "FDR-050",
+        "FDR-370",
+        "SSCL-02",
+        "SSCL-27"
+      ]
+    },
+    "cycle_tolerance_min": 0.11,
+    "devices": {
+      "D1_per_km_cap": {
+        "by_class": {
+          "Peri_Urban": 46,
+          "Regional_District": 71,
+          "Urban": 52
+        },
+        "n_of_which_sscl": 26,
+        "n_routes_cycle_set_by_cap": 169,
+        "note": "On these routes the checked cycle is round(2*L*cap, 1): it verifies one multiplication, not the OSRM/congestion/dwell chain."
+      },
+      "D2_measured_cycles_copied_from_plan": {
+        "n_routes": 5,
+        "route_ids": [
+          "FDR-262",
+          "FDR-270",
+          "FDR-575",
+          "FDR-050",
+          "FDR-370"
+        ]
+      },
+      "D3_sscl_floor_defined_from_published_fleet": {
+        "buses_above_formula": 4,
+        "n_routes": 2,
+        "note": "Floor := published fleet where it exceeds the formula, so these cannot fail.",
+        "route_ids": [
+          "SSCL-02",
+          "SSCL-27"
+        ]
+      },
+      "D4_headways_taken_as_inputs": {
+        "headway_counts": {
+          "15": 30,
+          "20": 25,
+          "35": 69,
+          "50": 62
+        },
+        "n_regional_type_routes_with_demand_responsive_headway": 71,
+        "n_routes": 186,
+        "note": "Rural headway rule (apply_regional_demand_headway) is not reimplemented; a15 scenario S3 bounds its effect on fleet."
+      },
+      "osrm_durations_taken_as_inputs": {
+        "n_routes": 186
+      }
+    },
+    "existing_verify_baseline": {
+      "cycle_reproduced": 186,
+      "fleet_reproduced": 186,
+      "fleet_total": 1011,
+      "fleet_total_published": 1011,
+      "n_routes": 186
+    },
+    "measured_corridors_recomputed_from_gps_moving_speed": {
+      "n_cycle_within_0p11": 5,
+      "n_fleet_equal": 5,
+      "routes": [
+        {
+          "corridor_id": 1,
+          "cycle_published": 100.8,
+          "cycle_recomputed": 100.8,
+          "fleet_published": 7,
+          "fleet_recomputed": 7,
+          "moving_kmh": 18.2,
+          "route_id": "FDR-050"
+        },
+        {
+          "corridor_id": 4,
+          "cycle_published": 186.6,
+          "cycle_recomputed": 186.6,
+          "fleet_published": 7,
+          "fleet_recomputed": 7,
+          "moving_kmh": 18.1,
+          "route_id": "FDR-262"
+        },
+        {
+          "corridor_id": 6,
+          "cycle_published": 111.2,
+          "cycle_recomputed": 111.2,
+          "fleet_published": 5,
+          "fleet_recomputed": 5,
+          "moving_kmh": 20.6,
+          "route_id": "FDR-370"
+        },
+        {
+          "corridor_id": 7,
+          "cycle_published": 107.1,
+          "cycle_recomputed": 107.1,
+          "fleet_published": 5,
+          "fleet_recomputed": 5,
+          "moving_kmh": 18.5,
+          "route_id": "FDR-270"
+        },
+        {
+          "corridor_id": 8,
+          "cycle_published": 32.6,
+          "cycle_recomputed": 32.6,
+          "fleet_published": 3,
+          "fleet_recomputed": 3,
+          "moving_kmh": 17.5,
+          "route_id": "FDR-575"
+        }
+      ]
+    },
+    "n_routes_cycle_independently_recomputed": 12,
+    "n_routes_cycle_independently_recomputed_note": "not cap-truncated and not measured: the full Eq. 11 chain is what sets the checked cycle",
+    "statement": "With the plan's OSRM durations, headways, the five measured cycles and the two SSCL floors supplied as inputs, the model reproduces cycle and fleet on 186/186 routes and 1,011 buses. With the measured cycles recomputed under the cap and the SSCL floors removed, it reproduces 181/186 cycles, 180/186 fleets and 1,000 of 1,011 buses. The cap sets the cycle on 169 routes; the full chain is exercised on 12."
+  },
+  "baseline_reproduction_note": "186/186 cycle and fleet is reproduced WITH four plan-supplied devices (per-km cap, the five measured cycles copied, SSCL floors defined from the published fleet, headways as inputs); see baseline_reproduction_decomposed for the agreement without them (F-03-03, F-11-10).",
   "baseline_tier_sizes": [
     108,
     41,
     37
   ],
   "baseline_tiers_vs_a04_agreement": 1.0,
+  "congestion_disclosure": {
+    "by_route_type": {
+      "Peri_Urban": {
+        "city_core": 39,
+        "city_core_both_terminals_north": 14,
+        "city_core_one_terminal_north": 24,
+        "n": 47,
+        "peri_urban": 8
+      },
+      "Regional_District": {
+        "city_core": 69,
+        "city_core_both_terminals_north": 26,
+        "city_core_one_terminal_north": 41,
+        "n": 71,
+        "peri_urban": 2
+      },
+      "Urban": {
+        "city_core": 62,
+        "city_core_both_terminals_north": 43,
+        "city_core_one_terminal_north": 18,
+        "n": 68,
+        "peri_urban": 6
+      }
+    },
+    "chi_city_core": 2.2,
+    "chi_peri_urban": 1.4,
+    "fleet_dependence": {
+      "cap_removed_chi_1p4": 1331,
+      "cap_removed_chi_2p2": 1648,
+      "chi_1p4_everywhere_cap_on": 996,
+      "chi_effect_when_cap_removed": 317,
+      "delta_cap_removed": 637,
+      "delta_chi_cap_on": -15,
+      "n_routes_cycle_set_by_cap": 169,
+      "n_routes_where_chi_changes_fleet_cap_on": 14,
+      "n_routes_where_chi_changes_fleet_cap_removed": 148,
+      "published": 1011,
+      "reading": "With the cap on, setting the multiplier to the peri-urban 1.4 everywhere moves the fleet by -15 buses; the cap, not the multiplier, sets run time on 169 of 186 routes. With the cap removed the multiplier is worth 317 buses."
+    },
+    "fleet_grid": {
+      "chi_1.4_peri_urban_everywhere__cap_on": {
+        "fleet_by_class": {
+          "Peri_Urban": 313,
+          "Regional_District": 384,
+          "Urban": 299
+        },
+        "fleet_total": 996,
+        "n_routes_at_cap": 144,
+        "n_routes_fleet_differs_from_published": 14
+      },
+      "chi_1.4_peri_urban_everywhere__cap_removed": {
+        "fleet_by_class": {
+          "Peri_Urban": 386,
+          "Regional_District": 626,
+          "Urban": 319
+        },
+        "fleet_total": 1331,
+        "n_routes_at_cap": null,
+        "n_routes_fleet_differs_from_published": 138
+      },
+      "chi_2.2_published__cap_on": {
+        "fleet_by_class": {
+          "Peri_Urban": 313,
+          "Regional_District": 384,
+          "Urban": 314
+        },
+        "fleet_total": 1011,
+        "n_routes_at_cap": 169,
+        "n_routes_fleet_differs_from_published": 0
+      },
+      "chi_2.2_published__cap_removed": {
+        "fleet_by_class": {
+          "Peri_Urban": 465,
+          "Regional_District": 806,
+          "Urban": 377
+        },
+        "fleet_total": 1648,
+        "n_routes_at_cap": null,
+        "n_routes_fleet_differs_from_published": 151
+      }
+    },
+    "n_city_core_recorded": 170,
+    "n_peri_urban_recorded": 16,
+    "n_regional_assigned_city_core": 69,
+    "n_routes": 186,
+    "rule": "City_Core iff start OR end terminal latitude > 34.07 N (transit_kashmir_v3.py:_detect_congestion_zone; threshold at :136). Latitude half-plane; no polygon, no route-class test.",
+    "rule_reapplied_to_drawn_terminals": {
+      "n_agree_with_recorded_zone": 182,
+      "note": "Disagreements are routes whose drawn terminal differs from the engine's geocoded terminal (e.g. a generic 'Srinagar' point north of 34.07 N).",
+      "routes_disagree": [
+        "FDR-261",
+        "FDR-384",
+        "FDR-538",
+        "FDR-039"
+      ]
+    }
+  },
+  "congestion_disclosure_note": "Where the City-Core multiplier applies, by which rule, and the fleet with the cap removed and with the peri-urban multiplier everywhere (F-03-04, F-08-14).",
   "consolidation": {
     "by_theta": [
       {

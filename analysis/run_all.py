@@ -44,6 +44,9 @@ PAPER_DIR = ROOT / "paper"
 TABLES_DIR = PAPER_DIR / "tables"
 FIGURES_DIR = PAPER_DIR / "figures"
 LOGS_DIR = ROOT / "logs"
+# Volatile run metadata (timestamps, runtimes, host paths) goes here; the directory is
+# git-ignored so that re-running the pipeline never rewrites tracked files.
+VOLATILE_DIR = LOGS_DIR / "volatile"
 
 for d in (DERIVED_DIR, TABLES_DIR, FIGURES_DIR, LOGS_DIR):
     d.mkdir(parents=True, exist_ok=True)
@@ -61,6 +64,7 @@ class ModuleSpec:
     outputs: tuple[Path, ...] = ()
     depends_on: tuple[str, ...] = ()
     estimated_runtime_sec: float = 5.0
+    args: tuple[str, ...] = ()
 
 
 MODULE_REGISTRY: list[ModuleSpec] = [
@@ -74,6 +78,17 @@ MODULE_REGISTRY: list[ModuleSpec] = [
         inputs=(RAW_DIR / "Rationalised_Routes_Kashmir_v3.csv", RAW_DIR / "existing-routes.csv"),
         outputs=(DERIVED_DIR / "q01_data_quality.json", TABLES_DIR / "table02a_permit_duplication.csv"),
         depends_on=(),
+        estimated_runtime_sec=5.0,
+    ),
+    ModuleSpec(
+        name="q02_fleet_baseline",
+        script="q02_fleet_baseline.py",
+        stage=0,
+        description="Current-fleet baseline from permit-register summary & CHALO deployment",
+        is_heavy=False,
+        inputs=(RAW_DIR / "permit_register_summary.csv", RAW_DIR / "chalo_deployed_buses.csv"),
+        outputs=(DERIVED_DIR / "q02_fleet_baseline.json",),
+        depends_on=("q01_data_quality",),
         estimated_runtime_sec=5.0,
     ),
     ModuleSpec(
@@ -101,6 +116,19 @@ MODULE_REGISTRY: list[ModuleSpec] = [
         estimated_runtime_sec=4140.0,
     ),
     ModuleSpec(
+        name="a02_summary",
+        script="a02_network_catchments.py",
+        stage=0,
+        description="a02 reporting from cached catchments (--summary-only; no Dijkstra)",
+        is_heavy=False,
+        inputs=(DERIVED_DIR / "a02_catchments.csv", CACHE_DIR / "catchments_network.gpkg"),
+        outputs=(DERIVED_DIR / "a02_network_catchments.json", DERIVED_DIR / "a02_catchment_bias.csv",
+                 TABLES_DIR / "table03a_catchment_bias.csv"),
+        depends_on=("a02_network_catchments",),
+        estimated_runtime_sec=90.0,
+        args=("--summary-only",),
+    ),
+    ModuleSpec(
         name="a02b_faithfulness",
         script="a02b_faithfulness.py",
         stage=0,
@@ -108,7 +136,7 @@ MODULE_REGISTRY: list[ModuleSpec] = [
         is_heavy=False,
         inputs=(DERIVED_DIR / "a02_catchments.csv", RAW_DIR / "Rationalised_Routes_Kashmir_v3.csv"),
         outputs=(DERIVED_DIR / "a02b_faithfulness.csv", TABLES_DIR / "table03b_faithfulness.csv"),
-        depends_on=("a02_network_catchments",),
+        depends_on=("a02_network_catchments", "a02_summary"),
         estimated_runtime_sec=2.0,
     ),
 
@@ -150,7 +178,8 @@ MODULE_REGISTRY: list[ModuleSpec] = [
             TABLES_DIR / "table05_class_count.csv",
             TABLES_DIR / "table05b_classifier_agreement.csv",
         ),
-        depends_on=("a03_index_weights",),
+        # a04 copies the a09 tier-stability result at run time, so a09 must run first
+        depends_on=("a03_index_weights", "a09_monte_carlo_sobol"),
         estimated_runtime_sec=10.0,
     ),
 
@@ -294,7 +323,7 @@ MODULE_REGISTRY: list[ModuleSpec] = [
                 RAW_DIR / "Rationalised_Routes_Kashmir_v3.csv"),
         outputs=(DERIVED_DIR / "a16_peer_regression.json",
                  TABLES_DIR / "table05j_peer_regression.csv"),
-        depends_on=(),
+        depends_on=("a02_summary",),
         estimated_runtime_sec=5.0,
     ),
 
@@ -404,7 +433,7 @@ def execute_module(spec: ModuleSpec, verbose: bool = False, log_dir: Path = LOGS
     start_dt = datetime.datetime.now(datetime.timezone.utc)
     start_time = time.perf_counter()
     
-    cmd = [sys.executable, str(script_path)]
+    cmd = [sys.executable, str(script_path), *spec.args]
     env = os.environ.copy()
     env["PYTHONPATH"] = f"{ROOT};{ANALYSIS_DIR}"
     
@@ -414,9 +443,8 @@ def execute_module(spec: ModuleSpec, verbose: bool = False, log_dir: Path = LOGS
         f.write(f"MODULE:      {spec.name}\n")
         f.write(f"SCRIPT:      {spec.script}\n")
         f.write(f"STAGE:       Stage {spec.stage}\n")
-        f.write(f"STARTED:     {start_dt.isoformat()}\n")
-        f.write(f"PYTHON:      {sys.executable} ({sys.version.split()[0]})\n")
-        f.write(f"COMMAND:     {' '.join(cmd)}\n")
+        # Deterministic header: no timestamps / interpreter path (those go to logs/volatile).
+        f.write(f"COMMAND:     python analysis/{spec.script}{(' ' + ' '.join(spec.args)) if spec.args else ''}\n")
         f.write("=" * 80 + "\n\n")
 
     try:
@@ -457,8 +485,6 @@ def execute_module(spec: ModuleSpec, verbose: bool = False, log_dir: Path = LOGS
     # Write footer
     with open(log_file, "a", encoding="utf-8") as f:
         f.write("\n" + "=" * 80 + "\n")
-        f.write(f"FINISHED:    {end_dt.isoformat()}\n")
-        f.write(f"DURATION:    {duration:.2f}s\n")
         f.write(f"EXIT CODE:   {returncode}\n")
         f.write(f"STATUS:      {'PASSED' if returncode == 0 else 'FAILED'}\n")
         f.write(f"VERIFIED:    {len(verified_outputs)}/{len(spec.outputs)} outputs\n")
@@ -468,6 +494,9 @@ def execute_module(spec: ModuleSpec, verbose: bool = False, log_dir: Path = LOGS
         "name": spec.name,
         "stage": spec.stage,
         "status": "PASSED" if returncode == 0 else "FAILED",
+        "started_utc": start_dt.isoformat(),
+        "finished_utc": end_dt.isoformat(),
+        "python": f"{sys.executable} ({sys.version.split()[0]})",
         "duration": duration,
         "exit_code": returncode,
         "outputs_verified": len(verified_outputs),
@@ -656,15 +685,26 @@ def main() -> int:
     print_summary_table(results, total_elapsed)
 
     # Write JSON summary
-    summary_payload = {
-        "timestamp_utc": datetime.datetime.now(datetime.timezone.utc).isoformat(),
-        "total_elapsed_sec": total_elapsed,
+    volatile_keys = {"started_utc", "finished_utc", "python", "duration"}
+    det_results = [{k: v for k, v in r.items() if k not in volatile_keys} for r in results]
+    deterministic = {
         "overall_status": "FAILED" if has_failure else "SUCCESS",
         "cli_args": sys.argv[1:],
+        "results": det_results,
+        "note": "Deterministic summary (tracked). Timestamps/runtimes/host paths: logs/volatile/LATEST_RUN_volatile.json (git-ignored).",
+    }
+    volatile = {
+        "timestamp_utc": datetime.datetime.now(datetime.timezone.utc).isoformat(),
+        "total_elapsed_sec": total_elapsed,
         "results": results,
     }
+    LOGS_DIR.mkdir(parents=True, exist_ok=True)
+    VOLATILE_DIR.mkdir(parents=True, exist_ok=True)
     with open(LOGS_DIR / "LATEST_RUN.json", "w", encoding="utf-8") as f:
-        json.dump(summary_payload, f, indent=2)
+        json.dump(deterministic, f, indent=2)
+        f.write("\n")
+    with open(VOLATILE_DIR / "LATEST_RUN_volatile.json", "w", encoding="utf-8") as f:
+        json.dump(volatile, f, indent=2)
 
     return 1 if has_failure else 0
 

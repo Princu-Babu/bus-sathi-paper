@@ -1,21 +1,199 @@
 {
   "area_ratio_median": 0.5024659927768227,
+  "bias_per_route": {
+    "basis": "per route, n = 186 active routes, base setting W=400 m S=250 m tau=100 m, cell-centre rule, in-sample",
+    "n_routes_overstatement_of_network_gt_100pct": 11,
+    "n_routes_overstatement_of_network_gt_50pct": 122,
+    "n_routes_spurious_share_gt_25pct": 184,
+    "n_routes_spurious_share_gt_50pct": 11,
+    "overstatement_of_network_pct": {
+      "max": 131.35953383677025,
+      "mean": 61.41461204835261,
+      "median": 59.728071499051836,
+      "min": 33.25192906362698,
+      "n": 186,
+      "p25": 43.8720446192474,
+      "p75": 71.62849347241645
+    },
+    "spurious_share_of_euclidean_pct": {
+      "max": 56.77722964701666,
+      "mean": 37.12790796782257,
+      "median": 37.39344030716096,
+      "min": 24.95418212501028,
+      "n": 186,
+      "p25": 30.4935895868787,
+      "p75": 41.734590880081775
+    }
+  },
+  "bias_union": {
+    "basis": "one deduplicated union over the 186 active routes, base setting, denominator 6,584,762; in-sample",
+    "coverage_share_euclid": 0.35527385044440485,
+    "coverage_share_net": 0.24189890993782312,
+    "difference": 746547.0,
+    "euclid_pop": 2339393.75,
+    "network_pop": 1592846.75,
+    "overstatement_of_network_pct": 46.86872732734646,
+    "spurious_share_of_euclidean_pct": 31.91198574416983
+  },
+  "cache_consistency": {
+    "a08a_base_vs_a02_pop_net_max_abs_diff": 0.0,
+    "max_abs_diff_pop_euclid_recomputed_vs_cached_csv": 0.0,
+    "max_abs_diff_pop_net_from_gpkg_vs_cached_csv": 0.0
+  },
   "coverage_share_euclid": 0.35527385044440485,
   "coverage_share_net": 0.24189890993782312,
+  "definitions": {
+    "base": "E = Euclidean count, N = network count (tau = base), same route or same dissolved union",
+    "overstatement_of_network": "(E - N) / N : how much larger the Euclidean count is than the network count",
+    "relation": "overstatement = s / (1 - s), s = spurious share (as fractions)",
+    "spurious_share_of_euclidean": "(E - N) / E : share of the Euclidean count that is not reachable on the walk network"
+  },
+  "denominator": {
+    "engine_integer_truncation": 6584762,
+    "raster_sum_inside_district_union": 6584762.619239882,
+    "relative_effect_on_shares": 1.5186576309951108e-07,
+    "round_half_up": 6584763,
+    "used_equals_engine_truncation": true,
+    "used_in_all_shares": 6584762,
+    "used_source": "common.STUDY_AREA_POPULATION (the engine's int() of the raster sum)",
+    "which_is_rounding": "6,584,762 is the raster sum truncated by int() (as in the engine); 6,584,763 is the same sum rounded to nearest. The underlying value is 6,584,762.6; the choice moves any coverage share by about 1e-7 of itself."
+  },
+  "euclidean_union_reconciliation": {
+    "causes": [
+      {
+        "cause": "tourist multiplier",
+        "evidence": "the x1.3 is applied to the per-route Population_Served column (:1863); compute_network_population_total (:1961-1973) reads only gdf['Catchment'] and takes one zonal_stats sum over the dissolved union, so the boosted column never enters the union",
+        "status": "excluded_by_code"
+      },
+      {
+        "cause": "zonal rule",
+        "evidence": "the engine's zonal_stats call (:1967) uses the rasterstats default (cell-centre), the same as this pipeline",
+        "status": "excluded_by_code"
+      },
+      {
+        "cause": "disc resolution (quad_segs 8 here vs shapely default 16 in the engine)",
+        "evidence": "Euclidean union at quad_segs=16 = 2,342,596, i.e. +3,203 persons (+0.14 %) - it would widen, not close, the gap with the engine at today's geometry",
+        "status": "measured_small_wrong_direction"
+      },
+      {
+        "cause": "route set: the engine's union dissolves ALL 644 rows incl. merged ones",
+        "evidence": "compute_network_population_total is called at :6029 with the full frame and does not filter Action_Taken; merged rows' geometry is not in this repository, so their contribution cannot be recomputed. This pushes the engine figure UP relative to a 186-route union",
+        "status": "not_isolated"
+      },
+      {
+        "cause": "geometry version of the 186 active routes",
+        "evidence": "the active geometry changed after the engine's coverage run (v3.4.4 distance work; v3.4.5-geo redrew 15 lines). The Euclidean union of the shipped geometry moves with release - see external_geometry_diagnostic. This pushes this pipeline's figure UP relative to the run that produced 2,317,958",
+        "status": "partly_measured"
+      }
+    ],
+    "conclusion": "The 21k-person gap (about 0.9 % of the figure; 0.3 pp of coverage) is not attributable to a single cause from what is in this repository. Two effects of opposite sign are identified (the engine unions merged rows as well; the geometry has since been redrawn) and neither can be quantified without the engine's run-time geometry. State both numbers; do not present 35.5 % as the plan's published coverage (35.2 %).",
+    "difference_pct_of_engine": 0.9247686972757919,
+    "difference_persons": 21435.75,
+    "difference_pp_of_study_area": 0.3255356837498455,
+    "engine_published": {
+      "coverage_share": 0.35201849360690635,
+      "in_repo_check": {
+        "difference_from_published": 7.0,
+        "note": "the plan CSV's active Population_Served is rescaled to the engine union (reconcile_active_population, :2186) and rounded per row, so it matches the published union to a few persons; this is the only in-repo trace of the published figure",
+        "plan_csv_active_population_served_sum": 2317965.0
+      },
+      "source": "E:/kash/README.md:23 ('2.32M residents ... 35.2 %') and E:/kash/CLAUDE.md v3.4.1 notes (2,317,958); computed by compute_network_population_total, transit_kashmir_v3.py:1955-1980, called at :6029",
+      "union_pop": 2317958
+    },
+    "external_geometry_diagnostic": {
+      "by_release": {
+        "3.4.1": {
+          "euclid_union_pop": 2291655.0,
+          "n_routes": 186
+        },
+        "3.4.2": {
+          "euclid_union_pop": 2291655.0,
+          "n_routes": 186
+        },
+        "3.4.3": {
+          "euclid_union_pop": 2291655.0,
+          "n_routes": 186
+        },
+        "3.4.4": {
+          "euclid_union_pop": 2309018.0,
+          "n_routes": 186
+        },
+        "3.4.5": {
+          "euclid_union_pop": 2339393.75,
+          "n_routes": 186
+        }
+      },
+      "source_root": "E:/kash (not part of this repository; optional, regenerate with --engine-outputs-root)",
+      "status": "external_diagnostic",
+      "what": "Euclidean-union population of the ACTIVE routes' geometry in each engine release's Rationalised_Routes_Kashmir_v3.geojson, with this module's construction (W=400 m, S=250 m, quad_segs=8, cell-centre rule)."
+    },
+    "isolated_cause": false,
+    "this_pipeline": {
+      "construction": "186 active routes; plan geometry as shipped (v3.4.5-geo), 2 m simplification, 250 m virtual stops, discs of 400 m with quad_segs=8, one zonal sum over the dissolved union, cell-centre rule; no tourist multiplier anywhere",
+      "coverage_share": 0.35527385044440485,
+      "union_pop": 2339393.75
+    }
+  },
+  "in_sample_note": "All statistics describe the 186 active routes of the published plan (no resampling, no held-out data): they are in-sample descriptive statistics of that one plan, not estimates for other networks.",
+  "method_notes": {
+    "euclidean_construction": {
+      "buffer_quad_segs": 8,
+      "effect_of_engine_resolution_on_union": {
+        "change_pct": 0.13690512766395546,
+        "change_persons": 3202.75,
+        "euclid_union_pop_at_engine_resolution": 2342596.5,
+        "status": "recomputed"
+      },
+      "engine_buffer_quad_segs": 16,
+      "note": "both catchments use the same disc resolution here, so the comparison is like-for-like",
+      "simplification_tolerance_m": 2.0,
+      "type": "union of Euclidean discs around virtual stops",
+      "virtual_stop_spacing_m": 250.0,
+      "walk_budget_m": 400.0
+    },
+    "lower_bound_claim": "withdrawn: the headline bias is not the smallest in the sensitivity sweep (see sensitivity.summary) and the construction is node-sampled; only the sign is robust",
+    "network_construction": {
+      "audit_sample_estimate": "the audit reported a small effect on a 17-route sample; those figures are not reproduced here",
+      "description": "discs of radius min(R - d(v), tau) centred on reached graph nodes only; between two nodes more than 2 x tau apart the edge is not fully covered",
+      "effect_of_edge_densification": "not recomputed (needs the graph Dijkstra; the cached outputs are node-sampled)",
+      "formal_upper_bound_on_true_walkshed": false,
+      "type": "node-sampled disc union"
+    },
+    "raster_cell": {
+      "approx_metres_east_west_at_34N": 76.9,
+      "approx_metres_north_south_at_34N": 92.5,
+      "degrees": 0.00083333333,
+      "note": "not 100 m x 100 m; tau = 100 m is 'roughly one cell'"
+    },
+    "zonal_rule": "cell-centre: rasterstats.zonal_stats default (all_touched=False); a WorldPop cell is counted when its centre lies inside the polygon. The effect of all_touched=True is recomputed on all routes in sensitivity.rasterisation_rule."
+  },
+  "mode": "summary_only (reporting rebuilt from cached per-route CSV, network polygons and a08a outputs; graph/Dijkstra not re-run)",
   "n_routes": 186,
   "n_routes_km_geometry_consistent": 142,
   "n_routes_km_substituted": 44,
   "n_routes_overstated_gt_25pct": 184,
+  "n_routes_overstated_gt_25pct_note": "LEGACY NAME. Computed as (E - N) / E, the SPURIOUS SHARE of the Euclidean count; it is not an overstatement. Use spurious_share_of_euclidean_pct_* or overstatement_of_network_pct_* (audit F-14-27, F-10-09, F-02-24).",
   "n_routes_overstated_gt_50pct": 11,
+  "n_routes_overstated_gt_50pct_note": "LEGACY NAME. Computed as (E - N) / E, the SPURIOUS SHARE of the Euclidean count; it is not an overstatement. Use spurious_share_of_euclidean_pct_* or overstatement_of_network_pct_* (audit F-14-27, F-10-09, F-02-24).",
   "n_stops_off_network": 46,
   "n_stops_total": 22360,
-  "note": "The Euclidean catchment is recomputed from the same geometries, stops, budget and zonal method as the published plan, so the difference is attributable to the pedestrian network alone. The network catchment allows a final off-network leg of up to tau, so it overstates the true network walkshed and the bias reported here is a lower bound. The published plan's own population column is a valid reproduction target only on the routes where geometry length agrees with Route_KM; on the remainder an externally verified distance was substituted without redrawing the geometry or recomputing population, so the recomputed value supersedes it.",
+  "note": "The Euclidean catchment is recomputed from the same geometries, stops, budget and zonal method as the published plan, so the difference is attributable to the pedestrian network (plus the stated construction choices) alone. The headline bias is reported on two bases (spurious share of the Euclidean count; overstatement of the network count) and beside its sensitivity to tau, the walk budget, the stop spacing and the rasterisation rule; it is not claimed to be a lower bound. The published plan's own population column is a valid reproduction target only on the routes where geometry length agrees with Route_KM; on the remainder an externally verified distance was substituted without redrawing the geometry or recomputing population, so the recomputed value supersedes it.",
+  "overstatement_of_network_pct_median": 59.728071499051836,
+  "overstatement_of_network_pct_p25": 43.8720446192474,
+  "overstatement_of_network_pct_p75": 71.62849347241645,
+  "overstatement_of_network_pct_union": 46.86872732734646,
   "overstatement_pct_max": 56.77722964701666,
+  "overstatement_pct_max_note": "LEGACY NAME. Computed as (E - N) / E, the SPURIOUS SHARE of the Euclidean count; it is not an overstatement. Use spurious_share_of_euclidean_pct_* or overstatement_of_network_pct_* (audit F-14-27, F-10-09, F-02-24).",
   "overstatement_pct_mean": 37.12790796782257,
+  "overstatement_pct_mean_note": "LEGACY NAME. Computed as (E - N) / E, the SPURIOUS SHARE of the Euclidean count; it is not an overstatement. Use spurious_share_of_euclidean_pct_* or overstatement_of_network_pct_* (audit F-14-27, F-10-09, F-02-24).",
   "overstatement_pct_median": 37.39344030716096,
+  "overstatement_pct_median_note": "LEGACY NAME. Computed as (E - N) / E, the SPURIOUS SHARE of the Euclidean count; it is not an overstatement. Use spurious_share_of_euclidean_pct_* or overstatement_of_network_pct_* (audit F-14-27, F-10-09, F-02-24).",
   "overstatement_pct_p25": 30.4935895868787,
+  "overstatement_pct_p25_note": "LEGACY NAME. Computed as (E - N) / E, the SPURIOUS SHARE of the Euclidean count; it is not an overstatement. Use spurious_share_of_euclidean_pct_* or overstatement_of_network_pct_* (audit F-14-27, F-10-09, F-02-24).",
   "overstatement_pct_p75": 41.734590880081775,
+  "overstatement_pct_p75_note": "LEGACY NAME. Computed as (E - N) / E, the SPURIOUS SHARE of the Euclidean count; it is not an overstatement. Use spurious_share_of_euclidean_pct_* or overstatement_of_network_pct_* (audit F-14-27, F-10-09, F-02-24).",
   "pop_euclid_union": 2339393.75,
+  "pop_euclid_union_note": "recomputed here (this pipeline's Euclidean construction on the shipped geometry); NOT the engine-published 2,317,958 - see euclidean_union_reconciliation",
   "pop_net_union": 1592846.75,
   "reproduction_on_selfconsistent_routes": {
     "max_abs_pct_error": 58.13930743209272,
@@ -29,28 +207,509 @@
     "n": 44,
     "pearson_r": 0.8610770707247741
   },
-  "snap_offset_median_m": 11.000363507885881,
+  "sensitivity": {
+    "rasterisation_rule": {
+      "all_touched": {
+        "note": "same polygons, only the rasterisation rule changed; recomputed on all 186 routes (the audit's own check used a 17-route sample)",
+        "per_route": {
+          "overstatement_of_network_pct": {
+            "max": 90.58751507610651,
+            "mean": 42.52738448756251,
+            "median": 40.155926196207034,
+            "min": 24.123957945324353,
+            "n": 186,
+            "p25": 32.64660396001862,
+            "p75": 47.583897551177586
+          },
+          "spurious_share_of_euclidean_pct": {
+            "max": 47.53066592002765,
+            "mean": 29.316035905989192,
+            "median": 28.650820926819076,
+            "min": 19.435376010125918,
+            "n": 186,
+            "p25": 24.611663610935828,
+            "p75": 32.24188129239824
+          }
+        },
+        "union": {
+          "coverage_share_euclid": 0.38107603585368766,
+          "coverage_share_net": 0.2941133066009068,
+          "difference": 572628.875,
+          "euclid_pop": 2509295.0,
+          "network_pop": 1936666.125,
+          "overstatement_of_network_pct": 29.567764293909978,
+          "spurious_share_of_euclidean_pct": 22.820309090800404
+        }
+      },
+      "headline_rule": "cell-centre"
+    },
+    "summary": {
+      "bias_positive_at_every_setting": true,
+      "headline_is_lower_bound_over_these_settings": false,
+      "headline_spurious_share_median_pct": 37.39344030716096,
+      "n_settings": 11,
+      "note": "The headline (W=400 m, S=250 m, tau=100 m, cell-centre rule) is NOT the smallest bias among the settings tried unless the list of smaller settings is empty; what holds at every setting is the sign. 'Lower bound' is not claimed.",
+      "overstatement_of_network_median_by_setting": {
+        "W300_S250 (tau=100 m)": 63.8168564108872,
+        "W400_S150 (tau=100 m)": 49.070638103265324,
+        "W400_S250 (tau=100 m)": 59.728071499051836,
+        "W400_S400 (tau=100 m)": 69.78731377160204,
+        "W500_S250 (tau=100 m)": 55.327466223499044,
+        "W600_S250 (tau=100 m)": 51.84195684532163,
+        "W800_S250 (tau=100 m)": 49.66176459047624,
+        "all-touched rule (base W/S/tau)": 40.155926196207034,
+        "tau=100 m": 59.728071499051836,
+        "tau=150 m": 41.19445015414235,
+        "tau=50 m": 111.72661969088759
+      },
+      "overstatement_of_network_median_range_pct": [
+        40.155926196207034,
+        111.72661969088759
+      ],
+      "settings_with_smaller_bias_than_headline": [
+        "W400_S150 (tau=100 m)",
+        "W500_S250 (tau=100 m)",
+        "W600_S250 (tau=100 m)",
+        "W800_S250 (tau=100 m)",
+        "all-touched rule (base W/S/tau)",
+        "tau=150 m"
+      ],
+      "spurious_share_median_by_setting": {
+        "W300_S250 (tau=100 m)": 38.95622077203285,
+        "W400_S150 (tau=100 m)": 32.91766384770885,
+        "W400_S250 (tau=100 m)": 37.39344030716096,
+        "W400_S400 (tau=100 m)": 41.10277987838829,
+        "W500_S250 (tau=100 m)": 35.61988560693753,
+        "W600_S250 (tau=100 m)": 34.141998950484236,
+        "W800_S250 (tau=100 m)": 33.18266567884156,
+        "all-touched rule (base W/S/tau)": 28.650820926819076,
+        "tau=100 m": 37.39344030716096,
+        "tau=150 m": 29.17566357639641,
+        "tau=50 m": 52.76871528875904
+      },
+      "spurious_share_median_range_pct": [
+        28.650820926819076,
+        52.76871528875904
+      ]
+    },
+    "tau": {
+      "tau100": {
+        "per_route": {
+          "overstatement_of_network_pct": {
+            "max": 131.35953383677025,
+            "mean": 61.41461204835261,
+            "median": 59.728071499051836,
+            "min": 33.25192906362698,
+            "n": 186,
+            "p25": 43.8720446192474,
+            "p75": 71.62849347241645
+          },
+          "spurious_share_of_euclidean_pct": {
+            "max": 56.77722964701666,
+            "mean": 37.12790796782257,
+            "median": 37.39344030716096,
+            "min": 24.95418212501028,
+            "n": 186,
+            "p25": 30.4935895868787,
+            "p75": 41.734590880081775
+          }
+        },
+        "rasterisation": "cell-centre",
+        "stop_spacing_m": 250.0,
+        "sum_of_per_route_network_pop": 11976719.260742188,
+        "sum_of_per_route_network_pop_note": "sum of overlapping per-route counts; NOT a network quantity (walksheds overlap)",
+        "tau_m": 100.0,
+        "union": {
+          "coverage_share_euclid": 0.35527385044440485,
+          "coverage_share_net": 0.24189890993782312,
+          "difference": 746547.0,
+          "euclid_pop": 2339393.75,
+          "network_pop": 1592846.75,
+          "overstatement_of_network_pct": 46.86872732734646,
+          "spurious_share_of_euclidean_pct": 31.91198574416983
+        },
+        "walk_budget_m": 400.0
+      },
+      "tau150": {
+        "per_route": {
+          "overstatement_of_network_pct": {
+            "max": 80.98364035854406,
+            "mean": 42.331991566664875,
+            "median": 41.19445015414235,
+            "min": 23.71398735410821,
+            "n": 186,
+            "p25": 32.650284520748,
+            "p75": 48.427877048560326
+          },
+          "spurious_share_of_euclidean_pct": {
+            "max": 44.74638713096308,
+            "mean": 29.27058048995328,
+            "median": 29.17566357639641,
+            "min": 19.16839628346255,
+            "n": 186,
+            "p25": 24.613748144859116,
+            "p75": 32.62720709245794
+          }
+        },
+        "rasterisation": "cell-centre",
+        "stop_spacing_m": 250.0,
+        "sum_of_per_route_network_pop": 13573978.369140625,
+        "sum_of_per_route_network_pop_note": "sum of overlapping per-route counts; NOT a network quantity (walksheds overlap)",
+        "tau_m": 150.0,
+        "union": {
+          "status": "not_computable_from_cache",
+          "why": "the deduplicated union needs the network polygons at this tau, which exist only for the base tau in catchments_network.gpkg; rebuilding them re-runs the graph Dijkstra, which this summary path never does"
+        },
+        "walk_budget_m": 400.0
+      },
+      "tau50": {
+        "per_route": {
+          "overstatement_of_network_pct": {
+            "max": 346.52833667635474,
+            "mean": 119.70746000780737,
+            "median": 111.72661969088759,
+            "min": 53.216087449063885,
+            "n": 186,
+            "p25": 79.94077919850193,
+            "p75": 146.745163567086
+          },
+          "spurious_share_of_euclidean_pct": {
+            "max": 77.60500470265107,
+            "mean": 52.42312870717202,
+            "median": 52.76871528875904,
+            "min": 34.73270224757265,
+            "n": 186,
+            "p25": 44.42596102901191,
+            "p75": 59.47230008813116
+          }
+        },
+        "rasterisation": "cell-centre",
+        "stop_spacing_m": 250.0,
+        "sum_of_per_route_network_pop": 8907704.873046875,
+        "sum_of_per_route_network_pop_note": "sum of overlapping per-route counts; NOT a network quantity (walksheds overlap)",
+        "tau_m": 50.0,
+        "union": {
+          "status": "not_computable_from_cache",
+          "why": "the deduplicated union needs the network polygons at this tau, which exist only for the base tau in catchments_network.gpkg; rebuilding them re-runs the graph Dijkstra, which this summary path never does"
+        },
+        "walk_budget_m": 400.0
+      }
+    },
+    "walk_budget_and_stop_spacing": {
+      "W300_S250": {
+        "euclid_side_source": "recomputed here from plan geometry",
+        "network_side_source": "a08a_catchment_grid (cached; heavy build not re-run)",
+        "per_route": {
+          "overstatement_of_network_pct": {
+            "max": 111.76315680572432,
+            "mean": 64.16994972410397,
+            "median": 63.8168564108872,
+            "min": 29.315996743516102,
+            "n": 186,
+            "p25": 48.98751196695551,
+            "p75": 75.79221066300977
+          },
+          "spurious_share_of_euclidean_pct": {
+            "max": 52.7774323407249,
+            "mean": 38.40907231768363,
+            "median": 38.95622077203285,
+            "min": 22.670046615857682,
+            "n": 186,
+            "p25": 32.88028028157917,
+            "p75": 43.114644693456945
+          }
+        },
+        "rasterisation": "cell-centre",
+        "stop_spacing_m": 250,
+        "tau_m": 100.0,
+        "union": {
+          "coverage_share_euclid": 0.2979970650419863,
+          "coverage_share_net": 0.20276556692557757,
+          "difference": 627076.75,
+          "euclid_pop": 1962239.75,
+          "network_pop": 1335163.0,
+          "overstatement_of_network_pct": 46.966306735582094,
+          "spurious_share_of_euclidean_pct": 31.957193304233083
+        },
+        "walk_budget_m": 300
+      },
+      "W400_S150": {
+        "euclid_side_source": "recomputed here from plan geometry",
+        "network_side_source": "a08a_catchment_grid (cached; heavy build not re-run)",
+        "per_route": {
+          "overstatement_of_network_pct": {
+            "max": 133.58235080538088,
+            "mean": 51.228226647378825,
+            "median": 49.070638103265324,
+            "min": 27.87497656640017,
+            "n": 186,
+            "p25": 37.46479090258592,
+            "p75": 58.82637118045285
+          },
+          "spurious_share_of_euclidean_pct": {
+            "max": 57.18854628562272,
+            "mean": 33.026489475914985,
+            "median": 32.91766384770885,
+            "min": 21.798617145337932,
+            "n": 186,
+            "p25": 27.25409247603147,
+            "p75": 37.03815921782827
+          }
+        },
+        "rasterisation": "cell-centre",
+        "stop_spacing_m": 150,
+        "tau_m": 100.0,
+        "union": {
+          "coverage_share_euclid": 0.35807528047331094,
+          "coverage_share_net": 0.24869099293186298,
+          "difference": 720269.5,
+          "euclid_pop": 2357840.5,
+          "network_pop": 1637571.0,
+          "overstatement_of_network_pct": 43.98401657088456,
+          "spurious_share_of_euclidean_pct": 30.547846641874205
+        },
+        "walk_budget_m": 400
+      },
+      "W400_S250": {
+        "euclid_side_source": "recomputed here from plan geometry",
+        "network_side_source": "a08a_catchment_grid (cached; heavy build not re-run)",
+        "per_route": {
+          "overstatement_of_network_pct": {
+            "max": 131.35953383677025,
+            "mean": 61.41461204835261,
+            "median": 59.728071499051836,
+            "min": 33.25192906362698,
+            "n": 186,
+            "p25": 43.8720446192474,
+            "p75": 71.62849347241645
+          },
+          "spurious_share_of_euclidean_pct": {
+            "max": 56.77722964701666,
+            "mean": 37.12790796782257,
+            "median": 37.39344030716096,
+            "min": 24.95418212501028,
+            "n": 186,
+            "p25": 30.4935895868787,
+            "p75": 41.734590880081775
+          }
+        },
+        "rasterisation": "cell-centre",
+        "stop_spacing_m": 250,
+        "tau_m": 100.0,
+        "union": {
+          "coverage_share_euclid": 0.35527385044440485,
+          "coverage_share_net": 0.24189890993782312,
+          "difference": 746547.0,
+          "euclid_pop": 2339393.75,
+          "network_pop": 1592846.75,
+          "overstatement_of_network_pct": 46.86872732734646,
+          "spurious_share_of_euclidean_pct": 31.91198574416983
+        },
+        "walk_budget_m": 400
+      },
+      "W400_S400": {
+        "euclid_side_source": "recomputed here from plan geometry",
+        "network_side_source": "a08a_catchment_grid (cached; heavy build not re-run)",
+        "per_route": {
+          "overstatement_of_network_pct": {
+            "max": 145.48156028104395,
+            "mean": 72.00463330476404,
+            "median": 69.78731377160204,
+            "min": 35.97981504552558,
+            "n": 186,
+            "p25": 52.88443231834694,
+            "p75": 84.71496802112222
+          },
+          "spurious_share_of_euclidean_pct": {
+            "max": 59.26374270820455,
+            "mean": 40.9304630334068,
+            "median": 41.10277987838829,
+            "min": 26.459673469536387,
+            "n": 186,
+            "p25": 34.59100671269271,
+            "p75": 45.862318785362135
+          }
+        },
+        "rasterisation": "cell-centre",
+        "stop_spacing_m": 400,
+        "tau_m": 100.0,
+        "union": {
+          "coverage_share_euclid": 0.35062174608588736,
+          "coverage_share_net": 0.23304050321029066,
+          "difference": 774244.5,
+          "euclid_pop": 2308760.75,
+          "network_pop": 1534516.25,
+          "overstatement_of_network_pct": 50.45528191702108,
+          "spurious_share_of_euclidean_pct": 33.53506854272362
+        },
+        "walk_budget_m": 400
+      },
+      "W500_S250": {
+        "euclid_side_source": "recomputed here from plan geometry",
+        "network_side_source": "a08a_catchment_grid (cached; heavy build not re-run)",
+        "per_route": {
+          "overstatement_of_network_pct": {
+            "max": 152.8853068150367,
+            "mean": 58.08341260796193,
+            "median": 55.327466223499044,
+            "min": 31.960262826536674,
+            "n": 186,
+            "p25": 41.80468566652901,
+            "p75": 66.6698207594392
+          },
+          "spurious_share_of_euclidean_pct": {
+            "max": 60.45638188337246,
+            "mean": 35.7553949716365,
+            "median": 35.61988560693753,
+            "min": 24.21961137539474,
+            "n": 186,
+            "p25": 29.4804441576673,
+            "p75": 40.00099769619346
+          }
+        },
+        "rasterisation": "cell-centre",
+        "stop_spacing_m": 250,
+        "tau_m": 100.0,
+        "union": {
+          "coverage_share_euclid": 0.40081740995346526,
+          "coverage_share_net": 0.27407995156089165,
+          "difference": 834536.0,
+          "euclid_pop": 2639287.25,
+          "network_pop": 1804751.25,
+          "overstatement_of_network_pct": 46.24105399566838,
+          "spurious_share_of_euclidean_pct": 31.619748854543968
+        },
+        "walk_budget_m": 500
+      },
+      "W600_S250": {
+        "euclid_side_source": "recomputed here from plan geometry",
+        "network_side_source": "a08a_catchment_grid (cached; heavy build not re-run)",
+        "per_route": {
+          "overstatement_of_network_pct": {
+            "max": 160.19849797229406,
+            "mean": 55.97516768103615,
+            "median": 51.84195684532163,
+            "min": 28.804810990045794,
+            "n": 186,
+            "p25": 39.99555444533199,
+            "p75": 63.6352426689944
+          },
+          "spurious_share_of_euclidean_pct": {
+            "max": 61.56780274317802,
+            "mean": 34.826036238459274,
+            "median": 34.141998950484236,
+            "min": 22.363148370499815,
+            "n": 186,
+            "p25": 28.569128764203214,
+            "p75": 38.88847005468693
+          }
+        },
+        "rasterisation": "cell-centre",
+        "stop_spacing_m": 250,
+        "tau_m": 100.0,
+        "union": {
+          "coverage_share_euclid": 0.43835950335031093,
+          "coverage_share_net": 0.30134335151369174,
+          "difference": 902218.75,
+          "euclid_pop": 2886493.0,
+          "network_pop": 1984274.25,
+          "overstatement_of_network_pct": 45.46845024068624,
+          "spurious_share_of_euclidean_pct": 31.25657155586381
+        },
+        "walk_budget_m": 600
+      },
+      "W800_S250": {
+        "euclid_side_source": "recomputed here from plan geometry",
+        "network_side_source": "a08a_catchment_grid (cached; heavy build not re-run)",
+        "per_route": {
+          "overstatement_of_network_pct": {
+            "max": 152.55010795417638,
+            "mean": 53.399298877064844,
+            "median": 49.66176459047624,
+            "min": 26.707571779058075,
+            "n": 186,
+            "p25": 39.47233433097501,
+            "p75": 59.97097913141783
+          },
+          "spurious_share_of_euclidean_pct": {
+            "max": 60.40389734533617,
+            "mean": 33.77332105902443,
+            "median": 33.18266567884156,
+            "min": 21.078118224559205,
+            "n": 186,
+            "p25": 28.301180661302173,
+            "p75": 37.48865841843236
+          }
+        },
+        "rasterisation": "cell-centre",
+        "stop_spacing_m": 250,
+        "tau_m": 100.0,
+        "union": {
+          "coverage_share_euclid": 0.49679855551347185,
+          "coverage_share_net": 0.34480691936929536,
+          "difference": 1000828.75,
+          "euclid_pop": 3271300.25,
+          "network_pop": 2270471.5,
+          "overstatement_of_network_pct": 44.08021637796379,
+          "spurious_share_of_euclidean_pct": 30.594218613837114
+        },
+        "walk_budget_m": 800
+      }
+    }
+  },
+  "snap_offset_median_m": 11.00036350788588,
+  "spurious_share_of_euclidean_pct_median": 37.39344030716096,
+  "spurious_share_of_euclidean_pct_p25": 30.4935895868787,
+  "spurious_share_of_euclidean_pct_p75": 41.734590880081775,
+  "spurious_share_of_euclidean_pct_union": 31.91198574416983,
+  "study_area_population": 6584762,
   "tau_m": 100.0,
   "tau_sensitivity": {
     "tau100": {
+      "overstatement_of_network_pct_median": 59.728071499051836,
+      "overstatement_of_network_pct_p25": 43.8720446192474,
+      "overstatement_of_network_pct_p75": 71.62849347241645,
       "overstatement_pct_median": 37.39344030716096,
-      "pop_total": 11976719.260742188
+      "overstatement_pct_median_note": "median of (E-N)/E, i.e. the SPURIOUS SHARE of the Euclidean count, not an overstatement; see spurious_share_of_euclidean_pct_median / overstatement_of_network_pct_median",
+      "pop_total": 11976719.260742188,
+      "pop_total_note": "sum of overlapping per-route counts; not a deduplicated network total",
+      "spurious_share_of_euclidean_pct_median": 37.39344030716096,
+      "spurious_share_of_euclidean_pct_p25": 30.4935895868787,
+      "spurious_share_of_euclidean_pct_p75": 41.734590880081775
     },
     "tau150": {
+      "overstatement_of_network_pct_median": 41.19445015414235,
+      "overstatement_of_network_pct_p25": 32.650284520748,
+      "overstatement_of_network_pct_p75": 48.427877048560326,
       "overstatement_pct_median": 29.17566357639641,
-      "pop_total": 13573978.369140625
+      "overstatement_pct_median_note": "median of (E-N)/E, i.e. the SPURIOUS SHARE of the Euclidean count, not an overstatement; see spurious_share_of_euclidean_pct_median / overstatement_of_network_pct_median",
+      "pop_total": 13573978.369140625,
+      "pop_total_note": "sum of overlapping per-route counts; not a deduplicated network total",
+      "spurious_share_of_euclidean_pct_median": 29.17566357639641,
+      "spurious_share_of_euclidean_pct_p25": 24.613748144859116,
+      "spurious_share_of_euclidean_pct_p75": 32.62720709245794
     },
     "tau50": {
+      "overstatement_of_network_pct_median": 111.72661969088759,
+      "overstatement_of_network_pct_p25": 79.94077919850193,
+      "overstatement_of_network_pct_p75": 146.745163567086,
       "overstatement_pct_median": 52.76871528875904,
-      "pop_total": 8907704.873046875
+      "overstatement_pct_median_note": "median of (E-N)/E, i.e. the SPURIOUS SHARE of the Euclidean count, not an overstatement; see spurious_share_of_euclidean_pct_median / overstatement_of_network_pct_median",
+      "pop_total": 8907704.873046875,
+      "pop_total_note": "sum of overlapping per-route counts; not a deduplicated network total",
+      "spurious_share_of_euclidean_pct_median": 52.76871528875904,
+      "spurious_share_of_euclidean_pct_p25": 44.42596102901191,
+      "spurious_share_of_euclidean_pct_p75": 59.47230008813116
     }
   },
+  "tau_sensitivity_note": "legacy block: `overstatement_pct_median` is the spurious share (E-N)/E and `pop_total` is a sum of overlapping per-route counts; both-basis statistics are in sensitivity.tau",
   "tau_sweep": [
     50.0,
     100.0,
     150.0
   ],
   "union_overstatement_pct": 31.91198574416983,
+  "union_overstatement_pct_note": "LEGACY NAME. Computed as (E - N) / E, the SPURIOUS SHARE of the Euclidean count; it is not an overstatement. Use spurious_share_of_euclidean_pct_* or overstatement_of_network_pct_* (audit F-14-27, F-10-09, F-02-24).",
   "virtual_stop_spacing_m": 250.0,
   "walk_budget_m": 400.0
 }

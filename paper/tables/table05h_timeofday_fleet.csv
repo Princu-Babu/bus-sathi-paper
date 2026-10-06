@@ -1,5 +1,5 @@
-Anchor,Frequency rule,Fleet Opening shoulder,Fleet Peak,Fleet Off-peak (base),Fleet Evening,Peak fleet (buses),Plan fleet (buses),Extra vehicles to purchase,Banded bus-hours/day,Flat bus-hours/day,Bus-hour change (%)
-peak-anchored,proportional,833,1011,921,833,1011,1011,0,15577.0,17187.0,-9.4
-peak-anchored,square-root,833,1011,965,836,1011,1011,0,15938.0,17187.0,-7.3
-mean-anchored,proportional,833,1507,1157,833,1507,1011,496,19449.0,17187.0,13.2
-mean-anchored,square-root,836,1226,1080,847,1226,1011,215,17757.0,17187.0,3.3
+Anchor,Frequency rule,Fleet Opening shoulder,Fleet Peak,Fleet Off-peak (base),Fleet Evening,Peak fleet (buses),Plan fleet (buses),Extra vehicles to purchase,Banded bus-hours/day,Flat bus-hours/day,Bus-hour change (%),Peak fleet = plan by construction
+peak-anchored,proportional,833,1011,921,833,1011,1011,0,15577.0,17187.0,-9.4,yes (identity)
+peak-anchored,square-root,833,1011,965,836,1011,1011,0,15938.0,17187.0,-7.3,yes (identity)
+mean-anchored,proportional,833,1507,1157,833,1507,1011,496,19449.0,17187.0,13.2,no
+mean-anchored,square-root,836,1226,1080,847,1226,1011,215,17757.0,17187.0,3.3,no

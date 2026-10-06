@@ -3,7 +3,17 @@
     "D0": "terminal parking, deadhead = 0",
     "D1": "district-HQ depot, two legs/day, nearer terminus, route's own circuity"
   },
+  "d1_below_literature_range_note": "D1 network deadhead (1.75 %) sits BELOW the quoted 5-12 % range, so the D1 bound is probably optimistic (low); only the observed-operating-day variant (5.5 %) lies inside it.",
   "d1_inside_literature_range": false,
+  "d1_position_vs_literature_range": "below",
+  "depot_assumptions_stated": {
+    "denominator_service_day": "16 h plan day (Daily_KM) vs observed 217 min; both reported",
+    "depot_location": "D1: district headquarters stand = stops-master entry named after the district; where none exists, mean of the district's stops (basis flagged per district in district_hq)",
+    "depot_register": "none exists in any input (permit register names no depot; plan carries none)",
+    "distance": "straight line from depot to the NEARER route terminus x the route's own circuity clipped to [1.1, 2.0]; all buses on a route share one depot",
+    "legs_per_day": 2,
+    "observed_day_caveat": "the 217 service-min observed day is the median of driver-GPS vehicle-days from the Srinagar belt (a13 duty factor) and is applied to all 186 routes, including the 15-min e-bus trunks and rural lifelines"
+  },
   "district_hq": [
     {
       "basis": "named_stop",
@@ -66,10 +76,14 @@
       "lon": 74.8205
     }
   ],
+  "in_sample": true,
   "literature_range_for_comparison": [
     0.05,
     0.12
   ],
+  "literature_range_source": "none cited: the 5-12 % range is a commonly quoted rule of thumb with no reference in this module, the JSON or references.bib; cite it or drop the comparison (audit F-03-22)",
+  "n_buses": 1011,
+  "n_routes": 186,
   "network": {
     "deadhead_km_per_day_D1": 5751.1230751256135,
     "deadhead_share_D0": 0.0,

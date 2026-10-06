@@ -1,8 +1,12 @@
-**Validation V2 (consistency check, circular — see text): plan e-bus fleet vs CHALO's 98 buses scaled to a 15-min headway (12-month mean)**
+**Validation V2 (consistency check, circular, see text): plan backbone fleet (283) vs the 98 buses CHALO deploys, scaled to a 15-min headway (12-month mean), under both readings of the unresolved 'Trip Count' field. The ±15% band is declared in the analysis code, not pre-registered**
 
-|   Service day (h) |   CHALO effective headway (min) |   CHALO fleet scaled to 15 min |   Plan SSCL fleet |   Plan / scaled | Within ±15%   |
-|------------------:|--------------------------------:|-------------------------------:|------------------:|----------------:|:--------------|
-|                13 |                            27.4 |                          178.7 |               283 |           1.583 | False         |
-|                14 |                            29.5 |                          192.5 |               283 |           1.47  | False         |
-|                15 |                            31.6 |                          206.2 |               283 |           1.372 | False         |
-|                16 |                            33.7 |                          220   |               283 |           1.287 | False         |
+| Trip Count reading   |   Service day (h) |   CHALO effective headway (min) |   CHALO deployed fleet scaled to 15 min |   Plan backbone fleet |   Plan / scaled | Within ±15%   | Within ±25% (engine cross-check band)   |
+|:---------------------|------------------:|--------------------------------:|----------------------------------------:|----------------------:|----------------:|:--------------|:----------------------------------------|
+| A_departure          |                13 |                            27.4 |                                   178.7 |                   283 |           1.583 | False         | False                                   |
+| A_departure          |                14 |                            29.5 |                                   192.5 |                   283 |           1.47  | False         | False                                   |
+| A_departure          |                15 |                            31.6 |                                   206.2 |                   283 |           1.372 | False         | False                                   |
+| A_departure          |                16 |                            33.7 |                                   220   |                   283 |           1.287 | False         | False                                   |
+| B_one_way_run        |                13 |                            54.7 |                                   357.5 |                   283 |           0.792 | False         | True                                    |
+| B_one_way_run        |                14 |                            58.9 |                                   384.9 |                   283 |           0.735 | False         | False                                   |
+| B_one_way_run        |                15 |                            63.1 |                                   412.4 |                   283 |           0.686 | False         | False                                   |
+| B_one_way_run        |                16 |                            67.3 |                                   439.9 |                   283 |           0.643 | False         | False                                   |

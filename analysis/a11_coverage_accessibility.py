@@ -388,7 +388,7 @@ def main() -> None:
             f"with RANDOM_SEED={C.RANDOM_SEED}."),
     )
     C.write_result(out, "a11_coverage_accessibility")
-    log.info("done (%.0fs)", time.time() - t0)
+    log.info("done")
 
 
 if __name__ == "__main__":

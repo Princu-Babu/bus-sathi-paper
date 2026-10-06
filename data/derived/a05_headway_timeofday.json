@@ -1,5 +1,7 @@
 {
   "allday_mean_rate_per_hour": 2395.8,
+  "analysis_scope": "paper_side_analysis_not_in_engine",
+  "analysis_scope_note": "The engine (transit_kashmir_v3.py) has no time-of-day logic: one flat headway per route, fleet sized at that value (cross_evaluate.py notes 'time-of-day multipliers are v4'). Everything in this module is a paper-side what-if applied AFTER the plan, using an SSCL-only April-2026 boarding shape. It is not part of the published plan and is not evidence about the engine.",
   "banded_headways_mean_anchored": [
     {
       "Evening [prop]": 35,
@@ -241,6 +243,7 @@
     "Transportation Research Board (2013) Transit Capacity and Quality of Service Manual, 3rd ed. TCRP Report 165. Washington DC: TRB."
   ],
   "daily_mean_boardings": 40728.3,
+  "elbow_rule_note": "gvf_elbow() starts from k=3 (chosen = ks[1] with K_RANGE 2..6), so k=2 can never be returned; the 20 % marginal-gain cutoff is an uncited assumption (threshold_source: assumption).",
   "file_meta": {
     "file_title_row": "Hourly Passenger Count 1st April 2026-30th April 2026",
     "min_nonzero_count": 3,
@@ -258,6 +261,28 @@
       "anchor": "peak-anchored",
       "banded_bus_hours_per_day": 15577.0,
       "bus_hour_saving_pct": 9.4,
+      "bus_hour_saving_pct_by_service_window": {
+        "engine_16h_early": {
+          "bus_hour_saving_pct": 8.9,
+          "hours": 16,
+          "window": "06:00-21:59"
+        },
+        "engine_16h_late": {
+          "bus_hour_saving_pct": 8.9,
+          "hours": 16,
+          "window": "07:00-22:59"
+        },
+        "observed_17h": {
+          "bus_hour_saving_pct": 9.4,
+          "hours": 17,
+          "window": "06:00-22:59"
+        },
+        "timetable_11h": {
+          "bus_hour_saving_pct": 5.7,
+          "hours": 11,
+          "window": "08:00-18:59"
+        }
+      },
       "by_band": [
         {
           "anchor": "peak-anchored",
@@ -294,6 +319,8 @@
       ],
       "flat_bus_hours_per_day": 17187.0,
       "peak_fleet": 1011,
+      "peak_fleet_equals_plan_by_construction": true,
+      "peak_fleet_note": "IDENTITY, not a finding: the peak band's headway multiplier is exactly 1.0 (peak-anchored reading), so peak headways, and hence peak fleet, equal the plan's by construction; 'same fleet' here is the assumption that the published headway is the peak design.",
       "plan_fleet": 1011,
       "rule": "proportional",
       "vehicles_to_purchase_delta": 0
@@ -302,6 +329,28 @@
       "anchor": "peak-anchored",
       "banded_bus_hours_per_day": 15938.0,
       "bus_hour_saving_pct": 7.3,
+      "bus_hour_saving_pct_by_service_window": {
+        "engine_16h_early": {
+          "bus_hour_saving_pct": 6.6,
+          "hours": 16,
+          "window": "06:00-21:59"
+        },
+        "engine_16h_late": {
+          "bus_hour_saving_pct": 6.6,
+          "hours": 16,
+          "window": "07:00-22:59"
+        },
+        "observed_17h": {
+          "bus_hour_saving_pct": 7.3,
+          "hours": 17,
+          "window": "06:00-22:59"
+        },
+        "timetable_11h": {
+          "bus_hour_saving_pct": 2.9,
+          "hours": 11,
+          "window": "08:00-18:59"
+        }
+      },
       "by_band": [
         {
           "anchor": "peak-anchored",
@@ -338,6 +387,8 @@
       ],
       "flat_bus_hours_per_day": 17187.0,
       "peak_fleet": 1011,
+      "peak_fleet_equals_plan_by_construction": true,
+      "peak_fleet_note": "IDENTITY, not a finding: the peak band's headway multiplier is exactly 1.0 (peak-anchored reading), so peak headways, and hence peak fleet, equal the plan's by construction; 'same fleet' here is the assumption that the published headway is the peak design.",
       "plan_fleet": 1011,
       "rule": "square-root",
       "vehicles_to_purchase_delta": 0
@@ -346,6 +397,28 @@
       "anchor": "mean-anchored",
       "banded_bus_hours_per_day": 19449.0,
       "bus_hour_saving_pct": -13.2,
+      "bus_hour_saving_pct_by_service_window": {
+        "engine_16h_early": {
+          "bus_hour_saving_pct": -15.1,
+          "hours": 16,
+          "window": "06:00-21:59"
+        },
+        "engine_16h_late": {
+          "bus_hour_saving_pct": -15.1,
+          "hours": 16,
+          "window": "07:00-22:59"
+        },
+        "observed_17h": {
+          "bus_hour_saving_pct": -13.2,
+          "hours": 17,
+          "window": "06:00-22:59"
+        },
+        "timetable_11h": {
+          "bus_hour_saving_pct": -27.0,
+          "hours": 11,
+          "window": "08:00-18:59"
+        }
+      },
       "by_band": [
         {
           "anchor": "mean-anchored",
@@ -382,6 +455,8 @@
       ],
       "flat_bus_hours_per_day": 17187.0,
       "peak_fleet": 1507,
+      "peak_fleet_equals_plan_by_construction": false,
+      "peak_fleet_note": "Peak multiplier != 1, so the peak fleet differs from the plan as a result of the rule (not an identity).",
       "plan_fleet": 1011,
       "rule": "proportional",
       "vehicles_to_purchase_delta": 496
@@ -390,6 +465,28 @@
       "anchor": "mean-anchored",
       "banded_bus_hours_per_day": 17757.0,
       "bus_hour_saving_pct": -3.3,
+      "bus_hour_saving_pct_by_service_window": {
+        "engine_16h_early": {
+          "bus_hour_saving_pct": -4.5,
+          "hours": 16,
+          "window": "06:00-21:59"
+        },
+        "engine_16h_late": {
+          "bus_hour_saving_pct": -4.6,
+          "hours": 16,
+          "window": "07:00-22:59"
+        },
+        "observed_17h": {
+          "bus_hour_saving_pct": -3.3,
+          "hours": 17,
+          "window": "06:00-22:59"
+        },
+        "timetable_11h": {
+          "bus_hour_saving_pct": -12.1,
+          "hours": 11,
+          "window": "08:00-18:59"
+        }
+      },
       "by_band": [
         {
           "anchor": "mean-anchored",
@@ -426,6 +523,8 @@
       ],
       "flat_bus_hours_per_day": 17187.0,
       "peak_fleet": 1226,
+      "peak_fleet_equals_plan_by_construction": false,
+      "peak_fleet_note": "Peak multiplier != 1, so the peak fleet differs from the plan as a result of the rule (not an identity).",
       "plan_fleet": 1011,
       "rule": "square-root",
       "vehicles_to_purchase_delta": 215
@@ -546,6 +645,11 @@
       "share_pct": 0.11
     }
   ],
+  "identities_by_construction": [
+    "peak-anchored: peak-band headway multiplier = 1.0, hence peak fleet = plan fleet",
+    "boardings in the hourly file == April row of chalo_ridership.csv (provenance check, not a test of the plan)",
+    "bus-hour baseline and banded schedule share the same 15 % spare ratio"
+  ],
   "month": "April 2026",
   "peak_hour": 9,
   "peak_hour_factor_pct": 10.67,
@@ -569,6 +673,51 @@
     "monthly_total_collection_inr": 22917369.0,
     "note": "Boardings reconcile exactly, confirming the file is the whole SSCL/CHALO e-bus network for April 2026. Collection does not reconcile; the hourly file is higher. The discrepancy is reported, not adjusted \u2014 no basis exists in the supplied data for choosing which figure is right, and nothing in this module depends on the fare revenue.",
     "status": "OK"
+  },
+  "saving_summary": {
+    "base": "plan Fleet_Required x service-window hours (flat) vs sum over bands of resized fleet x band hours; both include the 15 % spare ratio",
+    "definition": "Bus-hour saving of the banded schedule against the flat plan, peak-anchored reading (peak band keeps the published headway). BOTH frequency rules are reported; the paper must quote the range, not the larger end.",
+    "in_sample": true,
+    "max_pct": 9.4,
+    "mean_anchored_bus_hour_change_pct": {
+      "proportional": 13.2,
+      "square-root": 3.3
+    },
+    "min_pct": 7.3,
+    "n_routes": 186,
+    "proportional_pct": 9.4,
+    "range_across_service_windows_pct": {
+      "engine_16h_early": {
+        "hours": 16,
+        "max_pct": 8.9,
+        "min_pct": 6.6,
+        "window": "06:00-21:59"
+      },
+      "engine_16h_late": {
+        "hours": 16,
+        "max_pct": 8.9,
+        "min_pct": 6.6,
+        "window": "07:00-22:59"
+      },
+      "observed_17h": {
+        "hours": 17,
+        "max_pct": 9.4,
+        "min_pct": 7.3,
+        "window": "06:00-22:59"
+      },
+      "timetable_11h": {
+        "hours": 11,
+        "max_pct": 5.7,
+        "min_pct": 2.9,
+        "window": "08:00-18:59"
+      }
+    },
+    "range_text": "7.3-9.4 %",
+    "same_fleet_is_identity": true,
+    "same_fleet_note": "'At the same 1,011 vehicles' is true by construction in both peak-anchored arms (peak multiplier = 1.0); it is the assumption that the published headway is a peak design, not a result. Under the mean-anchored reading the plan would need 215-496 extra vehicles and BUS-HOURS RISE.",
+    "service_day_note": "The headline uses the 17-h window present in the count file (06:00-22:59). The engine's Daily_KM uses a 16-h day with no clock position, and the timetable generator uses 08:00-18:59 (11 h). The saving is recomputed for each; the paper should name the window.",
+    "square_root_pct": 7.3,
+    "transferability": "Shape from the 30 SSCL e-bus routes, one month, applied to all 186 routes (incl. rural lifelines); cannot be tested with available data."
   },
   "segmentation": {
     "gvf_contiguous": {
@@ -619,7 +768,7 @@
     "method_primary": "Fisher (1958) exact contiguous grouping of the ordered hourly series, k by GVF elbow"
   },
   "service_window_hours": 17,
-  "source_file": "E:\\kash-paper\\data\\raw\\Hourly_Passenger_Count.csv",
+  "source_file": "data/raw/Hourly_Passenger_Count.csv",
   "status": "OK",
   "transferability_assumption": "The temporal SHAPE derived here is applied to all 186 planned routes. No electronic ticketing exists on the conventional diesel permits, so this assumption cannot be tested with the available data and is carried as a stated limitation, not a finding.",
   "what_this_file_is": "Whole-network hourly BOARDINGS (fare transactions) for the 30-route Srinagar Smart City / CHALO electric bus system, April 2026, aggregated to clock hours over 30 calendar days. It is not an origin-destination matrix, not route-level ridership, not a maximum-load-section count, and does not cover the 156 non-SSCL permit routes in the rationalised plan."

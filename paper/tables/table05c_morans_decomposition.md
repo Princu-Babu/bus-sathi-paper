@@ -1,0 +1,16 @@
+**Moran's I (Queen, row-standardised) for uncovered head-count, total population, uncovered share and the uncovered~total residual; descriptive, in-sample**
+
+| Variable                                                    |   n cells |   Moran's I |    E[I] |   p (999 perms) |
+|:------------------------------------------------------------|----------:|------------:|--------:|----------------:|
+| uncovered head-count, full lattice, h=2 km                  |      4200 |      0.6639 | -0.0002 |           0.001 |
+| total population, full lattice, h=2 km                      |      4200 |      0.7259 | -0.0002 |           0.001 |
+| uncovered head-count, inhabited cells, h=2 km               |      3520 |      0.641  | -0.0003 |           0.001 |
+| total population, inhabited cells, h=2 km                   |      3520 |      0.7159 | -0.0003 |           0.001 |
+| uncovered SHARE of cell population, inhabited cells, h=2 km |      3520 |      0.455  | -0.0003 |           0.001 |
+| OLS residual of uncovered ~ total, inhabited cells, h=2 km  |      3520 |      0.4253 | -0.0003 |           0.001 |
+| uncovered head-count, full lattice, h=5 km                  |       711 |      0.7293 | -0.0014 |           0.001 |
+| total population, full lattice, h=5 km                      |       711 |      0.6003 | -0.0014 |           0.001 |
+| uncovered head-count, inhabited cells, h=5 km               |       670 |      0.7206 | -0.0015 |           0.001 |
+| total population, inhabited cells, h=5 km                   |       670 |      0.5944 | -0.0015 |           0.001 |
+| uncovered SHARE of cell population, inhabited cells, h=5 km |       670 |      0.5161 | -0.0015 |           0.001 |
+| OLS residual of uncovered ~ total, inhabited cells, h=5 km  |       670 |      0.4277 | -0.0015 |           0.001 |

@@ -28,6 +28,19 @@ Offered peak-hour capacity per route = (60 / headway) * mean vehicle capacity,
 the mean weighted by the route's HPV/MPV/LPV mix at design capacities 60/35/20
 (engine VEHICLE_CAPACITY_*).
 
+Direction consistency (audit F-03-21, verified from the engine). The engine's
+Daily_Demand_Pax is the route's TOTAL boardings: a 400 m walkshed of the whole
+route (both directions, every stop) times capture/mode share
+(transit_kashmir_v3.py:5687-5693). Its Daily_Trips counts ONE-WAY trips in BOTH
+directions (`* 2.0`, :5630). The hourly capacity above, 60/headway * capacity, is
+buses per hour in ONE direction. Dividing two-direction boardings by
+one-direction capacity overstates the ratio by up to 2x on a symmetric route and
+makes under-utilisation look less severe than it is. The corrected, like-for-like
+ratio uses capacity in both directions (2 * 60/headway * capacity); the legacy
+one-direction ratio is kept under its old keys, labelled. (The observed-backbone
+anchor is consistent: boardings on all 30 routes, both directions, over one-way
+trips in both directions.) Neither ratio is a maximum-load-section load factor.
+
 Outputs  data/derived/a07_load_factor.json, data/derived/a07_route_load.csv,
          paper/tables/table05l_load_factor.{csv,md}
 """
@@ -68,6 +81,10 @@ def main() -> None:
     phf = a05["peak_hour_factor_pct"] / 100.0
     a["proxy_peak_hour_boardings"] = a["Daily_Demand_Pax"] * phf
     a["proxy_boarding_to_capacity"] = a["proxy_peak_hour_boardings"] / a["peak_hour_capacity"]
+    # Direction-consistent version: two-direction boardings over two-direction capacity.
+    a["peak_hour_capacity_both_directions"] = 2.0 * a["peak_hour_capacity"]
+    a["proxy_boarding_to_capacity_both_directions"] = (
+        a["proxy_peak_hour_boardings"] / a["peak_hour_capacity_both_directions"])
 
     # Observed anchor on the backbone.
     rid = pd.read_csv(C.CHALO_RIDERSHIP_CSV)
@@ -94,24 +111,35 @@ def main() -> None:
         )
 
     q = a["proxy_boarding_to_capacity"]
+    qb = a["proxy_boarding_to_capacity_both_directions"]
     by_cls = []
     for cls, s in a.groupby("Route_Type"):
         by_cls.append(dict(Class=cls, Routes=len(s),
                            **{"Peak-hour capacity (median)": round(float(s["peak_hour_capacity"].median())),
-                              "Proxy boarding/capacity (median)": round(float(s["proxy_boarding_to_capacity"].median()), 3),
-                              "Routes > 0.85": int((s["proxy_boarding_to_capacity"] > 0.85).sum()),
-                              "Routes < 0.40": int((s["proxy_boarding_to_capacity"] < 0.40).sum())}))
+                              "Boarding/capacity, both directions (median)": round(float(s["proxy_boarding_to_capacity_both_directions"].median()), 3),
+                              "Routes > 0.85 (both dir.)": int((s["proxy_boarding_to_capacity_both_directions"] > 0.85).sum()),
+                              "Routes < 0.40 (both dir.)": int((s["proxy_boarding_to_capacity_both_directions"] < 0.40).sum()),
+                              "Boarding/capacity, one-direction capacity (legacy, median)": round(float(s["proxy_boarding_to_capacity"].median()), 3),
+                              "Routes > 0.85 (legacy)": int((s["proxy_boarding_to_capacity"] > 0.85).sum()),
+                              "Routes < 0.40 (legacy)": int((s["proxy_boarding_to_capacity"] < 0.40).sum())}))
     by_cls.append(dict(Class="Network", Routes=len(a),
                        **{"Peak-hour capacity (median)": round(float(a["peak_hour_capacity"].median())),
-                          "Proxy boarding/capacity (median)": round(float(q.median()), 3),
-                          "Routes > 0.85": int((q > 0.85).sum()), "Routes < 0.40": int((q < 0.40).sum())}))
+                          "Boarding/capacity, both directions (median)": round(float(qb.median()), 3),
+                          "Routes > 0.85 (both dir.)": int((qb > 0.85).sum()),
+                          "Routes < 0.40 (both dir.)": int((qb < 0.40).sum()),
+                          "Boarding/capacity, one-direction capacity (legacy, median)": round(float(q.median()), 3),
+                          "Routes > 0.85 (legacy)": int((q > 0.85).sum()),
+                          "Routes < 0.40 (legacy)": int((q < 0.40).sum())}))
     C.write_table(pd.DataFrame(by_cls), "table05l_load_factor",
-                  f"Offered peak-hour capacity vs the quarantined demand proxy (peak-hour factor "
-                  f"{100*phf:.2f}%, a05); boarding-to-capacity, not max-load-section load")
+                  f"Offered peak-hour capacity vs the quarantined demand proxy, n = {len(a)} routes "
+                  f"(peak-hour factor {100*phf:.2f}%, a05); boarding-to-capacity, not max-load-section "
+                  f"load. Both directions compares two-direction boardings with two-direction "
+                  f"capacity (corrected); legacy used one-direction capacity and overstates by up to 2x")
 
     a[["New_Route_ID", "Route_Name", "Route_Type", "Headway_Min", "mean_capacity",
        "peak_hour_capacity", "Daily_Demand_Pax", "proxy_peak_hour_boardings",
-       "proxy_boarding_to_capacity"]].to_csv(C.DERIVED / "a07_route_load.csv", index=False)
+       "proxy_boarding_to_capacity", "peak_hour_capacity_both_directions",
+       "proxy_boarding_to_capacity_both_directions"]].to_csv(C.DERIVED / "a07_route_load.csv", index=False)
     C.write_result(dict(
         vehicle_capacity=cap, peak_hour_factor=phf,
         observed_backbone=dict(chalo_daily_boardings=daily_pax, chalo_daily_trip_count=daily_trips,
@@ -121,14 +149,77 @@ def main() -> None:
         proxy_network=dict(median=float(q.median()), p90=float(q.quantile(0.9)),
                            n_above_085=int((q > 0.85).sum()), n_below_040=int((q < 0.40).sum()),
                            total_proxy_daily_demand=float(a["Daily_Demand_Pax"].sum()),
-                           caveat="Eq. 8 proxy (quarantined); boarding-to-capacity, not load."),
+                           caveat="Eq. 8 proxy (quarantined); boarding-to-capacity, not load.",
+                           note=("LEGACY, direction-inconsistent: two-direction boardings divided by "
+                                 "ONE-direction hourly capacity (overstates by up to 2x). Use "
+                                 "proxy_network_both_directions; kept so existing readers do not break.")),
+        direction_consistency=dict(
+            status="verified_real",
+            finding=("Daily_Demand_Pax is whole-route boardings (both directions); Daily_Trips counts "
+                     "one-way trips in both directions; a07 peak_hour_capacity = 60/headway * "
+                     "capacity is one direction. The legacy ratio therefore compared 2-direction "
+                     "demand with 1-direction capacity."),
+            fix="capacity doubled to both directions (peak_hour_capacity_both_directions)",
+            engine_refs=["transit_kashmir_v3.py:5630 daily_trips *2.0",
+                         "transit_kashmir_v3.py:5687-5693 daily_demand"],
+            observed_anchor_consistent=True,
+            ratio_effect_legacy_over_corrected=2.0),
+        proxy_network_both_directions=dict(
+            n_routes=int(len(a)),
+            base=("186 active plan routes; Eq. 8 Daily_Demand_Pax x peak-hour factor "
+                  f"{phf:.4f} / (2 x 60/headway x mean vehicle capacity)"),
+            in_sample=True, is_model_proxy_not_observation=True,
+            median=float(qb.median()), p90=float(qb.quantile(0.9)),
+            n_above_085=int((qb > 0.85).sum()), n_below_040=int((qb < 0.40).sum()),
+            share_below_040=float((qb < 0.40).mean()),
+            median_by_class={c: float(g["proxy_boarding_to_capacity_both_directions"].median())
+                             for c, g in a.groupby("Route_Type")},
+            note=("Direction-consistent corrected statistic. Neither this nor the legacy figure is a "
+                  "max-load-section load factor; the demand term is the quarantined Eq. 8 proxy "
+                  "calibrated to the CHALO backbone total (capture scale), so it is not an "
+                  "independent test of the headways.")),
+        load_statistics=dict(
+            backbone_day_one=dict(
+                n_routes=int(len(sscl)),
+                base=("30 SSCL e-bus routes; CHALO monthly boardings and trip counts, 12 months "
+                      "May 2025-April 2026, per-calendar-day mean; plan one-way trips = Daily_Trips "
+                      "summed over the 30 SSCL plan routes (15-min headway, 16 h, both directions)"),
+                in_sample=True,
+                observed_inputs_today=dict(daily_boardings=daily_pax, daily_trip_count=daily_trips),
+                plan_oneway_trips_per_day=plan_oneway_trips,
+                boardings_per_oneway_trip_plan_day_one=readings["trip_count_is_one_way"][
+                    "boardings_per_oneway_trip_plan_day_one"],
+                boardings_per_oneway_trip_today_range=[
+                    readings["trip_count_is_round_trip"]["boardings_per_oneway_trip_today"],
+                    readings["trip_count_is_one_way"]["boardings_per_oneway_trip_today"]],
+                trip_multiplier_range=[
+                    readings["trip_count_is_round_trip"]["trip_multiplier"],
+                    readings["trip_count_is_one_way"]["trip_multiplier"]],
+                ebus_comparison_note=("Boardings per one-way trip TODAY is the lower value if CHALO "
+                                      "Trip Count is round trips and the higher if one-way (ambiguous "
+                                      "in the source); plan day-one is the same under both readings "
+                                      "because it uses plan trips only, with ridership held at today's "
+                                      "level."),
+            ),
+            whole_network_proxy_median_both_directions=float(qb.median()),
+            whole_network_proxy_median_legacy=float(q.median()),
+            n_routes_network=int(len(a)),
+            n_below_040_both_directions=int((qb < 0.40).sum()),
+            n_below_040_legacy=int((q < 0.40).sum()),
+            induced_demand_note=("No elasticity is modelled; day-one load holds ridership fixed. "
+                                 "Reported as a requirement (growth to hold today's boardings per "
+                                 "trip), not as a forecast."),
+        ),
     ), "a07_load_factor")
     for k, r in readings.items():
         log.info("%s: today %.1f boardings/one-way trip (%.2f per seat-slot); plan day-one %.1f; "
                  "growth to hold %.2fx", k, r["boardings_per_oneway_trip_today"],
                  r["boardings_per_seat_slot_today"], r["boardings_per_oneway_trip_plan_day_one"],
                  r["ridership_growth_to_hold_today_per_trip"])
-    log.info("proxy peak boarding/capacity median %.3f; %d routes < 0.40", q.median(), (q < 0.40).sum())
+    log.info("proxy peak boarding/capacity (legacy one-direction capacity) median %.3f; %d routes < 0.40",
+             q.median(), (q < 0.40).sum())
+    log.info("proxy peak boarding/capacity (both directions, corrected) median %.3f; %d routes < 0.40; %d > 0.85",
+             qb.median(), (qb < 0.40).sum(), (qb > 0.85).sum())
 
 
 if __name__ == "__main__":

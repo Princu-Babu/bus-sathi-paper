@@ -110,15 +110,13 @@ def test_length_mape_restricted_to_matched_corridors(reality_check_df):
     assert len(partials) == 9
     
     v04_json = DERIVED_DIR / "v04_gps_validation.json"
-    if v04_json.exists():
+    assert v04_json.exists(), "v04_gps_validation.json must exist (corrected v04 output)"
+    if True:
         with v04_json.open("r", encoding="utf-8") as fh:
             data = json.load(fh)
+        assert "length" in data and data["length"].get("n") == 5
         if "length" in data:
             n_length = data["length"].get("n")
-            # If n == 14, this is the survey snapshot where partials were erroneously included.
-            # Milestone M1 is scheduled to rewrite v04 to restrict n to 5.
-            if n_length == 14:
-                pytest.skip("v04_gps_validation.json currently has n=14 from survey; Milestone M1 will rewrite with n=5")
             assert n_length == 5, f"Length MAPE must strictly evaluate on 5 matched corridors, got n={n_length}"
 
 

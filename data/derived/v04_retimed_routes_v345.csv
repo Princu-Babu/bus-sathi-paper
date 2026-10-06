@@ -1,0 +1,6 @@
+New_Route_ID,Route_Code,Route_Name,Corridor,Old_Cycle,New_Cycle,Old_Fleet,New_Fleet
+FDR-050,SRSR01020923,Soura to Lalchowk,C1,76.0,100.8,5,7
+FDR-262,SRSR01020901,Soura to Railway Station,C4,94.0,186.6,4,7
+FDR-270,SRSR01020930,Soura to Qamarwari,C7,74.4,107.1,4,5
+FDR-370,SRPW02023902,Srinagar to Pampore,C6,80.8,111.2,4,5
+FDR-575,SRSR02023720,Safakadal to Jehangir Chowk,C8,25.2,32.6,3,3

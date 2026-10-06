@@ -83,18 +83,16 @@ def test_finding_f8_catchment_overstatement():
         with f_json.open("r", encoding="utf-8") as fh:
             data = json.load(fh)
         
-        # Check median overstatement is around 37.4%
-        if "median_overstatement_pct" in data:
-            val = data["median_overstatement_pct"]
-            assert 30.0 <= val <= 45.0, f"Expected median overstatement ~37%, got {val}"
-            
-        # Check network deduplicated population
-        if "network_union_net_pop" in data and "network_union_euc_pop" in data:
-            net_pop = data["network_union_net_pop"]
-            euc_pop = data["network_union_euc_pop"]
-            assert euc_pop > net_pop, "Euclidean union must exceed network walk union"
-            ratio = euc_pop / net_pop
-            assert 1.25 <= ratio <= 1.40, f"Network overstatement ratio out of expected range: {ratio}"
+        # The keys the module really writes (the old guards tested keys that do not exist, so the
+        # checks never ran). Median recomputed independently from the per-route CSV.
+        import pandas as pd
+        csv = pd.read_csv(DERIVED_DIR / "a02_catchments.csv")
+        val = data["overstatement_pct_median"]
+        assert val == pytest.approx(float(((csv["pop_euclid"] - csv["pop_net"]) / csv["pop_euclid"] * 100).median()), abs=1e-9)
+
+        net_pop, euc_pop = data["pop_net_union"], data["pop_euclid_union"]
+        assert euc_pop > net_pop, "Euclidean union must exceed network walk union"
+        assert euc_pop / net_pop == pytest.approx(1 + data["overstatement_of_network_pct_union"] / 100, rel=1e-3)
 
 
 @pytest.mark.checker_d

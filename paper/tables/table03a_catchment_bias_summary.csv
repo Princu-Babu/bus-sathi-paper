@@ -1,0 +1,11 @@
+setting,walk_budget_m,stop_spacing_m,tau_m,rasterisation,n_routes,union_euclidean_pop,union_network_pop,union_spurious_share_pct,union_overstatement_pct,route_median_spurious_share_pct,route_p25_spurious_share_pct,route_p75_spurious_share_pct,route_median_overstatement_pct,route_p25_overstatement_pct,route_p75_overstatement_pct
+HEADLINE,400.0,250.0,100.0,cell-centre,186,2339393.75,1592846.75,31.91,46.87,37.39,30.49,41.73,59.73,43.87,71.63
+tau = 50 m,400.0,250.0,50.0,cell-centre,186,,,,,52.77,44.43,59.47,111.73,79.94,146.75
+tau = 150 m,400.0,250.0,150.0,cell-centre,186,,,,,29.18,24.61,32.63,41.19,32.65,48.43
+W/S grid W300_S250,300.0,250.0,100.0,cell-centre,186,1962239.75,1335163.0,31.96,46.97,38.96,32.88,43.11,63.82,48.99,75.79
+W/S grid W500_S250,500.0,250.0,100.0,cell-centre,186,2639287.25,1804751.25,31.62,46.24,35.62,29.48,40.0,55.33,41.8,66.67
+W/S grid W600_S250,600.0,250.0,100.0,cell-centre,186,2886493.0,1984274.25,31.26,45.47,34.14,28.57,38.89,51.84,40.0,63.64
+W/S grid W800_S250,800.0,250.0,100.0,cell-centre,186,3271300.25,2270471.5,30.59,44.08,33.18,28.3,37.49,49.66,39.47,59.97
+W/S grid W400_S150,400.0,150.0,100.0,cell-centre,186,2357840.5,1637571.0,30.55,43.98,32.92,27.25,37.04,49.07,37.46,58.83
+W/S grid W400_S400,400.0,400.0,100.0,cell-centre,186,2308760.75,1534516.25,33.54,50.46,41.1,34.59,45.86,69.79,52.88,84.71
+all-touched rasterisation,400.0,250.0,100.0,all_touched,186,2509295.0,1936666.12,22.82,29.57,28.65,24.61,32.24,40.16,32.65,47.58

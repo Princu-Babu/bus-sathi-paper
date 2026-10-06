@@ -2,7 +2,7 @@ basis,denominator_population,model,actual_bp1000,predicted_bp1000,pi_low,pi_high
 Kashmir Division (TOTAL pop),6584762,"M1 (pop only, levels)",0.1535,0.2521,-0.1046,0.6088,True,inside_prediction_interval,61.1
 Kashmir Division (TOTAL pop),6584762,"M2 (pop+density, EXTRAPOLATED density)",0.1535,0.2835,-0.1079,0.6748,True,inside_prediction_interval,61.1
 Kashmir Division (TOTAL pop),6584762,"M3 (log DV, PREFERRED)",0.1535,0.175,0.0246,1.2424,False,inside_prediction_interval,61.1
-Served (engine self-report),2317958,"M1 (pop only, levels)",0.4362,0.1974,-0.1518,0.5467,True,inside_prediction_interval,86.1
-Served (engine self-report),2317958,"M3 (log DV, PREFERRED)",0.4362,0.1285,0.0189,0.8758,False,inside_prediction_interval,86.1
-Served (a11 in-repo),1592846,"M1 (pop only, levels)",0.6347,0.1778,-0.1712,0.5267,True,above_prediction_interval,97.2
-Served (a11 in-repo),1592846,"M3 (log DV, PREFERRED)",0.6347,0.115,0.0169,0.7826,False,inside_prediction_interval,97.2
+Within 400 m straight-line (a02),2339393,"M1 (pop only, levels)",0.4322,0.1979,-0.1514,0.5472,True,inside_prediction_interval,83.3
+Within 400 m straight-line (a02),2339393,"M3 (log DV, PREFERRED)",0.4322,0.1289,0.0189,0.8783,False,inside_prediction_interval,83.3
+Within 400 m by network (a02/a11),1592846,"M1 (pop only, levels)",0.6347,0.1778,-0.1712,0.5267,True,above_prediction_interval,97.2
+Within 400 m by network (a02/a11),1592846,"M3 (log DV, PREFERRED)",0.6347,0.115,0.0169,0.7826,False,inside_prediction_interval,97.2

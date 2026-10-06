@@ -2,28 +2,25 @@
 MODULE:      a09_monte_carlo_sobol
 SCRIPT:      a09_monte_carlo_sobol.py
 STAGE:       Stage 4
-STARTED:     2026-09-30T14:45:45.828357+00:00
-PYTHON:      E:\kash-paper\.venv\Scripts\python.exe (3.14.2)
-COMMAND:     E:\kash-paper\.venv\Scripts\python.exe E:\kash-paper\analysis\a09_monte_carlo_sobol.py
+COMMAND:     python analysis/a09_monte_carlo_sobol.py
 ================================================================================
 
-20:15:46  INFO    a09 \u2502 baseline fleet A 1011; B at observed median pace 1169; pace priors {'Urban': (4.58, 5.26), 'Peri_Urban': (4.32, 5.22)}
-20:15:47  INFO    a09 \u2502   MC 1000/5000 (0s)
-20:15:47  INFO    a09 \u2502   MC 2000/5000 (1s)
-20:15:47  INFO    a09 \u2502   MC 3000/5000 (1s)
-20:15:47  INFO    a09 \u2502   MC 4000/5000 (1s)
-20:15:48  INFO    a09 \u2502   MC 5000/5000 (1s)
-20:15:48  INFO    a09 \u2502 Sobol' evaluations: 15360
-20:16:13  INFO    a09 \u2502   Sobol' 5000/15360 (26s)
-20:16:42  INFO    a09 \u2502   Sobol' 10000/15360 (55s)
-20:17:11  INFO    a09 \u2502   Sobol' 15000/15360 (85s)
-20:17:14  INFO    a09 \u2502 fleet A 1,013 [989–1,058]
-20:17:14  INFO    a09 \u2502 fleet B 1,182 [1,130–1,266]
-20:17:14  INFO    a09 \u2502 coverage 26.7% [22.1%–32.2%]  tier agreement 97.8% [94.6%–100.0%]  P(>80%)=1.000
+INFO    a09 \u2502 baseline fleet A 1011; B-eff at median pace 1169; B-mov at median pace 1148
+INFO    a09 \u2502 liveness: all 12 sampled inputs change at least one output; excluded ['OVERLAP_THRESHOLD'] inert={'OVERLAP_THRESHOLD': True}
+INFO    a09 \u2502   MC 1000/5000
+INFO    a09 \u2502   MC 2000/5000
+INFO    a09 \u2502   MC 3000/5000
+INFO    a09 \u2502   MC 4000/5000
+INFO    a09 \u2502   MC 5000/5000
+INFO    a09 \u2502 Sobol' inputs 12, evaluations: 14336
+INFO    a09 \u2502   Sobol' 5000/14336
+INFO    a09 \u2502   Sobol' 10000/14336
+INFO    a09 \u2502 fleet_A median 1,013  p5-p95 989–1,058  min-max 966–1,064
+INFO    a09 \u2502 fleet_B median 1,182  p5-p95 1,130–1,266  min-max 1,097–1,655
+INFO    a09 \u2502 fleet_B_moving median 1,182  p5-p95 1,093–1,342  min-max 1,043–1,540
+INFO    a09 \u2502 coverage 26.6% [22.0%–32.2%]  tier agreement 97.3% [94.6%–100.0%]  P(>80%)=1.000
 
 ================================================================================
-FINISHED:    2026-09-30T14:47:15.526541+00:00
-DURATION:    89.70s
 EXIT CODE:   0
 STATUS:      PASSED
 VERIFIED:    3/3 outputs

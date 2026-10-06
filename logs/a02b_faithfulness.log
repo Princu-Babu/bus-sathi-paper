@@ -2,26 +2,23 @@
 MODULE:      a02b_faithfulness
 SCRIPT:      a02b_faithfulness.py
 STAGE:       Stage 0
-STARTED:     2026-09-30T14:41:43.085403+00:00
-PYTHON:      E:\kash-paper\.venv\Scripts\python.exe (3.14.2)
-COMMAND:     E:\kash-paper\.venv\Scripts\python.exe E:\kash-paper\analysis\a02b_faithfulness.py
+COMMAND:     python analysis/a02b_faithfulness.py
 ================================================================================
 
-20:11:44  INFO    a02b \u2502 geometry-consistent routes: 142
-20:11:44  INFO    a02b \u2502   before tourist adjustment: median |err| 0.257%, within 1% 128/142, r=0.97684
-20:11:44  INFO    a02b \u2502   after  tourist adjustment: median |err| 0.245%, within 1% 136/142, r=0.99498
-20:11:44  INFO    a02b \u2502 disposition: {'reproduced': 136, 'substituted_distance': 44, 'reproduced_minor_drift': 3, 'superseded_geometry': 2, 'stale_tourist_flag': 1}
-20:11:44  INFO    a02b \u2502   NOT REPRODUCED FDR-438   GBS to LAL Chowk                   Peri_Urban         ratio 0.419  (superseded_geometry)
-20:11:44  INFO    a02b \u2502   NOT REPRODUCED FDR-160   Hazratbal, Lalbazar                Urban              ratio 0.630  (superseded_geometry)
-20:11:44  INFO    a02b \u2502   NOT REPRODUCED FDR-525   LD to Budgam                       Peri_Urban         ratio 0.954  (reproduced_minor_drift)
-20:11:44  INFO    a02b \u2502   NOT REPRODUCED FDR-479   Srinagar to Budgam                 Urban              ratio 0.959  (reproduced_minor_drift)
-20:11:44  INFO    a02b \u2502   NOT REPRODUCED SSCL-11   Old City Loop Downtown Srinagar    Urban              ratio 0.987  (reproduced_minor_drift)
-20:11:44  INFO    a02b \u2502   NOT REPRODUCED SSCL-27   Batamaloo to Manigam               Regional_District  ratio 0.794  (stale_tourist_flag)
-20:11:44  INFO    a02b \u2502 tourist multiplier inflates the published column on 8 routes by 285,914 (published 1,238,960 vs resident 953,046)
+INFO    a02b \u2502 geometry-consistent routes: 142
+INFO    a02b \u2502   before tourist adjustment: median |err| 0.257%, within 1% 128/142, r=0.97684
+INFO    a02b \u2502   before: max err 58.14%; after: max err 58.14%; routes not within 1% after adjustment: 6
+INFO    a02b \u2502   after  tourist adjustment: median |err| 0.245%, within 1% 136/142, r=0.99498
+INFO    a02b \u2502 disposition: {'reproduced': 136, 'substituted_distance': 44, 'reproduced_minor_drift': 3, 'superseded_geometry': 2, 'stale_tourist_flag': 1}
+INFO    a02b \u2502   NOT REPRODUCED FDR-438   GBS to LAL Chowk                   Peri_Urban         ratio 0.419  (superseded_geometry)
+INFO    a02b \u2502   NOT REPRODUCED FDR-160   Hazratbal, Lalbazar                Urban              ratio 0.630  (superseded_geometry)
+INFO    a02b \u2502   NOT REPRODUCED FDR-525   LD to Budgam                       Peri_Urban         ratio 0.954  (reproduced_minor_drift)
+INFO    a02b \u2502   NOT REPRODUCED FDR-479   Srinagar to Budgam                 Urban              ratio 0.959  (reproduced_minor_drift)
+INFO    a02b \u2502   NOT REPRODUCED SSCL-11   Old City Loop Downtown Srinagar    Urban              ratio 0.987  (reproduced_minor_drift)
+INFO    a02b \u2502   NOT REPRODUCED SSCL-27   Batamaloo to Manigam               Regional_District  ratio 0.794  (stale_tourist_flag)
+INFO    a02b \u2502 tourist multiplier raises the per-route column on 8 routes; per-route increments sum to 285,914 (overlapping walksheds double-counted; entered_network_coverage=False)
 
 ================================================================================
-FINISHED:    2026-09-30T14:41:44.286834+00:00
-DURATION:    1.20s
 EXIT CODE:   0
 STATUS:      PASSED
 VERIFIED:    2/2 outputs

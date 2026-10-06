@@ -18,6 +18,11 @@ skipped with a logged NOT_RUN rather than drawn from placeholder data.
   fig09b_sobol          total-order Sobol' indices for fleet B and tier agreement
   figS1_frontier        fleet vs frequent-network coverage frontier (a15)
 
+No title text is baked into any figure (titles belong in the caption). Multi-panel
+figures carry "(a)"/"(b)" panel tags only. Maps (fig03, fig08) carry a scale bar, a
+north arrow and the credit line, and draw only the ten study-area district outlines.
+Every count shown is read from data/derived, none is typed here.
+
 Figure 2 (literature-review flow diagram) depends on decision D5 (whether the
 §2.1 systematic-review protocol is run) and is not drawn.
 
@@ -63,11 +68,45 @@ plt.rcParams.update({
 })
 
 
+# fixed metadata so that re-running writes byte-identical files (no creation date)
+META = {"pdf": {"CreationDate": None, "Producer": "matplotlib"}, "png": {"Software": None}}
+
+
 def save(fig, stem: str) -> None:
     for ext, kw in (("pdf", {}), ("png", {"dpi": 300})):
-        fig.savefig(C.FIGURES / f"{stem}.{ext}", bbox_inches="tight", **kw)
+        fig.savefig(C.FIGURES / f"{stem}.{ext}", bbox_inches="tight", metadata=META[ext], **kw)
     plt.close(fig)
     log.info("wrote %s", stem)
+
+
+CREDIT = "\u00a9 OpenStreetMap contributors; population: WorldPop (CC BY 4.0)"
+
+
+def panel_tag(ax, tag: str) -> None:
+    ax.text(0.0, 1.03, tag, transform=ax.transAxes, fontsize=9, fontweight="bold",
+            color=INK, ha="left", va="bottom")
+
+
+def map_furniture(ax, km: float, *, projected: bool, ref_lat: float = 34.0) -> None:
+    """Scale bar (bottom right), north arrow (top right) and the data credit line."""
+    x0, x1 = ax.get_xlim()
+    y0, y1 = ax.get_ylim()
+    if projected:
+        length = km * 1000.0
+    else:
+        length = km / (111.32 * np.cos(np.radians(ref_lat)))
+    bx1 = x1 - 0.04 * (x1 - x0)
+    bx0 = bx1 - length
+    by = y0 + 0.04 * (y1 - y0)
+    ax.plot([bx0, bx1], [by, by], color=INK, lw=2.2, solid_capstyle="butt", zorder=10)
+    for xx in (bx0, bx1):
+        ax.plot([xx, xx], [by - 0.006 * (y1 - y0), by + 0.006 * (y1 - y0)], color=INK, lw=1, zorder=10)
+    ax.text((bx0 + bx1) / 2, by + 0.012 * (y1 - y0), f"{km:g} km", ha="center", va="bottom",
+            fontsize=7.5, color=INK, zorder=10)
+    ax.annotate("N", xy=(0.94, 0.96), xytext=(0.94, 0.86), xycoords="axes fraction",
+                textcoords="axes fraction", ha="center", va="center", fontsize=9, color=INK,
+                arrowprops=dict(arrowstyle="-|>", color=INK, lw=1.2), zorder=10)
+    ax.text(0.0, -0.01, CREDIT, transform=ax.transAxes, fontsize=7, color=INK2, ha="left", va="top")
 
 
 def have(stem: str) -> bool:
@@ -91,10 +130,11 @@ def arrow(ax, x0, y0, x1, y1):
 
 
 def fig01_framework():
+    n_permits = C.read_result("q01_data_quality")["D1_register_hygiene"]["n_permit_register_rows"]
     fig, ax = plt.subplots(figsize=(7.2, 3.4))
     ax.set_axis_off(); ax.set_xlim(0, 1); ax.set_ylim(0, 1)
     ins = ["Gridded population\n(WorldPop 2026)", "OpenStreetMap roads,\nPOIs, boundaries",
-           "Routing engine\n(OSRM)", "Digitised permit\nregister (614)"]
+           "Routing engine\n(OSRM)", f"Digitised permit\nregister ({n_permits})"]
     for k, t in enumerate(ins):
         box(ax, 0.01, 0.80 - k * 0.22, 0.2, 0.16, t)
         arrow(ax, 0.21, 0.88 - k * 0.22, 0.30, 0.55)
@@ -148,15 +188,17 @@ def fig03_study_area():
                 ha="center", va="center",
                 bbox=dict(fc=SURFACE, ec="none", alpha=0.7, pad=0.8))
     ax.set_axis_off(); ax.set_aspect("equal")
-    ax.legend(loc="lower left", title="Active routes by class", title_fontsize=8)
-    ax.set_title("Kashmir Division: 10 districts, 186 active routes", loc="left", color=INK)
+    ax.legend(loc="lower left", title=f"Active routes by class (n = {len(r)})", title_fontsize=8)
+    map_furniture(ax, 25, projected=True)
     save(fig, "fig03_study_area")
 
 
 def fig05_permit_funnel():
     q = C.read_result("q01_data_quality")["D1_register_hygiene"]
-    stages = [("Permit records", 614), ("Distinct O–D corridors", 157),
-              ("Engine rows (614 + 30 e-bus)", 644), ("Active routes", q["n_active_routes"]),
+    n_perm, n_syn = q["n_permit_register_rows"], q["n_synthetic_backbone_rows"]
+    stages = [("Permit records", n_perm), ("Distinct O–D corridors", q["n_distinct_corridors_11m"]),
+              (f"Engine rows ({n_perm} + {n_syn} e-bus)", q["n_engine_route_rows"]),
+              ("Active routes", q["n_active_routes"]),
               ("  of which permit-derived", q["n_active_permit_derived"])]
     fig, ax = plt.subplots(figsize=(6.4, 2.6))
     y = np.arange(len(stages))[::-1]
@@ -166,8 +208,6 @@ def fig05_permit_funnel():
         ax.text(v + 8, yy, f"{v:,}", va="center", color=INK, fontsize=8)
     ax.set_yticks(y, [s for s, _ in stages]); ax.grid(axis="y", visible=False)
     ax.set_xlim(0, 720); ax.set_xlabel("count")
-    ax.set_title(f"A permit is not a route: {q['corridor_retention_rate']*100:.1f}% of corridors retained",
-                 loc="left", color=INK)
     save(fig, "fig05_permit_funnel")
 
 
@@ -180,15 +220,16 @@ def fig06_catchment_bias():
                    ec=SURFACE, lw=0.4, label=CLASS_LAB[cls])
     m = df["pop_euclid"].max() / 1e3
     a1.plot([0, m], [0, m], color=MUTED, lw=0.9, ls="--"); a1.text(m * 0.78, m * 0.70, "1:1", color=MUTED, ha="left", va="top")
-    a1.set_xlabel("Euclidean 400 m buffer (thousand residents)")
-    a1.set_ylabel("Network 400 m walkshed (thousand)")
-    a1.legend(loc="upper left"); a1.set_title("Per-route population served", loc="left", color=INK)
+    a1.set_xlabel("E: straight-line 400 m buffer (thousand residents)")
+    a1.set_ylabel("N: network 400 m walkshed (thousand residents)")
+    a1.legend(loc="upper left"); panel_tag(a1, "(a)")
     med = df["overstatement_pct"].median()
-    a2.hist(df["overstatement_pct"], bins=np.arange(0, 62, 3), color="#2a78d6", ec=SURFACE, lw=1)
+    top = float(np.ceil(df["overstatement_pct"].max() / 3.0) * 3.0)
+    a2.hist(df["overstatement_pct"], bins=np.arange(0, top + 3, 3), color="#2a78d6", ec=SURFACE, lw=1)
     a2.axvline(med, color=INK, lw=1)
     a2.text(med - 1, a2.get_ylim()[1] * 0.97, f"median {med:.1f}% ", color=INK, ha="right", va="top")
-    a2.set_xlabel("Euclidean overstatement (%)"); a2.set_ylabel("routes")
-    a2.set_title("Overstatement distribution (n = 186)", loc="left", color=INK)
+    a2.set_xlabel("Share of the straight-line count that is spurious,\n(E \u2212 N) / E (%)")
+    a2.set_ylabel(f"routes (n = {len(df)})"); panel_tag(a2, "(b)")
     fig.tight_layout()
     save(fig, "fig06_catchment_bias")
 
@@ -202,18 +243,18 @@ def fig07_tiers():
     fig, (a1, a2) = plt.subplots(1, 2, figsize=(7.2, 3.0))
     a1.plot(ks, g, color="#2a78d6", lw=2, marker="o", ms=5, mec=SURFACE)
     a1.axhline(a04["gvf_threshold"], color=MUTED, ls="--", lw=0.9)
-    a1.text(6.9, a04["gvf_threshold"] + 0.006, "GVF 0.80", ha="right", color=MUTED)
+    a1.text(6.9, a04["gvf_threshold"] + 0.006, f"GVF {a04['gvf_threshold']:.2f}", ha="right", color=MUTED)
     a1.annotate(f"k = {a04['k_chosen']}", (a04["k_chosen"], cur["gvf"][str(a04["k_chosen"])]),
                 xytext=(10, -18), textcoords="offset points", color=INK)
     a1.set_xlabel("number of classes k"); a1.set_ylabel("goodness of variance fit")
-    a1.set_title("Class-count elbow (Jenks, network CDI)", loc="left", color=INK)
+    panel_tag(a1, "(a)")
     for k in range(3):
         s = t[t["tier_class"] == k]
         a2.bar(s.index, s["cdi_net_equal"], color=TIER_COL[k], width=1.0,
                label=f"{['Tier 3', 'Tier 2', 'Tier 1'][k]} ({len(s)})")
     a2.set_xlabel("routes, ranked by CDI"); a2.set_ylabel("composite demand index")
     a2.legend(loc="upper left"); a2.grid(axis="x", visible=False)
-    a2.set_title("Three-tier partition", loc="left", color=INK)
+    panel_tag(a2, "(b)")
     fig.tight_layout()
     save(fig, "fig07_tiers")
 
@@ -232,7 +273,6 @@ def fig08_coverage():
         from rasterio.features import rasterize
         inside = rasterize([(d.union_all(), 1)], out_shape=pop.shape, transform=src.transform, fill=0)
         pop[inside == 0] = np.nan
-    cov = C.read_result("a11_coverage_accessibility")["any_service_reconciliation"]
     fig, ax = plt.subplots(figsize=(6.4, 6.0))
     img = np.log10(np.where(pop > 0, pop, np.nan))
     im = ax.imshow(img, extent=ext, cmap="Greys", vmin=-1, vmax=2.5, interpolation="nearest")
@@ -241,10 +281,9 @@ def fig08_coverage():
     d.boundary.plot(ax=ax, color=MUTED, lw=0.5)
     b = d.total_bounds
     ax.set_xlim(b[0], b[2]); ax.set_ylim(b[1], b[3]); ax.set_axis_off()
+    map_furniture(ax, 25, projected=False, ref_lat=float((b[1] + b[3]) / 2))
     cb = fig.colorbar(im, ax=ax, shrink=0.5, pad=0.01)
     cb.set_label("residents per 100 m cell (log10)", color=INK2)
-    ax.set_title(f"Network walkshed union: {cov['any_service_share']*100:.1f}% of "
-                 f"{C.STUDY_AREA_POPULATION:,} residents within 400 m", loc="left", color=INK)
     save(fig, "fig08_coverage")
 
 
@@ -255,25 +294,25 @@ def fig09_fleet_interval():
     j = C.read_result("a09_monte_carlo_sobol")
     fig, ax = plt.subplots(figsize=(6.4, 2.8))
     both = np.r_[mc["fleet_A"], mc["fleet_B"]]
-    lo, hi = np.percentile(both, [0.2, 99.8])
+    lo, hi = float(both.min()), float(both.max())      # full range: no draw is clipped
     bins = np.arange(np.floor(lo / 5) * 5, np.ceil(hi / 5) * 5 + 5, 5)
     ax.hist(mc["fleet_A"], bins=bins, color="#2a78d6", ec=SURFACE, lw=0.6,
             label="A: as specified (cap on)")
     ax.hist(mc["fleet_B"], bins=bins, color=SERIES2, ec=SURFACE, lw=0.6,
             label="B: observed urban/peri-urban pace")
     ax.axvline(j["fleet_published"], color=INK, lw=1.2)
-    gap_x = (mc["fleet_A"].quantile(0.99) + mc["fleet_B"].quantile(0.01)) / 2
+    gap_x = float(mc["fleet_A"].max()) + 6.0
     ax.annotate(f"published {j['fleet_published']:,}", xy=(j["fleet_published"], ax.get_ylim()[1] * 0.8),
-                xytext=(gap_x, ax.get_ylim()[1] * 0.8), color=INK, va="center", ha="center",
+                xytext=(gap_x, ax.get_ylim()[1] * 0.8), color=INK, va="center", ha="left",
                 arrowprops=dict(arrowstyle="-|>", color=INK, lw=0.8))
     for key, col in (("fleet_A", "#2a78d6"), ("fleet_B", SERIES2)):
         s = j["mc"][key]
         ax.plot([s["p5"], s["p95"]], [-ax.get_ylim()[1] * 0.04] * 2, color=col, lw=3,
-                solid_capstyle="round", clip_on=False)
-    ax.set_xlabel("total fleet (buses)"); ax.set_ylabel("draws")
+                solid_capstyle="round", clip_on=False,
+                label=f"{key[-1]}: 5th\u201395th percentile bar")
+    ax.set_xlabel("total fleet (buses)")
+    ax.set_ylabel(f"draws (n = {j['n_mc']:,})")
     ax.legend(loc="upper right"); ax.grid(axis="x", visible=False)
-    ax.set_title(f"Fleet under joint parameter uncertainty ({j['n_mc']:,} draws; bars = 90% intervals)",
-                 loc="left", color=INK)
     save(fig, "fig09_fleet_interval")
 
 
@@ -287,7 +326,7 @@ def fig09b_sobol():
     for ax, c, col in zip(np.atleast_1d(axes), cols, ("#2a78d6", SERIES2)):
         ax.barh(s["Parameter"], s[c].clip(lower=0), color=col, height=0.62)
         ax.set_xlabel("total-order Sobol' index"); ax.grid(axis="y", visible=False)
-        ax.set_title(c.replace(" ST", ""), loc="left", color=INK)
+        panel_tag(ax, f"({'ab'[list(cols).index(c)]}) {c.replace(' ST', '')}")
     fig.tight_layout()
     save(fig, "fig09b_sobol")
 
@@ -302,7 +341,6 @@ def figS1_frontier():
         ax.plot(fr["city_headway_min"], fr[key], color=col, lw=2, marker="o", ms=5, mec=SURFACE, label=lab)
     ax.set_xlabel("urban & peri-urban headway (min)"); ax.set_ylabel("total fleet (buses)")
     ax.legend(loc="upper right")
-    ax.set_title("Fleet price of city frequency", loc="left", color=INK)
     save(fig, "figS1_frontier")
 
 
@@ -315,13 +353,14 @@ def figS2_funding_curve():
     j = C.read_result("a15_scenarios")["funding_sequence"]
     fig, ax = plt.subplots(figsize=(5.6, 3.2))
     ax.plot(np.r_[0, s["cum_buses"]], 100 * np.r_[0, s["cum_coverage"]], color="#2a78d6", lw=2)
-    ax.axvline(j["budget_buses"], color=MUTED, ls="--", lw=0.9)
-    ax.text(j["budget_buses"] + 12, 3, f"30% of fleet\n{100*j['coverage_funded']:.1f}% reached",
+    ax.axvline(j["buses_allocated"], color=MUTED, ls="--", lw=0.9)
+    ax.text(j["buses_allocated"] + 12, 3,
+            f"{j['buses_allocated']} buses allocated\n({100*j['funded_share']:.0f}% budget = {j['buses_budgeted']})\n"
+            f"{100*j['coverage_reached_at_allocated_buses']:.1f}% of residents reached",
             color=INK, va="bottom")
     ax.set_xlabel("buses funded (routes bought by new residents reached per bus)")
     ax.set_ylabel("residents within 400 m (%)")
     ax.set_xlim(0, s["cum_buses"].max() * 1.02); ax.set_ylim(0, None)
-    ax.set_title("Reach is cheap; frequency is what the rest of the fleet buys", loc="left", color=INK)
     save(fig, "figS2_funding_curve")
 
 

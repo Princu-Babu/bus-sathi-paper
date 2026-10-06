@@ -21,9 +21,10 @@ weakness rather than infer it.
   D3  OSM network completeness by district, and whether completeness tracks
       population — the standard peripheral-bias check for volunteered
       geographic information.
-  D4  WorldPop plausibility against Census 2011 district totals, including a
-      raster-coverage test so a truncated raster cannot masquerade as a low
-      population.
+  D4  WorldPop compared with Census 2011 district totals, district by district
+      (the raster is anchored on the census frame, so this is a comparison, not
+      an independent validation), including a raster-coverage test so a
+      truncated raster cannot masquerade as a low population.
   D5  Opportunity (POI) inventory by tier and district, with per-capita
       normalisation. No independent field enumeration was carried out, so no
       recall statistic is claimed.
@@ -80,20 +81,73 @@ def _permit_endpoints() -> pd.DataFrame:
                             "Via_Points_Raw", "Vehicle_Category", "Service_Type"]],
                    on="Route_ID", how="left")
 
-    def token_ok(row) -> bool:
-        if pd.isna(row["Origin"]):
-            return True                      # synthetic backbone row, nothing to check
-        name = str(row["Route_Name"]).upper()
-        o = str(row["Origin"]).upper().split()
-        d = str(row["Destination"]).upper().split()
-        return (any(t[:4] in name for t in o if len(t) > 2)
-                and any(t[:4] in name for t in d if len(t) > 2))
+    def match_flags(names, origins, dests, min_len: int) -> np.ndarray:
+        """True where the engine route name shares a 4-letter token stem with the
+        register origin AND destination. Two-letter place tokens (e.g. the "LD"
+        Lal Ded stand) count: with min_len=3 they are silently dropped, `any([])`
+        is False, and a correct join is reported as a mismatch."""
+        res = []
+        for nm, o, d in zip(names, origins, dests):
+            name = str(nm).upper()
+            ot = str(o).upper().split()
+            dt = str(d).upper().split()
+            res.append(any(t[:4] in name for t in ot if len(t) >= min_len)
+                       and any(t[:4] in name for t in dt if len(t) >= min_len))
+        return np.array(res, dtype=bool)
 
     checkable = m["Origin"].notna()
-    rate = float(m.loc[checkable].apply(token_ok, axis=1).mean())
-    log.info("D1 positional join verified on %d permit rows: %.1f%% name-token match",
-             int(checkable.sum()), 100 * rate)
+    chk = m.loc[checkable]
+    ok_new = match_flags(chk["Route_Name"], chk["Origin"], chk["Destination"], 2)
+    ok_old = match_flags(chk["Route_Name"], chk["Origin"], chk["Destination"], 3)
+    rate = float(ok_new.mean())
+    bad = chk.loc[~ok_new, ["Route_ID", "Route_Name", "Origin", "Destination"]]
+    only_old_fail = chk.loc[ok_new & ~ok_old]
+    short_tokens = {}
+    for _, r in chk.loc[~ok_old].iterrows():
+        for t in (str(r["Origin"]).upper().split() + str(r["Destination"]).upper().split()):
+            if len(t) <= 2:
+                short_tokens[t] = short_tokens.get(t, 0) + 1
+
+    # Alignment is verified by offset: shifting the positional join by k rows must
+    # destroy the agreement if the join is real.
+    names = chk["Route_Name"].to_numpy()
+    org = permits["Origin"].to_numpy()
+    dst = permits["Destination"].to_numpy()
+    n_reg = len(permits)
+    offsets = {}
+    for k in (-2, -1, 0, 1, 2):
+        idx = [(i, i + k) for i in range(len(chk)) if 0 <= i + k < n_reg]
+        a = [i for i, _ in idx]
+        b = [j for _, j in idx]
+        offsets[str(k)] = float(match_flags(names[a], org[b], dst[b], 2).mean())
+
+    join_check = dict(
+        n_checked=int(len(chk)),
+        n_match=int(ok_new.sum()),
+        n_mismatch=int((~ok_new).sum()),
+        match_rate=rate,
+        rule="engine route name shares the first 4 letters of a register origin token "
+             "and of a register destination token; tokens of >= 2 letters",
+        match_rate_old_filter_min_len_3=float(ok_old.mean()),
+        n_mismatch_old_filter_min_len_3=int((~ok_old).sum()),
+        n_old_failures_cleared_by_counting_two_letter_tokens=int(len(only_old_fail)),
+        two_letter_tokens_in_old_failures=short_tokens,
+        old_filter_note=("The earlier 80.5 % (120 of 614 failing) came from the filter "
+                         "dropping 2-letter tokens, chiefly the 'LD' stand; it is a property "
+                         "of the check, not of the data. The earlier explanation that the "
+                         "residual was 'vernacular spelling variants' is not supported: no "
+                         "spelling-variant case is among the failures."),
+        genuine_mismatches=bad.to_dict("records"),
+        offset_test_match_rate_by_row_shift=offsets,
+        offset_test_note=("0 = the positional join actually used; a shift of +-1 or +-2 rows "
+                          "drops agreement to chance level, so the positional alignment is real"),
+    )
+    log.info("D1 positional join verified on %d permit rows: %.1f%% name-token match "
+             "(%d mismatches; old len>2 filter gave %.1f%%); offset test %s",
+             int(len(chk)), 100 * rate, int((~ok_new).sum()),
+             100 * float(ok_old.mean()), {k: round(v, 3) for k, v in offsets.items()})
     m.attrs["join_match_rate"] = rate
+    m.attrs["join_check"] = join_check
 
     # Undirected endpoint key at the engine's own 4-decimal (~11 m) resolution.
     def key(r, nd=4):
@@ -202,6 +256,9 @@ def d1_register_hygiene() -> tuple[dict, pd.DataFrame]:
 
     out = dict(
         join_match_rate=m.attrs.get("join_match_rate"),
+        join_match_rate_note=("corrected: counts 2-letter place tokens (F-03-24); the earlier "
+                              "0.8046 was an artefact of the filter. See join_check."),
+        join_check=m.attrs.get("join_check"),
         n_permit_register_rows=n_permits,
         n_synthetic_backbone_rows=n_synth,
         n_engine_route_rows=n_engine_rows,
@@ -357,6 +414,14 @@ def d3_osm_completeness(district_pop: pd.DataFrame) -> tuple[dict, pd.DataFrame]
         p_value=float(pval),
         ratio_max_min_km_per_1000=float(t["km_per_1000_pop"].max()
                                         / t["km_per_1000_pop"].min()),
+        n_districts=int(len(t)),
+        base="n = %d district-level points (mapped walkable-network km per km2 against "
+             "WorldPop density); in-sample, descriptive" % len(t),
+        inference_limit=("With n = 10 districts this correlation cannot distinguish genuine "
+                         "road density from volunteered-mapping bias, and it is blind to "
+                         "within-district peripheral gaps, which is where rural lifelines "
+                         "operate. It is consistent with adequate district-scale completeness "
+                         "and does not exclude within-district under-mapping."),
         note=("A strong positive rank correlation between population density "
               "and mapped road density is expected on real ground and is also "
               "the signature of volunteered-mapping bias; the two cannot be "
@@ -394,7 +459,19 @@ def d4_worldpop() -> tuple[dict, pd.DataFrame]:
                 bad |= (a == nodata)
             a[bad | (a < 0)] = 0.0
             rows.append((row["district"], float(a.sum())))
-        pix_area_m2 = abs(src.transform.a) * abs(src.transform.e) * (111_320 ** 2)
+        tags = dict(src.tags())
+        mid_lat = 0.5 * (rb.top + rb.bottom)
+        pix_area_m2 = (abs(src.transform.a) * 111_320 * np.cos(np.radians(mid_lat))
+                       * abs(src.transform.e) * 111_320)
+
+    manifest_line = None
+    man = C.DATA / "MANIFEST.md"
+    if man.exists():
+        for ln in man.read_text(encoding="utf-8").splitlines():
+            hit = re.search(r"\((WorldPop[^)]*constrained[^)]*)\)", ln)
+            if hit:
+                manifest_line = hit.group(1)
+                break
 
     zp = pd.DataFrame(rows, columns=["district_osm", "worldpop_2026"])
     t = census.merge(zp, on="district_osm", how="outer")
@@ -402,29 +479,70 @@ def d4_worldpop() -> tuple[dict, pd.DataFrame]:
     yrs = WORLDPOP_YEAR - CENSUS_YEAR
     t["implied_cagr"] = t["ratio_wp_to_census"] ** (1.0 / yrs) - 1.0
     t["cagr_plausible"] = t["implied_cagr"].between(*CAGR_BAND)
+    t["within_declared_band"] = t["cagr_plausible"]      # neutral name for the same flag
 
     tot_wp = float(t["worldpop_2026"].sum())
     tot_cen = float(t["population_2011"].sum())
+    n_total = int(len(t))
+    n_in = int(t["cagr_plausible"].sum())
+    lo, hi = t.loc[t["ratio_wp_to_census"].idxmin()], t.loc[t["ratio_wp_to_census"].idxmax()]
+    by_dist = (t.sort_values("ratio_wp_to_census")
+               [["district_osm", "worldpop_2026", "population_2011", "ratio_wp_to_census",
+                 "implied_cagr", "within_declared_band"]]
+               .rename(columns={"district_osm": "district", "population_2011": "census_2011",
+                                "implied_cagr": "implied_cagr_per_year"})
+               .to_dict("records"))
+    statement = (f"{n_in} of {n_total} districts have an implied 2011-2026 growth rate inside the "
+                 f"declared {100 * CAGR_BAND[0]:.1f}-{100 * CAGR_BAND[1]:.1f} %/yr band; "
+                 f"WorldPop/Census district ratios run from {lo['ratio_wp_to_census']:.2f} "
+                 f"({lo['district_osm']}) to {hi['ratio_wp_to_census']:.2f} ({hi['district_osm']}); "
+                 f"the division total ratio is {tot_wp / tot_cen:.3f}")
     out = dict(
         raster_covers_district_union=bool(covered),
         raster_bounds=dict(left=rb.left, bottom=rb.bottom, right=rb.right, top=rb.top),
         district_union_bounds=dict(left=db[0], bottom=db[1], right=db[2], top=db[3]),
         approx_pixel_area_km2=pix_area_m2 / 1e6,
+        approx_pixel_area_km2_note=("corrected to include cos(latitude) on the east-west side; "
+                                    "the earlier 0.00861 was ~20 % too high. Not used in the paper."),
         worldpop_total=tot_wp,
         census2011_total=tot_cen,
         ratio_total=tot_wp / tot_cen,
         implied_total_cagr=(tot_wp / tot_cen) ** (1.0 / yrs) - 1.0,
         n_districts_outside_plausible_cagr=int((~t["cagr_plausible"]).sum()),
+        n_districts_outside_plausible_cagr_note=("districts outside the declared growth band; "
+                                                 "see n_districts_within_declared_band / n_districts_total"),
+        cagr_band_per_year=list(CAGR_BAND),
+        cagr_band_note=("declared in this module (CAGR_BAND) for flagging only; J&K 2001-11 "
+                        "growth was about 2.1 %/yr"),
+        n_districts_total=n_total,
+        n_districts_within_declared_band=n_in,
+        n_districts_outside_declared_band=n_total - n_in,
+        ratio_min=dict(district=lo["district_osm"], ratio=float(lo["ratio_wp_to_census"])),
+        ratio_max=dict(district=hi["district_osm"], ratio=float(hi["ratio_wp_to_census"])),
+        ratio_district_range=[float(lo["ratio_wp_to_census"]), float(hi["ratio_wp_to_census"])],
+        district_ratios=by_dist,
+        statement=statement,
+        census_anchored=True,
+        independent_of_census_frame=False,
+        worldpop_variant=("not recorded in metadata" if not (set(tags) - {"AREA_OR_POINT"})
+                          else tags),
+        worldpop_product_named_in_manifest=manifest_line,
+        worldpop_variant_note=("the raster carries only the AREA_OR_POINT tag; data/MANIFEST.md "
+                               "names the product but gives no release or version"),
+        base=("n = %d districts, WorldPop 2026 zonal sum (cell-centre masking, nodata and "
+              "negatives zeroed) over Census 2011 district totals; both are in-sample for "
+              "the plan, which uses the same raster as its denominator" % n_total),
         engine_denominator=C.STUDY_AREA_POPULATION,
         engine_denominator_matches_zonal=bool(
             abs(tot_wp - C.STUDY_AREA_POPULATION) / C.STUDY_AREA_POPULATION < 0.02),
-        note=("WorldPop 2026 is a modelled, UN-adjusted surface anchored on the "
-              "2011 census frame, so it is not an independent count. Reporting "
-              "the ratio district by district exposes where the surface is "
-              "conservative; coverage figures computed on it inherit that "
-              "conservatism, which biases the reported coverage share upward "
-              "only if the denominator is understated, and is therefore stated "
-              "explicitly rather than corrected."),
+        note=("WorldPop 2026 is a modelled, UN-adjusted surface anchored on the 2011 census "
+              "frame, so this comparison is not an independent test of the surface. The "
+              "division total (ratio %.3f) hides district ratios of %.2f to %.2f, so a "
+              "single division-level figure should not be read as district accuracy. "
+              "Coverage numerators and the denominator come from the same raster, so a low "
+              "district total does not by itself make a coverage share conservative or "
+              "liberal; the direction of the bias is not established here."
+              % (tot_wp / tot_cen, lo["ratio_wp_to_census"], hi["ratio_wp_to_census"])),
     )
     log.info("D4 WorldPop total %.0f vs Census 2011 %.0f (ratio %.3f, implied CAGR %.2f%%/yr)",
              tot_wp, tot_cen, out["ratio_total"], 100 * out["implied_total_cagr"])

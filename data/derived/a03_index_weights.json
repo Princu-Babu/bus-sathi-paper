@@ -1,8 +1,45 @@
 {
-  "ahp_note": "No expert panel was convened for this study, so analytic hierarchy process weights are not derived. Reported weightings are equal, Shannon entropy and first principal component.",
+  "ahp_note": "No expert panel was convened for this study, so analytic hierarchy process weights are not derived. Weighting schemes computed are equal, Shannon entropy and first principal component; only two of the three are distinct (see n_distinct_weightings).",
   "ahp_weights_derived": false,
   "by_variant": {
     "euclid": {
+      "collinearity_rule": {
+        "declared_rule": "if rho(Pop, POI) > threshold, substitute the first-principal-component reduction for the composite",
+        "interpretation": "the two criteria share about 77% of their variance (Pearson r^2), so the composite is close to one-dimensional; the 50/50 asymmetry argument cannot be read as two independent channels",
+        "outcome_as_written": "rule fired: the declared action is to substitute the PCA reduction for the 50/50 composite; here the PCA weights equal the equal weights, so the substitution changes nothing",
+        "pca_weights_equal_equal_weights": true,
+        "pearson_exceeds_threshold": true,
+        "pearson_r": 0.8779331574476079,
+        "pearson_r_squared": 0.7707666289459263,
+        "rule_fired": true,
+        "spearman_exceeds_threshold": true,
+        "spearman_rho": 0.9094848611884243,
+        "threshold": 0.85,
+        "threshold_source": "assumption (declared in paper \u00a74.5; no citation)"
+      },
+      "distinct_weightings": {
+        "groups": [
+          [
+            "equal",
+            "pca"
+          ],
+          [
+            "entropy"
+          ]
+        ],
+        "identical_pairs": [
+          {
+            "identical_by_construction": true,
+            "reason": "PCA on two positively correlated criteria loads (1,1)/sqrt(2) for every correlation r > 0, so its normalised weights are exactly 0.5/0.5 \u2014 an identity of the method, not an empirical agreement",
+            "schemes": [
+              "equal",
+              "pca"
+            ]
+          }
+        ],
+        "n_distinct_weightings": 2,
+        "n_schemes_computed": 3
+      },
       "pearson_p": 9.340052131827516e-61,
       "pearson_r": 0.8779331574476079,
       "spearman_p": 4.70222780842591e-72,
@@ -23,6 +60,43 @@
       }
     },
     "net": {
+      "collinearity_rule": {
+        "declared_rule": "if rho(Pop, POI) > threshold, substitute the first-principal-component reduction for the composite",
+        "interpretation": "the two criteria share about 80% of their variance (Pearson r^2), so the composite is close to one-dimensional; the 50/50 asymmetry argument cannot be read as two independent channels",
+        "outcome_as_written": "rule fired: the declared action is to substitute the PCA reduction for the 50/50 composite; here the PCA weights equal the equal weights, so the substitution changes nothing",
+        "pca_weights_equal_equal_weights": true,
+        "pearson_exceeds_threshold": true,
+        "pearson_r": 0.8922124899800876,
+        "pearson_r_squared": 0.796043127276468,
+        "rule_fired": true,
+        "spearman_exceeds_threshold": true,
+        "spearman_rho": 0.8910259389609949,
+        "threshold": 0.85,
+        "threshold_source": "assumption (declared in paper \u00a74.5; no citation)"
+      },
+      "distinct_weightings": {
+        "groups": [
+          [
+            "equal",
+            "pca"
+          ],
+          [
+            "entropy"
+          ]
+        ],
+        "identical_pairs": [
+          {
+            "identical_by_construction": true,
+            "reason": "PCA on two positively correlated criteria loads (1,1)/sqrt(2) for every correlation r > 0, so its normalised weights are exactly 0.5/0.5 \u2014 an identity of the method, not an empirical agreement",
+            "schemes": [
+              "equal",
+              "pca"
+            ]
+          }
+        ],
+        "n_distinct_weightings": 2,
+        "n_schemes_computed": 3
+      },
       "pearson_p": 1.9742595128032113e-65,
       "pearson_r": 0.8922124899800876,
       "spearman_p": 5.109094652989205e-65,
@@ -43,10 +117,76 @@
       }
     }
   },
+  "collinearity_rule": {
+    "by_variant": {
+      "euclid": {
+        "declared_rule": "if rho(Pop, POI) > threshold, substitute the first-principal-component reduction for the composite",
+        "interpretation": "the two criteria share about 77% of their variance (Pearson r^2), so the composite is close to one-dimensional; the 50/50 asymmetry argument cannot be read as two independent channels",
+        "outcome_as_written": "rule fired: the declared action is to substitute the PCA reduction for the 50/50 composite; here the PCA weights equal the equal weights, so the substitution changes nothing",
+        "pca_weights_equal_equal_weights": true,
+        "pearson_exceeds_threshold": true,
+        "pearson_r": 0.8779331574476079,
+        "pearson_r_squared": 0.7707666289459263,
+        "rule_fired": true,
+        "spearman_exceeds_threshold": true,
+        "spearman_rho": 0.9094848611884243,
+        "threshold": 0.85,
+        "threshold_source": "assumption (declared in paper \u00a74.5; no citation)"
+      },
+      "net": {
+        "declared_rule": "if rho(Pop, POI) > threshold, substitute the first-principal-component reduction for the composite",
+        "interpretation": "the two criteria share about 80% of their variance (Pearson r^2), so the composite is close to one-dimensional; the 50/50 asymmetry argument cannot be read as two independent channels",
+        "outcome_as_written": "rule fired: the declared action is to substitute the PCA reduction for the 50/50 composite; here the PCA weights equal the equal weights, so the substitution changes nothing",
+        "pca_weights_equal_equal_weights": true,
+        "pearson_exceeds_threshold": true,
+        "pearson_r": 0.8922124899800876,
+        "pearson_r_squared": 0.796043127276468,
+        "rule_fired": true,
+        "spearman_exceeds_threshold": true,
+        "spearman_rho": 0.8910259389609949,
+        "threshold": 0.85,
+        "threshold_source": "assumption (declared in paper \u00a74.5; no citation)"
+      }
+    },
+    "fired_in_all_variants": true,
+    "headline": "Pearson r = 0.878 (Euclidean) / 0.892 (network); Spearman rho = 0.909 / 0.891. The declared rho > 0.85 rule fires; its declared action (substitute PCA) leaves the composite unchanged because PCA = equal weights here.",
+    "threshold": 0.85,
+    "threshold_source": "assumption (paper \u00a74.5; no citation)"
+  },
+  "evidence_status": {
+    "base": "all 186 active plan routes; no hold-out",
+    "in_sample": true,
+    "n": 186,
+    "poi_incidence_source": "cached_from_a03_index_csv"
+  },
+  "identical_by_construction": [
+    {
+      "identical_by_construction": true,
+      "reason": "PCA on two positively correlated criteria loads (1,1)/sqrt(2) for every correlation r > 0, so its normalised weights are exactly 0.5/0.5 \u2014 an identity of the method, not an empirical agreement",
+      "schemes": [
+        "equal",
+        "pca"
+      ],
+      "variant": "euclid"
+    },
+    {
+      "identical_by_construction": true,
+      "reason": "PCA on two positively correlated criteria loads (1,1)/sqrt(2) for every correlation r > 0, so its normalised weights are exactly 0.5/0.5 \u2014 an identity of the method, not an empirical agreement",
+      "schemes": [
+        "equal",
+        "pca"
+      ],
+      "variant": "net"
+    }
+  ],
   "n_bands": 3,
+  "n_distinct_weightings": 2,
+  "n_distinct_weightings_note": "Three schemes are computed but only two are distinct weightings: PCA on exactly two positively correlated criteria returns 0.5/0.5 for every correlation, so 'equal' and 'pca' are identical by construction (not a robustness finding). The data-driven alternative is entropy only.",
   "n_poi_euclid_total": 22165,
   "n_poi_net_total": 11402,
   "n_routes": 186,
+  "n_schemes_computed": 3,
+  "opportunity_overstatement_note": "The Euclidean arm measures distance to the continuous route line, the network arm to discrete virtual stops up to 125 m apart, so part of the median overstatement is stop discretisation, not the network itself.",
   "opportunity_overstatement_pct_median": 48.91094568513924,
   "poi_budget_m": 250.0,
   "stability": [
@@ -56,6 +196,7 @@
       "comparison": "euclid: equal vs entropy",
       "gate_agreement": 0.9785,
       "gate_kappa": 0.9489,
+      "note": "",
       "spearman_cdi": 0.9985
     },
     {
@@ -64,6 +205,7 @@
       "comparison": "euclid: equal vs pca",
       "gate_agreement": 1.0,
       "gate_kappa": 1.0,
+      "note": "identity, not a result: PCA on two criteria = equal weights",
       "spearman_cdi": 1.0
     },
     {
@@ -72,6 +214,7 @@
       "comparison": "net: equal vs entropy",
       "gate_agreement": 0.9892,
       "gate_kappa": 0.9745,
+      "note": "",
       "spearman_cdi": 0.9981
     },
     {
@@ -80,6 +223,7 @@
       "comparison": "net: equal vs pca",
       "gate_agreement": 1.0,
       "gate_kappa": 1.0,
+      "note": "identity, not a result: PCA on two criteria = equal weights",
       "spearman_cdi": 1.0
     },
     {
@@ -88,6 +232,7 @@
       "comparison": "equal: Euclidean vs network",
       "gate_agreement": 0.9677,
       "gate_kappa": 0.9234,
+      "note": "",
       "spearman_cdi": 0.9935
     },
     {
@@ -96,6 +241,7 @@
       "comparison": "entropy: Euclidean vs network",
       "gate_agreement": 0.9677,
       "gate_kappa": 0.9234,
+      "note": "",
       "spearman_cdi": 0.9934
     },
     {
@@ -104,14 +250,205 @@
       "comparison": "pca: Euclidean vs network",
       "gate_agreement": 0.9677,
       "gate_kappa": 0.9234,
+      "note": "same as the equal row: PCA = equal weights by construction",
       "spearman_cdi": 0.9935
     }
   ],
   "trunk_gate_percentile": 30,
+  "weight_sweep_population_weight": {
+    "by_variant": {
+      "euclid": [
+        {
+          "band_agreement_with_equal": 0.8064516129032258,
+          "band_kappa": 0.6713458329243153,
+          "gate_agreement_with_equal": 0.9139784946236559,
+          "gate_kappa": 0.7956043956043954,
+          "n_routes_changing_band": 36,
+          "spearman_cdi_with_equal": 0.9760957215481647,
+          "w_opportunity": 0.9,
+          "w_population": 0.1
+        },
+        {
+          "band_agreement_with_equal": 0.8279569892473119,
+          "band_kappa": 0.7093750000000001,
+          "gate_agreement_with_equal": 0.956989247311828,
+          "gate_kappa": 0.8978021978021978,
+          "n_routes_changing_band": 32,
+          "spearman_cdi_with_equal": 0.9898213799508412,
+          "w_opportunity": 0.8,
+          "w_population": 0.2
+        },
+        {
+          "band_agreement_with_equal": 0.8225806451612904,
+          "band_kappa": 0.7001904947980268,
+          "gate_agreement_with_equal": 0.978494623655914,
+          "gate_kappa": 0.948901098901099,
+          "n_routes_changing_band": 33,
+          "spearman_cdi_with_equal": 0.996493989429751,
+          "w_opportunity": 0.7,
+          "w_population": 0.3
+        },
+        {
+          "band_agreement_with_equal": 0.9623655913978495,
+          "band_kappa": 0.9383610282630309,
+          "gate_agreement_with_equal": 0.978494623655914,
+          "gate_kappa": 0.948901098901099,
+          "n_routes_changing_band": 7,
+          "spearman_cdi_with_equal": 0.9990339821939421,
+          "w_opportunity": 0.6,
+          "w_population": 0.4
+        },
+        {
+          "band_agreement_with_equal": 1.0,
+          "band_kappa": 1.0,
+          "gate_agreement_with_equal": 1.0,
+          "gate_kappa": 1.0,
+          "n_routes_changing_band": 0,
+          "spearman_cdi_with_equal": 0.9999999999999999,
+          "w_opportunity": 0.5,
+          "w_population": 0.5
+        },
+        {
+          "band_agreement_with_equal": 0.978494623655914,
+          "band_kappa": 0.9654146522870956,
+          "gate_agreement_with_equal": 0.989247311827957,
+          "gate_kappa": 0.9744505494505494,
+          "n_routes_changing_band": 4,
+          "spearman_cdi_with_equal": 0.9994517196235886,
+          "w_opportunity": 0.4,
+          "w_population": 0.6
+        },
+        {
+          "band_agreement_with_equal": 0.978494623655914,
+          "band_kappa": 0.9654146522870956,
+          "gate_agreement_with_equal": 0.978494623655914,
+          "gate_kappa": 0.948901098901099,
+          "n_routes_changing_band": 4,
+          "spearman_cdi_with_equal": 0.9982358053194386,
+          "w_opportunity": 0.3,
+          "w_population": 0.7
+        },
+        {
+          "band_agreement_with_equal": 0.967741935483871,
+          "band_kappa": 0.9482494783213541,
+          "gate_agreement_with_equal": 0.978494623655914,
+          "gate_kappa": 0.948901098901099,
+          "n_routes_changing_band": 6,
+          "spearman_cdi_with_equal": 0.9967401561293643,
+          "w_opportunity": 0.2,
+          "w_population": 0.8
+        },
+        {
+          "band_agreement_with_equal": 0.9623655913978495,
+          "band_kappa": 0.9396047870860006,
+          "gate_agreement_with_equal": 0.978494623655914,
+          "gate_kappa": 0.948901098901099,
+          "n_routes_changing_band": 7,
+          "spearman_cdi_with_equal": 0.9951382076826388,
+          "w_opportunity": 0.1,
+          "w_population": 0.9
+        }
+      ],
+      "net": [
+        {
+          "band_agreement_with_equal": 0.8924731182795699,
+          "band_kappa": 0.8072339102497668,
+          "gate_agreement_with_equal": 0.9032258064516129,
+          "gate_kappa": 0.770054945054945,
+          "n_routes_changing_band": 20,
+          "spearman_cdi_with_equal": 0.9668700650103873,
+          "w_opportunity": 0.9,
+          "w_population": 0.1
+        },
+        {
+          "band_agreement_with_equal": 0.956989247311828,
+          "band_kappa": 0.9238290248272333,
+          "gate_agreement_with_equal": 0.9354838709677419,
+          "gate_kappa": 0.8467032967032966,
+          "n_routes_changing_band": 8,
+          "spearman_cdi_with_equal": 0.9857316559186307,
+          "w_opportunity": 0.8,
+          "w_population": 0.2
+        },
+        {
+          "band_agreement_with_equal": 0.9731182795698925,
+          "band_kappa": 0.9528779894608838,
+          "gate_agreement_with_equal": 0.967741935483871,
+          "gate_kappa": 0.9233516483516484,
+          "n_routes_changing_band": 5,
+          "spearman_cdi_with_equal": 0.9955279716236931,
+          "w_opportunity": 0.7,
+          "w_population": 0.3
+        },
+        {
+          "band_agreement_with_equal": 1.0,
+          "band_kappa": 1.0,
+          "gate_agreement_with_equal": 1.0,
+          "gate_kappa": 1.0,
+          "n_routes_changing_band": 0,
+          "spearman_cdi_with_equal": 0.998864276363148,
+          "w_opportunity": 0.6,
+          "w_population": 0.4
+        },
+        {
+          "band_agreement_with_equal": 1.0,
+          "band_kappa": 1.0,
+          "gate_agreement_with_equal": 1.0,
+          "gate_kappa": 1.0,
+          "n_routes_changing_band": 0,
+          "spearman_cdi_with_equal": 0.9999999999999999,
+          "w_opportunity": 0.5,
+          "w_population": 0.5
+        },
+        {
+          "band_agreement_with_equal": 0.9946236559139785,
+          "band_kappa": 0.9906466861108317,
+          "gate_agreement_with_equal": 1.0,
+          "gate_kappa": 1.0,
+          "n_routes_changing_band": 1,
+          "spearman_cdi_with_equal": 0.9993715289562904,
+          "w_opportunity": 0.4,
+          "w_population": 0.6
+        },
+        {
+          "band_agreement_with_equal": 0.9731182795698925,
+          "band_kappa": 0.9535650089874177,
+          "gate_agreement_with_equal": 1.0,
+          "gate_kappa": 1.0,
+          "n_routes_changing_band": 5,
+          "spearman_cdi_with_equal": 0.9981798583422535,
+          "w_opportunity": 0.3,
+          "w_population": 0.7
+        },
+        {
+          "band_agreement_with_equal": 0.9032258064516129,
+          "band_kappa": 0.8363476390654022,
+          "gate_agreement_with_equal": 0.989247311827957,
+          "gate_kappa": 0.9744505494505494,
+          "n_routes_changing_band": 18,
+          "spearman_cdi_with_equal": 0.9966599654620659,
+          "w_opportunity": 0.2,
+          "w_population": 0.8
+        },
+        {
+          "band_agreement_with_equal": 0.8978494623655914,
+          "band_kappa": 0.8272896100087967,
+          "gate_agreement_with_equal": 0.978494623655914,
+          "gate_kappa": 0.948901098901099,
+          "n_routes_changing_band": 19,
+          "spearman_cdi_with_equal": 0.9945395750267613,
+          "w_opportunity": 0.1,
+          "w_population": 0.9
+        }
+      ]
+    },
+    "note": "w_population swept 0.1-0.9; agreement is with the plan's 0.5/0.5 composite; in-sample over the 186 routes"
+  },
   "weights_table": [
     {
       "cdi_gate_30th": 0.1569,
       "cdi_mean": 0.3265,
+      "identical_to_equal_by_construction": "",
       "scheme": "equal",
       "variant": "euclid",
       "w_opportunity": 0.5,
@@ -120,6 +457,7 @@
     {
       "cdi_gate_30th": 0.136,
       "cdi_mean": 0.2937,
+      "identical_to_equal_by_construction": "",
       "scheme": "entropy",
       "variant": "euclid",
       "w_opportunity": 0.6292,
@@ -128,6 +466,7 @@
     {
       "cdi_gate_30th": 0.1569,
       "cdi_mean": 0.3265,
+      "identical_to_equal_by_construction": "yes (2 criteria)",
       "scheme": "pca",
       "variant": "euclid",
       "w_opportunity": 0.5,
@@ -136,6 +475,7 @@
     {
       "cdi_gate_30th": 0.1414,
       "cdi_mean": 0.3013,
+      "identical_to_equal_by_construction": "",
       "scheme": "equal",
       "variant": "net",
       "w_opportunity": 0.5,
@@ -144,6 +484,7 @@
     {
       "cdi_gate_30th": 0.1188,
       "cdi_mean": 0.2671,
+      "identical_to_equal_by_construction": "",
       "scheme": "entropy",
       "variant": "net",
       "w_opportunity": 0.6342,
@@ -152,6 +493,7 @@
     {
       "cdi_gate_30th": 0.1414,
       "cdi_mean": 0.3013,
+      "identical_to_equal_by_construction": "yes (2 criteria)",
       "scheme": "pca",
       "variant": "net",
       "w_opportunity": 0.5,

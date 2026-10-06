@@ -1,0 +1,35 @@
+{
+  "as_of_date": "2026-03-14",
+  "as_of_definition": "max(Permit Issue Date, Permit Valid From) over the whole register",
+  "caveat": "A valid permit is not proof that the bus operates.",
+  "kashmir_offices": [
+    "SRINAGAR RTO",
+    "BARAMULLA ARTO",
+    "ANANTNAG ARTO",
+    "PULWAMA ARTO",
+    "GANDERBAL ARTO",
+    "KULGAM ARTO",
+    "KUPWARA ARTO",
+    "BUDGAM ARTO",
+    "BANDIPORA ARTO",
+    "SHOPIAN ARTO"
+  ],
+  "n_distinct_vehicles": 15023,
+  "n_kashmir_offices_present": 10,
+  "n_permit_rows": 15231,
+  "placeholder_end_date_before": "1990-01-01",
+  "privacy": "counts only; no registration number, name or row-level record is written; no cell suppressed",
+  "route_recorded_definition": {
+    "both_ends": "From Location and To Location are both non-blank",
+    "either_end": "From Location or To Location is non-blank on the permit row"
+  },
+  "source_file_name": "Mini Buses Routes in Srinagar.xlsx",
+  "source_file_sha256": "2258b3066d2cb1c81c0bc1522d66127b6d555f2e87854d6e38cc044c0041d718",
+  "status_definitions": {
+    "expired": "1990-01-01 <= Permit Upto < as_of_date",
+    "no_end_date": "Permit Upto missing",
+    "placeholder": "Permit Upto before 1990-01-01 (dummy end date)",
+    "valid": "Permit Upto >= as_of_date"
+  },
+  "vehicle_rule": "n_vehicles counts distinct registration numbers within the division scope (Kashmir Division offices / all other offices); a vehicle with several permit rows in a scope takes the attributes of its latest permit there; a vehicle with permits in both scopes is counted once in each"
+}

@@ -2,31 +2,27 @@
 MODULE:      a16_peer_regression
 SCRIPT:      a16_peer_regression.py
 STAGE:       Stage 3
-STARTED:     2026-09-30T14:45:37.751040+00:00
-PYTHON:      E:\kash-paper\.venv\Scripts\python.exe (3.14.2)
-COMMAND:     E:\kash-paper\.venv\Scripts\python.exe E:\kash-paper\analysis\a16_peer_regression.py
+COMMAND:     python analysis/a16_peer_regression.py
 ================================================================================
 
-20:15:38  INFO    a16 \u2502 peer cities: 37 total, 36 in fit, 1 excluded (Srinagar)
-20:15:38  INFO    a16 \u2502 Kashmir: pop 6584762, area 15913.7 km2, density 413.8 /km2, planned fleet 1011
-20:15:39  INFO    a16 \u2502 M1_pop_only                      n=36 R2=0.096  const=-0.5703(p=0.161)  log10_pop=+0.1206(p=0.066)
-20:15:39  INFO    a16 \u2502 M2_pop_density                   n=36 R2=0.101  const=-0.5837(p=0.158)  log10_pop=+0.1274(p=0.063)  density=-3e-06(p=0.673)
-20:15:39  INFO    a16 \u2502 M2b_pop_density_excl_multicity   n=33 R2=0.217  const=-0.9518(p=0.021)  log10_pop=+0.1798(p=0.008)  density=+0(p=0.992)
-20:15:39  INFO    a16 \u2502 M3_log_pop_only                  n=36 R2=0.100  const=-2.772(p=0.006)  log10_pop=+0.2956(p=0.060)
-20:15:39  INFO    a16 \u2502 M3d_log_pop_density              n=36 R2=0.107  const=-2.809(p=0.006)  log10_pop=+0.3138(p=0.056)  density=-8e-06(p=0.633)
-20:15:39  INFO    a16 \u2502 peer buses/1000: min 0.021  median 0.107  max 0.732  (density range 2809-21833 /km2)
-20:15:39  INFO    a16 \u2502 Kashmir density 414 /km2 is BELOW the fitted minimum 2809
-20:15:39  INFO    a16 \u2502   total_vs_M1                  actual 0.153/1000  pred 0.252  -> inside_prediction_interval  (peer 61th pctile)
-20:15:39  INFO    a16 \u2502   total_vs_M2_extrapolated     actual 0.153/1000  pred 0.283  -> inside_prediction_interval  (peer 61th pctile)
-20:15:39  INFO    a16 \u2502   total_vs_M3_preferred        actual 0.153/1000  pred 0.175  -> inside_prediction_interval  (peer 61th pctile)
-20:15:39  INFO    a16 \u2502   served_engine_vs_M1          actual 0.436/1000  pred 0.197  -> inside_prediction_interval  (peer 86th pctile)
-20:15:39  INFO    a16 \u2502   served_engine_vs_M3_preferred actual 0.436/1000  pred 0.129  -> inside_prediction_interval  (peer 86th pctile)
-20:15:39  INFO    a16 \u2502   served_a11_vs_M1             actual 0.635/1000  pred 0.178  -> above_prediction_interval  (peer 97th pctile)
-20:15:39  INFO    a16 \u2502   served_a11_vs_M3_preferred   actual 0.635/1000  pred 0.115  -> inside_prediction_interval  (peer 97th pctile)
+INFO    a16 \u2502 peer cities: 37 total, 36 in fit, 1 excluded (Srinagar)
+INFO    a16 \u2502 Kashmir: pop 6584762, area 15913.7 km2, density 413.8 /km2, planned fleet 1011
+INFO    a16 \u2502 M1_pop_only                      n=36 R2=0.096  const=-0.5703(p=0.161)  log10_pop=+0.1206(p=0.066)
+INFO    a16 \u2502 M2_pop_density                   n=36 R2=0.101  const=-0.5837(p=0.158)  log10_pop=+0.1274(p=0.063)  density=-3e-06(p=0.673)
+INFO    a16 \u2502 M2b_pop_density_excl_multicity   n=33 R2=0.217  const=-0.9518(p=0.021)  log10_pop=+0.1798(p=0.008)  density=+0(p=0.992)
+INFO    a16 \u2502 M3_log_pop_only                  n=36 R2=0.100  const=-2.772(p=0.006)  log10_pop=+0.2956(p=0.060)
+INFO    a16 \u2502 M3d_log_pop_density              n=36 R2=0.107  const=-2.809(p=0.006)  log10_pop=+0.3138(p=0.056)  density=-8e-06(p=0.633)
+INFO    a16 \u2502 peer buses/1000: min 0.021  median 0.107  max 0.732  (density range 2809-21833 /km2)
+INFO    a16 \u2502 Kashmir density 414 /km2 is BELOW the fitted minimum 2809
+INFO    a16 \u2502   total_vs_M1                  actual 0.153/1000  pred 0.252  -> inside_prediction_interval  (peer 61th pctile)
+INFO    a16 \u2502   total_vs_M2_extrapolated     actual 0.153/1000  pred 0.283  -> inside_prediction_interval  (peer 61th pctile)
+INFO    a16 \u2502   total_vs_M3_preferred        actual 0.153/1000  pred 0.175  -> inside_prediction_interval  (peer 61th pctile)
+INFO    a16 \u2502   served_euclid_vs_M1          actual 0.432/1000  pred 0.198  -> inside_prediction_interval  (peer 83th pctile)
+INFO    a16 \u2502   served_euclid_vs_M3_preferred actual 0.432/1000  pred 0.129  -> inside_prediction_interval  (peer 83th pctile)
+INFO    a16 \u2502   served_a11_vs_M1             actual 0.635/1000  pred 0.178  -> above_prediction_interval  (peer 97th pctile)
+INFO    a16 \u2502   served_a11_vs_M3_preferred   actual 0.635/1000  pred 0.115  -> inside_prediction_interval  (peer 97th pctile)
 
 ================================================================================
-FINISHED:    2026-09-30T14:45:39.673681+00:00
-DURATION:    1.92s
 EXIT CODE:   0
 STATUS:      PASSED
 VERIFIED:    2/2 outputs

@@ -2,18 +2,28 @@
 MODULE:      a14_cost_emissions
 SCRIPT:      a14_cost_emissions.py
 STAGE:       Stage 3
-STARTED:     2026-09-30T14:43:44.908983+00:00
-PYTHON:      E:\kash-paper\.venv\Scripts\python.exe (3.14.2)
-COMMAND:     E:\kash-paper\.venv\Scripts\python.exe E:\kash-paper\analysis\a14_cost_emissions.py
+COMMAND:     python analysis/a14_cost_emissions.py
 ================================================================================
 
-20:13:45  INFO    a14 \u2502 PLAN: 120M veh-km/yr; cost INR 642–1054 cr; CO2 65.2–102.9 kt; per covered resident INR 4033–6615
-20:13:45  INFO    a14 \u2502 OBSERVED: 38M veh-km/yr; cost INR 206–338 cr; CO2 20.9–32.9 kt; per covered resident INR 1295–2124
-20:13:45  INFO    a14 \u2502 engine e-bus factor 30 g/km vs mid-range 874 g/km (x29)
+INFO    a14 \u2502 PLAN: 120M veh-km/yr; cost INR 513–859 cr; CO2 54.5–82.2 kt; per covered resident INR 3218–5393
+INFO    a14 \u2502    mpv_priced_as_hpv      cost INR 642–1054 cr
+INFO    a14 \u2502    mpv_midpoint_central   cost INR 513–859 cr
+INFO    a14 \u2502    mpv_priced_as_lpv      cost INR 383–664 cr
+INFO    a14 \u2502 PLAN_TRIPS_X_LENGTH: 115M veh-km/yr; cost INR 493–825 cr; CO2 52.5–79.2 kt; per covered resident INR 3095–5181
+INFO    a14 \u2502    mpv_priced_as_hpv      cost INR 617–1011 cr
+INFO    a14 \u2502    mpv_midpoint_central   cost INR 493–825 cr
+INFO    a14 \u2502    mpv_priced_as_lpv      cost INR 369–639 cr
+INFO    a14 \u2502 OBSERVED: 38M veh-km/yr; cost INR 165–276 cr; CO2 17.5–26.3 kt; per covered resident INR 1035–1733
+INFO    a14 \u2502    mpv_priced_as_hpv      cost INR 206–338 cr
+INFO    a14 \u2502    mpv_midpoint_central   cost INR 165–276 cr
+INFO    a14 \u2502    mpv_priced_as_lpv      cost INR 123–214 cr
+INFO    a14 \u2502 SRTU_MORTH: 81M veh-km/yr; cost INR 336–564 cr; CO2 35.8–54.1 kt; per covered resident INR 2110–3544
+INFO    a14 \u2502    mpv_priced_as_hpv      cost INR 426–700 cr
+INFO    a14 \u2502    mpv_midpoint_central   cost INR 336–564 cr
+INFO    a14 \u2502    mpv_priced_as_lpv      cost INR 246–429 cr
+INFO    a14 \u2502 engine e-bus factor 30 g/km vs mid-range 787 g/km (x26.2; range x22–31)
 
 ================================================================================
-FINISHED:    2026-09-30T14:43:45.536871+00:00
-DURATION:    0.63s
 EXIT CODE:   0
 STATUS:      PASSED
 VERIFIED:    2/2 outputs

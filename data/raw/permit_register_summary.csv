@@ -1,0 +1,663 @@
+block,in_kashmir_division,office,vehicle_class,vehicle_category,validity_status,validity_years_rounded,route_recorded,n_permit_rows,n_vehicles
+route_recorded_both_ends,no,ALL,(blank),ALL,expired,ALL,no,13,13
+route_recorded_both_ends,no,ALL,Bus,ALL,expired,ALL,no,2098,2068
+route_recorded_both_ends,no,ALL,Bus,ALL,expired,ALL,yes,3256,3217
+route_recorded_both_ends,no,ALL,Bus,ALL,placeholder,ALL,no,124,122
+route_recorded_both_ends,no,ALL,Bus,ALL,placeholder,ALL,yes,210,206
+route_recorded_both_ends,no,ALL,Bus,ALL,valid,ALL,no,679,675
+route_recorded_both_ends,no,ALL,Bus,ALL,valid,ALL,yes,1060,1059
+route_recorded_both_ends,no,ALL,Educational Institution Bus,ALL,expired,ALL,no,39,39
+route_recorded_both_ends,no,ALL,Educational Institution Bus,ALL,expired,ALL,yes,1,1
+route_recorded_both_ends,no,ALL,Educational Institution Bus,ALL,placeholder,ALL,no,12,12
+route_recorded_both_ends,no,ALL,Educational Institution Bus,ALL,valid,ALL,no,21,21
+route_recorded_both_ends,no,ALL,Educational Institution Bus,ALL,valid,ALL,yes,1,1
+route_recorded_both_ends,no,ALL,M-Cycle/Scooter,ALL,expired,ALL,no,15,15
+route_recorded_both_ends,no,ALL,Maxi Cab,ALL,expired,ALL,no,181,180
+route_recorded_both_ends,no,ALL,Maxi Cab,ALL,expired,ALL,yes,684,684
+route_recorded_both_ends,no,ALL,Maxi Cab,ALL,placeholder,ALL,no,5,5
+route_recorded_both_ends,no,ALL,Maxi Cab,ALL,placeholder,ALL,yes,552,552
+route_recorded_both_ends,no,ALL,Maxi Cab,ALL,valid,ALL,no,8,8
+route_recorded_both_ends,no,ALL,Maxi Cab,ALL,valid,ALL,yes,581,581
+route_recorded_both_ends,no,ALL,Motor Cab,ALL,expired,ALL,no,386,385
+route_recorded_both_ends,no,ALL,Motor Cab,ALL,expired,ALL,yes,1098,1098
+route_recorded_both_ends,no,ALL,Motor Cab,ALL,placeholder,ALL,yes,29,29
+route_recorded_both_ends,no,ALL,Motor Cab,ALL,valid,ALL,no,1,1
+route_recorded_both_ends,no,ALL,Motor Cab,ALL,valid,ALL,yes,201,201
+route_recorded_both_ends,no,ALL,Motor Car,ALL,expired,ALL,no,7,7
+route_recorded_both_ends,no,ALL,Omni Bus,ALL,expired,ALL,no,6,5
+route_recorded_both_ends,no,ALL,Omni Bus,ALL,expired,ALL,yes,251,251
+route_recorded_both_ends,no,ALL,Omni Bus,ALL,placeholder,ALL,yes,67,67
+route_recorded_both_ends,no,ALL,Omni Bus,ALL,valid,ALL,no,1,1
+route_recorded_both_ends,no,ALL,Omni Bus,ALL,valid,ALL,yes,173,173
+route_recorded_both_ends,no,ALL,Private Service Vehicle,ALL,expired,ALL,no,4,4
+route_recorded_both_ends,no,ALL,Private Service Vehicle,ALL,expired,ALL,yes,1,1
+route_recorded_both_ends,no,ALL,Three Wheeler (Passenger),ALL,expired,ALL,no,123,123
+route_recorded_both_ends,no,ALL,Three Wheeler (Passenger),ALL,expired,ALL,yes,284,284
+route_recorded_both_ends,no,ALL,Three Wheeler (Passenger),ALL,placeholder,ALL,no,11,11
+route_recorded_both_ends,no,ALL,Three Wheeler (Passenger),ALL,placeholder,ALL,yes,4,3
+route_recorded_both_ends,no,ALL,Three Wheeler (Passenger),ALL,valid,ALL,no,5,5
+route_recorded_both_ends,no,ALL,Three Wheeler (Passenger),ALL,valid,ALL,yes,36,36
+route_recorded_both_ends,no,ALL,e-Rickshaw(P),ALL,expired,ALL,no,1,1
+route_recorded_both_ends,no,ALL,e-Rickshaw(P),ALL,valid,ALL,yes,1,1
+route_recorded_both_ends,yes,ALL,(blank),ALL,expired,ALL,no,12,12
+route_recorded_both_ends,yes,ALL,(blank),ALL,valid,ALL,no,1,1
+route_recorded_both_ends,yes,ALL,Bus,ALL,expired,ALL,no,1217,1197
+route_recorded_both_ends,yes,ALL,Bus,ALL,expired,ALL,yes,382,378
+route_recorded_both_ends,yes,ALL,Bus,ALL,placeholder,ALL,no,53,52
+route_recorded_both_ends,yes,ALL,Bus,ALL,placeholder,ALL,yes,27,25
+route_recorded_both_ends,yes,ALL,Bus,ALL,valid,ALL,no,567,567
+route_recorded_both_ends,yes,ALL,Bus,ALL,valid,ALL,yes,82,82
+route_recorded_both_ends,yes,ALL,Educational Institution Bus,ALL,expired,ALL,no,14,14
+route_recorded_both_ends,yes,ALL,Educational Institution Bus,ALL,placeholder,ALL,no,2,2
+route_recorded_both_ends,yes,ALL,Educational Institution Bus,ALL,valid,ALL,no,7,7
+route_recorded_both_ends,yes,ALL,Luxury Cab,ALL,expired,ALL,no,1,1
+route_recorded_both_ends,yes,ALL,Maxi Cab,ALL,expired,ALL,no,17,17
+route_recorded_both_ends,yes,ALL,Maxi Cab,ALL,expired,ALL,yes,2,2
+route_recorded_both_ends,yes,ALL,Maxi Cab,ALL,placeholder,ALL,no,175,175
+route_recorded_both_ends,yes,ALL,Maxi Cab,ALL,placeholder,ALL,yes,32,32
+route_recorded_both_ends,yes,ALL,Maxi Cab,ALL,valid,ALL,no,221,221
+route_recorded_both_ends,yes,ALL,Maxi Cab,ALL,valid,ALL,yes,14,14
+route_recorded_both_ends,yes,ALL,Motor Cab,ALL,expired,ALL,no,1,1
+route_recorded_both_ends,yes,ALL,Motor Cab,ALL,placeholder,ALL,no,1,1
+route_recorded_both_ends,yes,ALL,Motor Cab,ALL,valid,ALL,no,6,6
+route_recorded_both_ends,yes,ALL,Omni Bus,ALL,expired,ALL,no,67,63
+route_recorded_both_ends,yes,ALL,Omni Bus,ALL,expired,ALL,yes,42,37
+route_recorded_both_ends,yes,ALL,Omni Bus,ALL,placeholder,ALL,no,3,3
+route_recorded_both_ends,yes,ALL,Omni Bus,ALL,placeholder,ALL,yes,1,0
+route_recorded_both_ends,yes,ALL,Omni Bus,ALL,valid,ALL,no,26,26
+route_recorded_both_ends,yes,ALL,Omni Bus,ALL,valid,ALL,yes,4,4
+route_recorded_both_ends,yes,ALL,Private Service Vehicle,ALL,expired,ALL,no,15,15
+route_recorded_both_ends,yes,ALL,Private Service Vehicle,ALL,placeholder,ALL,no,1,1
+route_recorded_both_ends,yes,ALL,Private Service Vehicle,ALL,valid,ALL,no,3,3
+route_recorded_both_ends,yes,ALL,School Bus,ALL,expired,ALL,no,1,1
+route_recorded_both_ends,yes,ALL,Three Wheeler (Passenger),ALL,placeholder,ALL,no,2,2
+route_recorded_both_ends,yes,ALL,Three Wheeler (Passenger),ALL,valid,ALL,no,2,2
+route_recorded_either_end,no,ALL,(blank),ALL,expired,ALL,no,13,13
+route_recorded_either_end,no,ALL,Bus,ALL,expired,ALL,no,2098,2068
+route_recorded_either_end,no,ALL,Bus,ALL,expired,ALL,yes,3256,3217
+route_recorded_either_end,no,ALL,Bus,ALL,placeholder,ALL,no,124,122
+route_recorded_either_end,no,ALL,Bus,ALL,placeholder,ALL,yes,210,206
+route_recorded_either_end,no,ALL,Bus,ALL,valid,ALL,no,679,675
+route_recorded_either_end,no,ALL,Bus,ALL,valid,ALL,yes,1060,1059
+route_recorded_either_end,no,ALL,Educational Institution Bus,ALL,expired,ALL,no,39,39
+route_recorded_either_end,no,ALL,Educational Institution Bus,ALL,expired,ALL,yes,1,1
+route_recorded_either_end,no,ALL,Educational Institution Bus,ALL,placeholder,ALL,no,12,12
+route_recorded_either_end,no,ALL,Educational Institution Bus,ALL,valid,ALL,no,21,21
+route_recorded_either_end,no,ALL,Educational Institution Bus,ALL,valid,ALL,yes,1,1
+route_recorded_either_end,no,ALL,M-Cycle/Scooter,ALL,expired,ALL,no,15,15
+route_recorded_either_end,no,ALL,Maxi Cab,ALL,expired,ALL,no,181,180
+route_recorded_either_end,no,ALL,Maxi Cab,ALL,expired,ALL,yes,684,684
+route_recorded_either_end,no,ALL,Maxi Cab,ALL,placeholder,ALL,no,5,5
+route_recorded_either_end,no,ALL,Maxi Cab,ALL,placeholder,ALL,yes,552,552
+route_recorded_either_end,no,ALL,Maxi Cab,ALL,valid,ALL,no,8,8
+route_recorded_either_end,no,ALL,Maxi Cab,ALL,valid,ALL,yes,581,581
+route_recorded_either_end,no,ALL,Motor Cab,ALL,expired,ALL,no,386,385
+route_recorded_either_end,no,ALL,Motor Cab,ALL,expired,ALL,yes,1098,1098
+route_recorded_either_end,no,ALL,Motor Cab,ALL,placeholder,ALL,yes,29,29
+route_recorded_either_end,no,ALL,Motor Cab,ALL,valid,ALL,no,1,1
+route_recorded_either_end,no,ALL,Motor Cab,ALL,valid,ALL,yes,201,201
+route_recorded_either_end,no,ALL,Motor Car,ALL,expired,ALL,no,7,7
+route_recorded_either_end,no,ALL,Omni Bus,ALL,expired,ALL,no,6,5
+route_recorded_either_end,no,ALL,Omni Bus,ALL,expired,ALL,yes,251,251
+route_recorded_either_end,no,ALL,Omni Bus,ALL,placeholder,ALL,yes,67,67
+route_recorded_either_end,no,ALL,Omni Bus,ALL,valid,ALL,no,1,1
+route_recorded_either_end,no,ALL,Omni Bus,ALL,valid,ALL,yes,173,173
+route_recorded_either_end,no,ALL,Private Service Vehicle,ALL,expired,ALL,no,4,4
+route_recorded_either_end,no,ALL,Private Service Vehicle,ALL,expired,ALL,yes,1,1
+route_recorded_either_end,no,ALL,Three Wheeler (Passenger),ALL,expired,ALL,no,123,123
+route_recorded_either_end,no,ALL,Three Wheeler (Passenger),ALL,expired,ALL,yes,284,284
+route_recorded_either_end,no,ALL,Three Wheeler (Passenger),ALL,placeholder,ALL,no,11,11
+route_recorded_either_end,no,ALL,Three Wheeler (Passenger),ALL,placeholder,ALL,yes,4,3
+route_recorded_either_end,no,ALL,Three Wheeler (Passenger),ALL,valid,ALL,no,5,5
+route_recorded_either_end,no,ALL,Three Wheeler (Passenger),ALL,valid,ALL,yes,36,36
+route_recorded_either_end,no,ALL,e-Rickshaw(P),ALL,expired,ALL,no,1,1
+route_recorded_either_end,no,ALL,e-Rickshaw(P),ALL,valid,ALL,yes,1,1
+route_recorded_either_end,yes,ALL,(blank),ALL,expired,ALL,no,12,12
+route_recorded_either_end,yes,ALL,(blank),ALL,valid,ALL,no,1,1
+route_recorded_either_end,yes,ALL,Bus,ALL,expired,ALL,no,1103,1086
+route_recorded_either_end,yes,ALL,Bus,ALL,expired,ALL,yes,496,489
+route_recorded_either_end,yes,ALL,Bus,ALL,placeholder,ALL,no,53,52
+route_recorded_either_end,yes,ALL,Bus,ALL,placeholder,ALL,yes,27,25
+route_recorded_either_end,yes,ALL,Bus,ALL,valid,ALL,no,564,564
+route_recorded_either_end,yes,ALL,Bus,ALL,valid,ALL,yes,85,85
+route_recorded_either_end,yes,ALL,Educational Institution Bus,ALL,expired,ALL,no,14,14
+route_recorded_either_end,yes,ALL,Educational Institution Bus,ALL,placeholder,ALL,no,2,2
+route_recorded_either_end,yes,ALL,Educational Institution Bus,ALL,valid,ALL,no,7,7
+route_recorded_either_end,yes,ALL,Luxury Cab,ALL,expired,ALL,no,1,1
+route_recorded_either_end,yes,ALL,Maxi Cab,ALL,expired,ALL,no,16,16
+route_recorded_either_end,yes,ALL,Maxi Cab,ALL,expired,ALL,yes,3,3
+route_recorded_either_end,yes,ALL,Maxi Cab,ALL,placeholder,ALL,no,175,175
+route_recorded_either_end,yes,ALL,Maxi Cab,ALL,placeholder,ALL,yes,32,32
+route_recorded_either_end,yes,ALL,Maxi Cab,ALL,valid,ALL,no,221,221
+route_recorded_either_end,yes,ALL,Maxi Cab,ALL,valid,ALL,yes,14,14
+route_recorded_either_end,yes,ALL,Motor Cab,ALL,expired,ALL,no,1,1
+route_recorded_either_end,yes,ALL,Motor Cab,ALL,placeholder,ALL,no,1,1
+route_recorded_either_end,yes,ALL,Motor Cab,ALL,valid,ALL,no,6,6
+route_recorded_either_end,yes,ALL,Omni Bus,ALL,expired,ALL,no,59,59
+route_recorded_either_end,yes,ALL,Omni Bus,ALL,expired,ALL,yes,50,41
+route_recorded_either_end,yes,ALL,Omni Bus,ALL,placeholder,ALL,no,3,3
+route_recorded_either_end,yes,ALL,Omni Bus,ALL,placeholder,ALL,yes,1,0
+route_recorded_either_end,yes,ALL,Omni Bus,ALL,valid,ALL,no,26,26
+route_recorded_either_end,yes,ALL,Omni Bus,ALL,valid,ALL,yes,4,4
+route_recorded_either_end,yes,ALL,Private Service Vehicle,ALL,expired,ALL,no,15,15
+route_recorded_either_end,yes,ALL,Private Service Vehicle,ALL,placeholder,ALL,no,1,1
+route_recorded_either_end,yes,ALL,Private Service Vehicle,ALL,valid,ALL,no,3,3
+route_recorded_either_end,yes,ALL,School Bus,ALL,expired,ALL,no,1,1
+route_recorded_either_end,yes,ALL,Three Wheeler (Passenger),ALL,placeholder,ALL,no,2,2
+route_recorded_either_end,yes,ALL,Three Wheeler (Passenger),ALL,valid,ALL,no,2,2
+stock,no,(blank),(blank),(blank),expired,ALL,ALL,2,2
+stock,no,DODA ARTO,Bus,HPV,expired,ALL,ALL,3,3
+stock,no,DODA ARTO,Bus,HPV,placeholder,ALL,ALL,1,1
+stock,no,DODA ARTO,Bus,HPV,valid,ALL,ALL,1,1
+stock,no,DODA ARTO,Bus,LPV,expired,ALL,ALL,141,140
+stock,no,DODA ARTO,Bus,LPV,placeholder,ALL,ALL,11,11
+stock,no,DODA ARTO,Bus,LPV,valid,ALL,ALL,50,50
+stock,no,DODA ARTO,Bus,MPV,expired,ALL,ALL,45,45
+stock,no,DODA ARTO,Bus,MPV,placeholder,ALL,ALL,6,6
+stock,no,DODA ARTO,Bus,MPV,valid,ALL,ALL,29,29
+stock,no,DODA ARTO,Educational Institution Bus,MPV,expired,ALL,ALL,5,5
+stock,no,DODA ARTO,Maxi Cab,LPV,expired,ALL,ALL,2,2
+stock,no,DODA ARTO,Maxi Cab,LPV,placeholder,ALL,ALL,1,1
+stock,no,DODA ARTO,Maxi Cab,LPV,valid,ALL,ALL,12,12
+stock,no,DODA ARTO,Motor Cab,LPV,expired,ALL,ALL,26,26
+stock,no,DODA ARTO,Motor Cab,LPV,valid,ALL,ALL,2,2
+stock,no,DODA ARTO,Omni Bus,LPV,expired,ALL,ALL,5,5
+stock,no,DODA ARTO,Omni Bus,LPV,placeholder,ALL,ALL,9,9
+stock,no,DODA ARTO,Omni Bus,LPV,valid,ALL,ALL,18,18
+stock,no,DODA ARTO,Omni Bus,MPV,expired,ALL,ALL,1,1
+stock,no,JAMMU RTO,(blank),(blank),expired,ALL,ALL,10,10
+stock,no,JAMMU RTO,Bus,HPV,expired,ALL,ALL,1466,1458
+stock,no,JAMMU RTO,Bus,HPV,placeholder,ALL,ALL,97,95
+stock,no,JAMMU RTO,Bus,HPV,valid,ALL,ALL,591,587
+stock,no,JAMMU RTO,Bus,LPV,expired,ALL,ALL,1703,1695
+stock,no,JAMMU RTO,Bus,LPV,placeholder,ALL,ALL,66,65
+stock,no,JAMMU RTO,Bus,LPV,valid,ALL,ALL,333,333
+stock,no,JAMMU RTO,Bus,MPV,expired,ALL,ALL,86,85
+stock,no,JAMMU RTO,Bus,MPV,placeholder,ALL,ALL,19,19
+stock,no,JAMMU RTO,Bus,MPV,valid,ALL,ALL,36,36
+stock,no,JAMMU RTO,Educational Institution Bus,HPV,expired,ALL,ALL,5,5
+stock,no,JAMMU RTO,Educational Institution Bus,HPV,valid,ALL,ALL,2,2
+stock,no,JAMMU RTO,Educational Institution Bus,LPV,expired,ALL,ALL,7,7
+stock,no,JAMMU RTO,Educational Institution Bus,LPV,placeholder,ALL,ALL,5,5
+stock,no,JAMMU RTO,Educational Institution Bus,LPV,valid,ALL,ALL,4,4
+stock,no,JAMMU RTO,Educational Institution Bus,MPV,expired,ALL,ALL,16,16
+stock,no,JAMMU RTO,Educational Institution Bus,MPV,valid,ALL,ALL,7,7
+stock,no,JAMMU RTO,M-Cycle/Scooter,2WN,expired,ALL,ALL,2,2
+stock,no,JAMMU RTO,Maxi Cab,LPV,expired,ALL,ALL,71,71
+stock,no,JAMMU RTO,Maxi Cab,LPV,placeholder,ALL,ALL,15,15
+stock,no,JAMMU RTO,Maxi Cab,LPV,valid,ALL,ALL,32,32
+stock,no,JAMMU RTO,Motor Cab,LPV,expired,ALL,ALL,591,591
+stock,no,JAMMU RTO,Motor Cab,LPV,placeholder,ALL,ALL,16,16
+stock,no,JAMMU RTO,Motor Cab,LPV,valid,ALL,ALL,65,65
+stock,no,JAMMU RTO,Motor Car,LMV,expired,ALL,ALL,4,4
+stock,no,JAMMU RTO,Omni Bus,LPV,expired,ALL,ALL,2,2
+stock,no,JAMMU RTO,Omni Bus,LPV,placeholder,ALL,ALL,1,1
+stock,no,JAMMU RTO,Omni Bus,LPV,valid,ALL,ALL,1,1
+stock,no,JAMMU RTO,Private Service Vehicle,LPV,expired,ALL,ALL,1,1
+stock,no,JAMMU RTO,Three Wheeler (Passenger),3WT,expired,ALL,ALL,97,97
+stock,no,JAMMU RTO,Three Wheeler (Passenger),3WT,placeholder,ALL,ALL,2,1
+stock,no,JAMMU RTO,Three Wheeler (Passenger),3WT,valid,ALL,ALL,8,8
+stock,no,KATHUA RTO,Bus,HPV,expired,ALL,ALL,49,49
+stock,no,KATHUA RTO,Bus,HPV,placeholder,ALL,ALL,2,2
+stock,no,KATHUA RTO,Bus,HPV,valid,ALL,ALL,17,17
+stock,no,KATHUA RTO,Bus,LPV,expired,ALL,ALL,323,321
+stock,no,KATHUA RTO,Bus,LPV,placeholder,ALL,ALL,18,16
+stock,no,KATHUA RTO,Bus,LPV,valid,ALL,ALL,65,65
+stock,no,KATHUA RTO,Bus,MPV,expired,ALL,ALL,53,53
+stock,no,KATHUA RTO,Bus,MPV,placeholder,ALL,ALL,2,2
+stock,no,KATHUA RTO,Bus,MPV,valid,ALL,ALL,23,23
+stock,no,KATHUA RTO,M-Cycle/Scooter,2WN,expired,ALL,ALL,6,6
+stock,no,KATHUA RTO,Maxi Cab,LPV,expired,ALL,ALL,224,224
+stock,no,KATHUA RTO,Maxi Cab,LPV,placeholder,ALL,ALL,32,32
+stock,no,KATHUA RTO,Maxi Cab,LPV,valid,ALL,ALL,54,54
+stock,no,KATHUA RTO,Motor Cab,LPV,expired,ALL,ALL,11,11
+stock,no,KATHUA RTO,Motor Cab,LPV,placeholder,ALL,ALL,1,1
+stock,no,KATHUA RTO,Motor Cab,LPV,valid,ALL,ALL,5,5
+stock,no,KATHUA RTO,Motor Car,LMV,expired,ALL,ALL,1,1
+stock,no,KATHUA RTO,Three Wheeler (Passenger),3WT,expired,ALL,ALL,115,115
+stock,no,KATHUA RTO,Three Wheeler (Passenger),3WT,placeholder,ALL,ALL,1,1
+stock,no,KATHUA RTO,Three Wheeler (Passenger),3WT,valid,ALL,ALL,11,11
+stock,no,KISHTWAR ARTO,Bus,HPV,expired,ALL,ALL,2,2
+stock,no,KISHTWAR ARTO,Bus,HPV,valid,ALL,ALL,1,1
+stock,no,KISHTWAR ARTO,Bus,LPV,expired,ALL,ALL,36,36
+stock,no,KISHTWAR ARTO,Bus,LPV,placeholder,ALL,ALL,3,3
+stock,no,KISHTWAR ARTO,Bus,LPV,valid,ALL,ALL,14,14
+stock,no,KISHTWAR ARTO,Bus,MPV,expired,ALL,ALL,27,27
+stock,no,KISHTWAR ARTO,Bus,MPV,placeholder,ALL,ALL,3,3
+stock,no,KISHTWAR ARTO,Bus,MPV,valid,ALL,ALL,14,14
+stock,no,KISHTWAR ARTO,Educational Institution Bus,LPV,expired,ALL,ALL,1,1
+stock,no,KISHTWAR ARTO,Educational Institution Bus,MPV,expired,ALL,ALL,1,1
+stock,no,KISHTWAR ARTO,Maxi Cab,LPV,expired,ALL,ALL,64,64
+stock,no,KISHTWAR ARTO,Maxi Cab,LPV,placeholder,ALL,ALL,10,10
+stock,no,KISHTWAR ARTO,Maxi Cab,LPV,valid,ALL,ALL,27,27
+stock,no,KISHTWAR ARTO,Omni Bus,LPV,expired,ALL,ALL,4,4
+stock,no,KISHTWAR ARTO,Omni Bus,LPV,valid,ALL,ALL,1,1
+stock,no,KISHTWAR ARTO,Omni Bus,MPV,expired,ALL,ALL,2,2
+stock,no,KISHTWAR ARTO,Omni Bus,MPV,valid,ALL,ALL,2,2
+stock,no,POONCH ARTO,Bus,HPV,expired,ALL,ALL,2,2
+stock,no,POONCH ARTO,Bus,HPV,placeholder,ALL,ALL,1,1
+stock,no,POONCH ARTO,Bus,HPV,valid,ALL,ALL,1,1
+stock,no,POONCH ARTO,Bus,LPV,expired,ALL,ALL,74,74
+stock,no,POONCH ARTO,Bus,LPV,placeholder,ALL,ALL,12,12
+stock,no,POONCH ARTO,Bus,LPV,valid,ALL,ALL,32,32
+stock,no,POONCH ARTO,Bus,MPV,expired,ALL,ALL,19,19
+stock,no,POONCH ARTO,Bus,MPV,placeholder,ALL,ALL,11,11
+stock,no,POONCH ARTO,Bus,MPV,valid,ALL,ALL,13,13
+stock,no,POONCH ARTO,M-Cycle/Scooter,2WN,expired,ALL,ALL,1,1
+stock,no,POONCH ARTO,Maxi Cab,LPV,expired,ALL,ALL,35,35
+stock,no,POONCH ARTO,Maxi Cab,LPV,placeholder,ALL,ALL,161,161
+stock,no,POONCH ARTO,Maxi Cab,LPV,valid,ALL,ALL,219,219
+stock,no,POONCH ARTO,Motor Cab,LPV,expired,ALL,ALL,231,231
+stock,no,POONCH ARTO,Motor Cab,LPV,placeholder,ALL,ALL,9,9
+stock,no,POONCH ARTO,Motor Cab,LPV,valid,ALL,ALL,56,56
+stock,no,POONCH ARTO,Omni Bus,LPV,expired,ALL,ALL,3,3
+stock,no,POONCH ARTO,Omni Bus,MPV,expired,ALL,ALL,4,4
+stock,no,POONCH ARTO,Private Service Vehicle,LPV,expired,ALL,ALL,3,3
+stock,no,POONCH ARTO,Three Wheeler (Passenger),3WT,expired,ALL,ALL,9,9
+stock,no,POONCH ARTO,Three Wheeler (Passenger),3WT,placeholder,ALL,ALL,10,10
+stock,no,POONCH ARTO,Three Wheeler (Passenger),3WT,valid,ALL,ALL,3,3
+stock,no,POONCH ARTO,e-Rickshaw(P),3WT,valid,ALL,ALL,1,1
+stock,no,RAJOURI ARTO,Bus,HPV,expired,ALL,ALL,7,7
+stock,no,RAJOURI ARTO,Bus,HPV,valid,ALL,ALL,1,1
+stock,no,RAJOURI ARTO,Bus,LPV,expired,ALL,ALL,172,172
+stock,no,RAJOURI ARTO,Bus,LPV,placeholder,ALL,ALL,15,15
+stock,no,RAJOURI ARTO,Bus,LPV,valid,ALL,ALL,32,32
+stock,no,RAJOURI ARTO,Bus,MPV,expired,ALL,ALL,10,10
+stock,no,RAJOURI ARTO,Bus,MPV,placeholder,ALL,ALL,5,5
+stock,no,RAJOURI ARTO,Bus,MPV,valid,ALL,ALL,10,10
+stock,no,RAJOURI ARTO,Educational Institution Bus,HPV,placeholder,ALL,ALL,1,1
+stock,no,RAJOURI ARTO,Educational Institution Bus,LPV,placeholder,ALL,ALL,3,3
+stock,no,RAJOURI ARTO,Educational Institution Bus,MPV,placeholder,ALL,ALL,2,2
+stock,no,RAJOURI ARTO,Maxi Cab,LPV,expired,ALL,ALL,27,27
+stock,no,RAJOURI ARTO,Maxi Cab,LPV,placeholder,ALL,ALL,251,251
+stock,no,RAJOURI ARTO,Maxi Cab,LPV,valid,ALL,ALL,63,63
+stock,no,RAJOURI ARTO,Motor Cab,LPV,expired,ALL,ALL,358,358
+stock,no,RAJOURI ARTO,Motor Cab,LPV,placeholder,ALL,ALL,1,1
+stock,no,RAJOURI ARTO,Motor Cab,LPV,valid,ALL,ALL,38,38
+stock,no,RAJOURI ARTO,Motor Car,LMV,expired,ALL,ALL,1,1
+stock,no,RAJOURI ARTO,Omni Bus,LPV,expired,ALL,ALL,187,187
+stock,no,RAJOURI ARTO,Omni Bus,LPV,placeholder,ALL,ALL,21,21
+stock,no,RAJOURI ARTO,Omni Bus,LPV,valid,ALL,ALL,65,65
+stock,no,RAJOURI ARTO,Three Wheeler (Passenger),3WT,expired,ALL,ALL,146,146
+stock,no,RAJOURI ARTO,Three Wheeler (Passenger),3WT,placeholder,ALL,ALL,2,2
+stock,no,RAJOURI ARTO,Three Wheeler (Passenger),3WT,valid,ALL,ALL,17,17
+stock,no,RAMBAN ARTO,Bus,HPV,expired,ALL,ALL,1,1
+stock,no,RAMBAN ARTO,Bus,HPV,valid,ALL,ALL,1,1
+stock,no,RAMBAN ARTO,Bus,LPV,expired,ALL,ALL,19,18
+stock,no,RAMBAN ARTO,Bus,LPV,placeholder,ALL,ALL,11,11
+stock,no,RAMBAN ARTO,Bus,LPV,valid,ALL,ALL,20,20
+stock,no,RAMBAN ARTO,Bus,MPV,expired,ALL,ALL,31,31
+stock,no,RAMBAN ARTO,Bus,MPV,placeholder,ALL,ALL,5,5
+stock,no,RAMBAN ARTO,Bus,MPV,valid,ALL,ALL,18,18
+stock,no,RAMBAN ARTO,Educational Institution Bus,HPV,expired,ALL,ALL,1,1
+stock,no,RAMBAN ARTO,Educational Institution Bus,LPV,expired,ALL,ALL,2,2
+stock,no,RAMBAN ARTO,Educational Institution Bus,MPV,expired,ALL,ALL,1,1
+stock,no,RAMBAN ARTO,Educational Institution Bus,MPV,placeholder,ALL,ALL,1,1
+stock,no,RAMBAN ARTO,Educational Institution Bus,MPV,valid,ALL,ALL,1,1
+stock,no,RAMBAN ARTO,Maxi Cab,LPV,expired,ALL,ALL,91,91
+stock,no,RAMBAN ARTO,Maxi Cab,LPV,placeholder,ALL,ALL,51,51
+stock,no,RAMBAN ARTO,Maxi Cab,LPV,valid,ALL,ALL,37,37
+stock,no,RAMBAN ARTO,Motor Cab,LPV,expired,ALL,ALL,1,1
+stock,no,RAMBAN ARTO,Omni Bus,LPV,expired,ALL,ALL,25,25
+stock,no,RAMBAN ARTO,Omni Bus,LPV,placeholder,ALL,ALL,2,2
+stock,no,RAMBAN ARTO,Omni Bus,LPV,valid,ALL,ALL,8,8
+stock,no,RAMBAN ARTO,Three Wheeler (Passenger),3WT,expired,ALL,ALL,8,8
+stock,no,RAMBAN ARTO,Three Wheeler (Passenger),3WT,valid,ALL,ALL,1,1
+stock,no,REASI ARTO,Bus,HPV,expired,ALL,ALL,5,5
+stock,no,REASI ARTO,Bus,HPV,placeholder,ALL,ALL,2,2
+stock,no,REASI ARTO,Bus,HPV,valid,ALL,ALL,1,1
+stock,no,REASI ARTO,Bus,LPV,expired,ALL,ALL,61,53
+stock,no,REASI ARTO,Bus,LPV,placeholder,ALL,ALL,4,4
+stock,no,REASI ARTO,Bus,LPV,valid,ALL,ALL,21,20
+stock,no,REASI ARTO,Bus,MPV,expired,ALL,ALL,12,11
+stock,no,REASI ARTO,Bus,MPV,placeholder,ALL,ALL,6,6
+stock,no,REASI ARTO,Bus,MPV,valid,ALL,ALL,13,13
+stock,no,REASI ARTO,Maxi Cab,LPV,expired,ALL,ALL,31,31
+stock,no,REASI ARTO,Maxi Cab,LPV,placeholder,ALL,ALL,1,1
+stock,no,REASI ARTO,Maxi Cab,LPV,valid,ALL,ALL,23,23
+stock,no,REASI ARTO,Motor Cab,LPV,expired,ALL,ALL,136,136
+stock,no,REASI ARTO,Motor Cab,LPV,placeholder,ALL,ALL,2,2
+stock,no,REASI ARTO,Motor Cab,LPV,valid,ALL,ALL,14,14
+stock,no,REASI ARTO,Omni Bus,LPV,expired,ALL,ALL,8,8
+stock,no,REASI ARTO,Omni Bus,LPV,valid,ALL,ALL,2,2
+stock,no,REASI ARTO,Omni Bus,MPV,expired,ALL,ALL,11,11
+stock,no,REASI ARTO,Omni Bus,MPV,valid,ALL,ALL,2,2
+stock,no,REASI ARTO,Three Wheeler (Passenger),3WT,expired,ALL,ALL,14,14
+stock,no,REASI ARTO,Three Wheeler (Passenger),3WT,valid,ALL,ALL,1,1
+stock,no,REASI ARTO,e-Rickshaw(P),3WT,expired,ALL,ALL,1,1
+stock,no,SAMBA ARTO,Bus,HPV,expired,ALL,ALL,71,71
+stock,no,SAMBA ARTO,Bus,HPV,valid,ALL,ALL,18,18
+stock,no,SAMBA ARTO,Bus,LPV,expired,ALL,ALL,91,89
+stock,no,SAMBA ARTO,Bus,LPV,placeholder,ALL,ALL,3,2
+stock,no,SAMBA ARTO,Bus,LPV,valid,ALL,ALL,16,16
+stock,no,SAMBA ARTO,Bus,MPV,expired,ALL,ALL,14,14
+stock,no,SAMBA ARTO,Bus,MPV,valid,ALL,ALL,5,5
+stock,no,SAMBA ARTO,Educational Institution Bus,LPV,expired,ALL,ALL,1,1
+stock,no,SAMBA ARTO,M-Cycle/Scooter,2WN,expired,ALL,ALL,2,2
+stock,no,SAMBA ARTO,Maxi Cab,LPV,expired,ALL,ALL,245,245
+stock,no,SAMBA ARTO,Maxi Cab,LPV,placeholder,ALL,ALL,31,31
+stock,no,SAMBA ARTO,Maxi Cab,LPV,valid,ALL,ALL,83,83
+stock,no,SAMBA ARTO,Motor Cab,LPV,expired,ALL,ALL,28,28
+stock,no,SAMBA ARTO,Motor Cab,LPV,valid,ALL,ALL,4,4
+stock,no,SAMBA ARTO,Omni Bus,MPV,expired,ALL,ALL,1,1
+stock,no,SAMBA ARTO,Three Wheeler (Passenger),3WT,expired,ALL,ALL,5,5
+stock,no,STATE TRANSPORT AUTHORITY,Bus,HPV,expired,ALL,ALL,245,239
+stock,no,STATE TRANSPORT AUTHORITY,Bus,HPV,placeholder,ALL,ALL,7,7
+stock,no,STATE TRANSPORT AUTHORITY,Bus,HPV,valid,ALL,ALL,172,172
+stock,no,STATE TRANSPORT AUTHORITY,Bus,LPV,expired,ALL,ALL,5,5
+stock,no,STATE TRANSPORT AUTHORITY,Bus,LPV,valid,ALL,ALL,1,1
+stock,no,STATE TRANSPORT AUTHORITY,Bus,MPV,expired,ALL,ALL,4,4
+stock,no,STATE TRANSPORT AUTHORITY,Bus,MPV,placeholder,ALL,ALL,1,1
+stock,no,STATE TRANSPORT AUTHORITY,Bus,MPV,valid,ALL,ALL,2,2
+stock,no,UDHAMPUR ARTO,(blank),(blank),expired,ALL,ALL,1,1
+stock,no,UDHAMPUR ARTO,Bus,HPV,expired,ALL,ALL,97,95
+stock,no,UDHAMPUR ARTO,Bus,HPV,placeholder,ALL,ALL,2,2
+stock,no,UDHAMPUR ARTO,Bus,HPV,valid,ALL,ALL,34,34
+stock,no,UDHAMPUR ARTO,Bus,LPV,expired,ALL,ALL,248,224
+stock,no,UDHAMPUR ARTO,Bus,LPV,placeholder,ALL,ALL,13,13
+stock,no,UDHAMPUR ARTO,Bus,LPV,valid,ALL,ALL,95,95
+stock,no,UDHAMPUR ARTO,Bus,MPV,expired,ALL,ALL,232,227
+stock,no,UDHAMPUR ARTO,Bus,MPV,placeholder,ALL,ALL,8,8
+stock,no,UDHAMPUR ARTO,Bus,MPV,valid,ALL,ALL,59,59
+stock,no,UDHAMPUR ARTO,Educational Institution Bus,HPV,valid,ALL,ALL,1,1
+stock,no,UDHAMPUR ARTO,Educational Institution Bus,LPV,valid,ALL,ALL,7,7
+stock,no,UDHAMPUR ARTO,M-Cycle/Scooter,2WN,expired,ALL,ALL,4,4
+stock,no,UDHAMPUR ARTO,Maxi Cab,LPV,expired,ALL,ALL,75,74
+stock,no,UDHAMPUR ARTO,Maxi Cab,LPV,placeholder,ALL,ALL,4,4
+stock,no,UDHAMPUR ARTO,Maxi Cab,LPV,valid,ALL,ALL,39,39
+stock,no,UDHAMPUR ARTO,Motor Cab,LPV,expired,ALL,ALL,102,101
+stock,no,UDHAMPUR ARTO,Motor Cab,LPV,valid,ALL,ALL,18,18
+stock,no,UDHAMPUR ARTO,Motor Car,LMV,expired,ALL,ALL,1,1
+stock,no,UDHAMPUR ARTO,Omni Bus,LPV,expired,ALL,ALL,3,2
+stock,no,UDHAMPUR ARTO,Omni Bus,LPV,placeholder,ALL,ALL,34,34
+stock,no,UDHAMPUR ARTO,Omni Bus,LPV,valid,ALL,ALL,75,75
+stock,no,UDHAMPUR ARTO,Omni Bus,MPV,expired,ALL,ALL,1,1
+stock,no,UDHAMPUR ARTO,Private Service Vehicle,LPV,expired,ALL,ALL,1,1
+stock,no,UDHAMPUR ARTO,Three Wheeler (Passenger),3WT,expired,ALL,ALL,13,13
+stock,yes,ANANTNAG ARTO,Bus,HPV,expired,ALL,ALL,24,24
+stock,yes,ANANTNAG ARTO,Bus,HPV,valid,ALL,ALL,4,4
+stock,yes,ANANTNAG ARTO,Bus,LPV,expired,ALL,ALL,178,178
+stock,yes,ANANTNAG ARTO,Bus,LPV,placeholder,ALL,ALL,11,11
+stock,yes,ANANTNAG ARTO,Bus,LPV,valid,ALL,ALL,43,43
+stock,yes,ANANTNAG ARTO,Bus,MPV,expired,ALL,ALL,30,30
+stock,yes,ANANTNAG ARTO,Bus,MPV,valid,ALL,ALL,13,13
+stock,yes,ANANTNAG ARTO,Educational Institution Bus,LPV,expired,ALL,ALL,7,7
+stock,yes,ANANTNAG ARTO,Educational Institution Bus,LPV,placeholder,ALL,ALL,1,1
+stock,yes,ANANTNAG ARTO,Educational Institution Bus,LPV,valid,ALL,ALL,4,4
+stock,yes,ANANTNAG ARTO,Educational Institution Bus,MPV,expired,ALL,ALL,2,2
+stock,yes,ANANTNAG ARTO,Educational Institution Bus,MPV,placeholder,ALL,ALL,1,1
+stock,yes,ANANTNAG ARTO,Maxi Cab,LPV,expired,ALL,ALL,9,9
+stock,yes,ANANTNAG ARTO,Maxi Cab,LPV,placeholder,ALL,ALL,56,56
+stock,yes,ANANTNAG ARTO,Maxi Cab,LPV,valid,ALL,ALL,113,113
+stock,yes,ANANTNAG ARTO,Motor Cab,LPV,placeholder,ALL,ALL,1,1
+stock,yes,ANANTNAG ARTO,Motor Cab,LPV,valid,ALL,ALL,6,6
+stock,yes,ANANTNAG ARTO,Omni Bus,LPV,expired,ALL,ALL,7,7
+stock,yes,ANANTNAG ARTO,Omni Bus,LPV,valid,ALL,ALL,3,3
+stock,yes,ANANTNAG ARTO,Omni Bus,MPV,expired,ALL,ALL,2,2
+stock,yes,ANANTNAG ARTO,Omni Bus,MPV,valid,ALL,ALL,1,1
+stock,yes,ANANTNAG ARTO,Three Wheeler (Passenger),3WT,valid,ALL,ALL,1,1
+stock,yes,BANDIPORA ARTO,Bus,HPV,expired,ALL,ALL,1,1
+stock,yes,BANDIPORA ARTO,Bus,LPV,expired,ALL,ALL,4,4
+stock,yes,BANDIPORA ARTO,Bus,MPV,expired,ALL,ALL,9,9
+stock,yes,BANDIPORA ARTO,Educational Institution Bus,LPV,expired,ALL,ALL,2,2
+stock,yes,BANDIPORA ARTO,Educational Institution Bus,MPV,valid,ALL,ALL,1,1
+stock,yes,BANDIPORA ARTO,Maxi Cab,LPV,valid,ALL,ALL,1,1
+stock,yes,BANDIPORA ARTO,Omni Bus,MPV,expired,ALL,ALL,1,1
+stock,yes,BANDIPORA ARTO,Private Service Vehicle,HPV,expired,ALL,ALL,1,1
+stock,yes,BANDIPORA ARTO,Private Service Vehicle,MPV,expired,ALL,ALL,3,3
+stock,yes,BARAMULLA ARTO,Bus,HPV,expired,ALL,ALL,43,43
+stock,yes,BARAMULLA ARTO,Bus,HPV,placeholder,ALL,ALL,1,1
+stock,yes,BARAMULLA ARTO,Bus,HPV,valid,ALL,ALL,23,23
+stock,yes,BARAMULLA ARTO,Bus,LPV,expired,ALL,ALL,54,54
+stock,yes,BARAMULLA ARTO,Bus,LPV,placeholder,ALL,ALL,11,11
+stock,yes,BARAMULLA ARTO,Bus,LPV,valid,ALL,ALL,22,22
+stock,yes,BARAMULLA ARTO,Bus,MPV,expired,ALL,ALL,155,155
+stock,yes,BARAMULLA ARTO,Bus,MPV,placeholder,ALL,ALL,10,10
+stock,yes,BARAMULLA ARTO,Bus,MPV,valid,ALL,ALL,82,82
+stock,yes,BARAMULLA ARTO,Educational Institution Bus,LPV,expired,ALL,ALL,1,1
+stock,yes,BARAMULLA ARTO,Educational Institution Bus,LPV,valid,ALL,ALL,2,2
+stock,yes,BARAMULLA ARTO,Educational Institution Bus,MPV,expired,ALL,ALL,2,2
+stock,yes,BARAMULLA ARTO,Maxi Cab,LPV,expired,ALL,ALL,6,6
+stock,yes,BARAMULLA ARTO,Maxi Cab,LPV,placeholder,ALL,ALL,42,42
+stock,yes,BARAMULLA ARTO,Maxi Cab,LPV,valid,ALL,ALL,34,34
+stock,yes,BARAMULLA ARTO,Omni Bus,LPV,expired,ALL,ALL,4,4
+stock,yes,BARAMULLA ARTO,Omni Bus,LPV,placeholder,ALL,ALL,1,1
+stock,yes,BARAMULLA ARTO,Omni Bus,LPV,valid,ALL,ALL,4,4
+stock,yes,BARAMULLA ARTO,Omni Bus,MPV,expired,ALL,ALL,12,12
+stock,yes,BARAMULLA ARTO,Omni Bus,MPV,placeholder,ALL,ALL,1,1
+stock,yes,BARAMULLA ARTO,Omni Bus,MPV,valid,ALL,ALL,7,7
+stock,yes,BARAMULLA ARTO,Private Service Vehicle,HPV,expired,ALL,ALL,1,1
+stock,yes,BARAMULLA ARTO,Private Service Vehicle,HPV,valid,ALL,ALL,1,1
+stock,yes,BARAMULLA ARTO,Private Service Vehicle,LPV,expired,ALL,ALL,1,1
+stock,yes,BARAMULLA ARTO,Private Service Vehicle,MPV,expired,ALL,ALL,1,1
+stock,yes,BARAMULLA ARTO,Private Service Vehicle,MPV,valid,ALL,ALL,2,2
+stock,yes,BARAMULLA ARTO,School Bus,MPV,expired,ALL,ALL,1,1
+stock,yes,BUDGAM ARTO,Bus,HPV,expired,ALL,ALL,9,9
+stock,yes,BUDGAM ARTO,Bus,HPV,valid,ALL,ALL,7,7
+stock,yes,BUDGAM ARTO,Bus,LPV,expired,ALL,ALL,13,13
+stock,yes,BUDGAM ARTO,Bus,LPV,valid,ALL,ALL,2,2
+stock,yes,BUDGAM ARTO,Bus,MPV,expired,ALL,ALL,21,21
+stock,yes,BUDGAM ARTO,Bus,MPV,placeholder,ALL,ALL,2,2
+stock,yes,BUDGAM ARTO,Bus,MPV,valid,ALL,ALL,5,5
+stock,yes,BUDGAM ARTO,Maxi Cab,LPV,placeholder,ALL,ALL,3,3
+stock,yes,BUDGAM ARTO,Maxi Cab,LPV,valid,ALL,ALL,3,3
+stock,yes,BUDGAM ARTO,Omni Bus,LPV,expired,ALL,ALL,8,8
+stock,yes,BUDGAM ARTO,Omni Bus,LPV,placeholder,ALL,ALL,1,0
+stock,yes,BUDGAM ARTO,Omni Bus,LPV,valid,ALL,ALL,1,1
+stock,yes,BUDGAM ARTO,Omni Bus,MPV,expired,ALL,ALL,18,18
+stock,yes,BUDGAM ARTO,Omni Bus,MPV,valid,ALL,ALL,4,4
+stock,yes,BUDGAM ARTO,Private Service Vehicle,LPV,expired,ALL,ALL,3,3
+stock,yes,GANDERBAL ARTO,Bus,LPV,expired,ALL,ALL,24,21
+stock,yes,GANDERBAL ARTO,Bus,LPV,placeholder,ALL,ALL,6,6
+stock,yes,GANDERBAL ARTO,Bus,LPV,valid,ALL,ALL,9,9
+stock,yes,GANDERBAL ARTO,Bus,MPV,expired,ALL,ALL,55,49
+stock,yes,GANDERBAL ARTO,Bus,MPV,placeholder,ALL,ALL,4,4
+stock,yes,GANDERBAL ARTO,Bus,MPV,valid,ALL,ALL,40,40
+stock,yes,GANDERBAL ARTO,Maxi Cab,LPV,placeholder,ALL,ALL,1,1
+stock,yes,GANDERBAL ARTO,Maxi Cab,LPV,valid,ALL,ALL,1,1
+stock,yes,GANDERBAL ARTO,Omni Bus,LPV,valid,ALL,ALL,1,1
+stock,yes,GANDERBAL ARTO,Omni Bus,MPV,expired,ALL,ALL,2,2
+stock,yes,GANDERBAL ARTO,Omni Bus,MPV,placeholder,ALL,ALL,1,1
+stock,yes,GANDERBAL ARTO,Omni Bus,MPV,valid,ALL,ALL,2,2
+stock,yes,GANDERBAL ARTO,Private Service Vehicle,MPV,expired,ALL,ALL,2,2
+stock,yes,KULGAM ARTO,Bus,HPV,expired,ALL,ALL,4,4
+stock,yes,KULGAM ARTO,Bus,LPV,expired,ALL,ALL,5,5
+stock,yes,KULGAM ARTO,Bus,MPV,expired,ALL,ALL,3,3
+stock,yes,KULGAM ARTO,Maxi Cab,LPV,placeholder,ALL,ALL,60,60
+stock,yes,KULGAM ARTO,Maxi Cab,LPV,valid,ALL,ALL,70,70
+stock,yes,KULGAM ARTO,Omni Bus,MPV,expired,ALL,ALL,1,1
+stock,yes,KULGAM ARTO,Three Wheeler (Passenger),3WT,placeholder,ALL,ALL,2,2
+stock,yes,KULGAM ARTO,Three Wheeler (Passenger),3WT,valid,ALL,ALL,1,1
+stock,yes,KUPWARA ARTO,Bus,HPV,expired,ALL,ALL,5,5
+stock,yes,KUPWARA ARTO,Bus,HPV,valid,ALL,ALL,6,6
+stock,yes,KUPWARA ARTO,Bus,LPV,expired,ALL,ALL,42,42
+stock,yes,KUPWARA ARTO,Bus,LPV,placeholder,ALL,ALL,4,3
+stock,yes,KUPWARA ARTO,Bus,LPV,valid,ALL,ALL,5,5
+stock,yes,KUPWARA ARTO,Bus,MPV,expired,ALL,ALL,2,2
+stock,yes,KUPWARA ARTO,Bus,MPV,valid,ALL,ALL,25,25
+stock,yes,KUPWARA ARTO,Maxi Cab,LPV,placeholder,ALL,ALL,19,19
+stock,yes,KUPWARA ARTO,Maxi Cab,LPV,valid,ALL,ALL,9,9
+stock,yes,KUPWARA ARTO,Omni Bus,LPV,valid,ALL,ALL,1,1
+stock,yes,KUPWARA ARTO,Omni Bus,MPV,expired,ALL,ALL,1,1
+stock,yes,KUPWARA ARTO,Private Service Vehicle,LPV,expired,ALL,ALL,2,2
+stock,yes,KUPWARA ARTO,Private Service Vehicle,MPV,expired,ALL,ALL,1,1
+stock,yes,PULWAMA ARTO,Bus,HPV,expired,ALL,ALL,31,31
+stock,yes,PULWAMA ARTO,Bus,HPV,valid,ALL,ALL,7,7
+stock,yes,PULWAMA ARTO,Bus,LPV,expired,ALL,ALL,2,2
+stock,yes,PULWAMA ARTO,Bus,LPV,valid,ALL,ALL,1,1
+stock,yes,PULWAMA ARTO,Bus,MPV,expired,ALL,ALL,57,57
+stock,yes,PULWAMA ARTO,Bus,MPV,placeholder,ALL,ALL,2,2
+stock,yes,PULWAMA ARTO,Bus,MPV,valid,ALL,ALL,5,5
+stock,yes,PULWAMA ARTO,Luxury Cab,LPV,expired,ALL,ALL,1,1
+stock,yes,PULWAMA ARTO,Maxi Cab,LPV,expired,ALL,ALL,2,2
+stock,yes,PULWAMA ARTO,Maxi Cab,LPV,placeholder,ALL,ALL,26,26
+stock,yes,PULWAMA ARTO,Maxi Cab,LPV,valid,ALL,ALL,4,4
+stock,yes,PULWAMA ARTO,Omni Bus,LPV,expired,ALL,ALL,2,2
+stock,yes,PULWAMA ARTO,Omni Bus,MPV,expired,ALL,ALL,17,17
+stock,yes,PULWAMA ARTO,Omni Bus,MPV,valid,ALL,ALL,3,3
+stock,yes,SHOPIAN ARTO,Bus,LPV,expired,ALL,ALL,1,1
+stock,yes,SHOPIAN ARTO,Bus,MPV,expired,ALL,ALL,1,1
+stock,yes,SRINAGAR RTO,(blank),(blank),expired,ALL,ALL,12,12
+stock,yes,SRINAGAR RTO,(blank),(blank),valid,ALL,ALL,1,1
+stock,yes,SRINAGAR RTO,Bus,HPV,expired,ALL,ALL,304,296
+stock,yes,SRINAGAR RTO,Bus,HPV,placeholder,ALL,ALL,4,4
+stock,yes,SRINAGAR RTO,Bus,HPV,valid,ALL,ALL,240,240
+stock,yes,SRINAGAR RTO,Bus,LPV,expired,ALL,ALL,119,115
+stock,yes,SRINAGAR RTO,Bus,LPV,placeholder,ALL,ALL,12,12
+stock,yes,SRINAGAR RTO,Bus,LPV,valid,ALL,ALL,38,38
+stock,yes,SRINAGAR RTO,Bus,MPV,expired,ALL,ALL,403,400
+stock,yes,SRINAGAR RTO,Bus,MPV,placeholder,ALL,ALL,13,11
+stock,yes,SRINAGAR RTO,Bus,MPV,valid,ALL,ALL,72,72
+stock,yes,SRINAGAR RTO,Maxi Cab,LPV,expired,ALL,ALL,2,2
+stock,yes,SRINAGAR RTO,Motor Cab,LPV,expired,ALL,ALL,1,1
+stock,yes,SRINAGAR RTO,Omni Bus,LPV,expired,ALL,ALL,9,4
+stock,yes,SRINAGAR RTO,Omni Bus,MPV,expired,ALL,ALL,25,21
+stock,yes,SRINAGAR RTO,Omni Bus,MPV,valid,ALL,ALL,3,3
+stock,yes,SRINAGAR RTO,Private Service Vehicle,MPV,placeholder,ALL,ALL,1,1
+validity_length,no,ALL,(blank),ALL,expired,1,ALL,11,11
+validity_length,no,ALL,(blank),ALL,expired,3,ALL,1,1
+validity_length,no,ALL,(blank),ALL,expired,5,ALL,1,1
+validity_length,no,ALL,Bus,ALL,expired,0,ALL,25,25
+validity_length,no,ALL,Bus,ALL,expired,1,ALL,2654,2611
+validity_length,no,ALL,Bus,ALL,expired,10,ALL,1,1
+validity_length,no,ALL,Bus,ALL,expired,11,ALL,6,6
+validity_length,no,ALL,Bus,ALL,expired,12,ALL,2,2
+validity_length,no,ALL,Bus,ALL,expired,13,ALL,3,3
+validity_length,no,ALL,Bus,ALL,expired,14,ALL,5,4
+validity_length,no,ALL,Bus,ALL,expired,15,ALL,2,2
+validity_length,no,ALL,Bus,ALL,expired,16,ALL,1,0
+validity_length,no,ALL,Bus,ALL,expired,17,ALL,3,3
+validity_length,no,ALL,Bus,ALL,expired,18,ALL,2,2
+validity_length,no,ALL,Bus,ALL,expired,19,ALL,2,2
+validity_length,no,ALL,Bus,ALL,expired,2,ALL,1101,1091
+validity_length,no,ALL,Bus,ALL,expired,20,ALL,1,1
+validity_length,no,ALL,Bus,ALL,expired,22,ALL,1,1
+validity_length,no,ALL,Bus,ALL,expired,24,ALL,1,1
+validity_length,no,ALL,Bus,ALL,expired,3,ALL,690,685
+validity_length,no,ALL,Bus,ALL,expired,4,ALL,139,138
+validity_length,no,ALL,Bus,ALL,expired,5,ALL,690,684
+validity_length,no,ALL,Bus,ALL,expired,6,ALL,11,11
+validity_length,no,ALL,Bus,ALL,expired,7,ALL,7,6
+validity_length,no,ALL,Bus,ALL,expired,8,ALL,3,3
+validity_length,no,ALL,Bus,ALL,expired,9,ALL,4,3
+validity_length,no,ALL,Bus,ALL,placeholder,placeholder,ALL,334,328
+validity_length,no,ALL,Bus,ALL,valid,3,ALL,2,2
+validity_length,no,ALL,Bus,ALL,valid,4,ALL,7,7
+validity_length,no,ALL,Bus,ALL,valid,5,ALL,1729,1724
+validity_length,no,ALL,Bus,ALL,valid,6,ALL,1,1
+validity_length,no,ALL,Educational Institution Bus,ALL,expired,1,ALL,28,28
+validity_length,no,ALL,Educational Institution Bus,ALL,expired,2,ALL,6,6
+validity_length,no,ALL,Educational Institution Bus,ALL,expired,3,ALL,2,2
+validity_length,no,ALL,Educational Institution Bus,ALL,expired,5,ALL,4,4
+validity_length,no,ALL,Educational Institution Bus,ALL,placeholder,placeholder,ALL,12,12
+validity_length,no,ALL,Educational Institution Bus,ALL,valid,5,ALL,22,22
+validity_length,no,ALL,M-Cycle/Scooter,ALL,expired,0,ALL,1,1
+validity_length,no,ALL,M-Cycle/Scooter,ALL,expired,1,ALL,10,10
+validity_length,no,ALL,M-Cycle/Scooter,ALL,expired,10,ALL,1,1
+validity_length,no,ALL,M-Cycle/Scooter,ALL,expired,3,ALL,1,1
+validity_length,no,ALL,M-Cycle/Scooter,ALL,expired,5,ALL,2,2
+validity_length,no,ALL,Maxi Cab,ALL,expired,0,ALL,3,3
+validity_length,no,ALL,Maxi Cab,ALL,expired,1,ALL,691,690
+validity_length,no,ALL,Maxi Cab,ALL,expired,2,ALL,84,84
+validity_length,no,ALL,Maxi Cab,ALL,expired,3,ALL,33,33
+validity_length,no,ALL,Maxi Cab,ALL,expired,4,ALL,14,14
+validity_length,no,ALL,Maxi Cab,ALL,expired,5,ALL,35,35
+validity_length,no,ALL,Maxi Cab,ALL,expired,6,ALL,3,3
+validity_length,no,ALL,Maxi Cab,ALL,expired,8,ALL,2,2
+validity_length,no,ALL,Maxi Cab,ALL,placeholder,placeholder,ALL,557,557
+validity_length,no,ALL,Maxi Cab,ALL,valid,5,ALL,589,589
+validity_length,no,ALL,Motor Cab,ALL,expired,0,ALL,1,1
+validity_length,no,ALL,Motor Cab,ALL,expired,1,ALL,990,989
+validity_length,no,ALL,Motor Cab,ALL,expired,10,ALL,2,2
+validity_length,no,ALL,Motor Cab,ALL,expired,11,ALL,1,1
+validity_length,no,ALL,Motor Cab,ALL,expired,15,ALL,1,1
+validity_length,no,ALL,Motor Cab,ALL,expired,18,ALL,1,1
+validity_length,no,ALL,Motor Cab,ALL,expired,2,ALL,207,207
+validity_length,no,ALL,Motor Cab,ALL,expired,3,ALL,101,101
+validity_length,no,ALL,Motor Cab,ALL,expired,4,ALL,38,38
+validity_length,no,ALL,Motor Cab,ALL,expired,5,ALL,126,126
+validity_length,no,ALL,Motor Cab,ALL,expired,6,ALL,10,10
+validity_length,no,ALL,Motor Cab,ALL,expired,7,ALL,5,5
+validity_length,no,ALL,Motor Cab,ALL,expired,8,ALL,1,1
+validity_length,no,ALL,Motor Cab,ALL,placeholder,placeholder,ALL,29,29
+validity_length,no,ALL,Motor Cab,ALL,valid,12,ALL,2,2
+validity_length,no,ALL,Motor Cab,ALL,valid,5,ALL,200,200
+validity_length,no,ALL,Motor Car,ALL,expired,1,ALL,5,5
+validity_length,no,ALL,Motor Car,ALL,expired,3,ALL,2,2
+validity_length,no,ALL,Omni Bus,ALL,expired,1,ALL,187,186
+validity_length,no,ALL,Omni Bus,ALL,expired,10,ALL,1,1
+validity_length,no,ALL,Omni Bus,ALL,expired,2,ALL,35,35
+validity_length,no,ALL,Omni Bus,ALL,expired,3,ALL,12,12
+validity_length,no,ALL,Omni Bus,ALL,expired,4,ALL,1,1
+validity_length,no,ALL,Omni Bus,ALL,expired,5,ALL,20,20
+validity_length,no,ALL,Omni Bus,ALL,expired,6,ALL,1,1
+validity_length,no,ALL,Omni Bus,ALL,placeholder,placeholder,ALL,67,67
+validity_length,no,ALL,Omni Bus,ALL,valid,5,ALL,174,174
+validity_length,no,ALL,Private Service Vehicle,ALL,expired,1,ALL,2,2
+validity_length,no,ALL,Private Service Vehicle,ALL,expired,2,ALL,2,2
+validity_length,no,ALL,Private Service Vehicle,ALL,expired,5,ALL,1,1
+validity_length,no,ALL,Three Wheeler (Passenger),ALL,expired,0,ALL,1,1
+validity_length,no,ALL,Three Wheeler (Passenger),ALL,expired,1,ALL,282,282
+validity_length,no,ALL,Three Wheeler (Passenger),ALL,expired,10,ALL,1,1
+validity_length,no,ALL,Three Wheeler (Passenger),ALL,expired,11,ALL,1,1
+validity_length,no,ALL,Three Wheeler (Passenger),ALL,expired,14,ALL,1,1
+validity_length,no,ALL,Three Wheeler (Passenger),ALL,expired,16,ALL,1,1
+validity_length,no,ALL,Three Wheeler (Passenger),ALL,expired,2,ALL,55,55
+validity_length,no,ALL,Three Wheeler (Passenger),ALL,expired,3,ALL,31,31
+validity_length,no,ALL,Three Wheeler (Passenger),ALL,expired,4,ALL,5,5
+validity_length,no,ALL,Three Wheeler (Passenger),ALL,expired,5,ALL,24,24
+validity_length,no,ALL,Three Wheeler (Passenger),ALL,expired,6,ALL,1,1
+validity_length,no,ALL,Three Wheeler (Passenger),ALL,expired,7,ALL,3,3
+validity_length,no,ALL,Three Wheeler (Passenger),ALL,expired,8,ALL,1,1
+validity_length,no,ALL,Three Wheeler (Passenger),ALL,placeholder,placeholder,ALL,15,14
+validity_length,no,ALL,Three Wheeler (Passenger),ALL,valid,12,ALL,1,1
+validity_length,no,ALL,Three Wheeler (Passenger),ALL,valid,5,ALL,40,40
+validity_length,no,ALL,e-Rickshaw(P),ALL,expired,7,ALL,1,1
+validity_length,no,ALL,e-Rickshaw(P),ALL,valid,5,ALL,1,1
+validity_length,yes,ALL,(blank),ALL,expired,1,ALL,12,12
+validity_length,yes,ALL,(blank),ALL,valid,5,ALL,1,1
+validity_length,yes,ALL,Bus,ALL,expired,0,ALL,5,4
+validity_length,yes,ALL,Bus,ALL,expired,1,ALL,871,855
+validity_length,yes,ALL,Bus,ALL,expired,18,ALL,1,1
+validity_length,yes,ALL,Bus,ALL,expired,19,ALL,2,2
+validity_length,yes,ALL,Bus,ALL,expired,2,ALL,356,352
+validity_length,yes,ALL,Bus,ALL,expired,3,ALL,124,123
+validity_length,yes,ALL,Bus,ALL,expired,4,ALL,45,45
+validity_length,yes,ALL,Bus,ALL,expired,5,ALL,189,187
+validity_length,yes,ALL,Bus,ALL,expired,6,ALL,4,4
+validity_length,yes,ALL,Bus,ALL,expired,7,ALL,2,2
+validity_length,yes,ALL,Bus,ALL,placeholder,placeholder,ALL,80,77
+validity_length,yes,ALL,Bus,ALL,valid,4,ALL,1,1
+validity_length,yes,ALL,Bus,ALL,valid,5,ALL,648,648
+validity_length,yes,ALL,Educational Institution Bus,ALL,expired,1,ALL,7,7
+validity_length,yes,ALL,Educational Institution Bus,ALL,expired,2,ALL,4,4
+validity_length,yes,ALL,Educational Institution Bus,ALL,expired,3,ALL,2,2
+validity_length,yes,ALL,Educational Institution Bus,ALL,expired,5,ALL,1,1
+validity_length,yes,ALL,Educational Institution Bus,ALL,placeholder,placeholder,ALL,2,2
+validity_length,yes,ALL,Educational Institution Bus,ALL,valid,5,ALL,7,7
+validity_length,yes,ALL,Luxury Cab,ALL,expired,1,ALL,1,1
+validity_length,yes,ALL,Maxi Cab,ALL,expired,1,ALL,10,10
+validity_length,yes,ALL,Maxi Cab,ALL,expired,2,ALL,4,4
+validity_length,yes,ALL,Maxi Cab,ALL,expired,3,ALL,2,2
+validity_length,yes,ALL,Maxi Cab,ALL,expired,5,ALL,3,3
+validity_length,yes,ALL,Maxi Cab,ALL,placeholder,placeholder,ALL,207,207
+validity_length,yes,ALL,Maxi Cab,ALL,valid,5,ALL,235,235
+validity_length,yes,ALL,Motor Cab,ALL,expired,1,ALL,1,1
+validity_length,yes,ALL,Motor Cab,ALL,placeholder,placeholder,ALL,1,1
+validity_length,yes,ALL,Motor Cab,ALL,valid,5,ALL,6,6
+validity_length,yes,ALL,Omni Bus,ALL,expired,1,ALL,61,53
+validity_length,yes,ALL,Omni Bus,ALL,expired,2,ALL,22,21
+validity_length,yes,ALL,Omni Bus,ALL,expired,3,ALL,6,6
+validity_length,yes,ALL,Omni Bus,ALL,expired,4,ALL,8,8
+validity_length,yes,ALL,Omni Bus,ALL,expired,5,ALL,12,12
+validity_length,yes,ALL,Omni Bus,ALL,placeholder,placeholder,ALL,4,3
+validity_length,yes,ALL,Omni Bus,ALL,valid,5,ALL,30,30
+validity_length,yes,ALL,Private Service Vehicle,ALL,expired,1,ALL,7,7
+validity_length,yes,ALL,Private Service Vehicle,ALL,expired,2,ALL,1,1
+validity_length,yes,ALL,Private Service Vehicle,ALL,expired,3,ALL,3,3
+validity_length,yes,ALL,Private Service Vehicle,ALL,expired,5,ALL,4,4
+validity_length,yes,ALL,Private Service Vehicle,ALL,placeholder,placeholder,ALL,1,1
+validity_length,yes,ALL,Private Service Vehicle,ALL,valid,5,ALL,3,3
+validity_length,yes,ALL,School Bus,ALL,expired,5,ALL,1,1
+validity_length,yes,ALL,Three Wheeler (Passenger),ALL,placeholder,placeholder,ALL,2,2
+validity_length,yes,ALL,Three Wheeler (Passenger),ALL,valid,5,ALL,2,2

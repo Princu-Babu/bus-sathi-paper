@@ -1,12 +1,480 @@
 {
+  "baseline_reproduction_decomposed": {
+    "agreement": {
+      "V0_published_devices_kept": {
+        "cycle_reproduced": 186,
+        "fleet_reproduced": 186,
+        "fleet_total": 1011,
+        "fleet_total_published": 1011,
+        "max_abs_cycle_diff_min": 0.0,
+        "routes_fleet_differs": []
+      },
+      "V1_measured_recomputed_uncapped_sscl_floor_kept": {
+        "cycle_reproduced": 186,
+        "fleet_reproduced": 186,
+        "fleet_total": 1011,
+        "fleet_total_published": 1011,
+        "max_abs_cycle_diff_min": 0.0,
+        "routes_fleet_differs": []
+      },
+      "V2_measured_recomputed_capped_sscl_floor_kept": {
+        "cycle_reproduced": 181,
+        "fleet_reproduced": 182,
+        "fleet_total": 1004,
+        "fleet_total_published": 1011,
+        "max_abs_cycle_diff_min": 92.6,
+        "routes_fleet_differs": [
+          "FDR-262",
+          "FDR-270",
+          "FDR-050",
+          "FDR-370"
+        ]
+      },
+      "V3_measured_published_sscl_floor_removed": {
+        "cycle_reproduced": 186,
+        "fleet_reproduced": 184,
+        "fleet_total": 1007,
+        "fleet_total_published": 1011,
+        "max_abs_cycle_diff_min": 0.0,
+        "routes_fleet_differs": [
+          "SSCL-02",
+          "SSCL-27"
+        ]
+      },
+      "V4_measured_recomputed_capped_sscl_floor_removed": {
+        "cycle_reproduced": 181,
+        "fleet_reproduced": 180,
+        "fleet_total": 1000,
+        "fleet_total_published": 1011,
+        "max_abs_cycle_diff_min": 92.6,
+        "routes_fleet_differs": [
+          "FDR-262",
+          "FDR-270",
+          "FDR-050",
+          "FDR-370",
+          "SSCL-02",
+          "SSCL-27"
+        ]
+      },
+      "V5_measured_recomputed_uncapped_sscl_floor_removed": {
+        "cycle_reproduced": 186,
+        "fleet_reproduced": 184,
+        "fleet_total": 1007,
+        "fleet_total_published": 1011,
+        "max_abs_cycle_diff_min": 0.0,
+        "routes_fleet_differs": [
+          "SSCL-02",
+          "SSCL-27"
+        ]
+      }
+    },
+    "agreement_without_devices_D2_D3": {
+      "cycle_reproduced": 181,
+      "fleet_reproduced": 180,
+      "fleet_total": 1000,
+      "fleet_total_published": 1011,
+      "max_abs_cycle_diff_min": 92.6,
+      "routes_fleet_differs": [
+        "FDR-262",
+        "FDR-270",
+        "FDR-050",
+        "FDR-370",
+        "SSCL-02",
+        "SSCL-27"
+      ]
+    },
+    "cycle_tolerance_min": 0.11,
+    "devices": {
+      "D1_per_km_cap": {
+        "by_class": {
+          "Peri_Urban": 46,
+          "Regional_District": 71,
+          "Urban": 52
+        },
+        "n_of_which_sscl": 26,
+        "n_routes_cycle_set_by_cap": 169,
+        "note": "On these routes the checked cycle is round(2*L*cap, 1): it verifies one multiplication, not the OSRM/congestion/dwell chain."
+      },
+      "D2_measured_cycles_copied_from_plan": {
+        "n_routes": 5,
+        "route_ids": [
+          "FDR-262",
+          "FDR-270",
+          "FDR-575",
+          "FDR-050",
+          "FDR-370"
+        ]
+      },
+      "D3_sscl_floor_defined_from_published_fleet": {
+        "buses_above_formula": 4,
+        "n_routes": 2,
+        "note": "Floor := published fleet where it exceeds the formula, so these cannot fail.",
+        "route_ids": [
+          "SSCL-02",
+          "SSCL-27"
+        ]
+      },
+      "D4_headways_taken_as_inputs": {
+        "headway_counts": {
+          "15": 30,
+          "20": 25,
+          "35": 69,
+          "50": 62
+        },
+        "n_regional_type_routes_with_demand_responsive_headway": 71,
+        "n_routes": 186,
+        "note": "Rural headway rule (apply_regional_demand_headway) is not reimplemented; a15 scenario S3 bounds its effect on fleet."
+      },
+      "osrm_durations_taken_as_inputs": {
+        "n_routes": 186
+      }
+    },
+    "existing_verify_baseline": {
+      "cycle_reproduced": 186,
+      "fleet_reproduced": 186,
+      "fleet_total": 1011,
+      "fleet_total_published": 1011,
+      "n_routes": 186
+    },
+    "measured_corridors_recomputed_from_gps_moving_speed": {
+      "n_cycle_within_0p11": 5,
+      "n_fleet_equal": 5,
+      "routes": [
+        {
+          "corridor_id": 1,
+          "cycle_published": 100.8,
+          "cycle_recomputed": 100.8,
+          "fleet_published": 7,
+          "fleet_recomputed": 7,
+          "moving_kmh": 18.2,
+          "route_id": "FDR-050"
+        },
+        {
+          "corridor_id": 4,
+          "cycle_published": 186.6,
+          "cycle_recomputed": 186.6,
+          "fleet_published": 7,
+          "fleet_recomputed": 7,
+          "moving_kmh": 18.1,
+          "route_id": "FDR-262"
+        },
+        {
+          "corridor_id": 6,
+          "cycle_published": 111.2,
+          "cycle_recomputed": 111.2,
+          "fleet_published": 5,
+          "fleet_recomputed": 5,
+          "moving_kmh": 20.6,
+          "route_id": "FDR-370"
+        },
+        {
+          "corridor_id": 7,
+          "cycle_published": 107.1,
+          "cycle_recomputed": 107.1,
+          "fleet_published": 5,
+          "fleet_recomputed": 5,
+          "moving_kmh": 18.5,
+          "route_id": "FDR-270"
+        },
+        {
+          "corridor_id": 8,
+          "cycle_published": 32.6,
+          "cycle_recomputed": 32.6,
+          "fleet_published": 3,
+          "fleet_recomputed": 3,
+          "moving_kmh": 17.5,
+          "route_id": "FDR-575"
+        }
+      ]
+    },
+    "n_routes_cycle_independently_recomputed": 12,
+    "n_routes_cycle_independently_recomputed_note": "not cap-truncated and not measured: the full Eq. 11 chain is what sets the checked cycle",
+    "statement": "With the plan's OSRM durations, headways, the five measured cycles and the two SSCL floors supplied as inputs, the model reproduces cycle and fleet on 186/186 routes and 1,011 buses. With the measured cycles recomputed under the cap and the SSCL floors removed, it reproduces 181/186 cycles, 180/186 fleets and 1,000 of 1,011 buses. The cap sets the cycle on 169 routes; the full chain is exercised on 12."
+  },
+  "evidence_split": {
+    "directly_measured": {
+      "corridors": {
+        "FDR-050": 1,
+        "FDR-262": 4,
+        "FDR-270": 7,
+        "FDR-370": 6,
+        "FDR-575": 8
+      },
+      "fleet_published": 27,
+      "n": 5,
+      "route_ids": [
+        "FDR-262",
+        "FDR-270",
+        "FDR-575",
+        "FDR-050",
+        "FDR-370"
+      ]
+    },
+    "imputed_from_corridor_prior": {
+      "by_class": {
+        "Peri_Urban": 30,
+        "Urban": 54
+      },
+      "fleet_published": 370,
+      "n": 84,
+      "note": "`verdict` is the GPS pipeline's own corridor-to-permit classification (corridor_profiles.csv); it is not re-derived in this repository.",
+      "prior_pool_corridors": [
+        {
+          "corridor_id": 1,
+          "directly_applied_by_engine": true,
+          "n_drivers": 32,
+          "n_runs": 211,
+          "pace_effective": 5.263,
+          "pace_moving": 3.297,
+          "verdict": "MATCHED",
+          "zone": "core"
+        },
+        {
+          "corridor_id": 2,
+          "directly_applied_by_engine": false,
+          "n_drivers": 12,
+          "n_runs": 150,
+          "pace_effective": 4.545,
+          "pace_moving": 2.575,
+          "verdict": "MATCHED",
+          "zone": "periphery"
+        },
+        {
+          "corridor_id": 4,
+          "directly_applied_by_engine": true,
+          "n_drivers": 12,
+          "n_runs": 93,
+          "pace_effective": 4.8,
+          "pace_moving": 3.315,
+          "verdict": "MATCHED",
+          "zone": "core"
+        },
+        {
+          "corridor_id": 5,
+          "directly_applied_by_engine": false,
+          "n_drivers": 11,
+          "n_runs": 82,
+          "pace_effective": 4.545,
+          "pace_moving": 2.778,
+          "verdict": "PARTIAL",
+          "zone": "core"
+        },
+        {
+          "corridor_id": 6,
+          "directly_applied_by_engine": true,
+          "n_drivers": 9,
+          "n_runs": 79,
+          "pace_effective": 4.651,
+          "pace_moving": 2.913,
+          "verdict": "MATCHED",
+          "zone": "mid"
+        },
+        {
+          "corridor_id": 7,
+          "directly_applied_by_engine": true,
+          "n_drivers": 11,
+          "n_runs": 47,
+          "pace_effective": 5.714,
+          "pace_moving": 3.243,
+          "verdict": "MATCHED",
+          "zone": "periphery"
+        },
+        {
+          "corridor_id": 8,
+          "directly_applied_by_engine": true,
+          "n_drivers": 5,
+          "n_runs": 40,
+          "pace_effective": 7.595,
+          "pace_moving": 3.429,
+          "verdict": "MATCHED",
+          "zone": "mid"
+        },
+        {
+          "corridor_id": 9,
+          "directly_applied_by_engine": false,
+          "n_drivers": 7,
+          "n_runs": 32,
+          "pace_effective": 4.918,
+          "pace_moving": 2.299,
+          "verdict": "MATCHED",
+          "zone": "periphery"
+        },
+        {
+          "corridor_id": 11,
+          "directly_applied_by_engine": false,
+          "n_drivers": 9,
+          "n_runs": 26,
+          "pace_effective": 4.317,
+          "pace_moving": 2.609,
+          "verdict": "OUT_OF_AREA",
+          "zone": "periphery"
+        },
+        {
+          "corridor_id": 12,
+          "directly_applied_by_engine": false,
+          "n_drivers": 9,
+          "n_runs": 22,
+          "pace_effective": 5.0,
+          "pace_moving": 2.817,
+          "verdict": "INFORMAL",
+          "zone": "mid"
+        },
+        {
+          "corridor_id": 13,
+          "directly_applied_by_engine": false,
+          "n_drivers": 2,
+          "n_runs": 15,
+          "pace_effective": 3.593,
+          "pace_moving": 2.4,
+          "verdict": "PARTIAL",
+          "zone": "periphery"
+        },
+        {
+          "corridor_id": 14,
+          "directly_applied_by_engine": false,
+          "n_drivers": 3,
+          "n_runs": 9,
+          "pace_effective": 4.444,
+          "pace_moving": 2.871,
+          "verdict": "PARTIAL",
+          "zone": "periphery"
+        },
+        {
+          "corridor_id": 15,
+          "directly_applied_by_engine": false,
+          "n_drivers": 4,
+          "n_runs": 7,
+          "pace_effective": 4.58,
+          "pace_moving": 3.333,
+          "verdict": "INFORMAL",
+          "zone": "mid"
+        },
+        {
+          "corridor_id": 16,
+          "directly_applied_by_engine": false,
+          "n_drivers": 2,
+          "n_runs": 6,
+          "pace_effective": 4.082,
+          "pace_moving": 2.927,
+          "verdict": "OUT_OF_AREA",
+          "zone": "periphery"
+        },
+        {
+          "corridor_id": 17,
+          "directly_applied_by_engine": false,
+          "n_drivers": 2,
+          "n_runs": 6,
+          "pace_effective": 13.043,
+          "pace_moving": 3.333,
+          "verdict": "PARTIAL",
+          "zone": "periphery"
+        },
+        {
+          "corridor_id": 18,
+          "directly_applied_by_engine": false,
+          "n_drivers": 2,
+          "n_runs": 5,
+          "pace_effective": 5.217,
+          "pace_moving": 3.209,
+          "verdict": "INFORMAL",
+          "zone": "periphery"
+        }
+      ],
+      "prior_pool_n_corridors": 16,
+      "prior_pool_n_non_plan_corridors": 5,
+      "prior_pool_n_plan_corridors": 11,
+      "prior_pool_of_which_directly_applied_by_engine": 5
+    },
+    "n_routes": 186,
+    "unaffected_backbone": {
+      "fleet_published": 283,
+      "n": 30
+    },
+    "unaffected_regional": {
+      "corridors_observed_outside_belt": 2,
+      "fleet_published": 331,
+      "n": 67
+    }
+  },
   "fleet_B_at_median_pace": 1169,
+  "fleet_B_moving_at_median_pace": 1148,
+  "fleet_B_reconciliation": {
+    "B_effective": {
+      "component_medians": {
+        "Peri_Urban": 428.0,
+        "Regional_District": 384.0,
+        "Urban": 371.0
+      },
+      "component_medians_sum": 1183.0,
+      "component_medians_sum_minus_median_of_total": 1.0,
+      "fleet_at_median_pace_other_params_at_baseline": 1169,
+      "mc_mean_of_total": 1188.82,
+      "mc_median_of_total": 1182.0,
+      "median_minus_fleet_at_median_pace": 13.0,
+      "median_of_total": 1182.0,
+      "note": "The Monte Carlo median is the median of the total over draws in which the pace AND the other parameters vary; the 'at median pace' figure fixes every input at its central value. They differ because the fleet is a step function of ceil() cycle counts and because the bootstrap distribution of the median pace is not symmetric about the observed median (see pace_bootstrap_mean_minus_observed_median_min_per_km). Component medians do not add to the median of the total because a median is not additive.",
+      "pace_bootstrap_mean_minus_observed_median_min_per_km": {
+        "Peri_Urban": 0.14543939568424769,
+        "Urban": 0.0636143158999607
+      },
+      "pace_only_draws_median": 1176.0,
+      "pace_only_draws_p5_p95": [
+        1151.0,
+        1229.0
+      ],
+      "share_of_draws_above_fleet_at_median_pace": 0.6104
+    },
+    "B_moving": {
+      "component_medians": {
+        "Peri_Urban": 416.0,
+        "Regional_District": 384.0,
+        "Urban": 380.0
+      },
+      "component_medians_sum": 1180.0,
+      "component_medians_sum_minus_median_of_total": -2.0,
+      "fleet_at_median_pace_other_params_at_baseline": 1148,
+      "mc_mean_of_total": 1194.2384,
+      "mc_median_of_total": 1182.0,
+      "median_minus_fleet_at_median_pace": 34.0,
+      "median_of_total": 1182.0,
+      "note": "The Monte Carlo median is the median of the total over draws in which the pace AND the other parameters vary; the 'at median pace' figure fixes every input at its central value. They differ because the fleet is a step function of ceil() cycle counts and because the bootstrap distribution of the median pace is not symmetric about the observed median (see pace_bootstrap_mean_minus_observed_median_min_per_km). Component medians do not add to the median of the total because a median is not additive.",
+      "pace_bootstrap_mean_minus_observed_median_min_per_km": {
+        "Peri_Urban": -0.04253334625772531,
+        "Urban": -0.13453641074654454
+      },
+      "pace_only_draws_median": 1139.0,
+      "pace_only_draws_p5_p95": [
+        1122.0,
+        1163.0
+      ],
+      "share_of_draws_above_fleet_at_median_pace": 0.6866
+    }
+  },
   "fleet_published": 1011,
   "headline": {
     "coverage_90": [
-      0.2205656267649898,
-      0.32166211168328224
+      0.22010583207288292,
+      0.32245827113336445
+    ],
+    "coverage_median": 0.26637887013109707,
+    "coverage_min_max": [
+      0.1992430304401717,
+      0.347772080650131
+    ],
+    "coverage_p5_p95": [
+      0.22010583207288292,
+      0.32245827113336445
     ],
     "fleet_A_90": [
+      989.0,
+      1058.0
+    ],
+    "fleet_A_median": 1013.0,
+    "fleet_A_min_max": [
+      966.0,
+      1064.0
+    ],
+    "fleet_A_p5_p95": [
       989.0,
       1058.0
     ],
@@ -15,85 +483,604 @@
       1266.0
     ],
     "fleet_B_median": 1182.0,
+    "fleet_B_min_max": [
+      1097.0,
+      1655.0
+    ],
+    "fleet_B_moving_median": 1182.0,
+    "fleet_B_moving_min_max": [
+      1043.0,
+      1540.0
+    ],
+    "fleet_B_moving_p5_p95": [
+      1093.0,
+      1342.0500000000002
+    ],
+    "fleet_B_p5_p95": [
+      1130.0,
+      1266.0
+    ],
+    "interval_note": "*_90 and *_p5_p95 are the 5th-95th percentile of the draws; *_min_max are extremes. Neither includes route-set (theta) uncertainty. fleet_B is the effective-pace bracket; fleet_B_moving is the engine's own method.",
     "p_tier_agreement_above_80": 1.0,
-    "tier_agreement_median": 0.978494623655914
+    "tier_agreement_median": 0.9731182795698925
   },
+  "interval_definition": "p5-p95 of the sampled draws (90% interval of the distribution; not a confidence interval, not a bound)",
   "limitations": [
     "Parameters sampled independently; no correlation structure is measured.",
-    "Regime B pace comes from 16 Srinagar-belt corridors; applying it to all Urban/Peri-Urban routes assumes those corridors are representative.",
-    "Regional lifeline pace is unobserved (2 long corridors); regional fleet is as modelled, cap included, in both regimes.",
+    "Route-set uncertainty is NOT propagated: theta is not sampled (it is not read by this model). Scenario S4 of a15 is the bounding case, with no probability attached.",
+    "Pace priors pool 16 Srinagar-belt corridors, of which 5 are not plan routes and 5 are the corridors the engine measured directly; applying the pool to the 84 other Urban/Peri-Urban routes assumes those corridors are representative. Corridors are equal-weighted whatever their run count.",
+    "Regional lifeline pace is unobserved (2 long corridors); regional fleet is as modelled, cap included, in every regime.",
     "Headways held at published values; tier changes are not propagated to headway (tier and fleet are reported as separate decisions).",
-    "Rural headways are demand-responsive in the engine (Eq. 8 proxy); that dependence is not sampled here."
+    "Rural headways are demand-responsive in the engine (Eq. 8 proxy); that dependence is not sampled here.",
+    "Cap form, Jenks k and the stop-count rule are structural choices that are not sampled."
   ],
+  "liveness_check": {
+    "excluded": {
+      "OVERLAP_THRESHOLD": {
+        "live": false,
+        "max_abs_change": {
+          "coverage": 0.0,
+          "fleet_A": 0.0,
+          "fleet_B": 0.0,
+          "fleet_B_moving": 0.0,
+          "tier_agreement": 0.0
+        },
+        "reason": "Corridor-merge threshold theta decides which permits become one of the 186 routes. This model starts from the 186 published routes, so theta changes no output. Route-set uncertainty is not propagated; see route_set_uncertainty."
+      }
+    },
+    "n_contexts": 6,
+    "n_sweep_points": 9,
+    "sampled": {
+      "CDI_POP_WEIGHT": {
+        "live": true,
+        "max_abs_change": {
+          "coverage": 0.0,
+          "fleet_A": 0.0,
+          "fleet_B": 0.0,
+          "fleet_B_moving": 0.0,
+          "tier_agreement": 0.09677419354838712
+        },
+        "outputs_changed": [
+          "tier_agreement"
+        ]
+      },
+      "CONGESTION_CITY_CORE": {
+        "live": true,
+        "max_abs_change": {
+          "coverage": 0.0,
+          "fleet_A": 15,
+          "fleet_B": 0.0,
+          "fleet_B_moving": 0.0,
+          "tier_agreement": 0.0
+        },
+        "outputs_changed": [
+          "fleet_A"
+        ]
+      },
+      "FLEET_SPARE_RATIO": {
+        "live": true,
+        "max_abs_change": {
+          "coverage": 0.0,
+          "fleet_A": 72,
+          "fleet_B": 114,
+          "fleet_B_moving": 115,
+          "tier_agreement": 0.0
+        },
+        "outputs_changed": [
+          "fleet_A",
+          "fleet_B",
+          "fleet_B_moving"
+        ]
+      },
+      "PACE_PERI": {
+        "live": true,
+        "max_abs_change": {
+          "coverage": 0.0,
+          "fleet_A": 0.0,
+          "fleet_B": 70,
+          "fleet_B_moving": 39,
+          "tier_agreement": 0.0
+        },
+        "outputs_changed": [
+          "fleet_B",
+          "fleet_B_moving"
+        ]
+      },
+      "PACE_URBAN": {
+        "live": true,
+        "max_abs_change": {
+          "coverage": 0.0,
+          "fleet_A": 0.0,
+          "fleet_B": 32,
+          "fleet_B_moving": 19,
+          "tier_agreement": 0.0
+        },
+        "outputs_changed": [
+          "fleet_B",
+          "fleet_B_moving"
+        ]
+      },
+      "POI_TIER2_WEIGHT": {
+        "live": true,
+        "max_abs_change": {
+          "coverage": 0.0,
+          "fleet_A": 0.0,
+          "fleet_B": 0.0,
+          "fleet_B_moving": 0.0,
+          "tier_agreement": 0.005376344086021501
+        },
+        "outputs_changed": [
+          "tier_agreement"
+        ]
+      },
+      "POI_TIER3_WEIGHT": {
+        "live": true,
+        "max_abs_change": {
+          "coverage": 0.0,
+          "fleet_A": 0.0,
+          "fleet_B": 0.0,
+          "fleet_B_moving": 0.0,
+          "tier_agreement": 0.010752688172043001
+        },
+        "outputs_changed": [
+          "tier_agreement"
+        ]
+      },
+      "STOP_PENALTY_MIN": {
+        "live": true,
+        "max_abs_change": {
+          "coverage": 0.0,
+          "fleet_A": 17,
+          "fleet_B": 7,
+          "fleet_B_moving": 177,
+          "tier_agreement": 0.0
+        },
+        "outputs_changed": [
+          "fleet_A",
+          "fleet_B",
+          "fleet_B_moving"
+        ]
+      },
+      "STOP_SPACING_M": {
+        "live": true,
+        "max_abs_change": {
+          "coverage": 0.0,
+          "fleet_A": 12,
+          "fleet_B": 7,
+          "fleet_B_moving": 197,
+          "tier_agreement": 0.0
+        },
+        "outputs_changed": [
+          "fleet_A",
+          "fleet_B",
+          "fleet_B_moving"
+        ]
+      },
+      "TOURIST_POPULATION_MULTIPLIER": {
+        "live": true,
+        "max_abs_change": {
+          "coverage": 0.0,
+          "fleet_A": 0.0,
+          "fleet_B": 0.0,
+          "fleet_B_moving": 0.0,
+          "tier_agreement": 0.005376344086021501
+        },
+        "outputs_changed": [
+          "tier_agreement"
+        ]
+      },
+      "VIRTUAL_STOP_SPACING_M": {
+        "live": true,
+        "max_abs_change": {
+          "coverage": 0.017892053872058,
+          "fleet_A": 0.0,
+          "fleet_B": 0.0,
+          "fleet_B_moving": 0.0,
+          "tier_agreement": 0.048387096774193616
+        },
+        "outputs_changed": [
+          "coverage",
+          "tier_agreement"
+        ]
+      },
+      "WALK_CATCHMENT_M": {
+        "live": true,
+        "max_abs_change": {
+          "coverage": 0.09193584925507961,
+          "fleet_A": 0.0,
+          "fleet_B": 0.0,
+          "fleet_B_moving": 0.0,
+          "tier_agreement": 0.016129032258064502
+        },
+        "outputs_changed": [
+          "coverage",
+          "tier_agreement"
+        ]
+      }
+    }
+  },
   "mc": {
     "coverage": {
-      "max": 0.34816188941399095,
-      "mean": 0.26903161888002486,
-      "median": 0.26658023828548905,
-      "min": 0.1989487430260704,
-      "p5": 0.2205656267649898,
-      "p95": 0.32166211168328224
+      "interval": "p5-p95 of the sampled draws (90% interval of the distribution; not a confidence interval, not a bound)",
+      "max": 0.347772080650131,
+      "mean": 0.2687485774804959,
+      "median": 0.26637887013109707,
+      "min": 0.1992430304401717,
+      "min_max": [
+        0.1992430304401717,
+        0.347772080650131
+      ],
+      "n": 5000,
+      "p5": 0.22010583207288292,
+      "p5_p95": [
+        0.22010583207288292,
+        0.32245827113336445
+      ],
+      "p95": 0.32245827113336445
     },
     "fleet_A": {
+      "interval": "p5-p95 of the sampled draws (90% interval of the distribution; not a confidence interval, not a bound)",
       "max": 1064.0,
-      "mean": 1016.6424,
+      "mean": 1016.705,
       "median": 1013.0,
-      "min": 967.0,
+      "min": 966.0,
+      "min_max": [
+        966.0,
+        1064.0
+      ],
+      "n": 5000,
       "p5": 989.0,
+      "p5_p95": [
+        989.0,
+        1058.0
+      ],
       "p95": 1058.0
     },
     "fleet_B": {
-      "max": 1670.0,
-      "mean": 1189.1312,
+      "interval": "p5-p95 of the sampled draws (90% interval of the distribution; not a confidence interval, not a bound)",
+      "max": 1655.0,
+      "mean": 1188.82,
       "median": 1182.0,
-      "min": 1104.0,
+      "min": 1097.0,
+      "min_max": [
+        1097.0,
+        1655.0
+      ],
+      "n": 5000,
       "p5": 1130.0,
+      "p5_p95": [
+        1130.0,
+        1266.0
+      ],
       "p95": 1266.0
     },
     "fleet_B_Peri_Urban": {
-      "max": 877.0,
-      "mean": 428.8362,
+      "interval": "p5-p95 of the sampled draws (90% interval of the distribution; not a confidence interval, not a bound)",
+      "max": 856.0,
+      "mean": 428.7008,
       "median": 428.0,
-      "min": 357.0,
-      "p5": 394.0,
+      "min": 359.0,
+      "min_max": [
+        359.0,
+        856.0
+      ],
+      "n": 5000,
+      "p5": 393.0,
+      "p5_p95": [
+        393.0,
+        472.0
+      ],
       "p95": 472.0
     },
     "fleet_B_Regional_District": {
+      "interval": "p5-p95 of the sampled draws (90% interval of the distribution; not a confidence interval, not a bound)",
       "max": 400.0,
-      "mean": 384.6858,
+      "mean": 384.7196,
       "median": 384.0,
       "min": 375.0,
+      "min_max": [
+        375.0,
+        400.0
+      ],
+      "n": 5000,
       "p5": 376.0,
+      "p5_p95": [
+        376.0,
+        398.0
+      ],
       "p95": 398.0
     },
     "fleet_B_Urban": {
-      "max": 534.0,
-      "mean": 375.6092,
-      "median": 372.0,
-      "min": 347.0,
-      "p5": 354.95000000000005,
+      "interval": "p5-p95 of the sampled draws (90% interval of the distribution; not a confidence interval, not a bound)",
+      "max": 535.0,
+      "mean": 375.3996,
+      "median": 371.0,
+      "min": 350.0,
+      "min_max": [
+        350.0,
+        535.0
+      ],
+      "n": 5000,
+      "p5": 355.0,
+      "p5_p95": [
+        355.0,
+        407.0
+      ],
       "p95": 407.0
     },
+    "fleet_B_moving": {
+      "interval": "p5-p95 of the sampled draws (90% interval of the distribution; not a confidence interval, not a bound)",
+      "max": 1540.0,
+      "mean": 1194.2384,
+      "median": 1182.0,
+      "min": 1043.0,
+      "min_max": [
+        1043.0,
+        1540.0
+      ],
+      "n": 5000,
+      "p5": 1093.0,
+      "p5_p95": [
+        1093.0,
+        1342.0500000000002
+      ],
+      "p95": 1342.0500000000002
+    },
+    "fleet_B_moving_Peri_Urban": {
+      "interval": "p5-p95 of the sampled draws (90% interval of the distribution; not a confidence interval, not a bound)",
+      "max": 584.0,
+      "mean": 422.5252,
+      "median": 416.0,
+      "min": 345.0,
+      "min_max": [
+        345.0,
+        584.0
+      ],
+      "n": 5000,
+      "p5": 371.0,
+      "p5_p95": [
+        371.0,
+        495.0
+      ],
+      "p95": 495.0
+    },
+    "fleet_B_moving_Regional_District": {
+      "interval": "p5-p95 of the sampled draws (90% interval of the distribution; not a confidence interval, not a bound)",
+      "max": 400.0,
+      "mean": 384.7196,
+      "median": 384.0,
+      "min": 375.0,
+      "min_max": [
+        375.0,
+        400.0
+      ],
+      "n": 5000,
+      "p5": 376.0,
+      "p5_p95": [
+        376.0,
+        398.0
+      ],
+      "p95": 398.0
+    },
+    "fleet_B_moving_Urban": {
+      "interval": "p5-p95 of the sampled draws (90% interval of the distribution; not a confidence interval, not a bound)",
+      "max": 567.0,
+      "mean": 386.9936,
+      "median": 380.0,
+      "min": 318.0,
+      "min_max": [
+        318.0,
+        567.0
+      ],
+      "n": 5000,
+      "p5": 339.0,
+      "p5_p95": [
+        339.0,
+        460.0
+      ],
+      "p95": 460.0
+    },
     "tier_agreement": {
+      "interval": "p5-p95 of the sampled draws (90% interval of the distribution; not a confidence interval, not a bound)",
       "max": 1.0,
-      "mean": 0.9762333333333334,
-      "median": 0.978494623655914,
+      "mean": 0.9756516129032258,
+      "median": 0.9731182795698925,
       "min": 0.8978494623655914,
+      "min_max": [
+        0.8978494623655914,
+        1.0
+      ],
+      "n": 5000,
       "p5": 0.946236559139785,
+      "p5_p95": [
+        0.946236559139785,
+        1.0
+      ],
       "p95": 1.0
     }
   },
   "n_mc": 5000,
   "n_sobol_base": 1024,
-  "n_sobol_evals": 15360,
+  "n_sobol_evals": 14336,
+  "observed_pace_reconciliation": [
+    {
+      "corridor_ids": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18
+      ],
+      "median_effective_kmh": 13.0,
+      "median_moving_kmh": 20.75,
+      "median_pace_effective_min_per_km": 4.6156577312267,
+      "median_pace_moving_min_per_km": 2.891717378176244,
+      "n_corridors": 18,
+      "n_runs": 964,
+      "set": "all_18_corridors",
+      "what": "v04 cycle_cap.by_class observed_pace_median (4.62): all GPS corridors, effective pace"
+    },
+    {
+      "corridor_ids": [
+        1,
+        2,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18
+      ],
+      "median_effective_kmh": 12.7,
+      "median_moving_kmh": 20.55,
+      "median_pace_effective_min_per_km": 4.725581395348837,
+      "median_pace_moving_min_per_km": 2.9197253137579917,
+      "n_corridors": 16,
+      "n_runs": 830,
+      "set": "belt_16_corridors_lt20km_of_hub",
+      "what": "a09 prior pool before splitting by zone: corridors < 20 km from the Srinagar hub"
+    },
+    {
+      "corridor_ids": [
+        1,
+        4,
+        5,
+        6,
+        8,
+        12,
+        15
+      ],
+      "median_effective_kmh": 12.5,
+      "median_moving_kmh": 18.2,
+      "median_pace_effective_min_per_km": 4.8,
+      "median_pace_moving_min_per_km": 3.296703296703297,
+      "n_corridors": 7,
+      "n_runs": 534,
+      "set": "urban_7_belt_core_and_mid",
+      "what": "a09 Urban prior (Urban = zone core/mid inside the belt); a15 S1 Urban pace"
+    },
+    {
+      "corridor_ids": [
+        2,
+        7,
+        9,
+        11,
+        13,
+        14,
+        16,
+        17,
+        18
+      ],
+      "median_effective_kmh": 13.2,
+      "median_moving_kmh": 20.9,
+      "median_pace_effective_min_per_km": 4.545454545454546,
+      "median_pace_moving_min_per_km": 2.870813397129187,
+      "n_corridors": 9,
+      "n_runs": 296,
+      "set": "peri_9_belt_periphery",
+      "what": "a09 Peri-Urban prior (zone periphery inside the belt); a15 S1 Peri-Urban pace"
+    },
+    {
+      "corridor_ids": [
+        1,
+        2,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        13,
+        14,
+        17
+      ],
+      "median_effective_kmh": 12.5,
+      "median_moving_kmh": 20.6,
+      "median_pace_effective_min_per_km": 4.8,
+      "median_pace_moving_min_per_km": 2.9126213592233006,
+      "n_corridors": 11,
+      "n_runs": 764,
+      "set": "belt_plan_corridors_only",
+      "what": "belt corridors whose verdict is not OUT_OF_AREA/INFORMAL (11 of 16)"
+    },
+    {
+      "corridor_ids": [
+        1,
+        4,
+        6,
+        7,
+        8
+      ],
+      "median_effective_kmh": 11.4,
+      "median_moving_kmh": 18.2,
+      "median_pace_effective_min_per_km": 5.263157894736842,
+      "median_pace_moving_min_per_km": 3.296703296703297,
+      "n_corridors": 5,
+      "n_runs": 470,
+      "set": "v345_measured_5",
+      "what": "the five corridors the engine itself re-timed in v3.4.5 (directly measured plan routes)"
+    },
+    {
+      "corridor_ids": [
+        3,
+        10
+      ],
+      "median_effective_kmh": 28.9,
+      "median_moving_kmh": 35.45,
+      "median_pace_effective_min_per_km": 2.1325265643447464,
+      "median_pace_moving_min_per_km": 1.7149076836249295,
+      "n_corridors": 2,
+      "n_runs": 134,
+      "set": "regional_2_outside_belt",
+      "what": "corridors > 100 km from the hub (rural pace; too few for a prior; a15 S2 bound)"
+    }
+  ],
   "pace_priors": {
     "Peri_Urban": {
-      "boot_p5": 4.316546762589928,
-      "boot_p50": 4.545454545454546,
-      "boot_p95": 5.217391304347826,
-      "median": 4.545454545454546,
+      "boot_effective_mean": 4.6908939411387935,
+      "boot_effective_p5": 4.316546762589928,
+      "boot_effective_p50": 4.545454545454546,
+      "boot_effective_p95": 5.217391304347826,
+      "boot_moving_mean": 2.8282800508714616,
+      "boot_moving_p5": 2.575107296137339,
+      "boot_moving_p50": 2.870813397129187,
+      "boot_moving_p95": 3.2085561497326203,
+      "corridor_ids": [
+        2,
+        7,
+        9,
+        11,
+        13,
+        14,
+        16,
+        17,
+        18
+      ],
+      "median_effective": 4.545454545454546,
+      "median_moving": 2.870813397129187,
       "n_corridors": 9,
-      "observed": [
+      "observed_effective": [
         3.593,
         4.082,
         4.317,
@@ -103,15 +1090,41 @@
         5.217,
         5.714,
         13.043
+      ],
+      "observed_moving": [
+        2.299,
+        2.4,
+        2.575,
+        2.609,
+        2.871,
+        2.927,
+        3.209,
+        3.243,
+        3.333
       ]
     },
     "Urban": {
-      "boot_p5": 4.580152671755726,
-      "boot_p50": 4.8,
-      "boot_p95": 5.263157894736842,
-      "median": 4.8,
+      "boot_effective_mean": 4.8636143158999605,
+      "boot_effective_p5": 4.580152671755726,
+      "boot_effective_p50": 4.8,
+      "boot_effective_p95": 5.263157894736842,
+      "boot_moving_mean": 3.1621668859567524,
+      "boot_moving_p5": 2.816901408450704,
+      "boot_moving_p50": 3.296703296703297,
+      "boot_moving_p95": 3.3333333333333335,
+      "corridor_ids": [
+        1,
+        4,
+        5,
+        6,
+        8,
+        12,
+        15
+      ],
+      "median_effective": 4.8,
+      "median_moving": 3.296703296703297,
       "n_corridors": 7,
-      "observed": [
+      "observed_effective": [
         4.545,
         4.58,
         4.651,
@@ -119,6 +1132,15 @@
         5.0,
         5.263,
         7.595
+      ],
+      "observed_moving": [
+        2.778,
+        2.817,
+        2.913,
+        3.297,
+        3.315,
+        3.333,
+        3.429
       ]
     },
     "_regional_unobserved": {
@@ -154,14 +1176,6 @@
         1.25
       ],
       "value": 1.15
-    },
-    "OVERLAP_THRESHOLD": {
-      "dist": "unif",
-      "range": [
-        0.5,
-        0.9
-      ],
-      "value": 0.65
     },
     "POI_TIER2_WEIGHT": {
       "dist": "tri",
@@ -220,7 +1234,172 @@
       "value": 400.0
     }
   },
-  "runtime_sec": 88.1,
+  "parameters_not_sampled": {
+    "OVERLAP_THRESHOLD": {
+      "dist": "unif",
+      "range": [
+        0.5,
+        0.9
+      ],
+      "reason": "Corridor-merge threshold theta decides which permits become one of the 186 routes. This model starts from the 186 published routes, so theta changes no output. Route-set uncertainty is not propagated; see route_set_uncertainty.",
+      "value": 0.65
+    }
+  },
+  "prior_robustness": {
+    "belt_10_plan_only_excluding_corridor_17": {
+      "fleet_B_eff_at_median_pace": 1169,
+      "fleet_B_eff_pace_only_p5_p95": [
+        1152.0,
+        1267.0
+      ],
+      "fleet_B_moving_at_median_pace": 1137,
+      "fleet_B_moving_pace_only_p5_p95": [
+        1112.0,
+        1154.0
+      ],
+      "median_pace_effective": {
+        "Peri_Urban": 4.545454545454546,
+        "Urban": 4.8
+      },
+      "median_pace_moving": {
+        "Peri_Urban": 2.575107296137339,
+        "Urban": 3.296703296703297
+      },
+      "n_corridors_by_class": {
+        "Peri_Urban": 5,
+        "Urban": 5
+      },
+      "pace_only_bootstrap_n": 2000
+    },
+    "belt_11_plan_corridors_only (drop OUT_OF_AREA/INFORMAL)": {
+      "fleet_B_eff_at_median_pace": 1182,
+      "fleet_B_eff_pace_only_p5_p95": [
+        1156.0,
+        1379.0
+      ],
+      "fleet_B_moving_at_median_pace": 1141,
+      "fleet_B_moving_pace_only_p5_p95": [
+        1114.0,
+        1164.0
+      ],
+      "median_pace_effective": {
+        "Peri_Urban": 4.731743666169896,
+        "Urban": 4.8
+      },
+      "median_pace_moving": {
+        "Peri_Urban": 2.722960346633263,
+        "Urban": 3.296703296703297
+      },
+      "n_corridors_by_class": {
+        "Peri_Urban": 6,
+        "Urban": 5
+      },
+      "pace_only_bootstrap_n": 2000
+    },
+    "belt_15_excluding_corridor_17 (74% dwell, 3.3 km, 6 runs)": {
+      "fleet_B_eff_at_median_pace": 1168,
+      "fleet_B_eff_pace_only_p5_p95": [
+        1151.0,
+        1207.0
+      ],
+      "fleet_B_moving_at_median_pace": 1141,
+      "fleet_B_moving_pace_only_p5_p95": [
+        1118.0,
+        1158.05
+      ],
+      "median_pace_effective": {
+        "Peri_Urban": 4.494949494949495,
+        "Urban": 4.8
+      },
+      "median_pace_moving": {
+        "Peri_Urban": 2.7397545246515502,
+        "Urban": 3.296703296703297
+      },
+      "n_corridors_by_class": {
+        "Peri_Urban": 8,
+        "Urban": 7
+      },
+      "pace_only_bootstrap_n": 2000
+    },
+    "belt_16_all (published pool)": {
+      "fleet_B_eff_at_median_pace": 1169,
+      "fleet_B_eff_pace_only_p5_p95": [
+        1152.0,
+        1217.0
+      ],
+      "fleet_B_moving_at_median_pace": 1148,
+      "fleet_B_moving_pace_only_p5_p95": [
+        1122.0,
+        1163.0
+      ],
+      "median_pace_effective": {
+        "Peri_Urban": 4.545454545454546,
+        "Urban": 4.8
+      },
+      "median_pace_moving": {
+        "Peri_Urban": 2.870813397129187,
+        "Urban": 3.296703296703297
+      },
+      "n_corridors_by_class": {
+        "Peri_Urban": 9,
+        "Urban": 7
+      },
+      "pace_only_bootstrap_n": 2000
+    },
+    "belt_5_directly_measured_by_engine_only": {
+      "fleet_B_eff_at_median_pace": 1254,
+      "fleet_B_moving_at_median_pace": 1164,
+      "median_pace_effective": {
+        "Peri_Urban": 5.714285714285714,
+        "Urban": 5.031578947368421
+      },
+      "median_pace_moving": {
+        "Peri_Urban": 3.2432432432432434,
+        "Urban": 3.30581021188756
+      },
+      "n_corridors_by_class": {
+        "Peri_Urban": 1,
+        "Urban": 4
+      },
+      "pace_only_bootstrap": "not_computed: fewer than 3 corridors in a class"
+    }
+  },
+  "regime_definitions": {
+    "A": "engine cycle model with the per-km cap; headways, routes as published",
+    "B_effective": "fleet_B*: Urban/Peri-Urban non-backbone non-measured routes take cycle = 60/effective_kmh min/km x L x 2 x 1.10 (in-motion + observed dwell/standstill, plus layover factor); cap removed. Bracket; NOT the engine's method.",
+    "B_moving": "fleet_B_moving*: same routes take one-way = L x 60/moving_kmh + stops x stop penalty + junction penalty, cycle = one-way x 2 x 1.10, cap lifted. This is apply_reality_v345.py's method.",
+    "note": "Key `fleet_B` (and fleet_B_Urban/...) is B_effective, kept under its original name."
+  },
+  "route_set_uncertainty": "not propagated",
+  "route_set_uncertainty_detail": {
+    "bounding_scenario_S4": {
+      "coverage_any": 0.20325449879585625,
+      "description": "Consolidation at theta = 0.50 (engine merge test)",
+      "fleet": 533,
+      "fleet_change_pct_vs_published": -47.279920870425315,
+      "published_coverage_any": 0.24189890993782312,
+      "published_fleet": 1011,
+      "published_routes": 186,
+      "routes": 84,
+      "source": "data/derived/a15_scenarios.json"
+    },
+    "parameter_baseline": 0.65,
+    "parameter_not_sampled": "OVERLAP_THRESHOLD",
+    "parameter_range": [
+      0.5,
+      0.9
+    ],
+    "statement": "Route-set (corridor-merge) uncertainty is not part of any interval in this module. Scenario S4 of a15 is a one-sided bound, not a draw: it has no probability attached.",
+    "status": "not propagated",
+    "structural_uncertainty_not_sampled": [
+      "route set (merge threshold theta, 80 m buffer, 2.5 km origin test)",
+      "hierarchy: Jenks k = 3 (k = 2 has GVF 0.786 against the 0.80 rule) and CDI form",
+      "per-km cycle cap form and its class values (a08 sweeps the cap on/off; not sampled here)",
+      "headway rule (headways are held at the published value per route)",
+      "stop-count rule and pace aggregation across corridors (corridors equal-weighted)"
+    ]
+  },
+  "runtime_note": "wall-clock runtime is not stored (volatile); see logs/volatile/LATEST_RUN_volatile.json",
   "seed": 20260823,
   "sobol": {
     "coverage": {
@@ -237,12 +1416,6 @@
         "ST_conf": 0.0
       },
       "FLEET_SPARE_RATIO": {
-        "S1": 0.0,
-        "S1_conf": 0.0,
-        "ST": 0.0,
-        "ST_conf": 0.0
-      },
-      "OVERLAP_THRESHOLD": {
         "S1": 0.0,
         "S1_conf": 0.0,
         "ST": 0.0,
@@ -291,16 +1464,16 @@
         "ST_conf": 0.0
       },
       "VIRTUAL_STOP_SPACING_M": {
-        "S1": 0.025568117162913497,
-        "S1_conf": 0.013708289210575448,
-        "ST": 0.02596975786625628,
-        "ST_conf": 0.0020966472209051562
+        "S1": 0.025642463576506437,
+        "S1_conf": 0.013509062387288884,
+        "ST": 0.025982718796855583,
+        "ST_conf": 0.002159765250714938
       },
       "WALK_CATCHMENT_M": {
-        "S1": 0.9738865811327845,
-        "S1_conf": 0.07658544468171395,
-        "ST": 0.9741662559730783,
-        "ST_conf": 0.061856612789850496
+        "S1": 0.9744308671195987,
+        "S1_conf": 0.06564039535868708,
+        "ST": 0.974941710514349,
+        "ST_conf": 0.056149277801071346
       }
     },
     "fleet_A": {
@@ -311,22 +1484,16 @@
         "ST_conf": 0.0
       },
       "CONGESTION_CITY_CORE": {
-        "S1": 0.006693761913205186,
-        "S1_conf": 0.009564720073822072,
-        "ST": 0.009440014144454265,
-        "ST_conf": 0.001810091403275368
+        "S1": 0.001873584109460574,
+        "S1_conf": 0.008904210034816317,
+        "ST": 0.010931967617176287,
+        "ST_conf": 0.0018770509149801655
       },
       "FLEET_SPARE_RATIO": {
-        "S1": 0.9369620133671132,
-        "S1_conf": 0.07339160877097188,
-        "ST": 0.9437061791571602,
-        "ST_conf": 0.05720345494384449
-      },
-      "OVERLAP_THRESHOLD": {
-        "S1": 0.0,
-        "S1_conf": 0.0,
-        "ST": 0.0,
-        "ST_conf": 0.0
+        "S1": 0.9436401913394538,
+        "S1_conf": 0.08251304819629367,
+        "ST": 0.9457272748806469,
+        "ST_conf": 0.06238007043864034
       },
       "PACE_PERI": {
         "S1": 0.0,
@@ -353,16 +1520,16 @@
         "ST_conf": 0.0
       },
       "STOP_PENALTY_MIN": {
-        "S1": 0.026390906283428897,
-        "S1_conf": 0.016925113402524877,
-        "ST": 0.03928024991667151,
-        "ST_conf": 0.005972874823119388
+        "S1": 0.024142943171285777,
+        "S1_conf": 0.01817603430926212,
+        "ST": 0.03844796498657439,
+        "ST_conf": 0.0057848561310417865
       },
       "STOP_SPACING_M": {
-        "S1": 0.01696041179954799,
-        "S1_conf": 0.014334633216834829,
-        "ST": 0.024475542188703323,
-        "ST_conf": 0.0033909305198456243
+        "S1": 0.00754505653514675,
+        "S1_conf": 0.01242130765151141,
+        "ST": 0.022575001115858303,
+        "ST_conf": 0.0038808525450578133
       },
       "TOURIST_POPULATION_MULTIPLIER": {
         "S1": 0.0,
@@ -391,34 +1558,28 @@
         "ST_conf": 0.0
       },
       "CONGESTION_CITY_CORE": {
-        "S1": 1.3179054622146423e-05,
-        "S1_conf": 2.6504211107998686e-05,
-        "ST": 2.3610333690565468e-07,
-        "ST_conf": 4.748240950557071e-07
+        "S1": 1.3983612662309568e-05,
+        "S1_conf": 9.877626543358741e-05,
+        "ST": 1.2430772000395997e-06,
+        "ST_conf": 2.2301968683495895e-06
       },
       "FLEET_SPARE_RATIO": {
-        "S1": 0.5263219967124457,
-        "S1_conf": 0.08172284223162225,
-        "ST": 0.5491274882518102,
-        "ST_conf": 0.08983602509309674
-      },
-      "OVERLAP_THRESHOLD": {
-        "S1": 0.0,
-        "S1_conf": 0.0,
-        "ST": 0.0,
-        "ST_conf": 0.0
+        "S1": 0.5694512644718792,
+        "S1_conf": 0.09118418557568006,
+        "ST": 0.5810244765315509,
+        "ST_conf": 0.08700104325437706
       },
       "PACE_PERI": {
-        "S1": 0.3317749858663995,
-        "S1_conf": 0.1956337067491961,
-        "ST": 0.3202132618515971,
-        "ST_conf": 0.1138073651344088
+        "S1": 0.24430561810261975,
+        "S1_conf": 0.14513624338485806,
+        "ST": 0.2999550256004362,
+        "ST_conf": 0.10725193958739371
       },
       "PACE_URBAN": {
-        "S1": 0.1392680148355426,
-        "S1_conf": 0.06144702650151435,
-        "ST": 0.12927484057263688,
-        "ST_conf": 0.03611676489049043
+        "S1": 0.1494206182379529,
+        "S1_conf": 0.060125473348171386,
+        "ST": 0.1509652619433696,
+        "ST_conf": 0.03974887946540506
       },
       "POI_TIER2_WEIGHT": {
         "S1": 0.0,
@@ -433,16 +1594,90 @@
         "ST_conf": 0.0
       },
       "STOP_PENALTY_MIN": {
-        "S1": 0.002080284059361658,
-        "S1_conf": 0.0029159122989486437,
-        "ST": 0.000999897631795442,
-        "ST_conf": 0.00020408693120620047
+        "S1": -0.0006285078790451108,
+        "S1_conf": 0.002577314271598827,
+        "ST": 0.0010725270081941697,
+        "ST_conf": 0.00018440933403451098
       },
       "STOP_SPACING_M": {
-        "S1": 0.0013512012589640774,
-        "S1_conf": 0.0020738017536397865,
-        "ST": 0.0006745472335394514,
-        "ST_conf": 0.00011606589489799617
+        "S1": -0.0015820744108717621,
+        "S1_conf": 0.0022739481235309086,
+        "ST": 0.0006573392233809421,
+        "ST_conf": 0.00011781879258457057
+      },
+      "TOURIST_POPULATION_MULTIPLIER": {
+        "S1": 0.0,
+        "S1_conf": 0.0,
+        "ST": 0.0,
+        "ST_conf": 0.0
+      },
+      "VIRTUAL_STOP_SPACING_M": {
+        "S1": 0.0,
+        "S1_conf": 0.0,
+        "ST": 0.0,
+        "ST_conf": 0.0
+      },
+      "WALK_CATCHMENT_M": {
+        "S1": 0.0,
+        "S1_conf": 0.0,
+        "ST": 0.0,
+        "ST_conf": 0.0
+      }
+    },
+    "fleet_B_moving": {
+      "CDI_POP_WEIGHT": {
+        "S1": 0.0,
+        "S1_conf": 0.0,
+        "ST": 0.0,
+        "ST_conf": 0.0
+      },
+      "CONGESTION_CITY_CORE": {
+        "S1": -1.0627960995642146e-05,
+        "S1_conf": 2.4345886939388915e-05,
+        "ST": 4.1603167653354197e-07,
+        "ST_conf": 7.472744758333734e-07
+      },
+      "FLEET_SPARE_RATIO": {
+        "S1": 0.19273563798845295,
+        "S1_conf": 0.038493167585944316,
+        "ST": 0.20052468869277285,
+        "ST_conf": 0.021978741613318357
+      },
+      "PACE_PERI": {
+        "S1": 0.02009699901014669,
+        "S1_conf": 0.013102802671989034,
+        "ST": 0.02038164145238415,
+        "ST_conf": 0.0024675357776447137
+      },
+      "PACE_URBAN": {
+        "S1": 0.0156979449049181,
+        "S1_conf": 0.00965894333293922,
+        "ST": 0.01634189066690815,
+        "ST_conf": 0.001615345068522555
+      },
+      "POI_TIER2_WEIGHT": {
+        "S1": 0.0,
+        "S1_conf": 0.0,
+        "ST": 0.0,
+        "ST_conf": 0.0
+      },
+      "POI_TIER3_WEIGHT": {
+        "S1": 0.0,
+        "S1_conf": 0.0,
+        "ST": 0.0,
+        "ST_conf": 0.0
+      },
+      "STOP_PENALTY_MIN": {
+        "S1": 0.42323920883978805,
+        "S1_conf": 0.04884941567032122,
+        "ST": 0.46018453591969993,
+        "ST_conf": 0.04923868914205302
+      },
+      "STOP_SPACING_M": {
+        "S1": 0.311574645238813,
+        "S1_conf": 0.04782338296404745,
+        "ST": 0.34534248627869846,
+        "ST_conf": 0.03752206313085622
       },
       "TOURIST_POPULATION_MULTIPLIER": {
         "S1": 0.0,
@@ -465,10 +1700,10 @@
     },
     "tier_agreement": {
       "CDI_POP_WEIGHT": {
-        "S1": 0.7862193806521304,
-        "S1_conf": 0.07891180891347867,
-        "ST": 0.9320967577169538,
-        "ST_conf": 0.0856291019870918
+        "S1": 0.8286476250111987,
+        "S1_conf": 0.08988973854660867,
+        "ST": 0.9286465154984155,
+        "ST_conf": 0.08025080563882782
       },
       "CONGESTION_CITY_CORE": {
         "S1": 0.0,
@@ -477,12 +1712,6 @@
         "ST_conf": 0.0
       },
       "FLEET_SPARE_RATIO": {
-        "S1": 0.0,
-        "S1_conf": 0.0,
-        "ST": 0.0,
-        "ST_conf": 0.0
-      },
-      "OVERLAP_THRESHOLD": {
         "S1": 0.0,
         "S1_conf": 0.0,
         "ST": 0.0,
@@ -501,16 +1730,16 @@
         "ST_conf": 0.0
       },
       "POI_TIER2_WEIGHT": {
-        "S1": 0.0068791715496398275,
-        "S1_conf": 0.013587438441600812,
-        "ST": 0.03455677870816217,
-        "ST_conf": 0.014905242654721514
+        "S1": 0.009433950945211527,
+        "S1_conf": 0.017579947098686495,
+        "ST": 0.029967779476653154,
+        "ST_conf": 0.008865817623266305
       },
       "POI_TIER3_WEIGHT": {
-        "S1": -0.0002705068037730094,
-        "S1_conf": 0.014890156892845074,
-        "ST": 0.03694000482596642,
-        "ST_conf": 0.011170869735135685
+        "S1": 0.003806507056222993,
+        "S1_conf": 0.013689412367116537,
+        "ST": 0.028283200156959596,
+        "ST_conf": 0.008856424018559123
       },
       "STOP_PENALTY_MIN": {
         "S1": 0.0,
@@ -525,22 +1754,127 @@
         "ST_conf": 0.0
       },
       "TOURIST_POPULATION_MULTIPLIER": {
-        "S1": 0.0011764519106081375,
-        "S1_conf": 0.008285889959134185,
-        "ST": 0.011405439278063362,
-        "ST_conf": 0.0042138525307510505
+        "S1": -0.008324184594379131,
+        "S1_conf": 0.007271680519613721,
+        "ST": 0.007846593146993484,
+        "ST_conf": 0.0030479714027611716
       },
       "VIRTUAL_STOP_SPACING_M": {
-        "S1": -0.008413539603637252,
-        "S1_conf": 0.02776023843352047,
-        "ST": 0.0992869023720964,
-        "ST_conf": 0.01883393201661056
+        "S1": 0.005561862654018631,
+        "S1_conf": 0.03194259535584501,
+        "ST": 0.12900331106074053,
+        "ST_conf": 0.02728831851116545
       },
       "WALK_CATCHMENT_M": {
-        "S1": 0.03886709981779192,
-        "S1_conf": 0.03965941415061081,
-        "ST": 0.16482562061171438,
-        "ST_conf": 0.0278308566501482
+        "S1": 0.03777600351936964,
+        "S1_conf": 0.03564856801485967,
+        "ST": 0.13982008353456213,
+        "ST_conf": 0.02935290606410896
+      }
+    }
+  },
+  "sobol_meta": {
+    "bootstrap_resamples": 100,
+    "confidence_level": 0.95,
+    "definitions": {
+      "S1": "first-order index: share of output variance explained by the input alone",
+      "ST": "total-order index: share of output variance involving the input, interactions included",
+      "sum_ST_gt_1": "sum(ST) > 1 means interactions; ST must not be quoted as a variance share"
+    },
+    "flags": [
+      {
+        "ci95_half_width": 0.0022739481235309086,
+        "consistent_with_bound_within_ci": true,
+        "estimate": -0.0015820744108717621,
+        "index": "S1",
+        "kind": "negative",
+        "output": "fleet_B",
+        "parameter": "STOP_SPACING_M"
+      },
+      {
+        "ci95_half_width": 0.002577314271598827,
+        "consistent_with_bound_within_ci": true,
+        "estimate": -0.0006285078790451108,
+        "index": "S1",
+        "kind": "negative",
+        "output": "fleet_B",
+        "parameter": "STOP_PENALTY_MIN"
+      },
+      {
+        "ci95_half_width": 2.4345886939388915e-05,
+        "consistent_with_bound_within_ci": true,
+        "estimate": -1.0627960995642146e-05,
+        "index": "S1",
+        "kind": "negative",
+        "output": "fleet_B_moving",
+        "parameter": "CONGESTION_CITY_CORE"
+      },
+      {
+        "ci95_half_width": 0.007271680519613721,
+        "consistent_with_bound_within_ci": false,
+        "estimate": -0.008324184594379131,
+        "index": "S1",
+        "kind": "negative",
+        "output": "tier_agreement",
+        "parameter": "TOURIST_POPULATION_MULTIPLIER"
+      }
+    ],
+    "flags_note": "Estimates outside [0, 1] are reported as estimated (not clipped); consistent_with_bound_within_ci says whether the bound lies inside the 95% interval.",
+    "headline_convention": "'share of variance' / 'explains X%' => S1. Total-order values are called 'total-order index' and are quoted with their S1.",
+    "inputs": [
+      "WALK_CATCHMENT_M",
+      "VIRTUAL_STOP_SPACING_M",
+      "STOP_SPACING_M",
+      "CDI_POP_WEIGHT",
+      "POI_TIER2_WEIGHT",
+      "POI_TIER3_WEIGHT",
+      "TOURIST_POPULATION_MULTIPLIER",
+      "CONGESTION_CITY_CORE",
+      "STOP_PENALTY_MIN",
+      "FLEET_SPARE_RATIO",
+      "PACE_URBAN",
+      "PACE_PERI"
+    ],
+    "n_base_samples": 1024,
+    "n_evaluations": 14336,
+    "n_inputs": 12,
+    "pace_inputs_note": "PACE_URBAN / PACE_PERI are quantile coordinates; fleet_B reads them through the effective-pace prior, fleet_B_moving through the moving-pace prior; no output reads both.",
+    "second_order": false,
+    "sums": {
+      "coverage": {
+        "interaction_share_estimate": -7.333069610515608e-05,
+        "n_evaluations": 14336,
+        "output_variance": 0.0009847905280672038,
+        "sum_S1": 1.0000733306961052,
+        "sum_ST": 1.0009244293112045
+      },
+      "fleet_A": {
+        "interaction_share_estimate": 0.022798224844653103,
+        "n_evaluations": 14336,
+        "output_variance": 456.41782688607975,
+        "sum_S1": 0.9772017751553469,
+        "sum_ST": 1.017682208600256
+      },
+      "fleet_B": {
+        "interaction_share_estimate": 0.03901909786480262,
+        "n_evaluations": 14336,
+        "output_variance": 2029.3808727215749,
+        "sum_S1": 0.9609809021351974,
+        "sum_ST": 1.0336758733841318
+      },
+      "fleet_B_moving": {
+        "interaction_share_estimate": 0.03666619197887688,
+        "n_evaluations": 14336,
+        "output_variance": 5884.705572926269,
+        "sum_S1": 0.9633338080211231,
+        "sum_ST": 1.04277565904214
+      },
+      "tier_agreement": {
+        "interaction_share_estimate": 0.12309823540835763,
+        "n_evaluations": 14336,
+        "output_variance": 0.0003181331601007942,
+        "sum_S1": 0.8769017645916424,
+        "sum_ST": 1.2635674828743242
       }
     }
   },
@@ -550,67 +1884,67 @@
         "New_Route_ID": "SSCL-12",
         "Route_Name": "Rangreth to District Court Srinagar via Barzulla Jehangir Chowk",
         "baseline_tier": 1,
-        "tier_stability_rate": 0.3392
+        "tier_stability_rate": 0.3292
       },
       {
         "New_Route_ID": "FDR-455",
         "Route_Name": "Narbal to Jehangir Chowk",
         "baseline_tier": 0,
-        "tier_stability_rate": 0.4518
+        "tier_stability_rate": 0.4368
       },
       {
         "New_Route_ID": "SSCL-29",
         "Route_Name": "Pantha Chowk to Panzinara",
         "baseline_tier": 0,
-        "tier_stability_rate": 0.5712
+        "tier_stability_rate": 0.559
       },
       {
         "New_Route_ID": "FDR-093",
         "Route_Name": "Srinagar to Railway",
         "baseline_tier": 1,
-        "tier_stability_rate": 0.6686
+        "tier_stability_rate": 0.6566
       },
       {
         "New_Route_ID": "FDR-429",
         "Route_Name": "Parimpora to Chadora",
         "baseline_tier": 0,
-        "tier_stability_rate": 0.7004
+        "tier_stability_rate": 0.6858
       },
       {
         "New_Route_ID": "FDR-219",
         "Route_Name": "Qamarwari to Jehangir Chowk",
         "baseline_tier": 2,
-        "tier_stability_rate": 0.7818
-      },
-      {
-        "New_Route_ID": "FDR-394",
-        "Route_Name": "Lawaypora to Jehangir Chowk",
-        "baseline_tier": 1,
-        "tier_stability_rate": 0.7862
+        "tier_stability_rate": 0.7864
       },
       {
         "New_Route_ID": "FDR-406",
         "Route_Name": "Qamarwari to Parimpora",
         "baseline_tier": 1,
-        "tier_stability_rate": 0.8036
+        "tier_stability_rate": 0.7866
+      },
+      {
+        "New_Route_ID": "FDR-394",
+        "Route_Name": "Lawaypora to Jehangir Chowk",
+        "baseline_tier": 1,
+        "tier_stability_rate": 0.7884
       },
       {
         "New_Route_ID": "FDR-479",
         "Route_Name": "Srinagar to Budgam",
         "baseline_tier": 1,
-        "tier_stability_rate": 0.8154
+        "tier_stability_rate": 0.8132
       },
       {
         "New_Route_ID": "FDR-106",
         "Route_Name": "Parimpora to Saidakadal",
         "baseline_tier": 2,
-        "tier_stability_rate": 0.817
+        "tier_stability_rate": 0.821
       }
     ],
-    "n_routes_stability_below_target": 7,
+    "n_routes_stability_below_target": 8,
     "p_agreement_above_target": 1.0,
     "route_stability_median": 1.0,
-    "share_routes_stability_above_target": 0.9623655913978495,
+    "share_routes_stability_above_target": 0.956989247311828,
     "target": 0.8
   }
 }

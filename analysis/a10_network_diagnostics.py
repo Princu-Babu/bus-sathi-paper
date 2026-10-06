@@ -30,10 +30,26 @@ Two independent measurements of the same quantity, which is the point.
     over a link they have already used.
   * UNION method (cross-check). shapely.unary_union over the same geometries,
     which nodes and dissolves them with no knowledge of the vertex keys, plus
-    the same union after snapping coordinates to 0.5/1/2/5/10 m grids to show
-    the figure is not an artefact of floating-point coincidence.
-  If the two disagreed, the vertex-sharing premise would be wrong and the
-  duplication counts with it. They are reported side by side for that reason.
+    the same union after snapping coordinates to 0.5/1/2/5/10 m grids, with
+    route-km re-measured on the SAME snapped lines so line shortening does not
+    contaminate the ratio. The exact-vertex ratio is the zero-tolerance value;
+    near-coincident but not vertex-identical polylines (dual carriageways,
+    redrawn lines) are counted as separate road at zero tolerance and merge at
+    1-10 m, so the ratio RISES with tolerance (audit F-04-07: 3.65 at 0 m to
+    about 4.0 at 5-10 m). The exact figure is therefore a conservative (low)
+    duplication estimate, and the JSON reports the whole range, not a claim
+    that the figure is tolerance-free.
+  The link and union lengths are reported side by side so a disagreement would
+  show; the snapped-grid ratios are the sensitivity of the headline to the
+  tolerance.
+
+Moran's I decomposition (audit F-04-09). A head-count surface inherits the
+clustering of settlement. Moran's I is therefore reported for (i) uncovered
+head-count, (ii) total population and (iii) the uncovered SHARE of cell
+population (inhabited cells), same lattice, same Queen weights, same
+permutation test, plus the residual of uncovered ~ total. It is descriptive and
+in-sample for the 2 km lattice; it does not show that the service gap, as
+opposed to the population, is clustered unless (iii) or the residual is.
 
 The baseline, and what cannot be computed. The published GeoJSON carries the
 186 active features only; the 458 MERGED_INTO_TRUNK rows have attributes but no
@@ -142,6 +158,114 @@ def union_lengths(geoms) -> dict[str, float]:
     return out
 
 
+def snapped_ratio_table(geoms, exact_ratio: float) -> list[dict]:
+    """Route-km / unique-km after snapping to a grid, route-km re-measured on
+    the snapped lines. grid 0 = exact vertex method."""
+    import shapely as sh
+    from shapely.ops import unary_union
+    rows = [dict(grid_m=0.0, route_km=None, union_km=None, ratio=float(exact_ratio),
+                 method="exact vertex links")]
+    for g in PRECISION_GRIDS_M + (20.0,):
+        sn = [sh.set_precision(x, g) for x in geoms]
+        rk = float(sum(x.length for x in sn)) / 1000.0
+        uk = float(unary_union(sn).length) / 1000.0
+        rows.append(dict(grid_m=float(g), route_km=rk, union_km=uk,
+                         ratio=rk / uk, method="shapely union on snapped lines"))
+    return rows
+
+
+def moran_decomposition() -> dict:
+    """Moran's I for uncovered head-count, total population, uncovered share
+    and the uncovered~total residual on the a11 lattice (read-only reuse of a11
+    helpers; a11 is not run)."""
+    import geopandas as gpd
+    import rasterio
+    from rasterio.features import geometry_mask
+    from pyproj import Transformer
+    from shapely import union_all
+    from shapely.ops import transform as shp_transform
+    import a11_coverage_accessibility as A11
+
+    if not C.WORLDPOP_TIF.exists() or not (C.CACHE / "catchments_network.gpkg").exists():
+        return dict(status="not_computable",
+                    why="WorldPop raster or cached network catchments missing")
+    cat = gpd.read_file(C.CACHE / "catchments_network.gpkg")
+    if cat.crs is None or cat.crs.to_epsg() != 32643:
+        cat = cat.to_crs(C.UTM)
+    districts = C.load_districts()
+    to_wgs = Transformer.from_crs(C.UTM, C.WGS84, always_xy=True).transform
+    covered_wgs = shp_transform(to_wgs, union_all(list(cat.geometry.values)))
+    union_wgs = districts.to_crs(C.WGS84).geometry.union_all()
+    union_utm = districts.to_crs(C.UTM).geometry.union_all()
+    with rasterio.open(C.WORLDPOP_TIF) as src:
+        pop = src.read(1).astype("float64")
+        transform, nodata, shape = src.transform, src.nodata, pop.shape
+    pop = np.where((pop == nodata) | (pop < 0) | ~np.isfinite(pop), 0.0, pop)
+    inside = geometry_mask([union_wgs], out_shape=shape, transform=transform, invert=True)
+    covered = geometry_mask([covered_wgs], out_shape=shape, transform=transform, invert=True)
+    total_arr = (pop * inside).astype("float32")
+    unc_arr = (pop * inside * (~covered)).astype("float32")
+
+    out = dict(status="OK", weights="Queen contiguity, row-standardised",
+               permutations=A11.MORAN_PERMUTATIONS, seed=C.RANDOM_SEED,
+               label="descriptive, in-sample: one 2 km and one 5 km lattice, one network",
+               variants=[])
+    for h in (A11.CELL_KM, A11.CELL_KM_ROBUST):
+        cells = A11._make_lattice(union_utm, h * 1000.0)
+        unc, tot = A11._cell_populations(cells, unc_arr, total_arr, transform, to_wgs)
+        cells = cells.assign(uncovered=unc, total=tot)
+        inh = cells[cells["total"] > 0].reset_index(drop=True)
+        x, y = inh["total"].to_numpy(float), inh["uncovered"].to_numpy(float)
+        share = y / x
+        b1, b0 = np.polyfit(x, y, 1)
+        resid = y - (b0 + b1 * x)
+        out["variants"].append(dict(
+            cell_km=h, n_cells_full=int(len(cells)), n_cells_inhabited=int(len(inh)),
+            corr_uncovered_total_inhabited=float(np.corrcoef(x, y)[0, 1]),
+            uncovered_headcount_full_lattice=A11.morans_i(
+                cells["uncovered"].to_numpy(float), cells,
+                f"uncovered head-count, full lattice, h={h:g} km"),
+            total_population_full_lattice=A11.morans_i(
+                cells["total"].to_numpy(float), cells,
+                f"total population, full lattice, h={h:g} km"),
+            uncovered_headcount_inhabited=A11.morans_i(
+                y, inh, f"uncovered head-count, inhabited cells, h={h:g} km"),
+            total_population_inhabited=A11.morans_i(
+                x, inh, f"total population, inhabited cells, h={h:g} km"),
+            uncovered_share_inhabited=A11.morans_i(
+                share, inh,
+                f"uncovered SHARE of cell population, inhabited cells, h={h:g} km"),
+            uncovered_residual_on_total_inhabited=A11.morans_i(
+                resid, inh,
+                f"OLS residual of uncovered ~ total, inhabited cells, h={h:g} km"),
+        ))
+    prim = out["variants"][0]
+    out["primary_h2km"] = dict(
+        I_uncovered_headcount=prim["uncovered_headcount_full_lattice"]["morans_I"],
+        I_total_population=prim["total_population_full_lattice"]["morans_I"],
+        I_uncovered_share_inhabited=prim["uncovered_share_inhabited"]["morans_I"],
+        I_residual_inhabited=prim["uncovered_residual_on_total_inhabited"]["morans_I"],
+        p_uncovered_headcount=prim["uncovered_headcount_full_lattice"]["p_sim"],
+        p_total_population=prim["total_population_full_lattice"]["p_sim"],
+        p_uncovered_share=prim["uncovered_share_inhabited"]["p_sim"],
+        p_residual=prim["uncovered_residual_on_total_inhabited"]["p_sim"],
+    )
+    pp = out["primary_h2km"]
+    out["interpretation"] = (
+        f"At h=2 km Moran's I is {pp['I_uncovered_headcount']:.3f} for uncovered "
+        f"head-count but {pp['I_total_population']:.3f} for TOTAL population on the "
+        f"same lattice and weights: the head-count statistic largely reflects "
+        f"clustered settlement. The population-free statistics are I = "
+        f"{pp['I_uncovered_share_inhabited']:.3f} (uncovered share of cell "
+        f"population, inhabited cells, p_sim {pp['p_uncovered_share']:.3f}) and "
+        f"I = {pp['I_residual_inhabited']:.3f} (residual of uncovered on total, "
+        f"p_sim {pp['p_residual']:.3f}). The coverage gap is spatially structured "
+        f"beyond settlement clustering only to the extent that these two are "
+        f"positive and significant. No statistic here quantifies how many feeder "
+        f"corridors would close the gap.")
+    return out
+
+
 def weighted_quantile(values: np.ndarray, weights: np.ndarray, q: float) -> float:
     """Quantile of `values` where each observation carries `weights` of mass."""
     order = np.argsort(values)
@@ -206,6 +330,10 @@ def main() -> None:
         log.warning("route-km identity does not close exactly (%.6f km)", residual_km)
 
     union_km = union_lengths(list(gdf.geometry))
+    snap_rows = snapped_ratio_table(list(gdf.geometry), ratio)
+    snap_ratios = [r["ratio"] for r in snap_rows if r["grid_m"] in PRECISION_GRIDS_M]
+    log.info("snapping cross-check: ratio %.3f exact; %s", ratio,
+             {r["grid_m"]: round(r["ratio"], 3) for r in snap_rows[1:]})
     union_gap_pct = 100.0 * (union_km["native"] - network_km) / network_km
     log.info("union cross-check: native %.3f km (%.4f%% vs link method); "
              "snapped %s", union_km["native"], union_gap_pct,
@@ -461,6 +589,24 @@ def main() -> None:
                   "baseline quantities that the published release does and "
                   "does not support")
 
+    moran_block = moran_decomposition()
+    if moran_block.get("status") == "OK":
+        mrows = []
+        for v in moran_block["variants"]:
+            for k in ("uncovered_headcount_full_lattice", "total_population_full_lattice",
+                      "uncovered_headcount_inhabited", "total_population_inhabited",
+                      "uncovered_share_inhabited", "uncovered_residual_on_total_inhabited"):
+                m = v[k]
+                mrows.append({"Variable": m["label"], "n cells": m["n_cells"],
+                              "Moran's I": round(m["morans_I"], 4),
+                              "E[I]": round(m["expected_I"], 4),
+                              "p (999 perms)": round(m["p_sim"], 4)})
+        C.write_table(pd.DataFrame(mrows), "table05c_morans_decomposition",
+                      "Moran's I (Queen, row-standardised) for uncovered head-count, "
+                      "total population, uncovered share and the uncovered~total "
+                      "residual; descriptive, in-sample")
+        log.info("MORAN %s", moran_block["interpretation"])
+
     payload = dict(
         crs=C.UTM,
         active=dict(
@@ -484,6 +630,32 @@ def main() -> None:
             ),
             union_cross_check_km={k: round(v, 3) for k, v in union_km.items()},
             union_vs_link_pct=round(union_gap_pct, 4),
+            union_cross_check_note=(
+                "the native (zero-tolerance) union agrees with the link method; "
+                "the snapped-grid UNION lengths fall with tolerance because near-"
+                "coincident polylines merge. Compare ratios, not lengths: see "
+                "snapping_cross_check."),
+            snapping_cross_check=dict(
+                rows=[{k: (round(v, 4) if isinstance(v, float) else v)
+                       for k, v in r.items()} for r in snap_rows],
+                ratio_exact=round(ratio, 4),
+                ratio_range_over_0_to_10m=[round(min(snap_ratios + [ratio]), 4),
+                                           round(max(snap_ratios + [ratio]), 4)],
+                max_rise_pct_vs_exact=round(
+                    100.0 * (max(snap_ratios) - ratio) / ratio, 2),
+                verdict=("ratio_depends_on_tolerance"
+                         if (max(snap_ratios) - ratio) / ratio > 0.02
+                         else "ratio_robust_within_2pct"),
+                verdict_rule=("robust only if every snapped ratio (0.5-10 m, route-km "
+                              "re-measured on the snapped lines) is within 2% of the "
+                              "exact ratio"),
+                interpretation=(
+                    f"Route-km : network-km is {ratio:.2f} at zero tolerance and "
+                    f"{min(snap_ratios):.2f}-{max(snap_ratios):.2f} at 0.5-10 m "
+                    "snapping; the exact value is the conservative (low) end, since "
+                    "near-coincident polylines are counted as separate road at zero "
+                    "tolerance. Quote it as a range."),
+            ),
         ),
         duplication=dict(distribution=dist, bands=bands,
                          most_duplicated_corridor=most_duplicated,
@@ -491,6 +663,7 @@ def main() -> None:
                          top_corridors=top),
         baseline=baseline,
         permit_chord_proxy=permit_proxy,
+        morans_i_decomposition=moran_block,
         random_seed=C.RANDOM_SEED,
     )
     C.write_result(payload, "a10_network_diagnostics")

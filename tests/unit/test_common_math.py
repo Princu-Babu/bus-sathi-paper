@@ -106,3 +106,31 @@ def test_gvf_calculation():
     gvf = C.goodness_of_variance_fit(values, breaks)
     assert 0.0 <= gvf <= 1.0, f"GVF must be in [0, 1], got {gvf}"
     assert gvf > 0.8, f"GVF should be high for well-separated clusters, got {gvf}"
+
+
+@pytest.mark.tier1
+@pytest.mark.quick
+@pytest.mark.parametrize("x, expected", [
+    ([1.0, 1.0], 0.0),                    # the old Lorenz-integration bug gave 0.25 here (F-03-01)
+    ([5.0, 5.0, 5.0], 0.0),
+    ([0.0, 1.0], 0.5),                    # n = 2: sum|xi-xj| / (2 n^2 mean) = 2 / (2*4*0.5)
+    ([1.0, 2.0, 3.0], 8.0 / 36.0),
+    ([0.0, 0.0, 0.0, 4.0], 0.75),         # one holder of everything: (n-1)/n
+])
+def test_gini_small_vectors_match_mean_absolute_difference(x, expected):
+    """Small-n cases, where an omitted Lorenz origin segment matters most."""
+    g = C.gini(np.array(x))
+    xs = np.array(x)
+    mad = np.abs(xs[:, None] - xs[None, :]).sum() / (2 * len(xs) ** 2 * xs.mean())
+    assert g == pytest.approx(expected, abs=1e-12)
+    assert g == pytest.approx(mad, abs=1e-12)
+
+
+@pytest.mark.tier1
+@pytest.mark.quick
+def test_gini_integer_weights_equal_replicated_sample():
+    """Population weights w_i must equal repeating unit i w_i times."""
+    x = np.array([1.0, 2.0, 5.0])
+    w = np.array([3.0, 1.0, 2.0])
+    rep = np.repeat(x, w.astype(int))
+    assert C.gini(x, weights=w) == pytest.approx(C.gini(rep), abs=1e-12)

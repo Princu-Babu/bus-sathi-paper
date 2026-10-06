@@ -1,4 +1,4 @@
-**Funding-constrained sequencing: routes bought in order of new residents reached per bus, until 30% of the fleet (303 buses) is spent**
+**Funding-constrained sequencing (greedy by marginal coverage per bus; order-dependent; not an optimum): routes bought in order of new residents reached per bus. Budget 303 buses (30% of the fleet); 299 allocated to 63 routes; coverage 22.4% of residents at 299 buses**
 
 |   Order | Route                                                           | Class             |   Buses |   New residents reached |   Residents per bus | Cumulative coverage   |
 |--------:|:----------------------------------------------------------------|:------------------|--------:|------------------------:|--------------------:|:----------------------|
