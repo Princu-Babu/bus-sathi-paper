@@ -10,6 +10,10 @@
 | PLAN_TRIPS_X_LENGTH | MPV                  |     754 |                  82.6 | 330–558                           | 36.1–55.5       |                                        |
 | PLAN_TRIPS_X_LENGTH | LPV                  |      70 |                   4.3 | 11–19                             | 1.1–1.7         |                                        |
 | PLAN_TRIPS_X_LENGTH | All (sum of classes) |    1011 |                 114.5 | 493–825                           | 52.5–79.2       | 3,095–5,181                            |
+| TIMETABLE_DAY       | HPV                  |     187 |                  19.7 | 108–177                           | 11.0–15.8       |                                        |
+| TIMETABLE_DAY       | MPV                  |     754 |                  60.6 | 243–409                           | 27.1–41.8       |                                        |
+| TIMETABLE_DAY       | LPV                  |      70 |                   3   | 8–14                              | 0.8–1.2         |                                        |
+| TIMETABLE_DAY       | All (sum of classes) |    1011 |                  83.3 | 358–600                           | 38.9–58.8       | 2,250–3,767                            |
 | OBSERVED            | HPV                  |     187 |                   9   | 50–81                             | 5.0–7.2         |                                        |
 | OBSERVED            | MPV                  |     754 |                  27.7 | 111–187                           | 12.0–18.4       |                                        |
 | OBSERVED            | LPV                  |      70 |                   1.8 | 4–8                               | 0.5–0.7         |                                        |

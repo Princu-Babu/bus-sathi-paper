@@ -78,6 +78,12 @@ ASSUMPTION = "assumption"
 
 
 PRIMARY = "primary_source_url"
+
+# Service-day lengths (hours). The plan's Daily_Trips are computed on 16 h; the
+# timetable generator publishes 08:00-18:59 (11 h) and 07:00-19:59 (13 h) for SSCL.
+PLAN_NOMINAL_DAY_H = 16.0
+TIMETABLE_DAY_H = 11.0
+TIMETABLE_DAY_H_SSCL = 13.0
 PRESS = "press"
 
 
@@ -308,15 +314,21 @@ def main() -> None:
         raise AssertionError("HPV+MPV+LPV != Fleet_Required on some route")
     dead = a["deadhead_km_per_bus_day_D1"] * fleet
     plan_km = float(a["Daily_KM"].sum())
+    # Service day used for the central figure: the published timetables run 11 h
+    # (13 h on the SSCL e-bus backbone); the plan's Daily_Trips imply 16 h.
+    tt_hours = np.where(a["CMP_Trunk"].astype(bool), TIMETABLE_DAY_H_SSCL, TIMETABLE_DAY_H)
     bases = {
         "PLAN": a["Daily_KM"] + dead,
         "PLAN_TRIPS_X_LENGTH": a["Daily_Trips"] * a["Route_KM"] + dead,
+        "TIMETABLE_DAY": a["Daily_Trips"] * a["Route_KM"] * tt_hours / PLAN_NOMINAL_DAY_H + dead,
         "OBSERVED": (a["service_km_per_bus_day_observed"] + a["deadhead_km_per_bus_day_D1"]) * fleet,
         "SRTU_MORTH": CONSTANTS["srtu_km_per_bus_day"]["high"] * fleet,
     }
     base_desc = {
         "PLAN": "published Daily_KM (16-h service day at the published headway) + D1 deadhead",
         "PLAN_TRIPS_X_LENGTH": "Daily_Trips x Route_KM (internally consistent plan km) + D1 deadhead",
+        "TIMETABLE_DAY": "CENTRAL: Daily_Trips x Route_KM scaled from the plan's nominal 16-h day to the "
+                         "timetable service day (11 h; 13 h on the SSCL e-bus backbone) + D1 deadhead",
         "OBSERVED": "observed 217 min in-service per vehicle-day at route cycle time + D1 deadhead",
         "SRTU_MORTH": "218.2 bus-km per bus per day, all-India state road transport undertakings 2021-22 "
                       "(MoRTH review), x each route's fleet; deadhead not added",
@@ -438,6 +450,17 @@ def main() -> None:
                "question from the diesel-oriented module range, so reported beside it and not substituted for it")
 
     plan_b, obs_b = out_bases["PLAN"], out_bases["OBSERVED"]
+    tt_b = out_bases["TIMETABLE_DAY"]
+    central = dict(
+        basis="TIMETABLE_DAY",
+        service_day_hours=dict(non_sscl=TIMETABLE_DAY_H, sscl=TIMETABLE_DAY_H_SSCL, plan_nominal=PLAN_NOMINAL_DAY_H),
+        vehicle_km_per_year=tt_b["vehicle_km_per_year"],
+        cost_inr_per_year=tt_b["cost_inr_per_year"], co2_t_per_year=tt_b["co2_t_per_year"],
+        cost_inr_per_covered_resident_per_year=tt_b["cost_inr_per_covered_resident_per_year"],
+        ceiling_basis="PLAN (16-h nominal day)", ceiling_cost_inr_per_year=plan_b["cost_inr_per_year"],
+        floor_basis="OBSERVED", floor_cost_inr_per_year=obs_b["cost_inr_per_year"],
+        note="Central figure = the service day the published timetables use; the 16-h plan day is the "
+             "plan's nominal assumption and the cost ceiling.")
     sens = plan_b["mpv_pricing_sensitivity"]
     envelope = dict(
         cost_inr_per_year=[obs_b["cost_inr_per_year"][0], plan_b["cost_inr_per_year"][1]],
@@ -465,6 +488,7 @@ def main() -> None:
         exclusions=EXCLUSIONS,
         daily_km_assumption=daily_km_block(a, plan_km),
         envelope=envelope,
+        central=central,
         covered_residents=cov, bases=out_bases,
         engine_emission_factor_check=emis_check,
         sourced_gcc_cross_check=gcc_block,

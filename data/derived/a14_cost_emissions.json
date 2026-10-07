@@ -507,7 +507,166 @@
         "note": "total is the sum of the three class rows, low with low and high with high"
       },
       "vehicle_km_per_year": 80519073.0
+    },
+    "TIMETABLE_DAY": {
+      "by_class": {
+        "HPV": {
+          "co2_t_per_year": [
+            10961.761591726165,
+            15800.182236174405
+          ],
+          "cost_inr_per_year": [
+            1081920771.248232,
+            1770415807.4971066
+          ],
+          "cost_rate_inr_per_km": [
+            55.0,
+            90.0
+          ],
+          "description": "high-capacity bus (~12 m)",
+          "diesel_km_per_litre": [
+            3.5,
+            5.0
+          ],
+          "diesel_km_per_year": 15361757.253764566,
+          "ebus_km_per_year": 4309529.496203286,
+          "n_buses": 187,
+          "vehicle_km_per_year": 19671286.74996785
+        },
+        "LPV": {
+          "co2_t_per_year": [
+            802.4427370399811,
+            1172.4001028181542
+          ],
+          "cost_inr_per_year": [
+            75988895.55302851,
+            136780011.99545133
+          ],
+          "cost_rate_inr_per_km": [
+            25.0,
+            45.0
+          ],
+          "description": "minibus",
+          "diesel_km_per_litre": [
+            7.0,
+            10.0
+          ],
+          "diesel_km_per_year": 3039555.8221211405,
+          "ebus_km_per_year": 0.0,
+          "n_buses": 70,
+          "vehicle_km_per_year": 3039555.8221211405
+        },
+        "MPV": {
+          "co2_t_per_year": [
+            27087.865332448182,
+            41811.311751085566
+          ],
+          "cost_inr_per_year": [
+            2425494810.465774,
+            4093022492.660994
+          ],
+          "cost_rate_inr_per_km": [
+            40.0,
+            67.5
+          ],
+          "description": "mid-size bus (~9 m)",
+          "diesel_km_per_litre": [
+            5.25,
+            7.5
+          ],
+          "diesel_km_per_year": 38157875.15264489,
+          "ebus_km_per_year": 22479495.10899947,
+          "n_buses": 754,
+          "vehicle_km_per_year": 60637370.261644356
+        }
+      },
+      "co2_t_per_year": [
+        38852.06966121433,
+        58783.89409007812
+      ],
+      "cost_inr_per_covered_resident_per_year": [
+        2249.6856507175185,
+        3766.97777871823
+      ],
+      "cost_inr_per_year": [
+        3583404477.2670345,
+        6000218312.153552
+      ],
+      "description": "CENTRAL: Daily_Trips x Route_KM scaled from the plan's nominal 16-h day to the timetable service day (11 h; 13 h on the SSCL e-bus backbone) + D1 deadhead",
+      "ebus_share_of_km": 0.3214109060579699,
+      "mpv_pricing_sensitivity": {
+        "mpv_midpoint_central": {
+          "co2_t_per_year": [
+            38852.06966121433,
+            58783.89409007812
+          ],
+          "cost_inr_per_year": [
+            3583404477.2670345,
+            6000218312.153552
+          ]
+        },
+        "mpv_priced_as_hpv": {
+          "co2_t_per_year": [
+            46781.74842396579,
+            67011.1147241452
+          ],
+          "cost_inr_per_year": [
+            4492965031.1917,
+            7364559143.040549
+          ]
+        },
+        "mpv_priced_as_lpv": {
+          "co2_t_per_year": [
+            35494.176647781576,
+            53877.881570452344
+          ],
+          "cost_inr_per_year": [
+            2673843923.342369,
+            4635877481.266554
+          ]
+        }
+      },
+      "sum_of_classes_check": {
+        "cost_inr_per_year": [
+          3583404477.2670345,
+          6000218312.153552
+        ],
+        "note": "total is the sum of the three class rows, low with low and high with high"
+      },
+      "vehicle_km_per_year": 83348212.83373335
     }
+  },
+  "central": {
+    "basis": "TIMETABLE_DAY",
+    "ceiling_basis": "PLAN (16-h nominal day)",
+    "ceiling_cost_inr_per_year": [
+      5126561548.094325,
+      8589957022.809645
+    ],
+    "co2_t_per_year": [
+      38852.06966121433,
+      58783.89409007812
+    ],
+    "cost_inr_per_covered_resident_per_year": [
+      2249.6856507175185,
+      3766.97777871823
+    ],
+    "cost_inr_per_year": [
+      3583404477.2670345,
+      6000218312.153552
+    ],
+    "floor_basis": "OBSERVED",
+    "floor_cost_inr_per_year": [
+      1648026615.3686497,
+      2760638871.3063574
+    ],
+    "note": "Central figure = the service day the published timetables use; the 16-h plan day is the plan's nominal assumption and the cost ceiling.",
+    "service_day_hours": {
+      "non_sscl": 11.0,
+      "plan_nominal": 16.0,
+      "sscl": 13.0
+    },
+    "vehicle_km_per_year": 83348212.83373335
   },
   "constants": {
     "cost_inr_per_km_full_size": {
@@ -1039,6 +1198,16 @@
         "module_range_cost_inr_per_year": [
           3360536385.0,
           5644697625.0
+        ]
+      },
+      "TIMETABLE_DAY": {
+        "cost_inr_per_year": [
+          4446450950.525434,
+          5196225403.72702
+        ],
+        "module_range_cost_inr_per_year": [
+          3583404477.2670345,
+          6000218312.153552
         ]
       }
     },

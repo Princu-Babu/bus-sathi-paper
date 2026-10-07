@@ -261,7 +261,10 @@ def test_a14_sourced_constants_carry_url_and_three_bases(a14):
     # unsourced items stay unverified
     for name in ("diesel_kmpl_mpv", "ebus_kwh_per_km_mpv", "cost_inr_per_km_mpv", "diesel_kmpl_full_size"):
         assert ver[name]["verified"] is False
-    assert set(a14["bases"]) == {"PLAN", "PLAN_TRIPS_X_LENGTH", "OBSERVED", "SRTU_MORTH"}
+    assert set(a14["bases"]) == {"PLAN", "PLAN_TRIPS_X_LENGTH", "TIMETABLE_DAY", "OBSERVED", "SRTU_MORTH"}
+    tt, pl = a14["bases"]["TIMETABLE_DAY"], a14["bases"]["PLAN_TRIPS_X_LENGTH"]
+    assert a14["central"]["basis"] == "TIMETABLE_DAY"
+    assert 11 / 16 < tt["vehicle_km_per_year"] / pl["vehicle_km_per_year"] < 13 / 16 + 0.05
     fleet = a14["bases"]["PLAN"]["by_class"]
     n = sum(fleet[c]["n_buses"] for c in fleet)
     srtu = a14["bases"]["SRTU_MORTH"]["vehicle_km_per_year"]

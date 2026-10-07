@@ -1,4 +1,4 @@
-# Pending decisions and questions (v3, 6 October 2026)
+# Pending decisions and questions (v3, updated 7 October 2026)
 
 Supersedes v2 (archived in `paper/archive/`). Written after the independent audit, the corrections to the
 analysis code, Sharvesh's literature review, and the lead author's answers of 3–6 October.
@@ -19,7 +19,7 @@ work in order.
 | A1 | What was actually done on the ground in Srinagar, and which word may the paper use: adopted, approved, or reviewed? | Decides how the whole paper is framed. Claiming implementation without a record would be the most damaging overclaim possible. |
 | A2 | The 1–12 August field observations: who did them, in which year, and can we have the raw sheets? | They become a real validation channel in §6. Without the sheets they stay as her narrative. |
 | A3 | Is she comfortable being listed with her post, with a line saying the department supplied the data and reviewed the plan? Does publishing need clearance? May the paper say the headway rules were set in review with the regulator? | Competing-interest statement and §4. The journal requires the first; the audit requires the second. |
-| A4 | In the e-bus data, does "Trip Count" mean one-way trips or round trips? | One validation result reverses depending on the answer (ratio 1.29–1.58 or 0.64–0.79). Only the operator knows. |
+| A4 | Confirm only: in the e-bus data, "Trip Count" counts one-way trips. | The operator's own kilometre column already says so (21.5 km per counted trip against a 22.8 km average route; the round-trip reading would need 398 km per bus per day against 187 operated). The paper uses the one-way reading and reports the other in a footnote; a yes from the operator closes it. |
 
 One thing to show her, not ask: the register gives every permit an expiry date, and 678 of the 679 valid bus
 permits are five-year permits. Her draft says permits have "no end validity". Suggested wording: "five-year
@@ -39,13 +39,6 @@ permits, renewed as a matter of course".
 
 | # | Decision | Recommendation |
 |---|---|---|
-| B1 | Merge Sharvesh's pull request on GitHub | Merge. It is already in the working branch. |
-| B2 | Which service day the paper uses for time-of-day results: 11 h (timetables), 16 h or 17 h (observed) | 11 h, to match the timetables; state the others. The bus-hour saving is 2.9–5.7 % on 11 h and 7.3–9.4 % on 17 h. |
-| B3 | One fleet recommendation: 1,011 as specified, or the observed-pace range (median 1,182; 1,130–1,266) | State 1,011 as the plan and the range as what it would take at observed speeds; do not call 1,011 a floor. |
-| B4 | Trim §4 from about 3,000 words now or after K1 | After K1. |
-| B5 | Three author-placed village coordinates that still look wrong (Shanglipora lands in Srinagar city; Loolpora is 42 km from the engine's point; Zaloora is farther from Srinagar than its route is long) | Re-check with someone local before the public release. Affects the public gazetteer only. |
-| B6 | Arizal: the open-source point is 13.9 km from the engine's point | Same. |
-| B7 | Four admin e-mail addresses are visible in the dashboard's login code | Move them out of client code. |
 | B8 | LinkedIn carousel | Hold until rewritten on the corrected numbers. |
 | B9 | Add the place name to the title as a subtitle | Ask Prof. Kathuria only if he raises the title. |
 
@@ -55,10 +48,7 @@ permits, renewed as a matter of course".
 |---|---|
 | B10 | Who did what, in a few sentences, for the author-contribution statement (app, backend, engine, analysis, dashboard, data, fieldwork, writing, supervision). |
 | B11 | Whether co-authors used AI tools for their own sections. Screening and coding in §2 already declare Claude. |
-| B12 | Whether any of the 49 AI-researched route distances were checked by a person, and how many. |
 | B13 | Author order, corresponding author, institution for each of the six authors. |
-| B14 | Funding statement, or "none". |
-| B15 | From Krishna: does the app record who accepted or declined the consent pop-up? If yes, decliners can be dropped from the dataset. |
 | B16 | Who "Karroh" (logo on the app screen) is, for the acknowledgements. |
 | B17 | Restrict the two Firebase keys in the console. |
 
@@ -88,7 +78,13 @@ permits, renewed as a matter of course".
 | AI tools | Claude throughout; limited early use of Gemini and Codex, declared in one clause. |
 | Vehicle classes | The register's heavy, medium and light classes; not "priority" classes. |
 | Datasets | WorldPop R2025A v1 constrained; Geofabrik northern-India extract, 6 January 2026. |
-| ArcGIS coordinates | 18 of 26 replaced from open sources, 7 author-placed, 1 not a place. Plan unchanged. No engine re-run. |
+| Service day | 11 h (13 h for the e-buses), as in the timetables, for time-of-day results and the central cost figure: bus-hour saving 2.9–5.7 %; operating cost ₹358–600 crore a year. The plan's 16-hour day is reported as its nominal assumption and the cost ceiling (₹513–859 crore). |
+| Fleet statement | 1,011 as the plan; 1,130–1,266 (median 1,182) as what it would take at observed speeds. Not called a floor. |
+| Trip Count | Read as one-way trips, on the evidence of the operator's kilometre column; the other reading is footnoted. |
+| ArcGIS coordinates | 17 of 26 replaced from open sources, 8 author-placed after a sanity check, 1 not a place. Plan unchanged. No engine re-run. |
+| Answered by the lead author | Route distances were not checked in person. No external funding; costs met by the authors. The app does not record who accepted the consent screen. |
+| §4 length | Trimmed to about 2,000 words, with author notes in the draft. |
+| Dashboard admin e-mails | Removed from client code (hashed allow-list). |
 | Engine re-run | Not done; the published plan stands and its provenance is disclosed in §4.2. |
 | Older repositories | Made private. Dashboard claims reworded and personal data removed (live). |
 | Public repository | To be rebuilt as one clean release at the end. |
