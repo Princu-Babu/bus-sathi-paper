@@ -166,8 +166,8 @@ Output: 186 active routes (32 trunks, 154 feeders); 458 rows absorbed
 ```
 
 The result keeps 156 of the 157 corridors `[CL-08]`. The merge rule is not varied in the uncertainty
-analysis; scenario S4 (§5.13), which merges on overlap alone, is the only measure of how different the route
-set could be.
+analysis; scenario S4 (§5.13), which lowers the threshold to 0.50 and merges connected groups of routes,
+is the only measure of how different the route set could be.
 
 ## 4.7 Hierarchy and service standards
 

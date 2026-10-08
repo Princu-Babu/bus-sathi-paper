@@ -1,0 +1,8 @@
+variant,routes_changing_class,agreement_pct,kappa,spearman_of_index,moved_up,moved_down
+Places of worship not named Jamia/Jama: 1.0 -> 0.4,1,99.5,0.991,1.0,1,0
+Places of worship not named Jamia/Jama: dropped,2,98.9,0.983,0.999,2,0
+All places of worship: dropped,4,97.8,0.965,0.999,4,0
+"Worship (generic), shops, hotels: all 0.4",2,98.9,0.983,1.0,2,0
+Worship (generic) and hotels dropped; shops 0.4,4,97.8,0.965,0.999,3,1
+Every destination weight 1 (plain count),3,98.4,0.974,1.0,2,1
+No destination layer (population only),13,93.0,0.888,0.993,12,1
