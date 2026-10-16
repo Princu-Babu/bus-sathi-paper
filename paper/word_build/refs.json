@@ -1,0 +1,122 @@
+{
+ "tatem2017worldpop": {
+  "intext": "Tatem, 2017",
+  "ref": "Tatem (2017). WorldPop, open data for spatial demography. *Scientific Data*, 4, 170004. https://doi.org/10.1038/sdata.2017.4"
+ },
+ "stevens2015disaggregating": {
+  "intext": "Stevens et al., 2015",
+  "ref": "Stevens, Gaughan, Linard & Tatem (2015). Disaggregating census data for population mapping using random forests with remotely-sensed and ancillary data. *PLOS ONE*, 10(2), e0107042. https://doi.org/10.1371/journal.pone.0107042"
+ },
+ "osm2024planet": {
+  "intext": "OpenStreetMap contributors, 2024",
+  "ref": "OpenStreetMap contributors (2024). OpenStreetMap. *https://www.openstreetmap.org*."
+ },
+ "luxen2011realtime": {
+  "intext": "Luxen & Vetter, 2011",
+  "ref": "Luxen & Vetter (2011). Real-time routing with OpenStreetMap data. *Proceedings of the 19th ACM SIGSPATIAL International Conference on Advances in Geographic Information Systems (GIS '11)*, 513–516. https://doi.org/10.1145/2093973.2094062"
+ },
+ "gutierrez2008distance": {
+  "intext": "Gutierrez & Garcia-Palomares, 2008",
+  "ref": "Gutierrez & Garcia-Palomares (2008). Distance-measure impacts on the calculation of transport service areas using GIS. *Environment and Planning B: Planning and Design*, 35(3), 480–503. https://doi.org/10.1068/b33043"
+ },
+ "biba2010new": {
+  "intext": "Biba et al., 2010",
+  "ref": "Biba, Curtin & Manca (2010). A new method for determining the population with walking access to transit. *International Journal of Geographical Information Science*, 24(3), 347–364. https://doi.org/10.1080/13658810802646679"
+ },
+ "elgeneidy2014new": {
+  "intext": "El-Geneidy et al., 2014",
+  "ref": "El-Geneidy, Grimsrud, Wasfi, Tetreault & Surprenant-Legault (2014). New evidence on walking distances to transit stops: identifying redundancies and gaps using variable service areas. *Transportation*, 41(1), 193–210. https://doi.org/10.1007/s11116-013-9508-z"
+ },
+ "bivina2019influence": {
+  "intext": "Bivina et al., 2019",
+  "ref": "Bivina, Gupta & Parida (2019). Influence of microscale environmental factors on perceived walk accessibility to metro stations. *Transportation Research Part D: Transport and Environment*, 67, 142–155. https://doi.org/10.1016/j.trd.2018.11.007"
+ },
+ "trb2013transit": {
+  "intext": "Kittelson & Associates et al., 2013",
+  "ref": "Kittelson & Associates, Parsons Brinckerhoff, KFH Group, Texas A&M Transportation Institute & Arup (2013). Transit Capacity and Quality of Service Manual. *Transportation Research Board of the National Academies*. https://doi.org/10.17226/24766"
+ },
+ "oecd2008handbook": {
+  "intext": "OECD & European Commission, Joint Research Centre, 2008",
+  "ref": "OECD & European Commission, Joint Research Centre (2008). Handbook on Constructing Composite Indicators: Methodology and User Guide. *OECD Publishing*. https://doi.org/10.1787/9789264043466-en"
+ },
+ "shannon1948mathematical": {
+  "intext": "Shannon, 1948",
+  "ref": "Shannon (1948). A mathematical theory of communication. *Bell System Technical Journal*, 27(3), 379–423. https://doi.org/10.1002/j.1538-7305.1948.tb01338.x"
+ },
+ "zou2006entropy": {
+  "intext": "Zou et al., 2006",
+  "ref": "Zou, Yun & Sun (2006). Entropy method for determination of weight of evaluating indicators in fuzzy synthetic evaluation for water quality assessment. *Journal of Environmental Sciences*, 18(5), 1020–1023. https://doi.org/10.1016/S1001-0742(06)60032-6"
+ },
+ "jolliffe2002principal": {
+  "intext": "Jolliffe, 2002",
+  "ref": "Jolliffe (2002). Principal Component Analysis. *Springer*. https://doi.org/10.1007/b98835"
+ },
+ "jenks1967data": {
+  "intext": "Jenks, 1967",
+  "ref": "Jenks (1967). The data model concept in statistical mapping. *International Yearbook of Cartography*, 7, 186–190."
+ },
+ "fisher1958grouping": {
+  "intext": "Fisher, 1958",
+  "ref": "Fisher (1958). On grouping for maximum homogeneity. *Journal of the American Statistical Association*, 53(284), 789–798. https://doi.org/10.1080/01621459.1958.10501479"
+ },
+ "vuchic2005urban": {
+  "intext": "Vuchic, 2005",
+  "ref": "Vuchic (2005). Urban Transit: Operations, Planning, and Economics. *John Wiley & Sons*."
+ },
+ "ceder2007public": {
+  "intext": "Ceder, 2007",
+  "ref": "Ceder (2007). Public Transit Planning and Operation: Theory, Modelling and Practice. *CRC Press*. https://doi.org/10.1201/b12853"
+ },
+ "holmgren2007meta": {
+  "intext": "Holmgren, 2007",
+  "ref": "Holmgren (2007). Meta-analysis of public transport demand. *Transportation Research Part A: Policy and Practice*, 41(10), 1021–1035. https://doi.org/10.1016/j.tra.2007.06.003"
+ },
+ "sobol2001global": {
+  "intext": "Sobol', Ilya M., 2001",
+  "ref": "Sobol' (2001). Global sensitivity indices for nonlinear mathematical models and their Monte Carlo estimates. *Mathematics and Computers in Simulation*, 55(1–3), 271–280. https://doi.org/10.1016/S0378-4754(00)00270-6"
+ },
+ "saltelli2008global": {
+  "intext": "Saltelli et al., 2008",
+  "ref": "Saltelli, Ratto, Andres, Campolongo, Cariboni, Gatelli, Saisana & Tarantola (2008). Global Sensitivity Analysis: The Primer. *John Wiley & Sons*. https://doi.org/10.1002/9780470725184"
+ },
+ "saltelli2010variance": {
+  "intext": "Saltelli et al., 2010",
+  "ref": "Saltelli, Annoni, Azzini, Campolongo, Ratto & Tarantola (2010). Variance based sensitivity analysis of model output. Design and estimator for the total sensitivity index. *Computer Physics Communications*, 181(2), 259–270. https://doi.org/10.1016/j.cpc.2009.09.018"
+ },
+ "allen2019effect": {
+  "intext": "Allen et al., 2019",
+  "ref": "Allen, Munoz & Rosell (2019). Effect of a major network reform on bus transit satisfaction. *Transportation Research Part A: Policy and Practice*, 124, 310–333. https://doi.org/10.1016/j.tra.2019.04.002"
+ },
+ "singh2023heterogeneity": {
+  "intext": "Singh & Kathuria, 2023",
+  "ref": "Singh & Kathuria (2023). Heterogeneity in passenger satisfaction of bus rapid transit system among age and gender groups: A PLS-SEM multi-group analysis. *Transport Policy*, 141, 27–41. https://doi.org/10.1016/j.tranpol.2023.07.009"
+ },
+ "singh2025exploring": {
+  "intext": "Singh et al., 2025",
+  "ref": "Singh, Kathuria, Kavta, Bosehans, Bell & Dissanayake (2025). Exploring the tenability of shared electric mobility alternatives: Will car users adopt eHUBs? *Transport Policy*, 166, 1–17. https://doi.org/10.1016/j.tranpol.2025.02.013"
+ },
+ "eboli2007service": {
+  "intext": "Eboli & Mazzulla, 2007",
+  "ref": "Eboli & Mazzulla (2007). Service quality attributes affecting customer satisfaction for bus transit. *Journal of Public Transportation*, 10(3), 21–34. https://doi.org/10.5038/2375-0901.10.3.2"
+ },
+ "johnson2007applied": {
+  "intext": "Johnson & Wichern, 2007",
+  "ref": "Johnson & Wichern (2007). Applied Multivariate Statistical Analysis. *Prentice Hall*."
+ },
+ "tyrinopoulos2008public": {
+  "intext": "Tyrinopoulos & Antoniou, 2008",
+  "ref": "Tyrinopoulos & Antoniou (2008). Public transit user satisfaction: Variability and policy implications. *Transport Policy*, 15(4), 260–272. https://doi.org/10.1016/j.tranpol.2008.06.002"
+ },
+ "murray2001strategic": {
+  "intext": "Murray, 2001",
+  "ref": "Murray (2001). Strategic analysis of public transport coverage. *Socio-Economic Planning Sciences*, 35(3), 175–188. https://doi.org/10.1016/S0038-0121(01)00004-0"
+ },
+ "geurs2004accessibility": {
+  "intext": "Geurs & van Wee, 2004",
+  "ref": "Geurs & van Wee (2004). Accessibility evaluation of land-use and transport strategies: review and research directions. *Journal of Transport Geography*, 12(2), 127–140. https://doi.org/10.1016/j.jtrangeo.2003.10.005"
+ },
+ "walker2008purpose": {
+  "intext": "Walker, 2008",
+  "ref": "Walker (2008). Purpose-driven public transport: creating a clear conversation about public transport goals. *Journal of Transport Geography*, 16(6), 436–442. https://doi.org/10.1016/j.jtrangeo.2008.06.005"
+ }
+}

@@ -55,3 +55,4 @@ data/external/ms_buildings/dataset-links.csv
 
 # Volatile run metadata (timestamps, runtimes, host paths) written by run_all.py
 logs/volatile/
+paper/word_build/node_modules/

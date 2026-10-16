@@ -255,8 +255,10 @@ study was produced.
 - Destinations: 2,431 points (1,030 high, 1,080 medium, 321 seasonal); two thirds in Srinagar district.
 - Provenance: (a) a gazetteer of 103 place names; 37 villages no geocoder could find were placed at their
   district's centre; 19 of 186 routes (93 buses) end at such a point. (b) Road distances on 49 routes were
-  replaced with values from an AI-assisted desk check, not verified by a person, with no source links kept;
-  fleet on those routes went from 247 to 207. (c) Cycle times on five routes were re-timed from driver GPS;
+  replaced with values from an AI-assisted route-by-route desk review that recorded the websites consulted for
+  every route (not the specific pages) and applied a change only where the reviewed distance differed by more
+  than 15% and the place names could be confirmed; none was measured on the ground; fleet on those routes went
+  from 247 to 207. (c) Cycle times on five routes were re-timed from driver GPS;
   total went from 1,004 to 1,011. (d) Headway rules were fixed over about fifteen revisions reviewed with
   the transport regulator; the total ranged from 855 to 1,144 buses.
 

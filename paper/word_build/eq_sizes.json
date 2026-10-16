@@ -1,0 +1,86 @@
+{
+ "1": {
+  "file": "eq01.png",
+  "w": 1170,
+  "h": 120,
+  "tex": "A_{net}(r) = \\bigcup_{v \\in V :\\, d(v) \\leq W} B\\left(x_v,\\ \\min(W - d(v),\\ \\tau)\\right)"
+ },
+ "2": {
+  "file": "eq02.png",
+  "w": 508,
+  "h": 134,
+  "tex": "\\Pi(r) = \\sum_{c :\\, x_c \\in A_{net}(r)} \\rho_c"
+ },
+ "3": {
+  "file": "eq03.png",
+  "w": 1078,
+  "h": 138,
+  "tex": "\\pi_c(r) = \\frac{\\rho_c}{n_c}\\,\\mathbf{1}[x_c \\in A_{net}(r)], \\qquad \\sum_r \\pi_c(r) = \\rho_c"
+ },
+ "4": {
+  "file": "eq04.png",
+  "w": 686,
+  "h": 139,
+  "tex": "O(r) = \\sum_{q \\in Q :\\, d_q(r) \\leq 250\\,\\mathrm{m}} \\alpha_{t(q)}"
+ },
+ "5": {
+  "file": "eq05.png",
+  "w": 1692,
+  "h": 82,
+  "tex": "O^{*}(r) = \\mu\\, O(r)\\ \\ \\mathrm{if}\\ r \\in T, \\qquad O^{*}(r) = O(r)\\ \\ \\mathrm{otherwise}, \\qquad \\mu = 1.30"
+ },
+ "6": {
+  "file": "eq06.png",
+  "w": 711,
+  "h": 212,
+  "tex": "\\hat{z}(r) = \\frac{z(r) - \\min_{r'} z(r')}{\\max_{r'} z(r') - \\min_{r'} z(r')}"
+ },
+ "7": {
+  "file": "eq07.png",
+  "w": 1157,
+  "h": 78,
+  "tex": "CDI(r) = \\beta\\, \\hat{z}_{\\Pi}(r) + (1 - \\beta)\\, \\hat{z}_{O}(r), \\qquad \\beta = 0.50"
+ },
+ "8": {
+  "file": "eq08.png",
+  "w": 1127,
+  "h": 134,
+  "tex": "\\tilde{D}(r) = \\kappa\\, g\\, m_{type(r)} \\sum_{c \\in A(r)} \\rho_c\\, \\sigma(r), \\qquad \\kappa = 0.33"
+ },
+ "9": {
+  "file": "eq09.png",
+  "w": 777,
+  "h": 160,
+  "tex": "\\phi(r_i, r_j) = \\frac{|S(r_i) \\cap S(r_j)|}{\\min(|S(r_i)|,\\ |S(r_j)|)}"
+ },
+ "10": {
+  "file": "eq10.png",
+  "w": 1246,
+  "h": 310,
+  "tex": "GVF(k) = 1 - \\frac{\\sum_{j=1}^{k}\\;\\;\\sum_{i \\in C_j} (y_i - \\bar{y}_{C_j})^2}{\\sum_i (y_i - \\bar{y})^2}, \\qquad k = 2, \\ldots, 7"
+ },
+ "11": {
+  "file": "eq11.png",
+  "w": 925,
+  "h": 141,
+  "tex": "t_{run}(r) = \\chi(r)\\left(t_{free}(r) + J(r)\\right) + \\delta\\, \\frac{\\ell(r)}{\\Delta}"
+ },
+ "12": {
+  "file": "eq12.png",
+  "w": 1022,
+  "h": 77,
+  "tex": "t_{cyc}(r) = \\min\\left(2 \\lambda\\, t_{run}(r),\\ 2\\, \\ell(r)\\, \\omega_{class(r)}\\right)"
+ },
+ "13": {
+  "file": "eq13.png",
+  "w": 1443,
+  "h": 152,
+  "tex": "N_{op}(r) = \\left\\lceil \\frac{t_{cyc}(r)}{h(r)} \\right\\rceil, \\qquad N(r) = \\max\\left(\\lceil \\sigma N_{op}(r) \\rceil,\\ N^{min}_{class(r)}\\right)"
+ },
+ "14": {
+  "file": "eq14.png",
+  "w": 1676,
+  "h": 133,
+  "tex": "N_{total} = \\sum_{r \\notin E} N(r) + \\sum_{r \\in E} \\max\\left(N(r),\\ N^{emp}(r)\\right) = 728 + 283 = 1{,}011"
+ }
+}

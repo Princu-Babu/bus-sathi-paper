@@ -271,7 +271,7 @@ These are not numbers in a configuration block, so earlier tables missed them. E
 
 | Input | What was done | Effect |
 |---|---|---|
-| Road distance on 49 routes | Replaced by values a language model researched from the web. No person checked them. The record keeps no source links | Fleet on those routes 247 → 207 |
+| Road distance on 49 routes | Replaced by values from an AI-assisted desk review of all 186 routes (`ROUTE_DEEPDIVE_LEDGER.csv`, `corrections_applied_v344.csv`). Each route lists the websites consulted, though not the specific pages; a change was applied only above a 15 % difference with confirmed place names. Not measured on the ground | Fleet on those routes 247 → 207 |
 | Village locations | 37 villages no geocoder could find were placed at their district's centre | 19 routes, 93 buses |
 | Cycle time on 5 routes | Re-timed from driver GPS | Fleet 1,004 → 1,011. The same five routes are then used in the GPS check |
 | The 30 e-bus routes | Typed in by hand, without intermediate points | Geometry and length of the routes carrying 283 buses |
