@@ -168,7 +168,7 @@ opened. Most of the June audit's findings were fixed in later versions; these st
 
 ## 12. Added 22 October 2026, while writing Section 4 v6
 
-- **GPS run count.** §3 (line 88) and §6 give "43,809 recorded runs". `v04_gps_validation.json` (corpus) shows
+- **GPS run count (fixed 22 October 2026 in §0, §1, §3, §5, §6, cover letter, FINDINGS, CL-18).** §3 and §6 gave "43,809 recorded runs". `v04_gps_validation.json` (corpus) shows
   that 43,809 counts run-corridor incidences, 17.3 per run; the data hold 2,526 distinct service runs (2,426 after
   the map-match gate) from 157 app accounts. An account is not a verified person or device. Correct §3, §6 and
   claim-ledger row CL-18.

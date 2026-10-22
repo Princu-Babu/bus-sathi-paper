@@ -5,7 +5,7 @@ const fs = require("fs");
 const path = require("path");
 const {
   Document, Packer, Paragraph, TextRun, HeadingLevel, AlignmentType, TabStopType, LevelFormat,
-  BorderStyle, ShadingType, Table, TableRow, TableCell, WidthType, PageOrientation, ImageRun,
+  BorderStyle, ShadingType, Table, TableRow, TableCell, WidthType, PageOrientation, ImageRun, Footer, PageNumber,
 } = require("docx");
 
 const C = require("./section4_v6_content.js");
@@ -123,7 +123,9 @@ for (const b of C) {
 }
 const docA = new Document({ creator: "Kashmir bus route rationalisation study", title: "Section 4. Methodology",
   styles: styles(24), numbering,
-  sections: [{ properties: { page: { size: { width: 11906, height: 16838 }, margin: { top: 1440, right: 1440, bottom: 1440, left: 1440 } } }, children: sec }] });
+  sections: [{ properties: { page: { size: { width: 11906, height: 16838 }, margin: { top: 1440, right: 1440, bottom: 1440, left: 1440 } } },
+    footers: { default: new Footer({ children: [new Paragraph({ alignment: AlignmentType.CENTER, children: [new TextRun({ children: [PageNumber.CURRENT], size: 20 })] })] }) },
+    children: sec }] });
 
 // ---------- (2) the justification ----------
 const W = [700, 6300, 3900, 3060]; // landscape A4 content width 13958

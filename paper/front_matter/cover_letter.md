@@ -21,7 +21,7 @@ Kashmir Division (6.58 million residents, 614 permits), and then tests its own n
 Three results matter for policy. First, a permit register is not a route register: 614 permits are 157
 corridors, so the "route reduction" such plans report is almost entirely a change of unit. Second,
 straight-line walk catchments overstate the population served by a median of 37.4 % per route, cutting
-defensible coverage from 35.5 % to 24.2 %. Third, 43,809 driver-GPS runs show that modelled run times are
+defensible coverage from 35.5 % to 24.2 %. Third, 2,526 driver-GPS service runs show that modelled run times are
 too fast and that a per-kilometre speed cap, not demand, sets the fleet on 169 of 186 routes. Carried
 through a joint uncertainty analysis, the published 1,011 buses become the floor of a range: 1,130–1,266
 at observed pace. And a third of the fleet, bought in order of residents reached per bus, delivers 92 %

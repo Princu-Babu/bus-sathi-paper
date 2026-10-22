@@ -59,8 +59,8 @@ backbone but cannot say whether it lies in the plan's cycle times or in CHALO's 
 **V3 — Expert elicitation** (not conducted; §6.4). A Delphi/AHP panel would ground the index weights
 (target Kendall's $W > 0.70$). Meanwhile the weights are derived three data-driven ways (§4.5).
 
-**V4 — Supply-side GPS validation** (established, module `v04`). The empirical layer is **43,809 clean
-service runs from ≈157 driver devices, February–June 2026** `[CL-18]`; its results are detailed in
+**V4 — Supply-side GPS validation** (established, module `v04`). The empirical layer is **2,526 service
+runs (2,426 after map-matching) from 157 driver app accounts, 6 February–29 June 2026** `[CL-18]`; its results are detailed in
 §6.3. This is the study's one fully executed observational channel.
 
 **V5 — Global sensitivity** (executed, `a08`/`a09`). Sobol' indices from 15,360 evaluations show two

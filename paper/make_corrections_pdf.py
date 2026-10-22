@@ -121,7 +121,7 @@ HEADLINE = [
     ("37.4%", "Euclidean overstatement", "CL-26"),
     ("24.2%", "division coverage", "CL-28"),
     ("6.58M", "residents (denominator)", "CL-11"),
-    ("43,809", "GPS runs (supply-side)", "CL-18"),
+    ("2,526", "GPS service runs (supply-side)", "CL-18"),
 ]
 
 

@@ -247,7 +247,7 @@ interval and to procure against its upper end, not the point estimate. Carried i
 
 ## F11 — The congestion model holds in the core; the dwell model does not (`v04`)
 
-Decomposing modelled run time against 43,809 driver-GPS runs separates two
+Decomposing modelled run time against 2,526 driver-GPS service runs separates two
 assumptions. The **City-Core congestion divisor (2.20)** reproduces observed bus
 moving speed to **+1.4% median bias** (modelled 17.95 vs observed 20.55 km/h,
 MAPE 28.4%) `[CL-33]`; the Peri-Urban (+59.4%) and Rural (+123.2%) multipliers

@@ -45,7 +45,7 @@ CL-37 onward were added 2026-09-30 as modules a04–a16, a06/a07/a14/a15, v01/v0
 | `CL-15` | F3 | OSRM vs observed in-motion MAPE | 65.1% (RMSE 28.00 min) | 14 matched corridors | `v04_gps_validation.py` | §3.5, §6.3, Table 6a |
 | `CL-16` | F3 | Plan vs observed one-way time MAPE | 47.6% (matched corridors) | 5 matched corridors | `v04_gps_validation.py` | §3.5, §6.3, Table 6a |
 | `CL-17` | F3 | Plan to observed travel time ratio | 0.513 median (0.51) | 5 matched corridors | `v04_gps_validation.py` | §3.5, §6.3, Table 6a |
-| `CL-18` | F4 | Clean driver-GPS trace volume | 43,809 runs (~157 drivers) | Driver app collection Feb–Jun 2026 | `bus-sathi-trace` pipeline | §3.5, §6.3 |
+| `CL-18` | F4 | Driver-GPS trace volume | 2,526 service runs (2,426 clean), 157 app accounts | Driver app collection Feb–Jun 2026 | `bus-sathi-trace` pipeline | §3.5, §6.3 |
 | `CL-19` | F4 | Observed recurring active routes in GPS | 66 of 186 routes (35.5%) | 186 active routes | `q01_data_quality.py` (D2) | §3.5, §6.3, Table 2b |
 | `CL-20` | F5 | Total OpenStreetMap POI inventory | 2,431 POIs across 63 categories | 10 districts (0 unplaced) | `q01_data_quality.py` (D5) | §3.5, Table 2e |
 | `CL-21` | F5 | POI concentration in Srinagar | 65.3% in Srinagar (1,588 POIs) | 2,431 total POIs | `q01_data_quality.py` (D5) | §3.5, Table 2e |
@@ -271,8 +271,8 @@ CL-37 onward were added 2026-09-30 as modules a04–a16, a06/a07/a14/a15, v01/v0
 
 ### [CL-18] Driver-GPS Clean Trace Dataset Volume
 - **Finding**: F4
-- **Exact Manuscript Text**: "The empirical GPS observation layer comprises 43,809 clean service runs collected from approximately 157 driver devices between February and June 2026."
-- **Numerical Value**: 43,809 runs (~157 drivers)
+- **Exact Manuscript Text**: "The empirical layer is 2,526 service runs (2,426 after map-matching) from 157 driver app accounts, 6 February–29 June 2026."
+- **Numerical Value**: 2,526 distinct service runs (2,426 after the map-match gate); 157 hashed app accounts; 855 driver-days. Corrected 22 October 2026: the earlier 43,809 is the sum of per-route run counts over 186 plan routes (run-route incidences, 17.3 per run), not a count of runs (`data/derived/v04_gps_validation.json`, corpus).
 - **Formula / Derivation**: Filtered and sessionized trajectories in `E:\bus-sathi-trace`.
 - **Denominator / Universe**: Full driver-app trace database.
 - **Source Module & File**: `data/raw/gps/reality_check.csv`, `data/derived/q01_data_quality.json:52`.
@@ -507,6 +507,6 @@ The 11 predeclared engine parameters swept in one-at-a-time (OAT) sensitivity an
 | **V1** | Spatial cross-validation (partly circular) | Microsoft ML building footprints (1.85 M); OSM (12,343) | Spearman $\rho$, route and 1-km grid | $\rho > 0.60$ | Microsoft: 0.975 route, 0.950 grid — pass; OSM: 0.657 route, 0.312 grid (mapping gap) `[CL-53]` | Executed (`v01`); **pass** on the complete footprint layer |
 | **V2** | Benchmark consistency (circular) | CHALO 98 buses, 12-month trips | Plan SSCL fleet / CHALO scaled to 15 min | Ratio within $\pm 15\%$ | 1.29–1.58 at a 13–16 h service day; route rank $\rho$ 0.22 `[CL-54]` | Executed (`v02`); **fail** |
 | **V3** | Delphi / AHP expert survey | Independent expert panel | Panel consensus Kendall $W$ | $W > 0.70$ | Pending elicitation | Forward work (§6.4); weights meanwhile equal/entropy/PCA |
-| **V4** | Supply-side GPS validation | Driver-GPS trace logs (43,809 runs) | MAPE on runtime & pace; rank corr | MAPE $< 20\%$, $\rho > 0.50$ | Moving speed passes (+1.4%); Dwell fails (61.6% MAPE) | Established (`v04`) |
+| **V4** | Supply-side GPS validation | Driver-GPS trace logs (2,526 service runs) | MAPE on runtime & pace; rank corr | MAPE $< 20\%$, $\rho > 0.50$ | Moving speed passes (+1.4%); Dwell fails (61.6% MAPE) | Established (`v04`) |
 | **V5** | Sobol' global sensitivity | 15,360 Saltelli evaluations | First- and total-order indices | Bootstrap 95% CI | Fleet B driven by spare ratio (0.55) and observed pace (0.45 combined); tiers by population weight (0.93) `[CL-58]` | Executed (`a09`) |
 | **V6** | Decision robustness | 5,000 Monte Carlo draws with GPS pace prior | Fleet 90% interval; tier stability | Stability $> 80\%$ | Fleet 989–1,058 (as specified) / 1,130–1,266 (observed pace); tier agreement 97.8%, 96.2% of routes stable `[CL-56, CL-57]` | Executed (`a09`); tiers pass, fleet interval excludes 1,011 at observed pace |

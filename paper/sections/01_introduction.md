@@ -196,7 +196,7 @@ data-constrained secondary urban regions.
 
 > **[EDITORIAL FLAG 1.5-b — O5 wording vs. what §6 can actually claim]** O5 says "Benchmark the operational
 > outputs against empirical operational data". §6 as drafted can support this **only** in the supply-side
-> sense (geometry → cycle time → fleet, validated against 43,809 driver-GPS runs; F3, F10–F12). It cannot
+> sense (geometry → cycle time → fleet, validated against 2,526 driver-GPS service runs; F3, F10–F12). It cannot
 > support a demand-side reading. Recommend tightening O5 to "…against empirical *operational* (supply-side)
 > data", so that no reader takes O5 as a promise of ridership validation. This is a one-word-class change and
 > is left to the co-authors.

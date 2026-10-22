@@ -45,7 +45,7 @@ against residents — the Euclidean figure overstates the public benefit by roug
 
 ## 5.3 Modelled time understates reality, and a sanity cap silently governs it
 
-Against 43,809 driver-GPS runs, modelled run time is far too fast: **MAPE(OSRM free-flow vs observed
+Against 2,526 driver-GPS service runs, modelled run time is far too fast: **MAPE(OSRM free-flow vs observed
 in-motion) = 65.1 %**, **MAPE(plan one-way vs observed) = 47.6 %**, median plan/observed ratio **0.51**
 `[CL-15, CL-16, CL-17, F3]`. The mechanism is a per-kilometre cycle-time cap intended as a guardrail
 that instead **binds on 169 of 186 routes (90.9 %)** — 100 % of Regional, 97.9 % of Peri-Urban, 76.5 %

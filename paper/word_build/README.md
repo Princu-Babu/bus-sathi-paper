@@ -45,6 +45,7 @@ cd paper/word_build
 ../../.venv/Scripts/python.exe render_equations_v6.py
 ../../.venv/Scripts/python.exe fig04_v6.py
 node build_section4_v6.js ../Section4_Methodology_v6.docx ../Section4_v6_Line_Justification.docx
+node build_section4_v6.js ../Section4_Methodology_Final.docx ../Section4_v6_Line_Justification.docx   # final copy, same text
 ```
 
 Changes of substance from v5, each checked against the engine or the derived data:

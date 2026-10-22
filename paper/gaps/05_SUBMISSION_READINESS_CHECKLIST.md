@@ -20,7 +20,7 @@ whether they block submission or merely polish it.
 
 ## B. Ethics / consent — the one that can sink a data-heavy paper
 
-The headline empirical layer is **43,809 driver-GPS runs from ~157 real drivers** (`CL-18`). A journal
+The headline empirical layer is **2,526 driver-GPS service runs from 157 driver app accounts** (`CL-18`). A journal
 will ask:
 - **Consent & privacy.** Were drivers informed their GPS traces would be used for research? Is the data
   anonymised (no driver IDs, no home locations)? The trace repo's Firestore admin key is (correctly)

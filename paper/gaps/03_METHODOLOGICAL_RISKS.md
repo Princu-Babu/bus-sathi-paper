@@ -28,7 +28,7 @@ interval-fleet argument — rests on **five** matched corridors (`CL-16`, `CL-17
 anecdote, not a validation."
 
 **How exposed we are.** High, and it is the most quotable weakness. Mitigations that are true and must
-be stated: (a) the *supporting* pace/cap findings (`CL-31`, `CL-32`) rest on 14–18 corridors and 43,809
+be stated: (a) the *supporting* pace/cap findings (`CL-31`, `CL-32`) rest on 14–18 corridors and 2,526
 runs, not 5; (b) the 0.51 ratio is corroborated mechanistically by the cap-binding rate (90.9%) and the
 dwell-model failure, so it is not a lone number. But we must **report the 5 explicitly, give the CI, and
 frame the fleet as an interval precisely because n is small** — turning the weakness into the reason for

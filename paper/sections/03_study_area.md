@@ -85,8 +85,8 @@ OpenStreetMap road and pedestrian network, from which a walkable graph of **961,
 23,323 km** was constructed; OSRM road travel times; the WorldPop 2026 gridded population surface; the 2011
 Census district totals used as an external check; 2,431 OSM points of interest; the electric-bus route set
 and its published ridership aggregates; OSM administrative boundaries at district and tehsil level; and a
-driver-application GPS corpus of **43,809 recorded runs from approximately 157 drivers between February and
-June 2026**.
+driver-application GPS corpus of **2,526 service runs (2,426 after map-matching) recorded by 157 driver app
+accounts between 6 February and 29 June 2026**.
 
 Complete provenance, licence terms and SHA-256 hashes for all staged inputs are recorded in
 `data/MANIFEST.md` in the companion repository.
@@ -148,7 +148,7 @@ graph) are excluded from version control and are documented with retrieval instr
 data under their respective licences (WorldPop: CC BY 4.0; OpenStreetMap: ODbL).
 
 > **[FLAG 3-D — ⚠ GPS ETHICS AND CONSENT IS UNANSWERED AND CAN SINK THE PAPER. Escalated as Decision 4.]**
-> The driver-GPS corpus (43,809 runs, ~157 drivers) is the paper's strongest observational evidence and the
+> The driver-GPS corpus (2,526 service runs, 157 driver app accounts) is the paper's strongest observational evidence and the
 > whole of validation channel V4 rests on it. Before submission this subsection **must** state, in the
 > author's own words and not in mine: (i) under what basis the location data were collected and whether
 > drivers were informed that operational traces might be used for research; (ii) whether the released data are

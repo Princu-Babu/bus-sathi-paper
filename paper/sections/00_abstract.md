@@ -15,7 +15,7 @@ register. The register's 614 permits describe only 157 corridors, so the plan's 
 reduction" is 99.4 % corridor retention plus a change of unit `[CL-01, CL-02, CL-07, CL-08]`. Measuring
 catchments on the pedestrian network rather than as straight-line buffers lowers population served by a
 median of **37.4 % per route** and division coverage from **35.5 % to 24.2 %** `[CL-26, CL-28]`; only
-10.4 % of residents live near a 15-minute service `[CL-42]`. Against 43,809 driver-GPS runs, modelled run
+10.4 % of residents live near a 15-minute service `[CL-42]`. Against 2,526 driver-GPS service runs, modelled run
 times are too fast and a per-kilometre cap, not demand, sets cycle time on 169 of 186 routes
 `[CL-18, CL-31]`. Joint uncertainty analysis therefore reports the fleet as a range: 989–1,058 buses as
 specified, but **1,130–1,266 at observed pace**, against a published 1,011; the service hierarchy is
