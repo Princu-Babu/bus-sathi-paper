@@ -8,7 +8,7 @@ const {
   BorderStyle, ShadingType, Table, TableRow, TableCell, WidthType, PageOrientation, ImageRun, Footer, PageNumber,
 } = require("docx");
 
-const C = require("./section4_v6_content.js");
+const C = require(process.env.S4_CONTENT || "./section4_v6_content.js");
 const refs = JSON.parse(fs.readFileSync(path.join(__dirname, "refs.json"), "utf8"));
 const [OUT_SECTION, OUT_JUST] = process.argv.slice(2);
 const FONT = "Times New Roman", MATH = "Cambria Math";

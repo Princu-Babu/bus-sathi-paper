@@ -1,0 +1,131 @@
+4. Methodology
+
+4.1 Overview
+
+Route planning usually starts from observed travel, but Kashmir Division has no origin-destination survey, fare-card records or passenger counts for its private and state-run buses; its only electronic ticketing is on the Srinagar Smart City e-bus service. The method therefore starts from the services already licensed and timetabled and returns a network in which every route has a service tier, a headway and a fleet.
+
+It has four stages (Fig. 4): records to corridors (Sections 4.2 and 4.3), what each route reaches (4.4 and 4.5), merging and ranking (4.5 to 4.7), and headways and fleets (4.7 and 4.8). Sections 4.9 to 4.11 describe where the e-bus operator's figures enter, the changes made before publication, and how the plan's decisions were tested.
+
+[Figure 4]
+
+4.2 Data
+
+Table 4.1 lists the inputs; the existing services enter as 614 rows. The 445 private permits come from the Srinagar Regional Transport Office, whose register is far more complete than those of the other nine Kashmir offices (453 of its 1,259 rows name both ends of a route, against 133 of 1,742 elsewhere). Of its 548 heavy-bus permits, 544 record no route, so the private input is almost all minibuses. The other 169 rows are scheduled services of the Jammu and Kashmir Road Transport Corporation, typed in from a scanned timetable. Permits were used whether or not still in force; in June 2026 only 96 of the 453 route-bearing Srinagar permits were valid.
+
+[Table 4.1]
+
+Running times come from a driver smartphone application recording positions about every 5 seconds; sessions were split into service runs, map-matched with OSRM and grouped into corridors. The runs lie mostly in and around Srinagar and carry no passenger information, so they are used only for running time.
+
+The population surface, an alpha release used as published, totals 95.6% of the 2011 Census count, but districts differ from the Census by up to 29%. Of the 2,431 points of interest, 65% lie in Srinagar district, partly reflecting how thoroughly each area has been mapped.
+
+The study region Ω is the union of the ten districts. Raster cell c, centred at x_c, holds ρ_c residents; the region holds 6,584,762, the denominator of every coverage share. G = (V, E) is the walking network and route r a line of length ℓ(r). The open sources are WorldPop (Stevens et al., 2015; Tatem, 2017), OpenStreetMap (OpenStreetMap contributors, 2024) and OSRM (Luxen and Vetter, 2011), built on the same map extract as the walking network.
+
+4.3 From permit rows to corridors
+
+Place names were geocoded with Nominatim within the district named in each record; the rest came from a gazetteer of 103 entries, in which 37 villages that no source could locate sit at their district's centre, so routes ending there have approximate distances and catchments.
+
+A permit licenses a vehicle, so several rows often describe one route. Rows whose end points match within 11 m, in either direction, form one corridor; the 614 rows describe 157 corridors. The busiest, Hazratbal to Lal Ded, has 42 rows, so any reduction in route numbers depends on the unit counted, which Section 5 states each time.
+
+4.4 Walking catchments
+
+Straight-line buffers (Murray, 2001) count people across rivers, lakes and walls as served, an error measured in several cities (Gutierrez and Garcia-Palomares, 2008; Biba et al., 2010; El-Geneidy et al., 2014). Srinagar is divided by the Jhelum and its lakes, so catchments were measured on the walking network.
+
+Notional stops were placed every 250 m along each route and attached to the nearest node (median offset 11 m). A shortest-path search from all stops gives each node v its walking distance d(v). With budget W = 400 m and an off-network allowance τ = 100 m, one raster cell, the catchment is
+
+A_net(r) = ⋃_{v ∈ V : d(v) ≤ W} B(x_v, min(W − d(v), τ))    (1)
+
+where B(x, δ) is the disc of radius δ centred on x. Its residents are
+
+Π(r) = Σ_{c : x_c ∈ A_net(r)} ρ_c    (2)
+
+Neighbouring routes share residents, so for network totals each cell is split equally among the n_c routes reaching it:
+
+π_c(r) = (ρ_c / n_c) · 1[x_c ∈ A_net(r)],    Σ_r π_c(r) = ρ_c    (3)
+
+W is varied from 300 to 800 m (Section 4.11). The quality of the walking environment, which also affects willingness to walk (Bivina et al., 2019), is not modelled.
+
+4.5 Destinations and the composite index
+
+Destinations were counted as cumulative opportunities (Geurs and van Wee, 2004): point q counts towards route r when its walking distance to the nearest stop, d_q(r), is at most 250 m, weighted by its tier t(q):
+
+O(r) = Σ_{q ∈ Q : d_q(r) ≤ 250 m} α_t(q)    (4)
+
+Tiers come from OpenStreetMap tags and 67 name rules, with α = 1.00 for major destinations (1,030 points), 0.40 for others (1,080) and 0.60 for seasonal sites (321). They are coarse: every place of worship is in the top tier (547 points). The weights and tiers are our assumptions; the plan itself measured the 250 m in a straight line.
+
+Because a residential surface misses visitors, the plan raised the resident count of the eight tourist routes, the set T:
+
+Π*(r) = μ Π(r) if r ∈ T;  Π*(r) = Π(r) otherwise;  μ = 1.30    (5)
+
+This changes their index but not network coverage. Both measures were divided by route length, density was capped at its 95th percentile, and each was rescaled,
+
+ẑ(r) = [z(r) − min z] / [max z − min z]    (6)
+
+and combined with weight β on residents (OECD and European Commission, Joint Research Centre, 2008):
+
+CDI(r) = β ẑ_Π(r) + (1 − β) ẑ_O(r),    β = 0.50    (7)
+
+where ẑ_Π and ẑ_O rescale Π*(r)/ℓ(r) and O(r)/ℓ(r). The components correlate strongly (r = 0.89), so the index is close to a density ranking with a destination adjustment. Section 5 compares equal weights, which principal-component weights (Jolliffe, 2002) reduce to here, with entropy weights (Shannon, 1948; Zou et al., 2006) and β from 0.2 to 0.8. The index indicates where demand is likely; it does not measure it.
+
+4.6 Merging overlapping routes
+
+Overlap is measured on 80 m buffers S(r):
+
+φ(r_i, r_j) = |S(r_i) ∩ S(r_j)| / min(|S(r_i)|, |S(r_j)|)    (8)
+
+A trunk is the highest-ranked route of its overlap group; a member joins it only when φ ≥ θ = 0.65 and their start points lie within 2.5 km. Members never merge with each other, and e-bus routes are never absorbed (Algorithm 1). These values are our assumptions.
+
+[Algorithm 1]
+
+The rule is conservative: the 186 active routes keep 156 of the 157 corridors. It is not sampled in the uncertainty analysis; scenario S4 (Section 5) is its only test.
+
+4.7 Service tiers and headways
+
+Routes are typed by length as urban (under 15 km), peri-urban (15 to 40 km) or regional (over 40 km), unless their permit category says otherwise. Tiers were set by Jenks natural breaks on the index (Fisher, 1958; Jenks, 1967), judged by the goodness of variance fit:
+
+GVF(k) = 1 − [Σ_j Σ_{i ∈ C_j} (y_i − ȳ_Cj)²] / [Σ_i (y_i − ȳ)²],    k = 2, …, 7    (9)
+
+Three tiers give 0.90 against 0.79 for two; the 0.80 threshold separating them is our choice. Published tiers carry three overrides: e-bus routes are always top tier, routes within 250 m of 11 listed social destinations (four migrant townships and seven hospitals) rise from the lowest tier to the middle, and routes within 5% of the gap between breaks can move one tier by road role.
+
+Headways are service standards, set independently of the index: 15 minutes on e-bus routes, 20 on other top-tier routes and 35 on other urban and peri-urban routes. Regional routes outside the e-bus network start at 35 minutes and, when estimated load (Section 4.9) is below 55%, are lengthened proportionally and rounded to 40, 45 or 50; in practice 62 of 67 run at 50 and 5 at 35. Such standards pursue a coverage goal (Walker, 2008). Each route has one headway all day.
+
+4.8 Cycle time and fleet
+
+One-way running time is congested free-flow time plus stop time (Vuchic, 2005; Ceder, 2007):
+
+t_run(r) = χ(r) (t_free(r) + J(r)) + δ ℓ(r) / Δ    (10)
+
+where χ is 2.2 in the city core, a zone bounded by one line of latitude that contains 170 of 186 routes, and 1.4 elsewhere; J adds 8 minutes for a Jhelum crossing; and stops cost δ = 0.5 minutes every Δ = 500 m. These are assumptions. Cycle time is capped per kilometre:
+
+t_cyc(r) = min(2λ t_run(r), 2 ℓ(r) ω_type(r))    (11)
+
+with λ = 1.10 for layover and ω = 4.0, 2.5 and 1.5 min/km for urban, peri-urban and regional routes. The cap binds on 169 of 186 routes, where Eq. (10) has no effect, and the urban cap is faster than the observed GPS median pace of 4.62 min/km; Section 4.11 therefore also sizes the fleet from observed pace. With headway h(r),
+
+N_op(r) = ⌈t_cyc(r) / h(r)⌉,    N(r) = max(⌈σ N_op(r)⌉, N^min_type(r))    (12)
+
+where σ = 1.15 is an assumed spare allowance and N^min is two buses (one on regional routes). The operator's deployed fleet N^emp is a floor on e-bus routes E:
+
+N_total = Σ_{r ∉ E} N(r) + Σ_{r ∈ E} max(N(r), N^emp(r)) = 728 + 283 = 1,011    (13)
+
+Of these, 187 are heavy (about 12 m), 754 medium (about 9 m) and 70 light: routes under 12 km get no heavy buses, which are at most half of longer routes' fleets. An independent re-implementation of Eqs. (10) to (12) reproduces the published fleet on all 186 routes.
+
+4.9 Where the e-bus operator's figures enter
+
+The method needs no observed demand for the routes it plans, but uses the e-bus operator's figures at five points: the 30 e-bus routes are never absorbed; they are top tier at 15-minute headways; their fleet is at least the deployed fleet; the urban bus share and the scale of the ridership estimate come from their boardings; and that estimate can lengthen regional headways. It does not affect the route set or tiers. For route r,
+
+D̃(r) = κ g m_type(r) s(r) Σ_{c ∈ A(r)} ρ_c,    κ = 0.33    (14)
+
+where g = 1.6 trips per person per day is assumed, m is the bus share for the route type, A(r) the catchment and s(r) the route's share of its corridor's residents. The urban share, 0.090, was backed out of e-bus boardings for an assumed served population of about 222,000; the peri-urban and regional shares are 0.8 and 0.6 of it by assumption. κ was fitted to the operator's 11.63 million boardings (May 2025 to April 2026). Only the product κgm is identified, and comparison with the operator's data (Section 6) is circular. The demand-sized fleet in Section 5 holds demand fixed, although demand responds to service (Holmgren, 2007).
+
+4.10 Changes made before publication
+
+Three changes were made to the model's output before publication. First, all 186 routes were reviewed at a desk with an AI research assistant, which compared modelled road distances with distances published online and recorded the websites consulted. It passed 93, flagged 88 and failed 5. Where distances differed by more than 15% and place names were confirmed, the published midpoint replaced the modelled distance and the fleet was recomputed; 49 routes changed, needing 207 buses instead of 247. No replacement distance was measured on the ground.
+
+Second, five routes matched to GPS corridors with 40 to 211 runs each were re-timed from measured moving speed, raising the fleet from 1,004 to 1,011; they are excluded from the out-of-sample test in Section 6. Third, the headway standards were revised over about fifteen plan versions during review, with fleets ranging from 855 to 1,144 buses.
+
+4.11 Sensitivity and uncertainty
+
+A one-at-a-time sweep varies each parameter with the others fixed. A Monte Carlo analysis draws twelve inputs together 5,000 times, and Sobol' indices (Sobol', 2001; Saltelli et al., 2008, 2010) from a Saltelli design of 1,024 base samples (14,336 runs) apportion output variance. Catchment settings are evaluated on a grid of walking budgets (300 to 800 m) and stop spacings (150 to 400 m).
+
+Because the cap hides running-time parameters, the fleet is computed in two regimes: A, the plan as specified; and B, in which urban and peri-urban routes outside the e-bus network take cycle times from pace on 16 GPS corridors around Srinagar (5 routes from their own corridors, 84 from their type's median), computed from overall pace and from moving pace plus modelled stop time. E-bus and regional routes keep modelled cycles, as no usable pace was observed.
+
+We report medians and 5th to 95th percentile ranges. They depend on our chosen input distributions, are not confidence intervals, and exclude route-set uncertainty. The analysis tests whether decisions survive plausible changes in parameters and speeds, not the plan against demand. Analyses run from frozen inputs in Python 3.14 (seed 20260823) with SALib 1.5.2 and jenkspy 0.4.1.
