@@ -166,6 +166,18 @@ opened. Most of the June audit's findings were fixed in later versions; these st
   intra-city sheet lists Srinagar routes (Parimpora to Harwan, Batamaloo to Hazratbal and others); it covers 8
   routes and 32 buses, so it is an older or partial list, not the 30-route, 98-bus deployment.
 
+## 12. Added 22 October 2026, while writing Section 4 v6
+
+- **GPS run count.** §3 (line 88) and §6 give "43,809 recorded runs". `v04_gps_validation.json` (corpus) shows
+  that 43,809 counts run-corridor incidences, 17.3 per run; the data hold 2,526 distinct service runs (2,426 after
+  the map-match gate) from 157 app accounts. An account is not a verified person or device. Correct §3, §6 and
+  claim-ledger row CL-18.
+- **Tourist multiplier.** v5 of Section 4 applied μ = 1.3 to the destination score. The engine applies it to the
+  resident count (`transit_kashmir_v3.py:1863`). Fixed in v6, Eq. 5.
+- **Tier overrides.** Besides the e-bus lock and the social floor, the engine moves routes lying within 5% of the gap between the two Jenks breaks
+  by road role (lines 2895-2925). The district-headquarters floor applies only to regional routes that
+  already carry the social flag. Both now in v6, §4.7.
+
 ## Not found anywhere
 
 No document in any folder supports these, so they stay as assumptions or open questions:
