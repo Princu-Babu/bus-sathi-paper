@@ -61,3 +61,19 @@ Changes of substance from v5, each checked against the engine or the derived dat
   give 43,809 "runs", which is the count of run-corridor incidences, not runs.
 - The changes made to the plan before publication (desk review, GPS re-timing, headway revisions) have their own
   subsection after the model, so the model can be read first.
+
+# All sections in Word (23 October 2026)
+
+`build_manuscript_docx.py` writes `paper/word/`: one Word file per section (`Section_00_Abstract.docx` …
+`Section_08_Conclusions.docx`, callouts kept), `Kashmir_Manuscript_Working_Draft.docx` (all sections, callouts
+and claim tags kept) and `Kashmir_Manuscript_Clean.docx` (callouts and claim tags removed). Figures go after the
+paragraph that first mentions them; figures no paragraph mentions go at the end of Section 5. Section 4's
+equations use the `v6_eq*.png` images.
+
+`sections/04_methodology.md` is now generated from `section4_final_content.js`:
+
+```bash
+node paper/word_build/content_to_md.js
+.venv/Scripts/python.exe paper/word_build/build_manuscript_docx.py
+.venv/Scripts/python.exe paper/make_manuscript_pdf.py
+```

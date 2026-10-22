@@ -155,19 +155,32 @@ def fig01_framework():
 
 
 def fig04_method_flow():
-    fig, ax = plt.subplots(figsize=(7.2, 2.6))
+    # Stages and equation numbers of the final Section 4 (22 Oct 2026); the dashed box marks the
+    # inputs that are not open data. Same design as paper/word_build/fig04_v6.py.
+    fig, ax = plt.subplots(figsize=(7.2, 3.3))
     ax.set_axis_off(); ax.set_xlim(0, 1); ax.set_ylim(0, 1)
-    phases = [("Phase 1\nDiagnosis", "permit → corridor\nWorldPop vs Census\nOSM completeness"),
-              ("Phase 2\nAccessibility", "network walk\ncatchments (Eq. 1–3)\nopportunity (Eq. 4–5)"),
-              ("Phase 3\nHierarchy", "CDI (Eq. 7)\nconsolidation (Alg. 1)\nJenks tiers (Eq. 10)"),
-              ("Phase 4\nSizing & assurance", "cycle time (Eq. 11–12)\nfleet (Eq. 13–14)\nQA gates · uncertainty")]
+    d1 = C.read_result("q01_data_quality")["D1_register_hygiene"]
+    rows_in, corridors = d1["n_permit_register_rows"], d1["n_distinct_corridors_11m"]
+    stages = [("Stage 1\nCorridors", f"{rows_in} permit and\ntimetable rows\n→ {corridors} corridors\n(§4.2–4.3)"),
+              ("Stage 2\nReach", "walking catchments\n(Eq. 1–3)\ndestinations\n(Eq. 4)"),
+              ("Stage 3\nRank and merge", "index (Eq. 5–7)\nmerging (Eq. 8, Alg. 1)\ntiers (Eq. 9)"),
+              ("Stage 4\nService and fleet", "headways (§4.7)\ncycle time (Eq. 10–11)\nfleet (Eq. 12–13)\nsensitivity (§4.11)")]
     w = 0.22
-    for k, (h, b) in enumerate(phases):
+    for k, (h, b) in enumerate(stages):
         x = 0.01 + k * 0.25
-        box(ax, x, 0.62, w, 0.3, h, fc="#e8f1fc", ec="#2a78d6", bold=True)
-        box(ax, x, 0.08, w, 0.46, b, size=7.5)
+        box(ax, x, 0.70, w, 0.25, h, fc="#e8f1fc", ec="#2a78d6", bold=True)
+        box(ax, x, 0.31, w, 0.33, b, size=7.5)
         if k < 3:
-            arrow(ax, x + w, 0.77, x + 0.25, 0.77)
+            arrow(ax, x + w, 0.825, x + 0.25, 0.825)
+    ax.add_patch(FancyBboxPatch((0.01, 0.02), 0.97, 0.18, boxstyle="round,pad=0.01,rounding_size=0.015",
+                                fc="#ffffff", ec=MUTED, lw=0.8, ls="--"))
+    ax.text(0.495, 0.11, "Operator, GPS and hand-checked inputs: e-bus operator routes, fleet and boardings "
+            "(§4.9, Eq. 14)\ndriver GPS running times (§4.10–4.11) · desk-reviewed road distances on 49 routes (§4.10)",
+            ha="center", va="center", color=INK, fontsize=7.3)
+    for k in (2, 3):
+        x = 0.01 + k * 0.25 + w / 2
+        ax.annotate("", xy=(x, 0.31), xytext=(x, 0.20),
+                    arrowprops=dict(arrowstyle="-|>", color=INK2, lw=0.9, ls="--", shrinkA=0, shrinkB=0))
     save(fig, "fig04_method_flow")
 
 

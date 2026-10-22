@@ -4,7 +4,7 @@
 
 This study rationalised an inherited stage-carriage network **entirely from open data and with no
 demand feed**. Spatial analysis of the register showed it to be a **permit** register, not a route
-register: 614 permits `[CL-01]` describe 157 distinct corridors `[CL-02]`, which the plan reorganises
+register: 614 route records (445 permits and 169 timetabled services) `[CL-01]` describe 157 distinct corridors `[CL-02]`, which the plan reorganises
 into **186 active routes** (32 trunk, 154 feeder) sized at a **1,011-vehicle fleet** (187/754/70
 HPV/MPV/LPV; +68.5 % over the operating baseline) `[CL-06, CL-36]`. The pipeline is reproducible end to
 end under a fixed seed.

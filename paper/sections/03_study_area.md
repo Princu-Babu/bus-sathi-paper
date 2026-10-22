@@ -74,13 +74,14 @@ route, and are not preceded by any assessment of duplication, service gaps, flee
 > co-authors agree to move it, §3.3 becomes that block plus the two paragraphs above as a lead-in, and §1
 > drops back within its 1,200-word budget. If they prefer it in §1, §3.3 should be cut to a cross-reference.
 
-The register itself is the paper's primary supply dataset: **614 digitised stage-carriage permits** (CL-01)
-plus **30 electric-bus routes**, giving 644 rows. Its most important property is diagnosed in §3.5.
+The paper's primary supply dataset is **614 route records** (CL-01): **445 private stage-carriage permits** from the
+Srinagar Regional Transport Office register and **169 scheduled services** of the Jammu and Kashmir Road Transport
+Corporation, transcribed from its Kashmir Division timetable. With **30 electric-bus routes** they give 644 rows. Its most important property is diagnosed in §3.5.
 
 ## 3.4 Data inventory
 
 **Table 2** carries the full inventory — source, resolution, processing, validation and limitations — for
-each dataset. The principal entries are: the RTO stage-carriage permit register (614 permits); the
+each dataset. The principal entries are: the permit register and corporation timetable (614 records); the
 OpenStreetMap road and pedestrian network, from which a walkable graph of **961,927 nodes, 973,569 edges and
 23,323 km** was constructed; OSRM road travel times; the WorldPop 2026 gridded population surface; the 2011
 Census district totals used as an external check; 2,431 OSM points of interest; the electric-bus route set
@@ -103,7 +104,7 @@ Complete provenance, licence terms and SHA-256 hashes for all staged inputs are 
 This subsection is what separates a paper from a consultancy report, and the diagnostics reported here are
 deliberately unflattering.
 
-**The permit register is not a route register (F1).** The 614 permits resolve to **157 distinct undirected
+**The permit register is not a route register (F1).** The 614 records resolve to **157 distinct undirected
 origin–destination corridors**, a mean of 3.91 permits per corridor and a maximum of 42 on the
 Hazratbal–Lal Ded corridor. This matters for how the headline result must be stated: the reduction from 644
 rows to 186 active routes decomposes into **71.0 percentage points of change-of-unit and 0.2 percentage points

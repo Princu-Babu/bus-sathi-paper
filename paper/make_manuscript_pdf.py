@@ -56,7 +56,7 @@ SECTIONS = {
     "03_study_area": ("3. Study area and data", "Krishna", 700,
                       "Drafted for co-author review; ethics paragraph blank"),
     "04_methodology": ("4. Methodology", "Prashant (sole owner)", 1700,
-                       "Complete draft; Eqs 1-14 + Algorithm 1"),
+                       "Final short version (22 Oct 2026); Eqs 1-14, Table 3, Algorithm 1"),
     "05_results": ("5. Results", "Prashant, Misti", 1800,
                    "All subsections drafted; §5.12 provisional (D8)"),
     "06_validation": ("6. Validation and robustness", "Avny, Krishnan, Prashant", 650,
@@ -78,7 +78,8 @@ FIGURES = [
     ("fig02_gap_heatmap", "**Figure 2.** Reviewed studies by data intensity required and planning output (n = 56). All six full plans need a demand matrix; none at intensity 1–3 produces one [CL-64]."),
     ("fig03_study_area", "**Figure 3.** Study area: the ten districts of Kashmir Division and the 186 active "
      "routes of the rationalised plan by service class."),
-    ("fig04_method_flow", "**Figure 4.** The four-phase method and the equations that implement each phase."),
+    ("fig04_method_flow", "**Figure 4.** The four stages of the method with the equations that implement them. The dashed "
+     "box lists the inputs that come from the e-bus operator, from driver GPS or from a desk review rather than from open data."),
     ("fig05_permit_funnel", "**Figure 5.** From permits to routes: 614 permit records resolve to 157 "
      "corridors; 156 of them are retained among the 186 active routes [CL-01, CL-02, CL-08]."),
     ("fig06_catchment_bias", "**Figure 6.** Euclidean against network walk catchments. Left: per-route "

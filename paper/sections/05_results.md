@@ -7,7 +7,7 @@
 
 ## 5.1 The inherited network is a permit register, not a route register
 
-The starting network is **614 permit records** `[CL-01]` that resolve, by undirected endpoint hashing
+The starting network is **614 route records** (445 private permits and 169 timetabled services) `[CL-01]` that resolve, by undirected endpoint hashing
 at 11 m, to **157 distinct origin–destination corridors** `[CL-02, F1]` — 155 at 100 m, so the count
 is structural, not a rounding artefact. Duplication is severe and skewed: a mean of 3.91 permits per
 corridor against a median of one `[CL-04]`, with **42 separate permits on the single Hazratbal–Lal Ded

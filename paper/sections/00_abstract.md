@@ -11,7 +11,7 @@ Most Indian cities that need bus-network reform lack the origin–destination an
 route-optimisation methods assume. We present an open-data, demand-free framework for bus route
 rationalisation and fleet sizing and apply it to Kashmir Division, India (6,584,762 residents)
 `[CL-11]`, using a gridded population surface, OpenStreetMap, a routing engine and the digitised permit
-register. The register's 614 permits describe only 157 corridors, so the plan's apparent 71 % "route
+register. Its 614 route records (445 private permits and 169 timetabled services) describe only 157 corridors, so the plan's apparent 71 % "route
 reduction" is 99.4 % corridor retention plus a change of unit `[CL-01, CL-02, CL-07, CL-08]`. Measuring
 catchments on the pedestrian network rather than as straight-line buffers lowers population served by a
 median of **37.4 % per route** and division coverage from **35.5 % to 24.2 %** `[CL-26, CL-28]`; only
